@@ -19,6 +19,11 @@ namespace Z0
             => src;
 
         [MethodImpl(Inline)]
+        public static Vec128<ulong> ToVector128(this UInt128 src)
+            => src;
+
+
+        [MethodImpl(Inline)]
         public static UInt128 ToUInt128(this in Vec128<ulong> src)
             => src;
 

@@ -130,7 +130,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static implicit operator BitVector<N32,uint>(in BitVector32 src)
+        public static implicit operator BitVector<N32,uint>(BitVector32 src)
             => BitVector<N32,uint>.Load(src.data);
 
 
@@ -147,7 +147,7 @@ namespace Z0
             => BitVector16.FromScalar((ushort)src.data);
 
         [MethodImpl(Inline)]
-        public static implicit operator uint(in BitVector32 src)
+        public static implicit operator uint(BitVector32 src)
             => src.data;        
 
         /// <summary>
@@ -628,7 +628,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public readonly BitVector32 Gather(BitVector32 spec)
-            => Bits.gather(in data, spec);
+            => Bits.gather(data, spec);
 
         /// <summary>
         /// Extracts mask-identified source bits
@@ -637,7 +637,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public readonly BitVector16 Gather(BitVector16 spec)        
-            => (ushort)Bits.gather(in data, (ushort)spec);
+            => (ushort)Bits.gather(data, (ushort)spec);
         
         /// <summary>
         /// Extracts mask-identified source bits
@@ -646,7 +646,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public readonly BitVector8 Gather(BitVector8 spec)
-            => (byte)Bits.gather(in data, (byte)spec);
+            => (byte)Bits.gather(data, (byte)spec);
 
         /// <summary>
         /// Computes the scalar product of the source vector and another

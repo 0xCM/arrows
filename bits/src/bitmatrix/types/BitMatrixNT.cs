@@ -249,8 +249,8 @@ namespace Z0
         /// Extracts the bits that comprise the matrix in row-major order
         /// </summary>
         [MethodImpl(Inline)]
-        public Span<Bit> Unpack()
-            => data.AsBytes().Unpack(out Span<Bit> dst).Slice(0, (int)Dim.Volume);
+        public Span<byte> Unpack()
+            => data.AsBytes().Unpack().Slice(0, (int)Dim.Volume);
 
         /// <summary>
         /// Sets all the bits to align with the source value
@@ -307,7 +307,7 @@ namespace Z0
 
         static ref BitMatrix<N,T> And(ref BitMatrix<N,T> lhs, in BitMatrix<N,T> rhs)        
         {
-            gbits.and(lhs.Data, rhs.Data, lhs.Data);
+            gbitspan.and(lhs.Data, rhs.Data, lhs.Data);
             return ref lhs;
         }
 
@@ -332,19 +332,19 @@ namespace Z0
 
         static ref BitMatrix<N,T> XOr(ref BitMatrix<N,T> lhs, in BitMatrix<N,T> rhs)        
         {
-            gbits.xor(lhs.Data, rhs.Data, lhs.Data);
+            gbitspan.xor(lhs.Data, rhs.Data, lhs.Data);
             return ref lhs;
         }
 
         static ref BitMatrix<N,T> Or(ref BitMatrix<N,T> lhs, in BitMatrix<N,T> rhs)        
         {
-            gbits.or(lhs.Data, rhs.Data, lhs.Data);
+            gbitspan.or(lhs.Data, rhs.Data, lhs.Data);
             return ref lhs;
         }
 
         static ref BitMatrix<N,T> Flip(ref BitMatrix<N,T> src)        
         {
-            gbits.flip(src.Data);
+            gbitspan.flip(src.Data);
             return ref src;
         }
         

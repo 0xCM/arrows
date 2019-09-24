@@ -58,40 +58,6 @@ namespace Z0
             return ref src;
         }           
 
-        [MethodImpl(Inline)]
-        public static Span<T> rotr<T>(ReadOnlySpan<T> src, T offset)        
-            where T : struct
-        {
-            if(typeof(T) == typeof(byte))
-                return generic<T>(Bits.rotr(uint8(src), uint8(in offset)));
-            else if(typeof(T) == typeof(ushort))
-                return generic<T>(Bits.rotr(uint16(src), uint16(in offset)));
-            else if(typeof(T) == typeof(uint))
-                return generic<T>(Bits.rotr(uint32(src), uint32(in offset)));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.rotr(uint64(src), uint64(in offset)));
-            else            
-                throw unsupported<T>();
-
-        }
-
-        [MethodImpl(Inline)]
-        public static Span<T> rotr<T>(ReadOnlySpan<T> src, T offset, Span<T> dst)        
-            where T : struct
-        {
-            if(typeof(T) == typeof(byte))
-                Bits.rotr(uint8(src), uint8(in offset), uint8(dst));
-            else if(typeof(T) == typeof(ushort))
-                Bits.rotr(uint16(src), uint16(in offset), uint16(dst));
-            else if(typeof(T) == typeof(uint))
-                Bits.rotr(uint32(src), uint32(in offset), uint32(dst));
-            else if(typeof(T) == typeof(ulong))
-                Bits.rotr(uint64(src), uint64(in offset), uint64(dst));
-            else            
-                throw unsupported<T>();
-            return dst;
-
-        }
 
 
     }

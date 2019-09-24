@@ -30,7 +30,7 @@ namespace Z0
                
         [MethodImpl(Inline)]   
         public static ulong PopCount(this Span<byte> src)
-            => Bits.pop(src);
+            => bitspan.pop(src);
     }
 
 }

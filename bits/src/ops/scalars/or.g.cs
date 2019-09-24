@@ -44,39 +44,6 @@ namespace Z0
             return ref dst;
         }
                 
-        [MethodImpl(Inline)]
-        public static Span<T> or<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : unmanaged
-        {
-            for(var i=0; i<lhs.Length; i++)
-                or(in lhs[i], in rhs[i], ref dst[i]);
-            return dst;
-        }
 
-        [MethodImpl(Inline)]
-        public static Span<T> or<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
-            where T : unmanaged
-        {
-            for(var i=0; i<lhs.Length; i++)
-                or(in lhs[i], in rhs[i], ref lhs[i]);
-            return lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static Span<T> or<T>(Span<T> lhs, in T rhs)
-            where T : struct
-        {
-            for(var i=0; i<lhs.Length; i++)
-                or(in lhs[i], in rhs, ref lhs[i]);
-            return lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static Span<T> or<T>(ReadOnlySpan<T> lhs, in T rhs, Span<T> dst)
-            where T : struct
-        {
-            lhs.CopyTo(dst);
-            return or(dst,rhs);
-        }
     }
 }

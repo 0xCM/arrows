@@ -21,7 +21,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : unmanaged
         {
-            gmath.add(A.Span, B.Span, C.Span);
+            mathspan.add(A.Span, B.Span, C.Span);
             return ref C;
         }
 

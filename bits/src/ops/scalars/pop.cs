@@ -77,52 +77,5 @@ namespace Z0
         public static uint pop(ulong src)
             => (uint)Popcnt.X64.PopCount(src);
  
-        /// <summary>
-        /// Counts the total population of enabled bits in the source
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        public static ulong pop(Span<byte> src)
-        {
-            var count = 0ul;            
-            for(var i = 0; i < src.Length; i++)
-                count += pop(src[i]);
-            return count;
-        }
-
-        /// <summary>
-        /// Counts the total population of enabled bits in the source
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        public static ulong pop(Span<ulong> src)
-        {
-            var count = 0u;
-            for(var i=0; i<src.Length; i++)
-                count += pop(src[i]);
-            return count;
-        }
-
-        /// <summary>
-        /// Counts the total population of enabled bits in the source
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        public static ulong pop(Span<uint> src)
-        {
-            var count = 0u;
-            for(var i=0; i<src.Length; i++)
-                count += Popcnt.PopCount(src[i]);
-            return count;
-        }
-
-        /// <summary>
-        /// Counts the total population of enabled bits in the source
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        public static ulong pop(Span<ushort> src)
-        {
-            var count = 0u;
-            for(var i=0; i<src.Length; i++)
-                count += Popcnt.PopCount(src[i]);
-            return count;
-        }
     }
 }

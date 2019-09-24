@@ -24,6 +24,9 @@ namespace Z0
             if(src == null)
                 throw new ArgumentNullException(nameof(src), $"Called from {line} {file}");
                 
+            if(src.IsEnum)
+                return src.Name + AsciSym.Colon + src.GetEnumUnderlyingType().DisplayName();
+
             if(src.IsSimpleName())
                 return src.FormatSimple();
 

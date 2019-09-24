@@ -22,7 +22,7 @@ namespace Z0.Mkl.Test
             var dst1 = src.Replicate(true);
             mkl.abs(src, ref dst1);
             var dst2 = src.Replicate();
-            gmath.abs(src,dst2.Unblocked);
+            mathspan.abs(src,dst2.Unblocked);
             Claim.yea(dst1 == dst2);
         }
 
@@ -32,7 +32,7 @@ namespace Z0.Mkl.Test
             var dst1 = src.Replicate(true);
             mkl.abs(src, ref dst1);
             var dst2 = src.Replicate();
-            gmath.abs(src,dst2.Unblocked);
+            mathspan.abs(src,dst2.Unblocked);
             Claim.yea(dst1 == dst2);
         }
 

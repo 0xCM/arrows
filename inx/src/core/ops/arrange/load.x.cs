@@ -100,6 +100,16 @@ namespace Z0
             where T : unmanaged            
                 => Vec256.Load(ref asRef(in src[offset]));
 
+        /// <summary>
+        /// Loads a 128-bit vector from a blocked span
+        /// </summary>
+        /// <param name="src">The source span</param>
+        /// <param name="block">The block index</param>
+        /// <typeparam name="T">The primitive type</typeparam>
+        [MethodImpl(Inline)]
+        public static Vector256<T> LoadVector256<T>(this Span256<T> src, int block = 0)            
+            where T : unmanaged            
+                => Vec256.LoadVector(ref src.Block(block));
 
         /// <summary>
         /// Loads a 128-bit vector from a blocked span
@@ -121,7 +131,6 @@ namespace Z0
         public static Vector128<T> LoadVector128<T>(this Span<T> src, int offset = 0)
             where T : unmanaged            
                 => Vec128.LoadVector(ref src[offset]);
-
     }
 
 }

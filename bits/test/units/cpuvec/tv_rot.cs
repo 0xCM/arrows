@@ -348,28 +348,28 @@ namespace Z0
 
 
         void rotl_check(Vec256<byte> src, byte offset, Vec256<byte> computed)        
-            => Claim.eq(Bits.rotl(src.ToSpan(), offset), computed.ToSpan());
+            => Claim.eq(bitspan.rotl(src.ToSpan(), offset), computed.ToSpan());
 
         void rotr_check(Vec256<byte> src, byte offset, Vec256<byte> computed)        
-            => Claim.eq(Bits.rotr(src.ToSpan(), offset), computed.ToSpan());
+            => Claim.eq(bitspan.rotr(src.ToSpan(), offset), computed.ToSpan());
 
         void rotl_check(Vec256<ushort> src, ushort offset, Vec256<ushort> computed)        
-            => Claim.eq(Bits.rotl(src.ToSpan(), offset), computed.ToSpan());
+            => Claim.eq(bitspan.rotl(src.ToSpan(), offset), computed.ToSpan());
 
         void rotr_check(Vec256<ushort> src, ushort offset, Vec256<ushort> computed)        
-            => Claim.eq(Bits.rotr(src.ToSpan(), offset), computed.ToSpan());
+            => Claim.eq(bitspan.rotr(src.ToSpan(), offset), computed.ToSpan());
 
         void rotl_check(Vec256<uint> src, uint offset, Vec256<uint> computed)        
-            => Claim.eq(Bits.rotl(src.ToSpan(), offset), computed.ToSpan());
+            => Claim.eq(bitspan.rotl(src.ToSpan(), offset), computed.ToSpan());
 
         void rotr_check(Vec256<uint> src, uint offset, Vec256<uint> computed)        
-            => Claim.eq(Bits.rotr(src.ToSpan(), offset), computed.ToSpan());
+            => Claim.eq(bitspan.rotr(src.ToSpan(), offset), computed.ToSpan());
 
         void rotl_check(Vec256<ulong> src, ulong offset, Vec256<ulong> computed)        
-            => Claim.eq(Bits.rotl(src.ToSpan(), offset), computed.ToSpan());
+            => Claim.eq(bitspan.rotl(src.ToSpan(), offset), computed.ToSpan());
 
         void rotr_check(Vec256<ulong> src, ulong offset, Vec256<ulong> computed)        
-            => Claim.eq(Bits.rotr(src.ToSpan(), offset), computed.ToSpan());
+            => Claim.eq(bitspan.rotr(src.ToSpan(), offset), computed.ToSpan());
 
         void TraceRot(Vec256<uint> src, Vec256<uint> offsets)
         {

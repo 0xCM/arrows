@@ -45,7 +45,8 @@ namespace Z0
         void Disassemble(bool asm, bool cil)
         {
 
-            //Disassemble(true,true, typeof(Bits));
+            Disassemble(true,true, typeof(Bits));
+            Disassemble(true,true, typeof(BitParts));
             // Disassemble(true,true, typeof(BitRef));
             //Disassemble(true,true, typeof(math));
             Disassemble(true,true, typeof(Asm));

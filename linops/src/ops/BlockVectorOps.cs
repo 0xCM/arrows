@@ -22,7 +22,7 @@ namespace Z0
             where T : unmanaged    
         {
             var dst = x.Replicate(true);
-            gbits.xor(x.Data,y.Data,dst.Data);
+            gbitspan.xor(x.Data,y.Data,dst.Data);
             return dst;
         }
 
@@ -31,7 +31,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : unmanaged    
         {
-            gbits.sll(src.Data, offset, dst.Data);
+            gbitspan.sll(src.Data, offset, dst.Data);
             return dst;
         }
 
@@ -50,7 +50,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : unmanaged    
         {
-            gbits.srl(src.Data,offset,dst.Data);
+            gbitspan.srl(src.Data,offset,dst.Data);
             return ref dst;
         }
 
@@ -92,7 +92,7 @@ namespace Z0
             where T : unmanaged    
 
         {
-            gbits.flip(src.Span);
+            gbitspan.flip(src.Span);
             return ref src;
         }
 
@@ -152,7 +152,7 @@ namespace Z0
             where T : struct    
 
         {
-            gbits.xor(lhs.Unsized, rhs.Unsized);
+            gbitspan.xor(lhs.Unsized, rhs.Unsized);
             return ref lhs;
         }
 
@@ -169,7 +169,7 @@ namespace Z0
             where T : struct    
 
         {
-            gbits.xor(lhs.Unsized, rhs);
+            gbitspan.xor(lhs.Unsized, rhs);
             return ref lhs;
         }
 
@@ -199,10 +199,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref BlockVector<N,T> flip<N,T>(ref BlockVector<N,T> src)
             where N : ITypeNat, new()
-            where T : struct    
+            where T : unmanaged    
 
         {
-            gbits.flip(src.Unsized);
+            gbitspan.flip(src.Unsized);
             return ref src;
         }
 

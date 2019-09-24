@@ -259,9 +259,8 @@ namespace Z0
         /// Extracts the bits that comprise the matrix in row-major order
         /// </summary>
         [MethodImpl(Inline)]
-        public Span<Bit> Unpack()
-            => Bytes.Unpack(out Span<Bit> _);
-
+        public Span<byte> Unpack()
+            => Bytes.Unpack();
 
         [MethodImpl(Inline)]
         public BitMatrix64 Compare(BitMatrix64 rhs)
@@ -342,7 +341,7 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)] 
         public readonly BitSize Pop()
-            => Bits.pop(data);
+            => bitspan.pop(data);
 
         /// <summary>
         /// Computes the product the source matrix and the operand in-place
@@ -437,7 +436,7 @@ namespace Z0
             {
                 lhs.LoadCpuVec(i, out Vec256<ulong> vLhs);
                 rhs.LoadCpuVec(i, out Vec256<ulong> vRhs);
-                vLhs.And(vRhs).StoreTo(ref lhs.data[i]);
+                gbits.vand<ulong>(vLhs,vRhs).StoreTo(ref lhs.data[i]);
             }
             return ref lhs;
         }

@@ -29,7 +29,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : unmanaged
         {
-            gbits.flip(A.Data, B.Data);
+            gbitspan.flip(A.Data, B.Data);
             return ref B;
         }
 
@@ -48,7 +48,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : unmanaged
         {
-            gbits.flip(A.Data,B.Data);
+            gbitspan.flip(A.Data,B.Data);
             return ref B;
         }
 

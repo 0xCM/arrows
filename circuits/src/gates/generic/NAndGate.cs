@@ -25,11 +25,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Vec128<T> Send(in Vec128<T> x, in Vec128<T> y)
-            => gbits.flip(gbits.and(in x, in y));
+            => gbits.flip(gbits.vand(x, y));
 
         [MethodImpl(Inline)]
         public Vec256<T> Send(in Vec256<T> x, in Vec256<T> y)
-            => gbits.flip(gbits.and(in x, in y));
+            => gbits.flip(gbits.vand(x, y));
 
 
     }

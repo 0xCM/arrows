@@ -15,6 +15,24 @@ namespace Z0
     [StructLayout(LayoutKind.Explicit, Size=16)]
     public struct BitBlock16 : IBitBlock
     {
+    
+        [MethodImpl(Inline)]
+        public static ref ulong uint64(ref BitBlock16 src, N0 lo)
+            => ref Unsafe.As<BitBlock8,ulong>(ref src.Block8x0);
+
+        [MethodImpl(Inline)]
+        public static ref ulong uint64(ref BitBlock16 src, N1 hi)
+            => ref Unsafe.As<BitBlock8,ulong>(ref src.Block8x1);
+
+        /// <summary>
+        /// Queries/manipulates an index-identified bit
+        /// </summary>
+        /// <param name="src">The subject block</param>
+        /// <param name="i">The 0-based bit index</param>
+        [MethodImpl(Inline)]
+        public static ref byte uint8(ref BitBlock16 src, BitPos i)
+            => ref Unsafe.Add(ref Unsafe.As<BitBlock16, byte>(ref src), i);
+
         /// <summary>
         ///  Bit 0
         /// </summary>

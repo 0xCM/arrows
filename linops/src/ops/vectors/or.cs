@@ -21,7 +21,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : unmanaged    
         {
-            gbits.or(x.Data,y.Data,dst.Data);
+            gbitspan.or(x.Data,y.Data,dst.Data);
             return ref dst;
         }
 
@@ -30,7 +30,7 @@ namespace Z0
             where T : unmanaged
         {
             var dst = lhs.Replicate(true);
-            gbits.or(lhs.Data, rhs.Data, dst.Data);
+            gbitspan.or(lhs.Data, rhs.Data, dst.Data);
             return dst;
         }
 
@@ -56,7 +56,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : unmanaged    
         {
-            gbits.or(x.Unsized, k, z.Unsized);
+            gbitspan.or(x.Unsized, k, z.Unsized);
             return ref z;
         }
 

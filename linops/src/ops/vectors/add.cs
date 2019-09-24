@@ -48,7 +48,7 @@ namespace Z0
             where T : unmanaged    
         {
              src.Data.CopyTo(dst.Data);
-             gmath.add(dst.Unsized, scalar);
+             mathspan.add(dst.Unsized, scalar);
              return ref dst;
         }
 
@@ -80,7 +80,7 @@ namespace Z0
         public static ref BlockVector<T> add<T>(ref BlockVector<T> lhs, in BlockVector<T> rhs)            
             where T : unmanaged
         {
-            gmath.add(lhs.Unblocked, rhs.Unblocked);
+            mathspan.add(lhs.Unblocked, rhs.Unblocked);
             return ref lhs;
         }
 
@@ -96,7 +96,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : unmanaged    
         {
-            gmath.add(lhs.Unsized, rhs);
+            mathspan.add(lhs.Unsized, rhs);
             return ref lhs;
         }
 
@@ -129,7 +129,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : unmanaged    
         {
-            gmath.add(x.Unsized, y.Unsized, z.Unsized);
+            mathspan.add(x.Unsized, y.Unsized, z.Unsized);
             return ref z;
         }
 

@@ -24,7 +24,7 @@ namespace Z0.Mkl.Test
             mkl.add(lhs,rhs, ref dst1);
             
             var dst2 = lhs.Replicate(true);
-            gmath.add(lhs,rhs, dst2.Unblocked);
+            mathspan.add(lhs,rhs, dst2.Unblocked);
             Claim.yea(dst1 == dst2);
         }
 
@@ -36,7 +36,7 @@ namespace Z0.Mkl.Test
             mkl.add(lhs,rhs,ref dst1);
             
             var dst2 = lhs.Replicate(true);
-            gmath.add(lhs, rhs, dst2.Unblocked);
+            mathspan.add(lhs, rhs, dst2.Unblocked);
             Claim.yea(dst1 == dst2);
         }
 
@@ -53,7 +53,7 @@ namespace Z0.Mkl.Test
 
             var sw1 = stopwatch();
             for(var i=0; i<cycles; i++)
-                gmath.add(lhs1,rhs1, dst1.Unblocked);
+                mathspan.add(lhs1,rhs1, dst1.Unblocked);
             var time1 = OpTime.Define(cycles, snapshot(sw1), "gmath");
 
 
@@ -75,7 +75,7 @@ namespace Z0.Mkl.Test
 
             var sw1 = stopwatch();
             for(var i=0; i<cycles; i++)
-                gmath.add(lhs1,rhs1,dst1.Unblocked);
+                mathspan.add(lhs1,rhs1,dst1.Unblocked);
             var time1 = OpTime.Define(cycles, snapshot(sw1), "gmath");
 
 

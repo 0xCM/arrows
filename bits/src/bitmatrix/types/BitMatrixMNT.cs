@@ -317,8 +317,8 @@ namespace Z0
         /// Extracts the bits that comprise the matrix in row-major order
         /// </summary>
         [MethodImpl(Inline)]
-        public Span<Bit> Unpack()
-            => Bytes.Unpack(out Span<Bit> dst);
+        public Span<byte> Unpack()
+            => Bytes.Unpack();
 
         [MethodImpl(Inline)]
         public string Format()
@@ -346,25 +346,25 @@ namespace Z0
 
         static ref BitMatrix<M,N,T> XOr(ref BitMatrix<M,N,T> lhs, in BitMatrix<M,N,T> rhs)        
         {
-            gbits.xor(lhs.Data, rhs.Data, lhs.Data);
+            gbitspan.xor(lhs.Data, rhs.Data, lhs.Data);
             return ref lhs;
         }
 
         static ref BitMatrix<M,N,T> And(ref BitMatrix<M,N,T> lhs, in BitMatrix<M,N,T> rhs)        
         {
-            gbits.and(lhs.Data, rhs.Data, lhs.Data);
+            gbitspan.and(lhs.Data, rhs.Data, lhs.Data);
             return ref lhs;
         }
 
         static ref BitMatrix<M,N,T> Flip(ref BitMatrix<M,N,T> src)        
         {
-            gbits.flip(src.Data);
+            gbitspan.flip(src.Data);
             return ref src;
         }
 
         static ref BitMatrix<M,N,T> Or(ref BitMatrix<M,N,T> lhs, in BitMatrix<M,N,T> rhs)        
         {
-            gbits.or(lhs.Data, rhs.Data, lhs.Data);
+            gbitspan.or(lhs.Data, rhs.Data, lhs.Data);
             return ref lhs;
         }
 

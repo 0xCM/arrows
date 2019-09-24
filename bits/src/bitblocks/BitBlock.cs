@@ -13,6 +13,16 @@ namespace Z0
     public struct BitBlock<T> : IBitBlock<T>
         where T : unmanaged, IBitBlock
     {
+
+        /// <summary>
+        /// Queries/manipulates an index-identified bit
+        /// </summary>
+        /// <param name="src">The subject block</param>
+        /// <param name="i">The 0-based bit index</param>
+        [MethodImpl(Inline)]
+        public static ref byte Bit(ref BitBlock<T> src, BitPos i)
+            => ref Unsafe.Add(ref Unsafe.As<BitBlock<T>, byte>(ref src), i);
+
         T data;
 
         /// <summary>

@@ -29,6 +29,11 @@ partial class zfunc
     public static AppException unsupported<T>([CallerFilePath] string caller = null,  
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             => Errors.TypeUnsupported(typeof(T), caller,file, line);
+
+    public static T typefail<T>([CallerFilePath] string caller = null,  
+        [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
+            => throw Errors.TypeUnsupported(typeof(T), caller,file, line);
+
     public static AppException unsupported(Type t, [CallerFilePath] string caller = null,  
         [CallerFilePath] string file = null, [CallerLineNumber] int? line = null)
             => Errors.TypeUnsupported(t, caller,file, line);

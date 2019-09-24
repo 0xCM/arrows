@@ -124,7 +124,7 @@ namespace Z0
             {
                 var v1 = Random.BlockVec<N,T>();
                 var v2 = Random.BlockVec<N,T>();
-                var v3 = BlockVector.Load(gmath.add(v1.Unsized,v2.Unsized), n);
+                var v3 = BlockVector.Load(mathspan.add(v1.Unsized,v2.Unsized), n);
                 Linear.add(ref v1, v2);
                 Claim.yea(v3 == v1);
             }

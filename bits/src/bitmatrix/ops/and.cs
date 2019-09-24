@@ -68,7 +68,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : unmanaged
         {
-            gbits.and(A.Data, B.Data, C.Data);
+            gbitspan.and(A.Data, B.Data, C.Data);
             return ref C;
         }
 
@@ -99,7 +99,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : unmanaged
         {
-            gbits.and(A.Data, B.Data, C.Data);
+            gbitspan.and(A.Data, B.Data, C.Data);
             return ref C;
         }
 

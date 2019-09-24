@@ -39,6 +39,17 @@ namespace Z0
 
 
 
+        [MethodImpl(Inline)]
+        public static Vector256<byte> create(byte src)
+        {
+            return Vector256.CreateScalarUnsafe(src);
+        }
+
+
+
+
+
+
     }
 
 }

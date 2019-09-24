@@ -61,17 +61,17 @@ namespace Z0
         /// <param name="src">The source bits</param>
         /// <param name="dst">The target span</param>
         [MethodImpl(Inline)]
-        public static Span<Bit> unpack<T>(in T src, out Span<Bit> dst)
+        public static Span<byte> unpack<T>(T src)
             where T : struct
         {
             if(typeof(T) == typeof(byte))
-                return Bits.unpack(in uint8(in src), out dst);
+                return Bits.unpack(uint8(src));
             else if(typeof(T) == typeof(ushort))
-                return Bits.unpack(in uint16(in src), out dst);
+                return Bits.unpack(uint16(src));
             else if(typeof(T) == typeof(uint))
-                return Bits.unpack(in uint32(in src), out dst);
+                return Bits.unpack(uint32(src));
             else if(typeof(T) == typeof(ulong))
-                return Bits.unpack(in uint64(in src), out dst);
+                return Bits.unpack(uint64(src));
             else            
                 throw unsupported<T>();
         }           

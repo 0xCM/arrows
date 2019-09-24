@@ -21,25 +21,25 @@ namespace Z0
         /// <param name="mask">The scatter spec</param>
         /// <typeparam name="T">The identifiying mask</typeparam>
         [MethodImpl(Inline)]
-        public static T scatter<T>(in T src, in T mask)
+        public static T scatter<T>(T src, T mask)
             where T : unmanaged
         {
             if(typeof(T) == typeof(sbyte))
-                return generic<T>(Bits.scatter(in int8(in src), int8(in mask)));
+                return generic<T>(Bits.scatter(int8(src), int8(mask)));
             else if(typeof(T) == typeof(byte))
-                return generic<T>(Bits.scatter(in uint8(in src), uint8(in mask)));
+                return generic<T>(Bits.scatter(uint8(src), uint8(mask)));
             else if(typeof(T) == typeof(short))
-                return generic<T>(Bits.scatter(in int16(in src), int16(in mask)));
+                return generic<T>(Bits.scatter(int16(src), int16(mask)));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(Bits.scatter(in uint16(in src), uint16(in mask)));
+                return generic<T>(Bits.scatter(uint16(src), uint16(mask)));
             else if(typeof(T) == typeof(int))
-                return generic<T>(Bits.scatter(in int32(in src), int32(in mask)));
+                return generic<T>(Bits.scatter(int32(src), int32(mask)));
             else if(typeof(T) == typeof(uint))
-                return generic<T>(Bits.scatter(in uint32(in src), uint32(in mask)));
+                return generic<T>(Bits.scatter(uint32(src), uint32(mask)));
             else if(typeof(T) == typeof(long))
-                return generic<T>(Bits.scatter(in int64(in src), int64(in mask)));
+                return generic<T>(Bits.scatter(int64(src), int64(mask)));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(Bits.scatter(in uint64(in src), uint64(in mask)));
+                return generic<T>(Bits.scatter(uint64(src), uint64(mask)));
             else            
                 throw unsupported<T>();
         }           

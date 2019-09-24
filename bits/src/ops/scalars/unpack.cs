@@ -13,31 +13,57 @@ namespace Z0
     partial class Bits
     {         
 
+
         /// <summary>
         /// Populates a target span with 8 bits from the source
         /// </summary>
         /// <param name="src">The source bits</param>
         /// <param name="dst">The target span</param>
-        public static Span<Bit> unpack(in byte src, out Span<Bit> dst)
+        public static Span<byte> unpack(byte src, Span<byte> dst)
         {
-            dst = new Bit[Pow2.T03];
-            for(var i=0; i < dst.Length; i++)                
-                read(in src, in i, out dst[i]);
-            return dst; 
+            BitParts.unpack8x1(src, dst);
+            return dst;
         }    
 
+        /// <summary>
+        /// Populates a target span with 8 bits from the source
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        /// <param name="dst">The target span</param>
+        [MethodImpl(Inline)]
+        public static Span<byte> unpack(byte src)
+            => unpack(src, new byte[Pow2.T03]);
 
         /// <summary>
         /// Populates a target span with 16 bits from the source
         /// </summary>
         /// <param name="src">The source bits</param>
         /// <param name="dst">The target span</param>
-        public static Span<Bit> unpack(in ushort src, out Span<Bit> dst)
+        public static Span<byte> unpack(ushort src, Span<byte> dst)
         {
-            dst = new Bit[Pow2.T04];
-            for(var i=0; i < dst.Length; i++)
-                read(in src, in i, out dst[i]);
-            return dst; 
+            BitParts.unpack16x1(src, dst);
+            return dst;
+        }
+
+        /// <summary>
+        /// Populates a target span with 16 bits from the source
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        /// <param name="dst">The target span</param>
+        [MethodImpl(Inline)]
+        public static Span<byte> unpack(ushort src)
+            => unpack(src, new byte[Pow2.T04]);
+
+
+        /// <summary>
+        /// Populates a target span with 32 bits from the source
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        /// <param name="dst">The target span</param>
+        public static Span<byte> unpack(uint src, Span<byte> dst)
+        {
+            BitParts.unpack32x1(src, dst);
+            return dst;
         }
 
         /// <summary>
@@ -45,25 +71,30 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source bits</param>
         /// <param name="dst">The target span</param>
-        public static Span<Bit> unpack(in uint src, out Span<Bit> dst)
-        {
-            dst = new Bit[Pow2.T05];
-            for(var i=0; i < dst.Length; i++)
-                read(in src, in i, out dst[i]);
-            return dst; 
-        }
+        [MethodImpl(Inline)]
+        public static Span<byte> unpack(uint src)
+            => unpack(src, new byte[Pow2.T05]);
 
         /// <summary>
         /// Populates a target span with 64 bits from the source
         /// </summary>
         /// <param name="src">The source bits</param>
         /// <param name="dst">The target span</param>
-        public static Span<Bit> unpack(in ulong src, out Span<Bit> dst)
+        public static Span<byte> unpack(ulong src, Span<byte> dst)
         {
-            dst = new Bit[Pow2.T06];
-            for(var i=0; i < dst.Length; i++)
-                read(in src, in i, out dst[i]);
-            return dst; 
+            BitParts.unpack64x1(src, dst);
+            return dst;
         } 
+
+        /// <summary>
+        /// Populates a target span with 64 bits from the source
+        /// </summary>
+        /// <param name="src">The source bits</param>
+        /// <param name="dst">The target span</param>
+        [MethodImpl(Inline)]
+        public static Span<byte> unpack(ulong src)
+            => unpack(src, new byte[Pow2.T06]);
+
+
     }
 }

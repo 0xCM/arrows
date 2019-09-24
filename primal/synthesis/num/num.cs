@@ -194,7 +194,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static num<T> operator ^ (in num<T> lhs, in num<T> rhs) 
         {
-            ref var result = ref gmath.xor(ref unwrap(in lhs), in unwrap(in rhs));
+            ref var result = ref gmath.xor(ref unwrap(in lhs), unwrap(rhs));
             return Unsafe.As<T,num<T>>(ref result);
         }
 

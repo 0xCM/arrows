@@ -126,7 +126,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public static implicit operator ushort(BitVector16 src)
             => src.data;        
-        
+
+
         [MethodImpl(Inline)]
         public static implicit operator BitVector32(BitVector16 src)
             => src.ToBitVector32();
@@ -491,7 +492,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public BitVector16 Gather(BitVector16 spec)
-            => Bits.gather(in data, spec);
+            => Bits.gather(data, spec);
 
         /// <summary>
         /// Populates a target vector with specified source bits
@@ -500,7 +501,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public BitVector8 Gather(BitVector8 spec)
-            => (byte)Bits.gather(in data, (byte)spec);
+            => (byte)Bits.gather(data, (byte)spec);
 
         /// <summary>
         /// Enables a bit if it is disabled

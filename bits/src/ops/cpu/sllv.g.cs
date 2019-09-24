@@ -61,25 +61,6 @@ namespace Z0
         }
 
 
-
-        public static Span256<T> sll<T>(ReadOnlySpan256<T> lhs, byte offset, Span256<T> dst)
-            where T : unmanaged
-        {
-            for(var i=0; i< lhs.BlockCount; i++)
-                vstore(sll(lhs.LoadVec256(i), offset), ref dst.Block(i));                             
-            return dst;        
-        } 
-
-        public static Span256<T> srl<T>(ReadOnlySpan256<T> lhs, byte offset, Span256<T> dst)
-            where T : unmanaged
-        {
-            for(var i=0; i< lhs.BlockCount; i++)
-                vstore(srl(lhs.LoadVec256(i), offset), ref dst.Block(i));                             
-            return dst;        
-        } 
-
-
-
     }
 
 }

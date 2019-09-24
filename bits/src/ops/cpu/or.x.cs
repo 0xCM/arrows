@@ -47,20 +47,7 @@ namespace Z0
                 => gbits.or(in lhs, in rhs, ref dst);
 
 
-        [MethodImpl(Inline)]
-        public static Span256<T> Or<T>(this ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, Span256<T> dst)
-            where T : unmanaged
-                => gbits.or(lhs,rhs,dst);
- 
-        [MethodImpl(Inline)]
-        public static ref BlockMatrix<M,N,T> Or<M,N,T>(this ref BlockMatrix<M,N,T> lhs, BlockMatrix<M,N,T> rhs)
-            where M : ITypeNat, new()
-            where N : ITypeNat, new()
-            where T : unmanaged    
-        {
-            lhs.Unsized.ReadOnly().Or(rhs.Unsized, lhs.Unsized);
-            return ref lhs;
-        }
+        
 
 
    }

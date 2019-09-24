@@ -401,7 +401,7 @@ namespace Z0
         /// <param name="last">The last bit position</param>
         [MethodImpl(Inline)]
         public BitVector8 Between(BitPos first, BitPos last)
-            => Bits.between(in data, first, last);
+            => Bits.between(data, first, last);
 
         /// <summary>
         /// Populates a target vector with mask-identified source bits
@@ -410,7 +410,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public BitVector8 Gather(BitVector8 spec)
-            => Bits.gather(in data, spec);
+            => Bits.gather(data, spec);
 
         /// <summary>
         /// Computes the scalar product of the source vector and another
@@ -444,7 +444,7 @@ namespace Z0
         public int MinWidth
         {
             [MethodImpl(Inline)]
-            get => Bits.width(in data);
+            get => Bits.width(data);
         }
 
         /// <summary>
@@ -486,7 +486,7 @@ namespace Z0
         /// <param name="pos">The bit position</param>
         [MethodImpl(Inline)]
         public readonly bool Test(BitPos pos)
-            => BitMask.test(in data, pos);
+            => BitMask.test(data, pos);
 
         /// <summary>
         /// Reads a bit value

@@ -22,8 +22,8 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The extraction mask</param>
         [MethodImpl(Inline)]
-        public static byte gather(in byte src, in byte mask)        
-            => (byte)ParallelBitExtract(src,mask);
+        public static byte gather(byte src, byte mask)        
+            => (byte)ParallelBitExtract((uint)src,(uint)mask);
 
         /// <summary>
         /// Extracts mask-identified bits from the source and deposits 
@@ -32,7 +32,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The extraction mask</param>
         [MethodImpl(Inline)]
-        public static sbyte gather(in sbyte src, in sbyte mask)        
+        public static sbyte gather(sbyte src, sbyte mask)        
             => (sbyte)ParallelBitExtract((uint)src, (uint)mask);
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The extraction mask</param>
         [MethodImpl(Inline)]
-        public static short gather(in short src, in short mask)        
+        public static short gather(short src, short mask)        
             => (short)ParallelBitExtract((uint)src,(uint)mask);
 
         /// <summary>
@@ -53,17 +53,17 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The extraction mask</param>
         [MethodImpl(Inline)]
-        public static ushort gather(in ushort src, in ushort mask)        
-            => (ushort)ParallelBitExtract(src,mask);
+        public static ushort gather(ushort src, ushort mask)        
+            => (ushort)ParallelBitExtract((uint)src,(uint)mask);
 
         /// <summary>
         /// Extracts bits from the source at the corresponding bit locations specified by mask 
-        /// to contiguous low bits in dst; the remaining upper bits in dst are set to zero.
+        /// to contiguous low bits dst; the remaining upper bits dst are set to zero.
         /// </summary>
         /// <param name="src">The source value</param>
         /// <param name="mask">The extraction mask</param>
         [MethodImpl(Inline)]
-        public static int gather(in int src, in int mask)        
+        public static int gather(int src, int mask)        
             => (int)ParallelBitExtract((uint)src,(uint)mask);
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The extraction mask</param>
         [MethodImpl(Inline)]
-        public static uint gather(in uint src, in uint mask)        
+        public static uint gather(uint src, uint mask)        
             => ParallelBitExtract(src,mask);
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The extraction mask</param>
         [MethodImpl(Inline)]
-        public static long gather(in long src, in long mask)        
+        public static long gather(long src, long mask)        
             => (long)ParallelBitExtract((ulong)src,(ulong)mask);
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The extraction mask</param>
         [MethodImpl(Inline)]
-        public static ulong gather(in ulong src, in ulong mask)        
+        public static ulong gather(ulong src, ulong mask)        
             => ParallelBitExtract(src,mask);
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The extraction mask</param>
         [MethodImpl(Inline)]
-        public static uint gather(in float src, in uint mask)        
+        public static uint gather(float src, uint mask)        
             => ParallelBitExtract((uint)src.ToBits(),mask);
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The extraction mask</param>
         [MethodImpl(Inline)]
-        public static ulong gather(in double src, in ulong mask)        
+        public static ulong gather(double src, ulong mask)        
             => ParallelBitExtract((ulong)src.ToBits(),mask);
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The extraction mask</param>
         [MethodImpl(Inline)]
-        public static byte gather(in byte src, BitMask8 mask)
+        public static byte gather(byte src, BitMask8 mask)
             => gather(src,(byte)mask);
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The extraction mask</param>
         [MethodImpl(Inline)]
-        public static ushort gather(in ushort src, BitMask16 mask)
+        public static ushort gather(ushort src, BitMask16 mask)
             => gather(src,(ushort)mask);
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The extraction mask</param>
         [MethodImpl(Inline)]
-        public static uint gather(in uint src, BitMask32 mask)
+        public static uint gather(uint src, BitMask32 mask)
             => gather(src,(uint)mask);
 
         /// <summary>
@@ -155,62 +155,62 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The extraction mask</param>
         [MethodImpl(Inline)]
-        public static ulong gather(in ulong src, BitMask64 mask)
+        public static ulong gather(ulong src, BitMask64 mask)
             => gather(src,(ulong)mask);
 
         [MethodImpl(Inline)]
-        public static ref byte gather(in byte src, in byte mask, ref byte dst)        
+        public static ref byte gather(byte src, byte mask, ref byte dst)        
         {
-            dst = gather(in src, in mask);   
+            dst = gather(src, mask);   
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref sbyte gather(in sbyte src, in sbyte mask, ref sbyte dst)        
+        public static ref sbyte gather(sbyte src, sbyte mask, ref sbyte dst)        
         {
-            dst = gather(in src, in mask);   
+            dst = gather(src, mask);   
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref short gather(in short src, in short mask, ref short dst)        
+        public static ref short gather(short src, short mask, ref short dst)        
         {
-            dst = gather(in src, in mask);   
+            dst = gather(src, mask);   
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref ushort gather(in ushort src, in ushort mask, ref ushort dst)        
+        public static ref ushort gather(ushort src, ushort mask, ref ushort dst)        
         {
-            dst = gather(in src, in mask);   
+            dst = gather(src, mask);   
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref int gather(in int src, in int mask, ref int dst)        
+        public static ref int gather(int src, int mask, ref int dst)        
         {
-            dst = gather(in src, in mask);   
+            dst = gather(src, mask);   
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref uint gather(in uint src, in uint mask, ref uint dst)        
+        public static ref uint gather(uint src, uint mask, ref uint dst)        
         {
-            dst = gather(in src, in mask);   
+            dst = gather(src, mask);   
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref long gather(in long src, in long mask, ref long dst)        
+        public static ref long gather(long src, long mask, ref long dst)        
         {
-            dst = gather(in src, in mask);   
+            dst = gather(src, mask);   
             return ref dst;
         }
 
         [MethodImpl(Inline)]
-        public static ref ulong gather(in ulong src, in ulong mask, ref ulong dst)        
+        public static ref ulong gather(ulong src, ulong mask, ref ulong dst)        
         {
-            dst = gather(in src, in mask);   
+            dst = gather(src, mask);   
             return ref dst;
         }
 

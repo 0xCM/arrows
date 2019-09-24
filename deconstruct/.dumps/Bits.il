@@ -1,848 +1,1929 @@
-// 2019-09-21 04:04:31:051
-ushort project(ushort src, uint part)
+// 2019-09-24 02:30:05:539
+uint project(uint src, Part6x3:uint part)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: conv.u2
-    IL_0004: stloc.0
-    IL_0005: ldloca.s V_0
-    IL_0007: call System.UInt16 Z0.Bits::scatter(System.UInt16&,System.UInt16&)
-    IL_000C: ret
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
 
 }
-byte select(ushort src, uint part)
+uint project(uint src, Part9x3:uint part)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: conv.u2
-    IL_0004: stloc.0
-    IL_0005: ldloca.s V_0
-    IL_0007: call System.UInt16 Z0.Bits::gather(System.UInt16&,System.UInt16&)
-    IL_000C: conv.u1
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part12x3:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part15x3:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part18x3:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part21x3:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part24x3:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part27x3:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part30x3:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part6x3:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part9x3:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part12x3:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part15x3:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part18x3:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part21x3:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part24x3:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part27x3:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part30x3:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part8x4:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part12x4:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part16x4:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part32x4:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part8x4:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part12x4:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part16x4:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part20x4:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part24x4:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part32x4:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part10x5:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part15x5:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part20x5:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part25x5:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part30x5:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+byte select(uint src, Part10x5:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: conv.u1
+    IL_0008: ret
+
+}
+byte select(uint src, Part15x5:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: conv.u1
+    IL_0008: ret
+
+}
+uint select(uint src, Part12x6:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part12x6:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part16x8:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part32x8:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part16x8:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part32x8:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part24x8:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+Span<byte> unpack(byte src, Span<byte> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.Span`1<System.Byte> Z0.BitParts::unpack8x1(System.Byte,System.Span`1<System.Byte>)
+    IL_0007: pop
+    IL_0008: ldarg.1
+    IL_0009: ret
+
+}
+Span<byte> unpack(byte src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.8
+    IL_0002: newarr System.Byte
+    IL_0007: call System.Span`1<System.Byte> System.Span`1<System.Byte>::op_Implicit(System.Byte[])
+    IL_000C: call System.Span`1<System.Byte> Z0.Bits::unpack(System.Byte,System.Span`1<System.Byte>)
+    IL_0011: ret
+
+}
+Span<byte> unpack(ushort src, Span<byte> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.Span`1<System.Byte> Z0.BitParts::unpack16x1(System.UInt16,System.Span`1<System.Byte>)
+    IL_0007: pop
+    IL_0008: ldarg.1
+    IL_0009: ret
+
+}
+Span<byte> unpack(ushort src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.s 16
+    IL_0003: newarr System.Byte
+    IL_0008: call System.Span`1<System.Byte> System.Span`1<System.Byte>::op_Implicit(System.Byte[])
+    IL_000D: call System.Span`1<System.Byte> Z0.Bits::unpack(System.UInt16,System.Span`1<System.Byte>)
+    IL_0012: ret
+
+}
+Span<byte> unpack(uint src, Span<byte> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.Span`1<System.Byte> Z0.BitParts::unpack32x1(System.UInt32,System.Span`1<System.Byte>)
+    IL_0007: pop
+    IL_0008: ldarg.1
+    IL_0009: ret
+
+}
+Span<byte> unpack(uint src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.s 32
+    IL_0003: newarr System.Byte
+    IL_0008: call System.Span`1<System.Byte> System.Span`1<System.Byte>::op_Implicit(System.Byte[])
+    IL_000D: call System.Span`1<System.Byte> Z0.Bits::unpack(System.UInt32,System.Span`1<System.Byte>)
+    IL_0012: ret
+
+}
+Span<byte> unpack(ulong src, Span<byte> dst)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.Span`1<System.Byte> Z0.BitParts::unpack64x1(System.UInt64,System.Span`1<System.Byte>)
+    IL_0007: pop
+    IL_0008: ldarg.1
+    IL_0009: ret
+
+}
+Span<byte> unpack(ulong src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.s 64
+    IL_0003: newarr System.Byte
+    IL_0008: call System.Span`1<System.Byte> System.Span`1<System.Byte>::op_Implicit(System.Byte[])
+    IL_000D: call System.Span`1<System.Byte> Z0.Bits::unpack(System.UInt64,System.Span`1<System.Byte>)
+    IL_0012: ret
+
+}
+BitSize width(in byte src)
+{
+    IL_0000: ldc.i4.8
+    IL_0001: ldarg.0
+    IL_0002: call System.Byte Z0.Bits::nlz(System.Byte&)
+    IL_0007: sub
+    IL_0008: call Z0.BitSize Z0.BitSize::op_Implicit(System.Int32)
     IL_000D: ret
 
 }
-byte select(ushort src, uint part)
+BitSize width(in ushort src)
 {
-    IL_0000: ldarga.s src
+    IL_0000: ldc.i4.s 16
+    IL_0002: ldarg.0
+    IL_0003: call System.Byte Z0.Bits::nlz(System.UInt16&)
+    IL_0008: sub
+    IL_0009: call Z0.BitSize Z0.BitSize::op_Implicit(System.Int32)
+    IL_000E: ret
+
+}
+BitSize width(in uint src)
+{
+    IL_0000: ldc.i4.s 32
+    IL_0002: ldarg.0
+    IL_0003: call System.Byte Z0.Bits::nlz(System.UInt32&)
+    IL_0008: sub
+    IL_0009: call Z0.BitSize Z0.BitSize::op_Implicit(System.Int32)
+    IL_000E: ret
+
+}
+BitSize width(in ulong src)
+{
+    IL_0000: ldc.i4.s 64
+    IL_0002: ldarg.0
+    IL_0003: call System.Byte Z0.Bits::nlz(System.UInt64&)
+    IL_0008: sub
+    IL_0009: call Z0.BitSize Z0.BitSize::op_Implicit(System.Int32)
+    IL_000E: ret
+
+}
+sbyte xorsl(sbyte src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
     IL_0002: ldarg.1
-    IL_0003: conv.u2
-    IL_0004: stloc.0
-    IL_0005: ldloca.s V_0
-    IL_0007: call System.UInt16 Z0.Bits::gather(System.UInt16&,System.UInt16&)
+    IL_0003: ldc.i4.s 31
+    IL_0005: and
+    IL_0006: shl
+    IL_0007: conv.i1
+    IL_0008: xor
+    IL_0009: conv.i1
+    IL_000A: ret
+
+}
+byte xorsl(byte src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: ldc.i4.s 31
+    IL_0005: and
+    IL_0006: shl
+    IL_0007: conv.u1
+    IL_0008: xor
+    IL_0009: conv.u1
+    IL_000A: ret
+
+}
+short xorsl(short src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: ldc.i4.s 31
+    IL_0005: and
+    IL_0006: shl
+    IL_0007: conv.i2
+    IL_0008: xor
+    IL_0009: conv.i2
+    IL_000A: ret
+
+}
+ushort xorsl(ushort src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: ldc.i4.s 31
+    IL_0005: and
+    IL_0006: shl
+    IL_0007: conv.u2
+    IL_0008: xor
+    IL_0009: conv.u2
+    IL_000A: ret
+
+}
+int xorsl(int src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: ldc.i4.s 31
+    IL_0005: and
+    IL_0006: shl
+    IL_0007: xor
+    IL_0008: ret
+
+}
+uint xorsl(uint src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: ldc.i4.s 31
+    IL_0005: and
+    IL_0006: shl
+    IL_0007: xor
+    IL_0008: ret
+
+}
+long xorsl(long src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: ldc.i4.s 63
+    IL_0005: and
+    IL_0006: shl
+    IL_0007: xor
+    IL_0008: ret
+
+}
+ulong xorsl(ulong src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: ldc.i4.s 63
+    IL_0005: and
+    IL_0006: shl
+    IL_0007: xor
+    IL_0008: ret
+
+}
+ref sbyte xorsl(ref sbyte src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i1
+    IL_0003: ldarg.0
+    IL_0004: ldind.i1
+    IL_0005: ldarg.1
+    IL_0006: ldc.i4.s 31
+    IL_0008: and
+    IL_0009: shl
+    IL_000A: conv.i1
+    IL_000B: xor
+    IL_000C: conv.i1
+    IL_000D: stind.i1
+    IL_000E: ldarg.0
+    IL_000F: ret
+
+}
+ref byte xorsl(ref byte src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u1
+    IL_0003: ldarg.0
+    IL_0004: ldind.u1
+    IL_0005: ldarg.1
+    IL_0006: ldc.i4.s 31
+    IL_0008: and
+    IL_0009: shl
+    IL_000A: conv.u1
+    IL_000B: xor
     IL_000C: conv.u1
+    IL_000D: stind.i1
+    IL_000E: ldarg.0
+    IL_000F: ret
+
+}
+ref short xorsl(ref short src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i2
+    IL_0003: ldarg.0
+    IL_0004: ldind.i2
+    IL_0005: ldarg.1
+    IL_0006: ldc.i4.s 31
+    IL_0008: and
+    IL_0009: shl
+    IL_000A: conv.i2
+    IL_000B: xor
+    IL_000C: conv.i2
+    IL_000D: stind.i2
+    IL_000E: ldarg.0
+    IL_000F: ret
+
+}
+ref ushort xorsl(ref ushort src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u2
+    IL_0003: ldarg.0
+    IL_0004: ldind.u2
+    IL_0005: ldarg.1
+    IL_0006: ldc.i4.s 31
+    IL_0008: and
+    IL_0009: shl
+    IL_000A: conv.u2
+    IL_000B: xor
+    IL_000C: conv.u2
+    IL_000D: stind.i2
+    IL_000E: ldarg.0
+    IL_000F: ret
+
+}
+ref int xorsl(ref int src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i4
+    IL_0003: ldarg.0
+    IL_0004: ldind.i4
+    IL_0005: ldarg.1
+    IL_0006: ldc.i4.s 31
+    IL_0008: and
+    IL_0009: shl
+    IL_000A: xor
+    IL_000B: stind.i4
+    IL_000C: ldarg.0
     IL_000D: ret
 
 }
-byte select(ushort src, uint part)
+ref uint xorsl(ref uint src, int offset)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: conv.u2
-    IL_0004: stloc.0
-    IL_0005: ldloca.s V_0
-    IL_0007: call System.UInt16 Z0.Bits::gather(System.UInt16&,System.UInt16&)
-    IL_000C: conv.u1
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u4
+    IL_0003: ldarg.0
+    IL_0004: ldind.u4
+    IL_0005: ldarg.1
+    IL_0006: ldc.i4.s 31
+    IL_0008: and
+    IL_0009: shl
+    IL_000A: xor
+    IL_000B: stind.i4
+    IL_000C: ldarg.0
     IL_000D: ret
 
 }
-ushort project(ushort src, uint part)
+ref long xorsl(ref long src, int offset)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: conv.u2
-    IL_0004: stloc.0
-    IL_0005: ldloca.s V_0
-    IL_0007: call System.UInt16 Z0.Bits::scatter(System.UInt16&,System.UInt16&)
-    IL_000C: ret
-
-}
-ushort project(ushort src, uint part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: conv.u2
-    IL_0004: stloc.0
-    IL_0005: ldloca.s V_0
-    IL_0007: call System.UInt16 Z0.Bits::scatter(System.UInt16&,System.UInt16&)
-    IL_000C: ret
-
-}
-uint project(uint src, uint part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::scatter(System.UInt32&,System.UInt32&)
-    IL_000B: ret
-
-}
-byte select(ushort src, uint part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: conv.u2
-    IL_0004: stloc.0
-    IL_0005: ldloca.s V_0
-    IL_0007: call System.UInt16 Z0.Bits::gather(System.UInt16&,System.UInt16&)
-    IL_000C: conv.u1
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i8
+    IL_0003: ldarg.0
+    IL_0004: ldind.i8
+    IL_0005: ldarg.1
+    IL_0006: ldc.i4.s 63
+    IL_0008: and
+    IL_0009: shl
+    IL_000A: xor
+    IL_000B: stind.i8
+    IL_000C: ldarg.0
     IL_000D: ret
 
 }
-byte select(uint src, uint part)
+ref ulong xorsl(ref ulong src, int offset)
 {
-    IL_0000: ldarga.s src
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i8
+    IL_0003: ldarg.0
+    IL_0004: ldind.i8
+    IL_0005: ldarg.1
+    IL_0006: ldc.i4.s 63
+    IL_0008: and
+    IL_0009: shl
+    IL_000A: xor
+    IL_000B: stind.i8
+    IL_000C: ldarg.0
+    IL_000D: ret
+
+}
+sbyte xorsr(sbyte src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
     IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::gather(System.UInt32&,System.UInt32&)
-    IL_000B: conv.u1
+    IL_0003: ldc.i4.s 31
+    IL_0005: and
+    IL_0006: shr
+    IL_0007: conv.i1
+    IL_0008: xor
+    IL_0009: conv.i1
+    IL_000A: ret
+
+}
+byte xorsr(byte src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: ldc.i4.s 31
+    IL_0005: and
+    IL_0006: shr
+    IL_0007: conv.u1
+    IL_0008: xor
+    IL_0009: conv.u1
+    IL_000A: ret
+
+}
+short xorsr(short src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: ldc.i4.s 31
+    IL_0005: and
+    IL_0006: shr
+    IL_0007: conv.i2
+    IL_0008: xor
+    IL_0009: conv.i2
+    IL_000A: ret
+
+}
+ushort xorsr(ushort src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: ldc.i4.s 31
+    IL_0005: and
+    IL_0006: shr
+    IL_0007: conv.u2
+    IL_0008: xor
+    IL_0009: conv.u2
+    IL_000A: ret
+
+}
+int xorsr(int src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: ldc.i4.s 31
+    IL_0005: and
+    IL_0006: shr
+    IL_0007: xor
+    IL_0008: ret
+
+}
+uint xorsr(uint src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: ldc.i4.s 31
+    IL_0005: and
+    IL_0006: shr.un
+    IL_0007: xor
+    IL_0008: ret
+
+}
+long xorsr(long src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: ldc.i4.s 63
+    IL_0005: and
+    IL_0006: shr
+    IL_0007: xor
+    IL_0008: ret
+
+}
+ulong xorsr(ulong src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: ldc.i4.s 63
+    IL_0005: and
+    IL_0006: shr.un
+    IL_0007: xor
+    IL_0008: ret
+
+}
+ref sbyte xorsr(ref sbyte src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i1
+    IL_0003: ldarg.0
+    IL_0004: ldind.i1
+    IL_0005: ldarg.1
+    IL_0006: ldc.i4.s 31
+    IL_0008: and
+    IL_0009: shr
+    IL_000A: conv.i1
+    IL_000B: xor
+    IL_000C: conv.i1
+    IL_000D: stind.i1
+    IL_000E: ldarg.0
+    IL_000F: ret
+
+}
+ref byte xorsr(ref byte src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u1
+    IL_0003: ldarg.0
+    IL_0004: ldind.u1
+    IL_0005: ldarg.1
+    IL_0006: ldc.i4.s 31
+    IL_0008: and
+    IL_0009: shr
+    IL_000A: conv.u1
+    IL_000B: xor
+    IL_000C: conv.u1
+    IL_000D: stind.i1
+    IL_000E: ldarg.0
+    IL_000F: ret
+
+}
+ref short xorsr(ref short src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i2
+    IL_0003: ldarg.0
+    IL_0004: ldind.i2
+    IL_0005: ldarg.1
+    IL_0006: ldc.i4.s 31
+    IL_0008: and
+    IL_0009: shr
+    IL_000A: conv.i2
+    IL_000B: xor
+    IL_000C: conv.i2
+    IL_000D: stind.i2
+    IL_000E: ldarg.0
+    IL_000F: ret
+
+}
+ref ushort xorsr(ref ushort src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u2
+    IL_0003: ldarg.0
+    IL_0004: ldind.u2
+    IL_0005: ldarg.1
+    IL_0006: ldc.i4.s 31
+    IL_0008: and
+    IL_0009: shr
+    IL_000A: conv.u2
+    IL_000B: xor
+    IL_000C: conv.u2
+    IL_000D: stind.i2
+    IL_000E: ldarg.0
+    IL_000F: ret
+
+}
+ref int xorsr(ref int src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i4
+    IL_0003: ldarg.0
+    IL_0004: ldind.i4
+    IL_0005: ldarg.1
+    IL_0006: ldc.i4.s 31
+    IL_0008: and
+    IL_0009: shr
+    IL_000A: xor
+    IL_000B: stind.i4
+    IL_000C: ldarg.0
+    IL_000D: ret
+
+}
+ref uint xorsr(ref uint src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u4
+    IL_0003: ldarg.0
+    IL_0004: ldind.u4
+    IL_0005: ldarg.1
+    IL_0006: ldc.i4.s 31
+    IL_0008: and
+    IL_0009: shr.un
+    IL_000A: xor
+    IL_000B: stind.i4
+    IL_000C: ldarg.0
+    IL_000D: ret
+
+}
+ref long xorsr(ref long src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i8
+    IL_0003: ldarg.0
+    IL_0004: ldind.i8
+    IL_0005: ldarg.1
+    IL_0006: ldc.i4.s 63
+    IL_0008: and
+    IL_0009: shr
+    IL_000A: xor
+    IL_000B: stind.i8
+    IL_000C: ldarg.0
+    IL_000D: ret
+
+}
+ref ulong xorsr(ref ulong src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i8
+    IL_0003: ldarg.0
+    IL_0004: ldind.i8
+    IL_0005: ldarg.1
+    IL_0006: ldc.i4.s 63
+    IL_0008: and
+    IL_0009: shr.un
+    IL_000A: xor
+    IL_000B: stind.i8
+    IL_000C: ldarg.0
+    IL_000D: ret
+
+}
+uint project(uint src, Part32x16:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part32x16:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part1x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part2x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part3x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part4x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part5x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part6x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part7x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part8x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part9x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part10x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part11x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part12x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part13x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part16x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part32x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+byte select(uint src, Part1x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: conv.u1
+    IL_0008: ret
+
+}
+byte select(uint src, Part2x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: conv.u1
+    IL_0008: ret
+
+}
+byte select(uint src, Part3x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: conv.u1
+    IL_0008: ret
+
+}
+byte select(uint src, Part4x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: conv.u1
+    IL_0008: ret
+
+}
+byte select(uint src, Part5x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: conv.u1
+    IL_0008: ret
+
+}
+byte select(uint src, Part6x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: conv.u1
+    IL_0008: ret
+
+}
+uint select(uint src, Part7x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part8x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part9x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part10x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part11x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part12x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part13x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part16x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part32x1:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+byte project(byte src, Part4x2:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: conv.u1
+    IL_0003: call System.Byte Z0.Bits::scatter(System.Byte,System.Byte)
+    IL_0008: ret
+
+}
+byte project(byte src, Part6x2:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: conv.u1
+    IL_0003: call System.Byte Z0.Bits::scatter(System.Byte,System.Byte)
+    IL_0008: ret
+
+}
+uint project(uint src, Part8x2:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part10x2:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part12x2:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part16x2:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint project(uint src, Part32x2:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part6x2:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part4x2:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part8x2:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part10x2:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part12x2:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part16x2:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint select(uint src, Part32x2:uint part)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+ulong rotr(ulong src, ulong offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: conv.i4
+    IL_0003: ldc.i4.s 63
+    IL_0005: and
+    IL_0006: shr.un
+    IL_0007: ldarg.0
+    IL_0008: ldc.i4.s 64
+    IL_000A: ldarg.1
+    IL_000B: conv.i4
+    IL_000C: sub
+    IL_000D: ldc.i4.s 63
+    IL_000F: and
+    IL_0010: shl
+    IL_0011: or
+    IL_0012: ret
+
+}
+ref byte rotr(ref byte src, in byte offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u1
+    IL_0003: ldarg.1
+    IL_0004: ldind.u1
+    IL_0005: call System.Byte Z0.Bits::rotr(System.Byte,System.Byte)
+    IL_000A: stind.i1
+    IL_000B: ldarg.0
     IL_000C: ret
 
 }
-byte select(uint src, uint part)
+ref ushort rotr(ref ushort src, in ushort offset)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::gather(System.UInt32&,System.UInt32&)
-    IL_000B: conv.u1
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u2
+    IL_0003: ldarg.1
+    IL_0004: ldind.u2
+    IL_0005: call System.UInt16 Z0.Bits::rotr(System.UInt16,System.UInt16)
+    IL_000A: stind.i2
+    IL_000B: ldarg.0
     IL_000C: ret
 
 }
-byte project(byte src, byte part)
+ref uint rotr(ref uint src, in uint offset)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::scatter(System.Byte&,System.Byte&)
-    IL_000B: ret
-
-}
-byte project(byte src, byte part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::scatter(System.Byte&,System.Byte&)
-    IL_000B: ret
-
-}
-byte project(byte src, byte part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::scatter(System.Byte&,System.Byte&)
-    IL_000B: ret
-
-}
-byte project(byte src, byte part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::scatter(System.Byte&,System.Byte&)
-    IL_000B: ret
-
-}
-byte project(byte src, byte part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::scatter(System.Byte&,System.Byte&)
-    IL_000B: ret
-
-}
-ushort project(ushort src, ushort part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::scatter(System.UInt16&,System.UInt16&)
-    IL_000B: ret
-
-}
-ushort project(ushort src, ushort part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::scatter(System.UInt16&,System.UInt16&)
-    IL_000B: ret
-
-}
-ushort project(ushort src, ushort part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::scatter(System.UInt16&,System.UInt16&)
-    IL_000B: ret
-
-}
-ushort project(ushort src, ushort part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::scatter(System.UInt16&,System.UInt16&)
-    IL_000B: ret
-
-}
-ushort project(ushort src, ushort part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::scatter(System.UInt16&,System.UInt16&)
-    IL_000B: ret
-
-}
-ushort project(ushort src, ushort part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::scatter(System.UInt16&,System.UInt16&)
-    IL_000B: ret
-
-}
-uint project(uint src, uint part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::scatter(System.UInt32&,System.UInt32&)
-    IL_000B: ret
-
-}
-byte select(byte src, byte part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::gather(System.Byte&,System.Byte&)
-    IL_000B: ret
-
-}
-byte select(byte src, byte part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::gather(System.Byte&,System.Byte&)
-    IL_000B: ret
-
-}
-byte select(byte src, byte part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::gather(System.Byte&,System.Byte&)
-    IL_000B: ret
-
-}
-byte select(byte src, byte part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::gather(System.Byte&,System.Byte&)
-    IL_000B: ret
-
-}
-byte select(byte src, byte part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::gather(System.Byte&,System.Byte&)
-    IL_000B: ret
-
-}
-byte select(byte src, byte part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::gather(System.Byte&,System.Byte&)
-    IL_000B: ret
-
-}
-byte select(byte src, byte part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::gather(System.Byte&,System.Byte&)
-    IL_000B: ret
-
-}
-byte select(byte src, byte part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::gather(System.Byte&,System.Byte&)
-    IL_000B: ret
-
-}
-byte select(ushort src, ushort part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::gather(System.UInt16&,System.UInt16&)
-    IL_000B: conv.u1
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u4
+    IL_0003: ldarg.1
+    IL_0004: ldind.u4
+    IL_0005: call System.UInt32 Z0.Bits::rotr(System.UInt32,System.UInt32)
+    IL_000A: stind.i4
+    IL_000B: ldarg.0
     IL_000C: ret
 
 }
-byte select(ushort src, ushort part)
+ref ulong rotr(ref ulong src, in ulong offset)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::gather(System.UInt16&,System.UInt16&)
-    IL_000B: conv.u1
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i8
+    IL_0003: ldarg.1
+    IL_0004: ldind.i8
+    IL_0005: call System.UInt64 Z0.Bits::rotr(System.UInt64,System.UInt64)
+    IL_000A: stind.i8
+    IL_000B: ldarg.0
     IL_000C: ret
 
 }
-byte select(ushort src, ushort part)
+sbyte scatter(sbyte src, sbyte mask)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::gather(System.UInt16&,System.UInt16&)
-    IL_000B: conv.u1
-    IL_000C: ret
-
-}
-byte select(ushort src, ushort part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::gather(System.UInt16&,System.UInt16&)
-    IL_000B: conv.u1
-    IL_000C: ret
-
-}
-byte select(ushort src, ushort part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::gather(System.UInt16&,System.UInt16&)
-    IL_000B: conv.u1
-    IL_000C: ret
-
-}
-byte select(ushort src, ushort part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::gather(System.UInt16&,System.UInt16&)
-    IL_000B: conv.u1
-    IL_000C: ret
-
-}
-byte select(uint src, uint part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::gather(System.UInt32&,System.UInt32&)
-    IL_000B: conv.u1
-    IL_000C: ret
-
-}
-byte project(byte src, byte part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::scatter(System.Byte&,System.Byte&)
-    IL_000B: ret
-
-}
-byte project(byte src, ushort part)
-{
-    IL_0000: ldarga.s src
+    IL_0000: ldarg.0
+    IL_0001: conv.u1
     IL_0002: ldarg.1
     IL_0003: conv.u1
-    IL_0004: stloc.0
-    IL_0005: ldloca.s V_0
-    IL_0007: call System.Byte Z0.Bits::scatter(System.Byte&,System.Byte&)
-    IL_000C: ret
+    IL_0004: call System.Byte Z0.Bits::scatter(System.Byte,System.Byte)
+    IL_0009: conv.i1
+    IL_000A: ret
 
 }
-byte project(byte src, byte part)
+byte scatter(byte src, byte mask)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::scatter(System.Byte&,System.Byte&)
-    IL_000B: ret
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ParallelBitDeposit(System.UInt32,System.UInt32)
+    IL_0007: conv.u1
+    IL_0008: ret
 
 }
-ushort project(ushort src, ushort part)
+short scatter(short src, short mask)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::scatter(System.UInt16&,System.UInt16&)
-    IL_000B: ret
-
-}
-ushort project(ushort src, ushort part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::scatter(System.UInt16&,System.UInt16&)
-    IL_000B: ret
-
-}
-ushort project(ushort src, ushort part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::scatter(System.UInt16&,System.UInt16&)
-    IL_000B: ret
-
-}
-uint project(uint src, uint part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::scatter(System.UInt32&,System.UInt32&)
-    IL_000B: ret
-
-}
-byte select(byte src, ushort part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: conv.u1
-    IL_0004: stloc.0
-    IL_0005: ldloca.s V_0
-    IL_0007: call System.Byte Z0.Bits::gather(System.Byte&,System.Byte&)
-    IL_000C: ret
-
-}
-byte select(byte src, byte part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::gather(System.Byte&,System.Byte&)
-    IL_000B: ret
-
-}
-byte select(byte src, byte part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::gather(System.Byte&,System.Byte&)
-    IL_000B: ret
-
-}
-byte select(ushort src, ushort part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::gather(System.UInt16&,System.UInt16&)
-    IL_000B: conv.u1
-    IL_000C: ret
-
-}
-byte select(ushort src, ushort part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::gather(System.UInt16&,System.UInt16&)
-    IL_000B: conv.u1
-    IL_000C: ret
-
-}
-byte select(ushort src, ushort part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::gather(System.UInt16&,System.UInt16&)
-    IL_000B: conv.u1
-    IL_000C: ret
-
-}
-byte select(uint src, uint part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::gather(System.UInt32&,System.UInt32&)
-    IL_000B: conv.u1
-    IL_000C: ret
-
-}
-byte project(byte src, ushort part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: conv.u1
-    IL_0004: stloc.0
-    IL_0005: ldloca.s V_0
-    IL_0007: call System.Byte Z0.Bits::scatter(System.Byte&,System.Byte&)
-    IL_000C: ret
-
-}
-ushort project(ushort src, ushort part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::scatter(System.UInt16&,System.UInt16&)
-    IL_000B: ret
-
-}
-ushort project(ushort src, uint part)
-{
-    IL_0000: ldarga.s src
+    IL_0000: ldarg.0
+    IL_0001: conv.u2
     IL_0002: ldarg.1
     IL_0003: conv.u2
-    IL_0004: stloc.0
-    IL_0005: ldloca.s V_0
-    IL_0007: call System.UInt16 Z0.Bits::scatter(System.UInt16&,System.UInt16&)
-    IL_000C: ret
+    IL_0004: call System.UInt16 Z0.Bits::scatter(System.UInt16,System.UInt16)
+    IL_0009: conv.i2
+    IL_000A: ret
 
 }
-ushort project(ushort src, uint part)
+ushort scatter(ushort src, ushort mask)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: conv.u2
-    IL_0004: stloc.0
-    IL_0005: ldloca.s V_0
-    IL_0007: call System.UInt16 Z0.Bits::scatter(System.UInt16&,System.UInt16&)
-    IL_000C: ret
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ParallelBitDeposit(System.UInt32,System.UInt32)
+    IL_0007: conv.u2
+    IL_0008: ret
 
 }
-uint project(uint src, uint part)
+int scatter(int src, int mask)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::scatter(System.UInt32&,System.UInt32&)
-    IL_000B: ret
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::scatter(System.UInt32,System.UInt32)
+    IL_0007: ret
 
 }
-uint project(uint src, uint part)
+uint scatter(uint src, uint mask)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::scatter(System.UInt32&,System.UInt32&)
-    IL_000B: ret
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ParallelBitDeposit(System.UInt32,System.UInt32)
+    IL_0007: ret
 
 }
-uint project(uint src, uint part)
+long scatter(long src, long mask)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::scatter(System.UInt32&,System.UInt32&)
-    IL_000B: ret
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt64 Z0.Bits::scatter(System.UInt64,System.UInt64)
+    IL_0007: ret
 
 }
-uint project(uint src, uint part)
+ulong scatter(ulong src, ulong mask)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::scatter(System.UInt32&,System.UInt32&)
-    IL_000B: ret
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi2/X64::ParallelBitDeposit(System.UInt64,System.UInt64)
+    IL_0007: ret
 
 }
-uint project(uint src, uint part)
+sbyte sll(sbyte src, int offset)
 {
     IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::scatter(System.UInt32&,System.UInt32&)
-    IL_000B: ret
+    IL_0002: call System.SByte& Z0.math::abs(System.SByte&)
+    IL_0007: ldind.i1
+    IL_0008: ldarg.1
+    IL_0009: ldc.i4.s 31
+    IL_000B: and
+    IL_000C: shl
+    IL_000D: conv.i1
+    IL_000E: ret
 
 }
-byte select(byte src, ushort part)
+byte sll(byte src, int offset)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: conv.u1
-    IL_0004: stloc.0
-    IL_0005: ldloca.s V_0
-    IL_0007: call System.Byte Z0.Bits::gather(System.Byte&,System.Byte&)
-    IL_000C: ret
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldc.i4.s 31
+    IL_0004: and
+    IL_0005: shl
+    IL_0006: conv.u1
+    IL_0007: ret
 
 }
-byte select(ushort src, ushort part)
+short sll(short src, int offset)
 {
     IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::gather(System.UInt16&,System.UInt16&)
-    IL_000B: conv.u1
-    IL_000C: ret
+    IL_0002: call System.Int16& Z0.math::abs(System.Int16&)
+    IL_0007: ldind.i2
+    IL_0008: ldarg.1
+    IL_0009: ldc.i4.s 31
+    IL_000B: and
+    IL_000C: shl
+    IL_000D: conv.i2
+    IL_000E: ret
 
 }
-byte select(ushort src, uint part)
+ushort sll(ushort src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldc.i4.s 31
+    IL_0004: and
+    IL_0005: shl
+    IL_0006: conv.u2
+    IL_0007: ret
+
+}
+int sll(int src, int offset)
 {
     IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: conv.u2
-    IL_0004: stloc.0
-    IL_0005: ldloca.s V_0
-    IL_0007: call System.UInt16 Z0.Bits::gather(System.UInt16&,System.UInt16&)
-    IL_000C: conv.u1
+    IL_0002: call System.Int32& Z0.math::abs(System.Int32&)
+    IL_0007: ldind.i4
+    IL_0008: ldarg.1
+    IL_0009: ldc.i4.s 31
+    IL_000B: and
+    IL_000C: shl
     IL_000D: ret
 
 }
-byte select(ushort src, uint part)
+uint sll(uint src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldc.i4.s 31
+    IL_0004: and
+    IL_0005: shl
+    IL_0006: ret
+
+}
+long sll(long src, int offset)
 {
     IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: conv.u2
-    IL_0004: stloc.0
-    IL_0005: ldloca.s V_0
-    IL_0007: call System.UInt16 Z0.Bits::gather(System.UInt16&,System.UInt16&)
-    IL_000C: conv.u1
+    IL_0002: call System.Int64& Z0.math::abs(System.Int64&)
+    IL_0007: ldind.i8
+    IL_0008: ldarg.1
+    IL_0009: ldc.i4.s 63
+    IL_000B: and
+    IL_000C: shl
     IL_000D: ret
 
 }
-byte select(uint src, uint part)
+ulong sll(ulong src, int offset)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::gather(System.UInt32&,System.UInt32&)
-    IL_000B: conv.u1
-    IL_000C: ret
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: ldc.i4.s 63
+    IL_0004: and
+    IL_0005: shl
+    IL_0006: ret
 
 }
-byte select(uint src, uint part)
+ref sbyte sll(ref sbyte src, int offset)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::gather(System.UInt32&,System.UInt32&)
-    IL_000B: conv.u1
-    IL_000C: ret
+    IL_0000: ldarg.0
+    IL_0001: call System.SByte& Z0.math::abs(System.SByte&)
+    IL_0006: dup
+    IL_0007: ldind.i1
+    IL_0008: ldarg.1
+    IL_0009: ldc.i4.s 31
+    IL_000B: and
+    IL_000C: shl
+    IL_000D: conv.i1
+    IL_000E: stind.i1
+    IL_000F: ldarg.0
+    IL_0010: ret
 
 }
-byte select(uint src, uint part)
+ref byte sll(ref byte src, int offset)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::gather(System.UInt32&,System.UInt32&)
-    IL_000B: conv.u1
-    IL_000C: ret
-
-}
-byte select(uint src, uint part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::gather(System.UInt32&,System.UInt32&)
-    IL_000B: conv.u1
-    IL_000C: ret
-
-}
-byte select(uint src, uint part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::gather(System.UInt32&,System.UInt32&)
-    IL_000B: conv.u1
-    IL_000C: ret
-
-}
-byte project(byte src, byte part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::scatter(System.Byte&,System.Byte&)
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u1
+    IL_0003: ldarg.1
+    IL_0004: ldc.i4.s 31
+    IL_0006: and
+    IL_0007: shl
+    IL_0008: conv.u1
+    IL_0009: stind.i1
+    IL_000A: ldarg.0
     IL_000B: ret
 
 }
-ushort project(ushort src, ushort part)
+ref short sll(ref short src, int offset)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::scatter(System.UInt16&,System.UInt16&)
+    IL_0000: ldarg.0
+    IL_0001: call System.Int16& Z0.math::abs(System.Int16&)
+    IL_0006: dup
+    IL_0007: ldind.i2
+    IL_0008: ldarg.1
+    IL_0009: ldc.i4.s 31
+    IL_000B: and
+    IL_000C: shl
+    IL_000D: conv.i2
+    IL_000E: stind.i2
+    IL_000F: ldarg.0
+    IL_0010: ret
+
+}
+ref ushort sll(ref ushort src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u2
+    IL_0003: ldarg.1
+    IL_0004: ldc.i4.s 31
+    IL_0006: and
+    IL_0007: shl
+    IL_0008: conv.u2
+    IL_0009: stind.i2
+    IL_000A: ldarg.0
     IL_000B: ret
 
 }
-ushort project(ushort src, ushort part)
+ref int sll(ref int src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Int32& Z0.math::abs(System.Int32&)
+    IL_0006: dup
+    IL_0007: ldind.i4
+    IL_0008: ldarg.1
+    IL_0009: ldc.i4.s 31
+    IL_000B: and
+    IL_000C: shl
+    IL_000D: stind.i4
+    IL_000E: ldarg.0
+    IL_000F: ret
+
+}
+ref uint sll(ref uint src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.u4
+    IL_0003: ldarg.1
+    IL_0004: ldc.i4.s 31
+    IL_0006: and
+    IL_0007: shl
+    IL_0008: stind.i4
+    IL_0009: ldarg.0
+    IL_000A: ret
+
+}
+ref long sll(ref long src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Int64& Z0.math::abs(System.Int64&)
+    IL_0006: dup
+    IL_0007: ldind.i8
+    IL_0008: ldarg.1
+    IL_0009: ldc.i4.s 63
+    IL_000B: and
+    IL_000C: shl
+    IL_000D: stind.i8
+    IL_000E: ldarg.0
+    IL_000F: ret
+
+}
+ref ulong sll(ref ulong src, int offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.0
+    IL_0002: ldind.i8
+    IL_0003: ldarg.1
+    IL_0004: ldc.i4.s 63
+    IL_0006: and
+    IL_0007: shl
+    IL_0008: stind.i8
+    IL_0009: ldarg.0
+    IL_000A: ret
+
+}
+ValueTuple<sbyte,sbyte> split(short src, N2 parts)
 {
     IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::scatter(System.UInt16&,System.UInt16&)
+    IL_0002: call System.SByte Z0.Bits::lo(System.Int16&)
+    IL_0007: ldarga.s src
+    IL_0009: call System.SByte Z0.Bits::hi(System.Int16&)
+    IL_000E: newobj System.Void System.ValueTuple`2<System.SByte,System.SByte>::.ctor(System.SByte,System.SByte)
+    IL_0013: ret
+
+}
+ValueTuple<byte,byte> split(ushort src, N2 parts)
+{
+    IL_0000: ldarg.0
+    IL_0001: conv.u1
+    IL_0002: ldarg.0
+    IL_0003: ldc.i4.8
+    IL_0004: shr
+    IL_0005: conv.u1
+    IL_0006: newobj System.Void System.ValueTuple`2<System.Byte,System.Byte>::.ctor(System.Byte,System.Byte)
     IL_000B: ret
 
 }
-uint project(uint src, uint part)
+ValueTuple<short,short> split(int src, N2 parts)
 {
     IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::scatter(System.UInt32&,System.UInt32&)
+    IL_0002: call System.Int16 Z0.Bits::lo(System.Int32&)
+    IL_0007: ldarga.s src
+    IL_0009: call System.Int16 Z0.Bits::hi(System.Int32&)
+    IL_000E: newobj System.Void System.ValueTuple`2<System.Int16,System.Int16>::.ctor(System.Int16,System.Int16)
+    IL_0013: ret
+
+}
+ValueTuple<ushort,ushort> split(uint src, N2 parts)
+{
+    IL_0000: ldarg.0
+    IL_0001: conv.u2
+    IL_0002: ldarg.0
+    IL_0003: ldc.i4.s 16
+    IL_0005: shr.un
+    IL_0006: conv.u2
+    IL_0007: newobj System.Void System.ValueTuple`2<System.UInt16,System.UInt16>::.ctor(System.UInt16,System.UInt16)
+    IL_000C: ret
+
+}
+ValueTuple<int,int> split(long src, N2 parts)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Int32 Z0.Bits::lo(System.Int64&)
+    IL_0007: ldarga.s src
+    IL_0009: call System.Int32 Z0.Bits::hi(System.Int64&)
+    IL_000E: newobj System.Void System.ValueTuple`2<System.Int32,System.Int32>::.ctor(System.Int32,System.Int32)
+    IL_0013: ret
+
+}
+ValueTuple<uint,uint> split(ulong src, N2 parts)
+{
+    IL_0000: ldarg.0
+    IL_0001: conv.u4
+    IL_0002: ldarg.0
+    IL_0003: ldc.i4.s 32
+    IL_0005: shr.un
+    IL_0006: conv.u4
+    IL_0007: newobj System.Void System.ValueTuple`2<System.UInt32,System.UInt32>::.ctor(System.UInt32,System.UInt32)
+    IL_000C: ret
+
+}
+ValueTuple<byte,byte,byte,byte> split(uint src, N4 parts)
+{
+    IL_0000: ldarg.0
+    IL_0001: conv.u1
+    IL_0002: ldarg.0
+    IL_0003: ldc.i4.8
+    IL_0004: shr.un
+    IL_0005: conv.u1
+    IL_0006: ldarg.0
+    IL_0007: ldc.i4.s 16
+    IL_0009: shr.un
+    IL_000A: conv.u1
+    IL_000B: ldarg.0
+    IL_000C: ldc.i4.s 24
+    IL_000E: shr.un
+    IL_000F: conv.u1
+    IL_0010: newobj System.Void System.ValueTuple`4<System.Byte,System.Byte,System.Byte,System.Byte>::.ctor(System.Byte,System.Byte,System.Byte,System.Byte)
+    IL_0015: ret
+
+}
+ValueTuple<byte,byte,byte,byte,byte,byte,byte,ValueTuple<byte>> split(ulong src, N8 parts)
+{
+    IL_0000: ldarg.0
+    IL_0001: conv.u1
+    IL_0002: ldarg.0
+    IL_0003: ldc.i4.8
+    IL_0004: shr.un
+    IL_0005: conv.u1
+    IL_0006: ldarg.0
+    IL_0007: ldc.i4.s 16
+    IL_0009: shr.un
+    IL_000A: conv.u1
+    IL_000B: ldarg.0
+    IL_000C: ldc.i4.s 24
+    IL_000E: shr.un
+    IL_000F: conv.u1
+    IL_0010: ldarg.0
+    IL_0011: ldc.i4.s 32
+    IL_0013: shr.un
+    IL_0014: conv.u1
+    IL_0015: ldarg.0
+    IL_0016: ldc.i4.s 40
+    IL_0018: shr.un
+    IL_0019: conv.u1
+    IL_001A: ldarg.0
+    IL_001B: ldc.i4.s 48
+    IL_001D: shr.un
+    IL_001E: conv.u1
+    IL_001F: ldarg.0
+    IL_0020: ldc.i4.s 56
+    IL_0022: shr.un
+    IL_0023: conv.u1
+    IL_0024: newobj System.Void System.ValueTuple`1<System.Byte>::.ctor(System.Byte)
+    IL_0029: newobj System.Void System.ValueTuple`8<System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.ValueTuple`1<System.Byte>>::.ctor(System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.ValueTuple`1<System.Byte>)
+    IL_002E: ret
+
+}
+bool subset(byte test, byte set)
+{
+    IL_0000: ldarg.1
+    IL_0001: ldarg.0
+    IL_0002: and
+    IL_0003: ldarg.0
+    IL_0004: ceq
+    IL_0006: ret
+
+}
+bool subset(byte test, sbyte set)
+{
+    IL_0000: ldarg.1
+    IL_0001: ldarg.0
+    IL_0002: and
+    IL_0003: ldarg.0
+    IL_0004: ceq
+    IL_0006: ret
+
+}
+bool subset(byte test, short set)
+{
+    IL_0000: ldarg.1
+    IL_0001: ldarg.0
+    IL_0002: and
+    IL_0003: ldarg.0
+    IL_0004: ceq
+    IL_0006: ret
+
+}
+bool subset(byte test, ushort set)
+{
+    IL_0000: ldarg.1
+    IL_0001: ldarg.0
+    IL_0002: and
+    IL_0003: ldarg.0
+    IL_0004: ceq
+    IL_0006: ret
+
+}
+bool subset(byte test, int set)
+{
+    IL_0000: ldarg.1
+    IL_0001: ldarg.0
+    IL_0002: and
+    IL_0003: ldarg.0
+    IL_0004: ceq
+    IL_0006: ret
+
+}
+bool subset(byte test, uint set)
+{
+    IL_0000: ldarg.1
+    IL_0001: ldarg.0
+    IL_0002: and
+    IL_0003: ldarg.0
+    IL_0004: ceq
+    IL_0006: ret
+
+}
+bool subset(byte test, long set)
+{
+    IL_0000: ldarg.1
+    IL_0001: ldarg.0
+    IL_0002: conv.u8
+    IL_0003: and
+    IL_0004: ldarg.0
+    IL_0005: conv.u8
+    IL_0006: ceq
+    IL_0008: ret
+
+}
+bool subset(byte test, ulong set)
+{
+    IL_0000: ldarg.1
+    IL_0001: ldarg.0
+    IL_0002: conv.u8
+    IL_0003: and
+    IL_0004: ldarg.0
+    IL_0005: conv.u8
+    IL_0006: ceq
+    IL_0008: ret
+
+}
+bool subset(byte test, float set)
+{
+    IL_0000: ldarg.1
+    IL_0001: call System.Int32 Z0.MathX::ToBits(System.Single)
+    IL_0006: ldarg.0
+    IL_0007: and
+    IL_0008: ldarg.0
+    IL_0009: ceq
     IL_000B: ret
 
 }
-byte select(byte src, byte part)
+bool subset(byte test, double set)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::gather(System.Byte&,System.Byte&)
-    IL_000B: ret
+    IL_0000: ldarg.1
+    IL_0001: call System.Int64 Z0.MathX::ToBits(System.Double)
+    IL_0006: ldarg.0
+    IL_0007: conv.u8
+    IL_0008: and
+    IL_0009: ldarg.0
+    IL_000A: conv.u8
+    IL_000B: ceq
+    IL_000D: ret
 
 }
-byte select(ushort src, ushort part)
+bool subset(sbyte test, byte set)
 {
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::gather(System.UInt16&,System.UInt16&)
-    IL_000B: conv.u1
-    IL_000C: ret
-
-}
-byte select(ushort src, ushort part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt16 Z0.Bits::gather(System.UInt16&,System.UInt16&)
-    IL_000B: conv.u1
-    IL_000C: ret
-
-}
-byte select(uint src, uint part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::gather(System.UInt32&,System.UInt32&)
-    IL_000B: conv.u1
-    IL_000C: ret
-
-}
-byte select(uint src, uint part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::gather(System.UInt32&,System.UInt32&)
-    IL_000B: conv.u1
-    IL_000C: ret
-
-}
-byte select(uint src, uint part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::gather(System.UInt32&,System.UInt32&)
-    IL_000B: conv.u1
-    IL_000C: ret
-
-}
-ushort project(ushort src, uint part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: conv.u2
-    IL_0004: stloc.0
-    IL_0005: ldloca.s V_0
-    IL_0007: call System.UInt16 Z0.Bits::scatter(System.UInt16&,System.UInt16&)
-    IL_000C: ret
+    IL_0000: ldarg.1
+    IL_0001: ldarg.0
+    IL_0002: and
+    IL_0003: ldarg.0
+    IL_0004: ceq
+    IL_0006: ret
 
 }
 bool subset(sbyte test, sbyte set)
@@ -1822,2997 +2903,6 @@ ref ulong trunc(ref ulong src, byte len)
     IL_000C: ret
 
 }
-Span<Bit> unpack(in byte src, out Span<Bit> dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldc.i4.8
-    IL_0002: newarr Z0.Bit
-    IL_0007: call System.Span`1<Z0.Bit> System.Span`1<Z0.Bit>::op_Implicit(Z0.Bit[])
-    IL_000C: stobj System.Span`1<Z0.Bit>
-    IL_0011: ldc.i4.0
-    IL_0012: stloc.0
-    IL_0013: br.s IL_0029
-    IL_0015: ldarg.0
-    IL_0016: ldloca.s V_0
-    IL_0018: ldarg.1
-    IL_0019: ldloc.0
-    IL_001A: call Z0.Bit& System.Span`1<Z0.Bit>::get_Item(System.Int32)
-    IL_001F: call Z0.Bit& Z0.Bits::read(System.Byte&,System.Int32&,Z0.Bit&)
-    IL_0024: pop
-    IL_0025: ldloc.0
-    IL_0026: ldc.i4.1
-    IL_0027: add
-    IL_0028: stloc.0
-    IL_0029: ldloc.0
-    IL_002A: ldarg.1
-    IL_002B: call System.Int32 System.Span`1<Z0.Bit>::get_Length()
-    IL_0030: blt.s IL_0015
-    IL_0032: ldarg.1
-    IL_0033: ldobj System.Span`1<Z0.Bit>
-    IL_0038: ret
-
-}
-Span<Bit> unpack(in ushort src, out Span<Bit> dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldc.i4.s 16
-    IL_0003: newarr Z0.Bit
-    IL_0008: call System.Span`1<Z0.Bit> System.Span`1<Z0.Bit>::op_Implicit(Z0.Bit[])
-    IL_000D: stobj System.Span`1<Z0.Bit>
-    IL_0012: ldc.i4.0
-    IL_0013: stloc.0
-    IL_0014: br.s IL_002A
-    IL_0016: ldarg.0
-    IL_0017: ldloca.s V_0
-    IL_0019: ldarg.1
-    IL_001A: ldloc.0
-    IL_001B: call Z0.Bit& System.Span`1<Z0.Bit>::get_Item(System.Int32)
-    IL_0020: call Z0.Bit& Z0.Bits::read(System.UInt16&,System.Int32&,Z0.Bit&)
-    IL_0025: pop
-    IL_0026: ldloc.0
-    IL_0027: ldc.i4.1
-    IL_0028: add
-    IL_0029: stloc.0
-    IL_002A: ldloc.0
-    IL_002B: ldarg.1
-    IL_002C: call System.Int32 System.Span`1<Z0.Bit>::get_Length()
-    IL_0031: blt.s IL_0016
-    IL_0033: ldarg.1
-    IL_0034: ldobj System.Span`1<Z0.Bit>
-    IL_0039: ret
-
-}
-Span<Bit> unpack(in uint src, out Span<Bit> dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldc.i4.s 32
-    IL_0003: newarr Z0.Bit
-    IL_0008: call System.Span`1<Z0.Bit> System.Span`1<Z0.Bit>::op_Implicit(Z0.Bit[])
-    IL_000D: stobj System.Span`1<Z0.Bit>
-    IL_0012: ldc.i4.0
-    IL_0013: stloc.0
-    IL_0014: br.s IL_002A
-    IL_0016: ldarg.0
-    IL_0017: ldloca.s V_0
-    IL_0019: ldarg.1
-    IL_001A: ldloc.0
-    IL_001B: call Z0.Bit& System.Span`1<Z0.Bit>::get_Item(System.Int32)
-    IL_0020: call Z0.Bit& Z0.Bits::read(System.UInt32&,System.Int32&,Z0.Bit&)
-    IL_0025: pop
-    IL_0026: ldloc.0
-    IL_0027: ldc.i4.1
-    IL_0028: add
-    IL_0029: stloc.0
-    IL_002A: ldloc.0
-    IL_002B: ldarg.1
-    IL_002C: call System.Int32 System.Span`1<Z0.Bit>::get_Length()
-    IL_0031: blt.s IL_0016
-    IL_0033: ldarg.1
-    IL_0034: ldobj System.Span`1<Z0.Bit>
-    IL_0039: ret
-
-}
-Span<Bit> unpack(in ulong src, out Span<Bit> dst)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldc.i4.s 64
-    IL_0003: newarr Z0.Bit
-    IL_0008: call System.Span`1<Z0.Bit> System.Span`1<Z0.Bit>::op_Implicit(Z0.Bit[])
-    IL_000D: stobj System.Span`1<Z0.Bit>
-    IL_0012: ldc.i4.0
-    IL_0013: stloc.0
-    IL_0014: br.s IL_002A
-    IL_0016: ldarg.0
-    IL_0017: ldloca.s V_0
-    IL_0019: ldarg.1
-    IL_001A: ldloc.0
-    IL_001B: call Z0.Bit& System.Span`1<Z0.Bit>::get_Item(System.Int32)
-    IL_0020: call Z0.Bit& Z0.Bits::read(System.UInt64&,System.Int32&,Z0.Bit&)
-    IL_0025: pop
-    IL_0026: ldloc.0
-    IL_0027: ldc.i4.1
-    IL_0028: add
-    IL_0029: stloc.0
-    IL_002A: ldloc.0
-    IL_002B: ldarg.1
-    IL_002C: call System.Int32 System.Span`1<Z0.Bit>::get_Length()
-    IL_0031: blt.s IL_0016
-    IL_0033: ldarg.1
-    IL_0034: ldobj System.Span`1<Z0.Bit>
-    IL_0039: ret
-
-}
-BitSize width(in byte src)
-{
-    IL_0000: ldc.i4.8
-    IL_0001: ldarg.0
-    IL_0002: call System.Byte Z0.Bits::nlz(System.Byte&)
-    IL_0007: sub
-    IL_0008: call Z0.BitSize Z0.BitSize::op_Implicit(System.Int32)
-    IL_000D: ret
-
-}
-BitSize width(in ushort src)
-{
-    IL_0000: ldc.i4.s 16
-    IL_0002: ldarg.0
-    IL_0003: call System.Byte Z0.Bits::nlz(System.UInt16&)
-    IL_0008: sub
-    IL_0009: call Z0.BitSize Z0.BitSize::op_Implicit(System.Int32)
-    IL_000E: ret
-
-}
-BitSize width(in uint src)
-{
-    IL_0000: ldc.i4.s 32
-    IL_0002: ldarg.0
-    IL_0003: call System.Byte Z0.Bits::nlz(System.UInt32&)
-    IL_0008: sub
-    IL_0009: call Z0.BitSize Z0.BitSize::op_Implicit(System.Int32)
-    IL_000E: ret
-
-}
-BitSize width(in ulong src)
-{
-    IL_0000: ldc.i4.s 64
-    IL_0002: ldarg.0
-    IL_0003: call System.Byte Z0.Bits::nlz(System.UInt64&)
-    IL_0008: sub
-    IL_0009: call Z0.BitSize Z0.BitSize::op_Implicit(System.Int32)
-    IL_000E: ret
-
-}
-sbyte xorsl(sbyte src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: ldc.i4.s 31
-    IL_0005: and
-    IL_0006: shl
-    IL_0007: conv.i1
-    IL_0008: xor
-    IL_0009: conv.i1
-    IL_000A: ret
-
-}
-byte xorsl(byte src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: ldc.i4.s 31
-    IL_0005: and
-    IL_0006: shl
-    IL_0007: conv.u1
-    IL_0008: xor
-    IL_0009: conv.u1
-    IL_000A: ret
-
-}
-short xorsl(short src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: ldc.i4.s 31
-    IL_0005: and
-    IL_0006: shl
-    IL_0007: conv.i2
-    IL_0008: xor
-    IL_0009: conv.i2
-    IL_000A: ret
-
-}
-ushort xorsl(ushort src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: ldc.i4.s 31
-    IL_0005: and
-    IL_0006: shl
-    IL_0007: conv.u2
-    IL_0008: xor
-    IL_0009: conv.u2
-    IL_000A: ret
-
-}
-int xorsl(int src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: ldc.i4.s 31
-    IL_0005: and
-    IL_0006: shl
-    IL_0007: xor
-    IL_0008: ret
-
-}
-uint xorsl(uint src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: ldc.i4.s 31
-    IL_0005: and
-    IL_0006: shl
-    IL_0007: xor
-    IL_0008: ret
-
-}
-long xorsl(long src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: ldc.i4.s 63
-    IL_0005: and
-    IL_0006: shl
-    IL_0007: xor
-    IL_0008: ret
-
-}
-ulong xorsl(ulong src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: ldc.i4.s 63
-    IL_0005: and
-    IL_0006: shl
-    IL_0007: xor
-    IL_0008: ret
-
-}
-ref sbyte xorsl(ref sbyte src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i1
-    IL_0003: ldarg.0
-    IL_0004: ldind.i1
-    IL_0005: ldarg.1
-    IL_0006: ldc.i4.s 31
-    IL_0008: and
-    IL_0009: shl
-    IL_000A: conv.i1
-    IL_000B: xor
-    IL_000C: conv.i1
-    IL_000D: stind.i1
-    IL_000E: ldarg.0
-    IL_000F: ret
-
-}
-ref byte xorsl(ref byte src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u1
-    IL_0003: ldarg.0
-    IL_0004: ldind.u1
-    IL_0005: ldarg.1
-    IL_0006: ldc.i4.s 31
-    IL_0008: and
-    IL_0009: shl
-    IL_000A: conv.u1
-    IL_000B: xor
-    IL_000C: conv.u1
-    IL_000D: stind.i1
-    IL_000E: ldarg.0
-    IL_000F: ret
-
-}
-ref short xorsl(ref short src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i2
-    IL_0003: ldarg.0
-    IL_0004: ldind.i2
-    IL_0005: ldarg.1
-    IL_0006: ldc.i4.s 31
-    IL_0008: and
-    IL_0009: shl
-    IL_000A: conv.i2
-    IL_000B: xor
-    IL_000C: conv.i2
-    IL_000D: stind.i2
-    IL_000E: ldarg.0
-    IL_000F: ret
-
-}
-ref ushort xorsl(ref ushort src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u2
-    IL_0003: ldarg.0
-    IL_0004: ldind.u2
-    IL_0005: ldarg.1
-    IL_0006: ldc.i4.s 31
-    IL_0008: and
-    IL_0009: shl
-    IL_000A: conv.u2
-    IL_000B: xor
-    IL_000C: conv.u2
-    IL_000D: stind.i2
-    IL_000E: ldarg.0
-    IL_000F: ret
-
-}
-ref int xorsl(ref int src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i4
-    IL_0003: ldarg.0
-    IL_0004: ldind.i4
-    IL_0005: ldarg.1
-    IL_0006: ldc.i4.s 31
-    IL_0008: and
-    IL_0009: shl
-    IL_000A: xor
-    IL_000B: stind.i4
-    IL_000C: ldarg.0
-    IL_000D: ret
-
-}
-ref uint xorsl(ref uint src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u4
-    IL_0003: ldarg.0
-    IL_0004: ldind.u4
-    IL_0005: ldarg.1
-    IL_0006: ldc.i4.s 31
-    IL_0008: and
-    IL_0009: shl
-    IL_000A: xor
-    IL_000B: stind.i4
-    IL_000C: ldarg.0
-    IL_000D: ret
-
-}
-ref long xorsl(ref long src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldarg.0
-    IL_0004: ldind.i8
-    IL_0005: ldarg.1
-    IL_0006: ldc.i4.s 63
-    IL_0008: and
-    IL_0009: shl
-    IL_000A: xor
-    IL_000B: stind.i8
-    IL_000C: ldarg.0
-    IL_000D: ret
-
-}
-ref ulong xorsl(ref ulong src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldarg.0
-    IL_0004: ldind.i8
-    IL_0005: ldarg.1
-    IL_0006: ldc.i4.s 63
-    IL_0008: and
-    IL_0009: shl
-    IL_000A: xor
-    IL_000B: stind.i8
-    IL_000C: ldarg.0
-    IL_000D: ret
-
-}
-sbyte xorsr(sbyte src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: ldc.i4.s 31
-    IL_0005: and
-    IL_0006: shr
-    IL_0007: conv.i1
-    IL_0008: xor
-    IL_0009: conv.i1
-    IL_000A: ret
-
-}
-byte xorsr(byte src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: ldc.i4.s 31
-    IL_0005: and
-    IL_0006: shr
-    IL_0007: conv.u1
-    IL_0008: xor
-    IL_0009: conv.u1
-    IL_000A: ret
-
-}
-short xorsr(short src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: ldc.i4.s 31
-    IL_0005: and
-    IL_0006: shr
-    IL_0007: conv.i2
-    IL_0008: xor
-    IL_0009: conv.i2
-    IL_000A: ret
-
-}
-ushort xorsr(ushort src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: ldc.i4.s 31
-    IL_0005: and
-    IL_0006: shr
-    IL_0007: conv.u2
-    IL_0008: xor
-    IL_0009: conv.u2
-    IL_000A: ret
-
-}
-int xorsr(int src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: ldc.i4.s 31
-    IL_0005: and
-    IL_0006: shr
-    IL_0007: xor
-    IL_0008: ret
-
-}
-uint xorsr(uint src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: ldc.i4.s 31
-    IL_0005: and
-    IL_0006: shr.un
-    IL_0007: xor
-    IL_0008: ret
-
-}
-long xorsr(long src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: ldc.i4.s 63
-    IL_0005: and
-    IL_0006: shr
-    IL_0007: xor
-    IL_0008: ret
-
-}
-ulong xorsr(ulong src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: ldc.i4.s 63
-    IL_0005: and
-    IL_0006: shr.un
-    IL_0007: xor
-    IL_0008: ret
-
-}
-ref sbyte xorsr(ref sbyte src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i1
-    IL_0003: ldarg.0
-    IL_0004: ldind.i1
-    IL_0005: ldarg.1
-    IL_0006: ldc.i4.s 31
-    IL_0008: and
-    IL_0009: shr
-    IL_000A: conv.i1
-    IL_000B: xor
-    IL_000C: conv.i1
-    IL_000D: stind.i1
-    IL_000E: ldarg.0
-    IL_000F: ret
-
-}
-ref byte xorsr(ref byte src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u1
-    IL_0003: ldarg.0
-    IL_0004: ldind.u1
-    IL_0005: ldarg.1
-    IL_0006: ldc.i4.s 31
-    IL_0008: and
-    IL_0009: shr
-    IL_000A: conv.u1
-    IL_000B: xor
-    IL_000C: conv.u1
-    IL_000D: stind.i1
-    IL_000E: ldarg.0
-    IL_000F: ret
-
-}
-ref short xorsr(ref short src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i2
-    IL_0003: ldarg.0
-    IL_0004: ldind.i2
-    IL_0005: ldarg.1
-    IL_0006: ldc.i4.s 31
-    IL_0008: and
-    IL_0009: shr
-    IL_000A: conv.i2
-    IL_000B: xor
-    IL_000C: conv.i2
-    IL_000D: stind.i2
-    IL_000E: ldarg.0
-    IL_000F: ret
-
-}
-ref ushort xorsr(ref ushort src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u2
-    IL_0003: ldarg.0
-    IL_0004: ldind.u2
-    IL_0005: ldarg.1
-    IL_0006: ldc.i4.s 31
-    IL_0008: and
-    IL_0009: shr
-    IL_000A: conv.u2
-    IL_000B: xor
-    IL_000C: conv.u2
-    IL_000D: stind.i2
-    IL_000E: ldarg.0
-    IL_000F: ret
-
-}
-ref int xorsr(ref int src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i4
-    IL_0003: ldarg.0
-    IL_0004: ldind.i4
-    IL_0005: ldarg.1
-    IL_0006: ldc.i4.s 31
-    IL_0008: and
-    IL_0009: shr
-    IL_000A: xor
-    IL_000B: stind.i4
-    IL_000C: ldarg.0
-    IL_000D: ret
-
-}
-ref uint xorsr(ref uint src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u4
-    IL_0003: ldarg.0
-    IL_0004: ldind.u4
-    IL_0005: ldarg.1
-    IL_0006: ldc.i4.s 31
-    IL_0008: and
-    IL_0009: shr.un
-    IL_000A: xor
-    IL_000B: stind.i4
-    IL_000C: ldarg.0
-    IL_000D: ret
-
-}
-ref long xorsr(ref long src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldarg.0
-    IL_0004: ldind.i8
-    IL_0005: ldarg.1
-    IL_0006: ldc.i4.s 63
-    IL_0008: and
-    IL_0009: shr
-    IL_000A: xor
-    IL_000B: stind.i8
-    IL_000C: ldarg.0
-    IL_000D: ret
-
-}
-ref ulong xorsr(ref ulong src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldarg.0
-    IL_0004: ldind.i8
-    IL_0005: ldarg.1
-    IL_0006: ldc.i4.s 63
-    IL_0008: and
-    IL_0009: shr.un
-    IL_000A: xor
-    IL_000B: stind.i8
-    IL_000C: ldarg.0
-    IL_000D: ret
-
-}
-uint project(uint src, uint part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::scatter(System.UInt32&,System.UInt32&)
-    IL_000B: ret
-
-}
-ushort select(uint src, uint part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.UInt32 Z0.Bits::gather(System.UInt32&,System.UInt32&)
-    IL_000B: conv.u2
-    IL_000C: ret
-
-}
-byte project(byte src, byte part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::scatter(System.Byte&,System.Byte&)
-    IL_000B: ret
-
-}
-byte project(byte src, byte part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::scatter(System.Byte&,System.Byte&)
-    IL_000B: ret
-
-}
-byte project(byte src, byte part)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarg.1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: call System.Byte Z0.Bits::scatter(System.Byte&,System.Byte&)
-    IL_000B: ret
-
-}
-int range(int src, BitPos i0, BitPos i1)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.2
-    IL_0003: call System.UInt32 Z0.Bits::range(System.UInt32,Z0.BitPos,Z0.BitPos)
-    IL_0008: ret
-
-}
-ulong range(ulong src, BitPos i0, BitPos i1)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call System.Byte Z0.BitPos::op_Implicit(Z0.BitPos)
-    IL_0007: ldarga.s i1
-    IL_0009: ldarga.s i0
-    IL_000B: call Z0.BitSize Z0.BitPos::op_Subtraction(Z0.BitPos&,Z0.BitPos&)
-    IL_0010: call System.Byte Z0.BitSize::op_Explicit(Z0.BitSize)
-    IL_0015: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi1/X64::BitFieldExtract(System.UInt64,System.Byte,System.Byte)
-    IL_001A: ret
-
-}
-long range(long src, BitPos i0, BitPos i1)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.2
-    IL_0003: call System.UInt64 Z0.Bits::range(System.UInt64,Z0.BitPos,Z0.BitPos)
-    IL_0008: ret
-
-}
-float range(float src, BitPos i0, BitPos i1)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Int32 Z0.MathX::ToBits(System.Single)
-    IL_0006: ldarg.1
-    IL_0007: ldarg.2
-    IL_0008: call System.Int32 Z0.Bits::range(System.Int32,Z0.BitPos,Z0.BitPos)
-    IL_000D: call System.Single System.BitConverter::Int32BitsToSingle(System.Int32)
-    IL_0012: ret
-
-}
-double range(double src, BitPos i0, BitPos i1)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Int64 Z0.MathX::ToBits(System.Double)
-    IL_0006: ldarg.1
-    IL_0007: ldarg.2
-    IL_0008: call System.Int64 Z0.Bits::range(System.Int64,Z0.BitPos,Z0.BitPos)
-    IL_000D: call System.Double System.BitConverter::Int64BitsToDouble(System.Int64)
-    IL_0012: ret
-
-}
-uint rank(byte src, BitPos pos)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.0
-    IL_0002: call Z0.BitPos Z0.BitPos::op_Implicit(System.Int32)
-    IL_0007: ldarg.1
-    IL_0008: call System.Byte Z0.Bits::range(System.Byte,Z0.BitPos,Z0.BitPos)
-    IL_000D: call System.UInt32 Z0.Bits::pop(System.Byte)
-    IL_0012: ret
-
-}
-uint rank(sbyte src, BitPos pos)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.0
-    IL_0002: call Z0.BitPos Z0.BitPos::op_Implicit(System.Int32)
-    IL_0007: ldarg.1
-    IL_0008: call System.SByte Z0.Bits::range(System.SByte,Z0.BitPos,Z0.BitPos)
-    IL_000D: call System.UInt32 Z0.Bits::pop(System.SByte)
-    IL_0012: ret
-
-}
-uint rank(short src, BitPos pos)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.0
-    IL_0002: call Z0.BitPos Z0.BitPos::op_Implicit(System.Int32)
-    IL_0007: ldarg.1
-    IL_0008: call System.Int16 Z0.Bits::range(System.Int16,Z0.BitPos,Z0.BitPos)
-    IL_000D: call System.UInt32 Z0.Bits::pop(System.Int16)
-    IL_0012: ret
-
-}
-uint rank(ushort src, BitPos pos)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.0
-    IL_0002: call Z0.BitPos Z0.BitPos::op_Implicit(System.Int32)
-    IL_0007: ldarg.1
-    IL_0008: call System.UInt16 Z0.Bits::range(System.UInt16,Z0.BitPos,Z0.BitPos)
-    IL_000D: call System.UInt32 Z0.Bits::pop(System.UInt16)
-    IL_0012: ret
-
-}
-uint rank(int src, BitPos pos)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.0
-    IL_0002: call Z0.BitPos Z0.BitPos::op_Implicit(System.Int32)
-    IL_0007: ldarg.1
-    IL_0008: call System.Int32 Z0.Bits::range(System.Int32,Z0.BitPos,Z0.BitPos)
-    IL_000D: call System.UInt32 Z0.Bits::pop(System.Int32)
-    IL_0012: ret
-
-}
-uint rank(uint src, BitPos pos)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.0
-    IL_0002: call Z0.BitPos Z0.BitPos::op_Implicit(System.Int32)
-    IL_0007: ldarg.1
-    IL_0008: call System.UInt32 Z0.Bits::range(System.UInt32,Z0.BitPos,Z0.BitPos)
-    IL_000D: call System.UInt32 Z0.Bits::pop(System.UInt32)
-    IL_0012: ret
-
-}
-uint rank(long src, BitPos pos)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.0
-    IL_0002: call Z0.BitPos Z0.BitPos::op_Implicit(System.Int32)
-    IL_0007: ldarg.1
-    IL_0008: call System.Int64 Z0.Bits::range(System.Int64,Z0.BitPos,Z0.BitPos)
-    IL_000D: call System.UInt32 Z0.Bits::pop(System.Int64)
-    IL_0012: ret
-
-}
-uint rank(ulong src, BitPos pos)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.0
-    IL_0002: call Z0.BitPos Z0.BitPos::op_Implicit(System.Int32)
-    IL_0007: ldarg.1
-    IL_0008: call System.UInt64 Z0.Bits::range(System.UInt64,Z0.BitPos,Z0.BitPos)
-    IL_000D: call System.UInt32 Z0.Bits::pop(System.UInt64)
-    IL_0012: ret
-
-}
-Bit readbit(sbyte src, int pos)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarga.s pos
-    IL_0004: call System.Boolean Z0.BitMask::test(System.SByte&,System.Int32&)
-    IL_0009: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
-    IL_000E: ret
-
-}
-Bit readbit(byte src, int pos)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarga.s pos
-    IL_0004: call System.Boolean Z0.BitMask::test(System.Byte&,System.Int32&)
-    IL_0009: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
-    IL_000E: ret
-
-}
-Bit readbit(short src, int pos)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarga.s pos
-    IL_0004: call System.Boolean Z0.BitMask::test(System.Int16&,System.Int32&)
-    IL_0009: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
-    IL_000E: ret
-
-}
-Bit readbit(ushort src, int pos)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarga.s pos
-    IL_0004: call System.Boolean Z0.BitMask::test(System.UInt16&,System.Int32&)
-    IL_0009: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
-    IL_000E: ret
-
-}
-Bit readbit(int src, int pos)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarga.s pos
-    IL_0004: call System.Boolean Z0.BitMask::test(System.Int32&,System.Int32&)
-    IL_0009: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
-    IL_000E: ret
-
-}
-Bit readbit(uint src, int pos)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarga.s pos
-    IL_0004: call System.Boolean Z0.BitMask::test(System.UInt32&,System.Int32&)
-    IL_0009: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
-    IL_000E: ret
-
-}
-Bit readbit(long src, int pos)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarga.s pos
-    IL_0004: call System.Boolean Z0.BitMask::test(System.Int64&,System.Int32&)
-    IL_0009: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
-    IL_000E: ret
-
-}
-Bit readbit(ulong src, int pos)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarga.s pos
-    IL_0004: call System.Boolean Z0.BitMask::test(System.UInt64&,System.Int32&)
-    IL_0009: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
-    IL_000E: ret
-
-}
-Bit readbit(float src, int pos)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarga.s pos
-    IL_0004: call System.Boolean Z0.BitMask::test(System.Single&,System.Int32&)
-    IL_0009: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
-    IL_000E: ret
-
-}
-Bit readbit(double src, int pos)
-{
-    IL_0000: ldarga.s src
-    IL_0002: ldarga.s pos
-    IL_0004: call System.Boolean Z0.BitMask::test(System.Double&,System.Int32&)
-    IL_0009: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
-    IL_000E: ret
-
-}
-ref Bit read(in sbyte src, in int pos, out Bit dst)
-{
-    IL_0000: ldarg.2
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: call System.Boolean Z0.Bits::test(System.SByte&,System.Int32&)
-    IL_0008: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
-    IL_000D: stobj Z0.Bit
-    IL_0012: ldarg.2
-    IL_0013: ret
-
-}
-ref Bit read(in byte src, in int pos, out Bit dst)
-{
-    IL_0000: ldarg.2
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: call System.Boolean Z0.Bits::test(System.Byte&,System.Int32&)
-    IL_0008: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
-    IL_000D: stobj Z0.Bit
-    IL_0012: ldarg.2
-    IL_0013: ret
-
-}
-ref Bit read(in short src, in int pos, out Bit dst)
-{
-    IL_0000: ldarg.2
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: call System.Boolean Z0.Bits::test(System.Int16&,System.Int32&)
-    IL_0008: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
-    IL_000D: stobj Z0.Bit
-    IL_0012: ldarg.2
-    IL_0013: ret
-
-}
-ref Bit read(in ushort src, in int pos, out Bit dst)
-{
-    IL_0000: ldarg.2
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: call System.Boolean Z0.Bits::test(System.UInt16&,System.Int32&)
-    IL_0008: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
-    IL_000D: stobj Z0.Bit
-    IL_0012: ldarg.2
-    IL_0013: ret
-
-}
-ref Bit read(in int src, in int pos, out Bit dst)
-{
-    IL_0000: ldarg.2
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: call System.Boolean Z0.Bits::test(System.Int32&,System.Int32&)
-    IL_0008: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
-    IL_000D: stobj Z0.Bit
-    IL_0012: ldarg.2
-    IL_0013: ret
-
-}
-ref Bit read(in uint src, in int pos, out Bit dst)
-{
-    IL_0000: ldarg.2
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: call System.Boolean Z0.Bits::test(System.UInt32&,System.Int32&)
-    IL_0008: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
-    IL_000D: stobj Z0.Bit
-    IL_0012: ldarg.2
-    IL_0013: ret
-
-}
-ref Bit read(in long src, in int pos, out Bit dst)
-{
-    IL_0000: ldarg.2
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: call System.Boolean Z0.Bits::test(System.Int64&,System.Int32&)
-    IL_0008: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
-    IL_000D: stobj Z0.Bit
-    IL_0012: ldarg.2
-    IL_0013: ret
-
-}
-ref Bit read(in ulong src, in int pos, out Bit dst)
-{
-    IL_0000: ldarg.2
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: call System.Boolean Z0.Bits::test(System.UInt64&,System.Int32&)
-    IL_0008: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
-    IL_000D: stobj Z0.Bit
-    IL_0012: ldarg.2
-    IL_0013: ret
-
-}
-ref Bit read(in float src, in int pos, out Bit dst)
-{
-    IL_0000: ldarg.2
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: call System.Boolean Z0.Bits::test(System.Single&,System.Int32&)
-    IL_0008: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
-    IL_000D: stobj Z0.Bit
-    IL_0012: ldarg.2
-    IL_0013: ret
-
-}
-ref Bit read(in double src, in int pos, out Bit dst)
-{
-    IL_0000: ldarg.2
-    IL_0001: ldarg.0
-    IL_0002: ldarg.1
-    IL_0003: call System.Boolean Z0.Bits::test(System.Double&,System.Int32&)
-    IL_0008: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
-    IL_000D: stobj Z0.Bit
-    IL_0012: ldarg.2
-    IL_0013: ret
-
-}
-byte rev(byte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: conv.u8
-    IL_0002: ldc.i4 -2145384446
-    IL_0007: conv.u8
-    IL_0008: mul
-    IL_0009: ldc.i8 36578664720
-    IL_0012: and
-    IL_0013: ldc.i8 4311810305
-    IL_001C: mul
-    IL_001D: ldc.i4.s 32
-    IL_001F: shr.un
-    IL_0020: conv.u1
-    IL_0021: ret
-
-}
-ushort rev(ushort src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Byte Z0.Bits::hi(System.UInt16&)
-    IL_0007: call System.Byte Z0.Bits::rev(System.Byte)
-    IL_000C: ldarga.s src
-    IL_000E: call System.Byte Z0.Bits::lo(System.UInt16&)
-    IL_0013: call System.Byte Z0.Bits::rev(System.Byte)
-    IL_0018: call System.UInt16 Z0.Bits::pack(System.Byte,System.Byte)
-    IL_001D: ret
-
-}
-uint rev(uint src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.UInt16 Z0.Bits::hi(System.UInt32&)
-    IL_0007: call System.UInt16 Z0.Bits::rev(System.UInt16)
-    IL_000C: ldarga.s src
-    IL_000E: call System.UInt16 Z0.Bits::lo(System.UInt32&)
-    IL_0013: call System.UInt16 Z0.Bits::rev(System.UInt16)
-    IL_0018: call System.UInt32 Z0.Bits::pack(System.UInt16,System.UInt16)
-    IL_001D: ret
-
-}
-ulong rev(ulong src)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.UInt32 Z0.Bits::hi(System.UInt64&)
-    IL_0007: call System.UInt32 Z0.Bits::rev(System.UInt32)
-    IL_000C: stloc.0
-    IL_000D: ldloca.s V_0
-    IL_000F: ldarga.s src
-    IL_0011: call System.UInt32 Z0.Bits::lo(System.UInt64&)
-    IL_0016: call System.UInt32 Z0.Bits::rev(System.UInt32)
-    IL_001B: stloc.1
-    IL_001C: ldloca.s V_1
-    IL_001E: call System.UInt64 Z0.Bits::pack(System.UInt32&,System.UInt32&)
-    IL_0023: ret
-
-}
-byte rotl(byte src, byte offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shl
-    IL_0006: ldarg.0
-    IL_0007: ldc.i4.8
-    IL_0008: ldarg.1
-    IL_0009: sub
-    IL_000A: ldc.i4.s 31
-    IL_000C: and
-    IL_000D: shr
-    IL_000E: or
-    IL_000F: conv.u1
-    IL_0010: ret
-
-}
-ushort rotl(ushort src, ushort offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shl
-    IL_0006: ldarg.0
-    IL_0007: ldc.i4.s 16
-    IL_0009: ldarg.1
-    IL_000A: sub
-    IL_000B: ldc.i4.s 31
-    IL_000D: and
-    IL_000E: shr
-    IL_000F: or
-    IL_0010: conv.u2
-    IL_0011: ret
-
-}
-uint rotl(uint src, uint offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shl
-    IL_0006: ldarg.0
-    IL_0007: ldc.i4.s 32
-    IL_0009: ldarg.1
-    IL_000A: sub
-    IL_000B: ldc.i4.s 31
-    IL_000D: and
-    IL_000E: shr.un
-    IL_000F: or
-    IL_0010: ret
-
-}
-ulong rotl(ulong src, ulong offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: conv.i4
-    IL_0003: ldc.i4.s 63
-    IL_0005: and
-    IL_0006: shl
-    IL_0007: ldarg.0
-    IL_0008: ldc.i4.s 64
-    IL_000A: ldarg.1
-    IL_000B: conv.i4
-    IL_000C: sub
-    IL_000D: ldc.i4.s 63
-    IL_000F: and
-    IL_0010: shr.un
-    IL_0011: or
-    IL_0012: ret
-
-}
-ref byte rotl(ref byte src, in byte offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u1
-    IL_0003: ldarg.1
-    IL_0004: ldind.u1
-    IL_0005: call System.Byte Z0.Bits::rotl(System.Byte,System.Byte)
-    IL_000A: stind.i1
-    IL_000B: ldarg.0
-    IL_000C: ret
-
-}
-ref ushort rotl(ref ushort src, in ushort offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u2
-    IL_0003: ldarg.1
-    IL_0004: ldind.u2
-    IL_0005: call System.UInt16 Z0.Bits::rotl(System.UInt16,System.UInt16)
-    IL_000A: stind.i2
-    IL_000B: ldarg.0
-    IL_000C: ret
-
-}
-ref uint rotl(ref uint src, in uint offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u4
-    IL_0003: ldarg.1
-    IL_0004: ldind.u4
-    IL_0005: call System.UInt32 Z0.Bits::rotl(System.UInt32,System.UInt32)
-    IL_000A: stind.i4
-    IL_000B: ldarg.0
-    IL_000C: ret
-
-}
-ref ulong rotl(ref ulong src, in ulong offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldarg.1
-    IL_0004: ldind.i8
-    IL_0005: call System.UInt64 Z0.Bits::rotl(System.UInt64,System.UInt64)
-    IL_000A: stind.i8
-    IL_000B: ldarg.0
-    IL_000C: ret
-
-}
-Span<byte> rotl(ReadOnlySpan<byte> src, byte offset, Span<byte> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_000C: ldarga.s src
-    IL_000E: ldloc.0
-    IL_000F: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0014: ldind.u1
-    IL_0015: ldarg.1
-    IL_0016: call System.Byte Z0.Bits::rotl(System.Byte,System.Byte)
-    IL_001B: stind.i1
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s src
-    IL_0023: call System.Int32 System.ReadOnlySpan`1<System.Byte>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.2
-    IL_002B: ret
-
-}
-Span<ushort> rotl(ReadOnlySpan<ushort> src, ushort offset, Span<ushort> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_000C: ldarga.s src
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0014: ldind.u2
-    IL_0015: ldarg.1
-    IL_0016: call System.UInt16 Z0.Bits::rotl(System.UInt16,System.UInt16)
-    IL_001B: stind.i2
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s src
-    IL_0023: call System.Int32 System.ReadOnlySpan`1<System.UInt16>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.2
-    IL_002B: ret
-
-}
-Span<uint> rotl(ReadOnlySpan<uint> src, uint offset, Span<uint> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_000C: ldarga.s src
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0014: ldind.u4
-    IL_0015: ldarg.1
-    IL_0016: call System.UInt32 Z0.Bits::rotl(System.UInt32,System.UInt32)
-    IL_001B: stind.i4
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s src
-    IL_0023: call System.Int32 System.ReadOnlySpan`1<System.UInt32>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.2
-    IL_002B: ret
-
-}
-Span<ulong> rotl(ReadOnlySpan<ulong> src, ulong offset, Span<ulong> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_000C: ldarga.s src
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: ldarg.1
-    IL_0016: call System.UInt64 Z0.Bits::rotl(System.UInt64,System.UInt64)
-    IL_001B: stind.i8
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s src
-    IL_0023: call System.Int32 System.ReadOnlySpan`1<System.UInt64>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.2
-    IL_002B: ret
-
-}
-Span<byte> rotl(ReadOnlySpan<byte> src, byte offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldc.i4.1
-    IL_0004: call System.Span`1<System.Byte> Z0.SpanExtensions::Replicate<System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.Boolean)
-    IL_0009: call System.Span`1<System.Byte> Z0.Bits::rotl(System.ReadOnlySpan`1<System.Byte>,System.Byte,System.Span`1<System.Byte>)
-    IL_000E: ret
-
-}
-Span<ushort> rotl(ReadOnlySpan<ushort> src, ushort offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldc.i4.1
-    IL_0004: call System.Span`1<System.UInt16> Z0.SpanExtensions::Replicate<System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.Boolean)
-    IL_0009: call System.Span`1<System.UInt16> Z0.Bits::rotl(System.ReadOnlySpan`1<System.UInt16>,System.UInt16,System.Span`1<System.UInt16>)
-    IL_000E: ret
-
-}
-Span<uint> rotl(ReadOnlySpan<uint> src, uint offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldc.i4.1
-    IL_0004: call System.Span`1<System.UInt32> Z0.SpanExtensions::Replicate<System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.Boolean)
-    IL_0009: call System.Span`1<System.UInt32> Z0.Bits::rotl(System.ReadOnlySpan`1<System.UInt32>,System.UInt32,System.Span`1<System.UInt32>)
-    IL_000E: ret
-
-}
-Span<ulong> rotl(ReadOnlySpan<ulong> src, ulong offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldc.i4.1
-    IL_0004: call System.Span`1<System.UInt64> Z0.SpanExtensions::Replicate<System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.Boolean)
-    IL_0009: call System.Span`1<System.UInt64> Z0.Bits::rotl(System.ReadOnlySpan`1<System.UInt64>,System.UInt64,System.Span`1<System.UInt64>)
-    IL_000E: ret
-
-}
-byte rotr(byte src, byte offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shr
-    IL_0006: ldarg.0
-    IL_0007: ldc.i4.8
-    IL_0008: ldarg.1
-    IL_0009: sub
-    IL_000A: ldc.i4.s 31
-    IL_000C: and
-    IL_000D: shl
-    IL_000E: or
-    IL_000F: conv.u1
-    IL_0010: ret
-
-}
-ushort rotr(ushort src, ushort offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shr
-    IL_0006: ldarg.0
-    IL_0007: ldc.i4.s 16
-    IL_0009: ldarg.1
-    IL_000A: sub
-    IL_000B: ldc.i4.s 31
-    IL_000D: and
-    IL_000E: shl
-    IL_000F: or
-    IL_0010: conv.u2
-    IL_0011: ret
-
-}
-uint rotr(uint src, uint offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shr.un
-    IL_0006: ldarg.0
-    IL_0007: ldc.i4.s 32
-    IL_0009: ldarg.1
-    IL_000A: sub
-    IL_000B: ldc.i4.s 31
-    IL_000D: and
-    IL_000E: shl
-    IL_000F: or
-    IL_0010: ret
-
-}
-ulong rotr(ulong src, ulong offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: conv.i4
-    IL_0003: ldc.i4.s 63
-    IL_0005: and
-    IL_0006: shr.un
-    IL_0007: ldarg.0
-    IL_0008: ldc.i4.s 64
-    IL_000A: ldarg.1
-    IL_000B: conv.i4
-    IL_000C: sub
-    IL_000D: ldc.i4.s 63
-    IL_000F: and
-    IL_0010: shl
-    IL_0011: or
-    IL_0012: ret
-
-}
-ref byte rotr(ref byte src, in byte offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u1
-    IL_0003: ldarg.1
-    IL_0004: ldind.u1
-    IL_0005: call System.Byte Z0.Bits::rotr(System.Byte,System.Byte)
-    IL_000A: stind.i1
-    IL_000B: ldarg.0
-    IL_000C: ret
-
-}
-ref ushort rotr(ref ushort src, in ushort offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u2
-    IL_0003: ldarg.1
-    IL_0004: ldind.u2
-    IL_0005: call System.UInt16 Z0.Bits::rotr(System.UInt16,System.UInt16)
-    IL_000A: stind.i2
-    IL_000B: ldarg.0
-    IL_000C: ret
-
-}
-ref uint rotr(ref uint src, in uint offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u4
-    IL_0003: ldarg.1
-    IL_0004: ldind.u4
-    IL_0005: call System.UInt32 Z0.Bits::rotr(System.UInt32,System.UInt32)
-    IL_000A: stind.i4
-    IL_000B: ldarg.0
-    IL_000C: ret
-
-}
-ref ulong rotr(ref ulong src, in ulong offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldarg.1
-    IL_0004: ldind.i8
-    IL_0005: call System.UInt64 Z0.Bits::rotr(System.UInt64,System.UInt64)
-    IL_000A: stind.i8
-    IL_000B: ldarg.0
-    IL_000C: ret
-
-}
-Span<byte> rotr(ReadOnlySpan<byte> src, byte offset, Span<byte> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_000C: ldarga.s src
-    IL_000E: ldloc.0
-    IL_000F: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_0014: ldind.u1
-    IL_0015: ldarg.1
-    IL_0016: call System.Byte Z0.Bits::rotr(System.Byte,System.Byte)
-    IL_001B: stind.i1
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s src
-    IL_0023: call System.Int32 System.ReadOnlySpan`1<System.Byte>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.2
-    IL_002B: ret
-
-}
-Span<ushort> rotr(ReadOnlySpan<ushort> src, ushort offset, Span<ushort> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_000C: ldarga.s src
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_0014: ldind.u2
-    IL_0015: ldarg.1
-    IL_0016: call System.UInt16 Z0.Bits::rotr(System.UInt16,System.UInt16)
-    IL_001B: stind.i2
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s src
-    IL_0023: call System.Int32 System.ReadOnlySpan`1<System.UInt16>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.2
-    IL_002B: ret
-
-}
-Span<uint> rotr(ReadOnlySpan<uint> src, uint offset, Span<uint> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_000C: ldarga.s src
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_0014: ldind.u4
-    IL_0015: ldarg.1
-    IL_0016: call System.UInt32 Z0.Bits::rotr(System.UInt32,System.UInt32)
-    IL_001B: stind.i4
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s src
-    IL_0023: call System.Int32 System.ReadOnlySpan`1<System.UInt32>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.2
-    IL_002B: ret
-
-}
-Span<ulong> rotr(ReadOnlySpan<ulong> src, ulong offset, Span<ulong> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0020
-    IL_0004: ldarga.s dst
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_000C: ldarga.s src
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_0014: ldind.i8
-    IL_0015: ldarg.1
-    IL_0016: call System.UInt64 Z0.Bits::rotr(System.UInt64,System.UInt64)
-    IL_001B: stind.i8
-    IL_001C: ldloc.0
-    IL_001D: ldc.i4.1
-    IL_001E: add
-    IL_001F: stloc.0
-    IL_0020: ldloc.0
-    IL_0021: ldarga.s src
-    IL_0023: call System.Int32 System.ReadOnlySpan`1<System.UInt64>::get_Length()
-    IL_0028: blt.s IL_0004
-    IL_002A: ldarg.2
-    IL_002B: ret
-
-}
-Span<byte> rotr(ReadOnlySpan<byte> src, byte offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldc.i4.1
-    IL_0004: call System.Span`1<System.Byte> Z0.SpanExtensions::Replicate<System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.Boolean)
-    IL_0009: call System.Span`1<System.Byte> Z0.Bits::rotr(System.ReadOnlySpan`1<System.Byte>,System.Byte,System.Span`1<System.Byte>)
-    IL_000E: ret
-
-}
-Span<ushort> rotr(ReadOnlySpan<ushort> src, ushort offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldc.i4.1
-    IL_0004: call System.Span`1<System.UInt16> Z0.SpanExtensions::Replicate<System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.Boolean)
-    IL_0009: call System.Span`1<System.UInt16> Z0.Bits::rotr(System.ReadOnlySpan`1<System.UInt16>,System.UInt16,System.Span`1<System.UInt16>)
-    IL_000E: ret
-
-}
-Span<uint> rotr(ReadOnlySpan<uint> src, uint offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldc.i4.1
-    IL_0004: call System.Span`1<System.UInt32> Z0.SpanExtensions::Replicate<System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.Boolean)
-    IL_0009: call System.Span`1<System.UInt32> Z0.Bits::rotr(System.ReadOnlySpan`1<System.UInt32>,System.UInt32,System.Span`1<System.UInt32>)
-    IL_000E: ret
-
-}
-Span<ulong> rotr(ReadOnlySpan<ulong> src, ulong offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldarg.0
-    IL_0003: ldc.i4.1
-    IL_0004: call System.Span`1<System.UInt64> Z0.SpanExtensions::Replicate<System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.Boolean)
-    IL_0009: call System.Span`1<System.UInt64> Z0.Bits::rotr(System.ReadOnlySpan`1<System.UInt64>,System.UInt64,System.Span`1<System.UInt64>)
-    IL_000E: ret
-
-}
-sbyte scatter(in sbyte src, in sbyte mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i1
-    IL_0002: conv.u1
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: ldarg.1
-    IL_0007: ldind.i1
-    IL_0008: conv.u1
-    IL_0009: stloc.1
-    IL_000A: ldloca.s V_1
-    IL_000C: call System.Byte Z0.Bits::scatter(System.Byte&,System.Byte&)
-    IL_0011: conv.i1
-    IL_0012: ret
-
-}
-byte scatter(in byte src, in byte mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.u1
-    IL_0002: ldarg.1
-    IL_0003: ldind.u1
-    IL_0004: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ParallelBitDeposit(System.UInt32,System.UInt32)
-    IL_0009: conv.u1
-    IL_000A: ret
-
-}
-short scatter(in short src, in short mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i2
-    IL_0002: conv.u2
-    IL_0003: stloc.0
-    IL_0004: ldloca.s V_0
-    IL_0006: ldarg.1
-    IL_0007: ldind.i2
-    IL_0008: conv.u2
-    IL_0009: stloc.1
-    IL_000A: ldloca.s V_1
-    IL_000C: call System.UInt16 Z0.Bits::scatter(System.UInt16&,System.UInt16&)
-    IL_0011: conv.i2
-    IL_0012: ret
-
-}
-ushort scatter(in ushort src, in ushort mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.u2
-    IL_0002: ldarg.1
-    IL_0003: ldind.u2
-    IL_0004: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ParallelBitDeposit(System.UInt32,System.UInt32)
-    IL_0009: conv.u2
-    IL_000A: ret
-
-}
-int scatter(in int src, in int mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i4
-    IL_0002: stloc.0
-    IL_0003: ldloca.s V_0
-    IL_0005: ldarg.1
-    IL_0006: ldind.i4
-    IL_0007: stloc.1
-    IL_0008: ldloca.s V_1
-    IL_000A: call System.UInt32 Z0.Bits::scatter(System.UInt32&,System.UInt32&)
-    IL_000F: ret
-
-}
-uint scatter(in uint src, in uint mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.u4
-    IL_0002: ldarg.1
-    IL_0003: ldind.u4
-    IL_0004: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ParallelBitDeposit(System.UInt32,System.UInt32)
-    IL_0009: ret
-
-}
-long scatter(in long src, in long mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i8
-    IL_0002: stloc.0
-    IL_0003: ldloca.s V_0
-    IL_0005: ldarg.1
-    IL_0006: ldind.i8
-    IL_0007: stloc.1
-    IL_0008: ldloca.s V_1
-    IL_000A: call System.UInt64 Z0.Bits::scatter(System.UInt64&,System.UInt64&)
-    IL_000F: ret
-
-}
-ulong scatter(in ulong src, in ulong mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i8
-    IL_0002: ldarg.1
-    IL_0003: ldind.i8
-    IL_0004: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi2/X64::ParallelBitDeposit(System.UInt64,System.UInt64)
-    IL_0009: ret
-
-}
-sbyte sll(sbyte src, int offset)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.SByte& Z0.math::abs(System.SByte&)
-    IL_0007: ldind.i1
-    IL_0008: ldarg.1
-    IL_0009: ldc.i4.s 31
-    IL_000B: and
-    IL_000C: shl
-    IL_000D: conv.i1
-    IL_000E: ret
-
-}
-byte sll(byte src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shl
-    IL_0006: conv.u1
-    IL_0007: ret
-
-}
-short sll(short src, int offset)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Int16& Z0.math::abs(System.Int16&)
-    IL_0007: ldind.i2
-    IL_0008: ldarg.1
-    IL_0009: ldc.i4.s 31
-    IL_000B: and
-    IL_000C: shl
-    IL_000D: conv.i2
-    IL_000E: ret
-
-}
-ushort sll(ushort src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shl
-    IL_0006: conv.u2
-    IL_0007: ret
-
-}
-int sll(int src, int offset)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Int32& Z0.math::abs(System.Int32&)
-    IL_0007: ldind.i4
-    IL_0008: ldarg.1
-    IL_0009: ldc.i4.s 31
-    IL_000B: and
-    IL_000C: shl
-    IL_000D: ret
-
-}
-uint sll(uint src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shl
-    IL_0006: ret
-
-}
-long sll(long src, int offset)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Int64& Z0.math::abs(System.Int64&)
-    IL_0007: ldind.i8
-    IL_0008: ldarg.1
-    IL_0009: ldc.i4.s 63
-    IL_000B: and
-    IL_000C: shl
-    IL_000D: ret
-
-}
-ulong sll(ulong src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 63
-    IL_0004: and
-    IL_0005: shl
-    IL_0006: ret
-
-}
-ref sbyte sll(ref sbyte src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.SByte& Z0.math::abs(System.SByte&)
-    IL_0006: dup
-    IL_0007: ldind.i1
-    IL_0008: ldarg.1
-    IL_0009: ldc.i4.s 31
-    IL_000B: and
-    IL_000C: shl
-    IL_000D: conv.i1
-    IL_000E: stind.i1
-    IL_000F: ldarg.0
-    IL_0010: ret
-
-}
-ref byte sll(ref byte src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u1
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 31
-    IL_0006: and
-    IL_0007: shl
-    IL_0008: conv.u1
-    IL_0009: stind.i1
-    IL_000A: ldarg.0
-    IL_000B: ret
-
-}
-ref short sll(ref short src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Int16& Z0.math::abs(System.Int16&)
-    IL_0006: dup
-    IL_0007: ldind.i2
-    IL_0008: ldarg.1
-    IL_0009: ldc.i4.s 31
-    IL_000B: and
-    IL_000C: shl
-    IL_000D: conv.i2
-    IL_000E: stind.i2
-    IL_000F: ldarg.0
-    IL_0010: ret
-
-}
-ref ushort sll(ref ushort src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u2
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 31
-    IL_0006: and
-    IL_0007: shl
-    IL_0008: conv.u2
-    IL_0009: stind.i2
-    IL_000A: ldarg.0
-    IL_000B: ret
-
-}
-ref int sll(ref int src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Int32& Z0.math::abs(System.Int32&)
-    IL_0006: dup
-    IL_0007: ldind.i4
-    IL_0008: ldarg.1
-    IL_0009: ldc.i4.s 31
-    IL_000B: and
-    IL_000C: shl
-    IL_000D: stind.i4
-    IL_000E: ldarg.0
-    IL_000F: ret
-
-}
-ref uint sll(ref uint src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u4
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 31
-    IL_0006: and
-    IL_0007: shl
-    IL_0008: stind.i4
-    IL_0009: ldarg.0
-    IL_000A: ret
-
-}
-ref long sll(ref long src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Int64& Z0.math::abs(System.Int64&)
-    IL_0006: dup
-    IL_0007: ldind.i8
-    IL_0008: ldarg.1
-    IL_0009: ldc.i4.s 63
-    IL_000B: and
-    IL_000C: shl
-    IL_000D: stind.i8
-    IL_000E: ldarg.0
-    IL_000F: ret
-
-}
-ref ulong sll(ref ulong src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 63
-    IL_0006: and
-    IL_0007: shl
-    IL_0008: stind.i8
-    IL_0009: ldarg.0
-    IL_000A: ret
-
-}
-ValueTuple<sbyte,sbyte> split(short src, N2 parts)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.SByte Z0.Bits::lo(System.Int16&)
-    IL_0007: ldarga.s src
-    IL_0009: call System.SByte Z0.Bits::hi(System.Int16&)
-    IL_000E: newobj System.Void System.ValueTuple`2<System.SByte,System.SByte>::.ctor(System.SByte,System.SByte)
-    IL_0013: ret
-
-}
-ValueTuple<byte,byte> split(ushort src, N2 parts)
-{
-    IL_0000: ldarg.0
-    IL_0001: conv.u1
-    IL_0002: ldarg.0
-    IL_0003: ldc.i4.8
-    IL_0004: shr
-    IL_0005: conv.u1
-    IL_0006: newobj System.Void System.ValueTuple`2<System.Byte,System.Byte>::.ctor(System.Byte,System.Byte)
-    IL_000B: ret
-
-}
-ValueTuple<short,short> split(int src, N2 parts)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Int16 Z0.Bits::lo(System.Int32&)
-    IL_0007: ldarga.s src
-    IL_0009: call System.Int16 Z0.Bits::hi(System.Int32&)
-    IL_000E: newobj System.Void System.ValueTuple`2<System.Int16,System.Int16>::.ctor(System.Int16,System.Int16)
-    IL_0013: ret
-
-}
-ValueTuple<ushort,ushort> split(uint src, N2 parts)
-{
-    IL_0000: ldarg.0
-    IL_0001: conv.u2
-    IL_0002: ldarg.0
-    IL_0003: ldc.i4.s 16
-    IL_0005: shr.un
-    IL_0006: conv.u2
-    IL_0007: newobj System.Void System.ValueTuple`2<System.UInt16,System.UInt16>::.ctor(System.UInt16,System.UInt16)
-    IL_000C: ret
-
-}
-ValueTuple<int,int> split(long src, N2 parts)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Int32 Z0.Bits::lo(System.Int64&)
-    IL_0007: ldarga.s src
-    IL_0009: call System.Int32 Z0.Bits::hi(System.Int64&)
-    IL_000E: newobj System.Void System.ValueTuple`2<System.Int32,System.Int32>::.ctor(System.Int32,System.Int32)
-    IL_0013: ret
-
-}
-ValueTuple<uint,uint> split(ulong src, N2 parts)
-{
-    IL_0000: ldarg.0
-    IL_0001: conv.u4
-    IL_0002: ldarg.0
-    IL_0003: ldc.i4.s 32
-    IL_0005: shr.un
-    IL_0006: conv.u4
-    IL_0007: newobj System.Void System.ValueTuple`2<System.UInt32,System.UInt32>::.ctor(System.UInt32,System.UInt32)
-    IL_000C: ret
-
-}
-ValueTuple<byte,byte,byte,byte> split(uint src, N4 parts)
-{
-    IL_0000: ldarg.0
-    IL_0001: conv.u1
-    IL_0002: ldarg.0
-    IL_0003: ldc.i4.8
-    IL_0004: shr.un
-    IL_0005: conv.u1
-    IL_0006: ldarg.0
-    IL_0007: ldc.i4.s 16
-    IL_0009: shr.un
-    IL_000A: conv.u1
-    IL_000B: ldarg.0
-    IL_000C: ldc.i4.s 24
-    IL_000E: shr.un
-    IL_000F: conv.u1
-    IL_0010: newobj System.Void System.ValueTuple`4<System.Byte,System.Byte,System.Byte,System.Byte>::.ctor(System.Byte,System.Byte,System.Byte,System.Byte)
-    IL_0015: ret
-
-}
-ValueTuple<byte,byte,byte,byte,byte,byte,byte,ValueTuple<byte>> split(ulong src, N8 parts)
-{
-    IL_0000: ldarg.0
-    IL_0001: conv.u1
-    IL_0002: ldarg.0
-    IL_0003: ldc.i4.8
-    IL_0004: shr.un
-    IL_0005: conv.u1
-    IL_0006: ldarg.0
-    IL_0007: ldc.i4.s 16
-    IL_0009: shr.un
-    IL_000A: conv.u1
-    IL_000B: ldarg.0
-    IL_000C: ldc.i4.s 24
-    IL_000E: shr.un
-    IL_000F: conv.u1
-    IL_0010: ldarg.0
-    IL_0011: ldc.i4.s 32
-    IL_0013: shr.un
-    IL_0014: conv.u1
-    IL_0015: ldarg.0
-    IL_0016: ldc.i4.s 40
-    IL_0018: shr.un
-    IL_0019: conv.u1
-    IL_001A: ldarg.0
-    IL_001B: ldc.i4.s 48
-    IL_001D: shr.un
-    IL_001E: conv.u1
-    IL_001F: ldarg.0
-    IL_0020: ldc.i4.s 56
-    IL_0022: shr.un
-    IL_0023: conv.u1
-    IL_0024: newobj System.Void System.ValueTuple`1<System.Byte>::.ctor(System.Byte)
-    IL_0029: newobj System.Void System.ValueTuple`8<System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.ValueTuple`1<System.Byte>>::.ctor(System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.Byte,System.ValueTuple`1<System.Byte>)
-    IL_002E: ret
-
-}
-sbyte srl(sbyte src, int offset)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.SByte& Z0.math::abs(System.SByte&)
-    IL_0007: ldind.i1
-    IL_0008: ldarg.1
-    IL_0009: ldc.i4.s 31
-    IL_000B: and
-    IL_000C: shr
-    IL_000D: conv.i1
-    IL_000E: ret
-
-}
-byte srl(byte src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shr
-    IL_0006: conv.u1
-    IL_0007: ret
-
-}
-short srl(short src, int offset)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Int16& Z0.math::abs(System.Int16&)
-    IL_0007: ldind.i2
-    IL_0008: ldarg.1
-    IL_0009: ldc.i4.s 31
-    IL_000B: and
-    IL_000C: shr
-    IL_000D: conv.i2
-    IL_000E: ret
-
-}
-ushort srl(ushort src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shr
-    IL_0006: conv.u2
-    IL_0007: ret
-
-}
-int srl(int src, int offset)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Int32& Z0.math::abs(System.Int32&)
-    IL_0007: ldind.i4
-    IL_0008: ldarg.1
-    IL_0009: ldc.i4.s 31
-    IL_000B: and
-    IL_000C: shr
-    IL_000D: ret
-
-}
-uint srl(uint src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 31
-    IL_0004: and
-    IL_0005: shr.un
-    IL_0006: ret
-
-}
-long srl(long src, int offset)
-{
-    IL_0000: ldarga.s src
-    IL_0002: call System.Int64& Z0.math::abs(System.Int64&)
-    IL_0007: ldind.i8
-    IL_0008: ldarg.1
-    IL_0009: ldc.i4.s 63
-    IL_000B: and
-    IL_000C: shr
-    IL_000D: ret
-
-}
-ulong srl(ulong src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: ldc.i4.s 63
-    IL_0004: and
-    IL_0005: shr.un
-    IL_0006: ret
-
-}
-ref sbyte srl(ref sbyte src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.SByte& Z0.math::abs(System.SByte&)
-    IL_0006: dup
-    IL_0007: ldind.i1
-    IL_0008: ldarg.1
-    IL_0009: ldc.i4.s 31
-    IL_000B: and
-    IL_000C: shr
-    IL_000D: conv.i1
-    IL_000E: stind.i1
-    IL_000F: ldarg.0
-    IL_0010: ret
-
-}
-ref byte srl(ref byte src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u1
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 31
-    IL_0006: and
-    IL_0007: shr
-    IL_0008: conv.u1
-    IL_0009: stind.i1
-    IL_000A: ldarg.0
-    IL_000B: ret
-
-}
-ref short srl(ref short src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Int16& Z0.math::abs(System.Int16&)
-    IL_0006: dup
-    IL_0007: ldind.i2
-    IL_0008: ldarg.1
-    IL_0009: ldc.i4.s 31
-    IL_000B: and
-    IL_000C: shr
-    IL_000D: conv.i2
-    IL_000E: stind.i2
-    IL_000F: ldarg.0
-    IL_0010: ret
-
-}
-ref ushort srl(ref ushort src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u2
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 31
-    IL_0006: and
-    IL_0007: shr
-    IL_0008: conv.u2
-    IL_0009: stind.i2
-    IL_000A: ldarg.0
-    IL_000B: ret
-
-}
-ref int srl(ref int src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Int32& Z0.math::abs(System.Int32&)
-    IL_0006: dup
-    IL_0007: ldind.i4
-    IL_0008: ldarg.1
-    IL_0009: ldc.i4.s 31
-    IL_000B: and
-    IL_000C: shr
-    IL_000D: stind.i4
-    IL_000E: ldarg.0
-    IL_000F: ret
-
-}
-ref uint srl(ref uint src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.u4
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 31
-    IL_0006: and
-    IL_0007: shr.un
-    IL_0008: stind.i4
-    IL_0009: ldarg.0
-    IL_000A: ret
-
-}
-ref long srl(ref long src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Int64& Z0.math::abs(System.Int64&)
-    IL_0006: dup
-    IL_0007: ldind.i8
-    IL_0008: ldarg.1
-    IL_0009: ldc.i4.s 63
-    IL_000B: and
-    IL_000C: shr
-    IL_000D: stind.i8
-    IL_000E: ldarg.0
-    IL_000F: ret
-
-}
-ref ulong srl(ref ulong src, int offset)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.0
-    IL_0002: ldind.i8
-    IL_0003: ldarg.1
-    IL_0004: ldc.i4.s 63
-    IL_0006: and
-    IL_0007: shr.un
-    IL_0008: stind.i8
-    IL_0009: ldarg.0
-    IL_000A: ret
-
-}
-bool subset(byte test, byte set)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: and
-    IL_0003: ldarg.0
-    IL_0004: ceq
-    IL_0006: ret
-
-}
-bool subset(byte test, sbyte set)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: and
-    IL_0003: ldarg.0
-    IL_0004: ceq
-    IL_0006: ret
-
-}
-bool subset(byte test, short set)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: and
-    IL_0003: ldarg.0
-    IL_0004: ceq
-    IL_0006: ret
-
-}
-bool subset(byte test, ushort set)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: and
-    IL_0003: ldarg.0
-    IL_0004: ceq
-    IL_0006: ret
-
-}
-bool subset(byte test, int set)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: and
-    IL_0003: ldarg.0
-    IL_0004: ceq
-    IL_0006: ret
-
-}
-bool subset(byte test, uint set)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: and
-    IL_0003: ldarg.0
-    IL_0004: ceq
-    IL_0006: ret
-
-}
-bool subset(byte test, long set)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: conv.u8
-    IL_0003: and
-    IL_0004: ldarg.0
-    IL_0005: conv.u8
-    IL_0006: ceq
-    IL_0008: ret
-
-}
-bool subset(byte test, ulong set)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: conv.u8
-    IL_0003: and
-    IL_0004: ldarg.0
-    IL_0005: conv.u8
-    IL_0006: ceq
-    IL_0008: ret
-
-}
-bool subset(byte test, float set)
-{
-    IL_0000: ldarg.1
-    IL_0001: call System.Int32 Z0.MathX::ToBits(System.Single)
-    IL_0006: ldarg.0
-    IL_0007: and
-    IL_0008: ldarg.0
-    IL_0009: ceq
-    IL_000B: ret
-
-}
-bool subset(byte test, double set)
-{
-    IL_0000: ldarg.1
-    IL_0001: call System.Int64 Z0.MathX::ToBits(System.Double)
-    IL_0006: ldarg.0
-    IL_0007: conv.u8
-    IL_0008: and
-    IL_0009: ldarg.0
-    IL_000A: conv.u8
-    IL_000B: ceq
-    IL_000D: ret
-
-}
-bool subset(sbyte test, byte set)
-{
-    IL_0000: ldarg.1
-    IL_0001: ldarg.0
-    IL_0002: and
-    IL_0003: ldarg.0
-    IL_0004: ceq
-    IL_0006: ret
-
-}
-ref short bitmap(in ulong src, byte srcOffset, byte len, byte dstOffset, ref short dst)
-{
-    IL_0000: ldarg.s dst
-    IL_0002: ldarg.s dst
-    IL_0004: ldind.i2
-    IL_0005: ldarg.3
-    IL_0006: ldc.i4.s 31
-    IL_0008: and
-    IL_0009: shl
-    IL_000A: conv.i2
-    IL_000B: stind.i2
-    IL_000C: ldarg.s dst
-    IL_000E: ldarg.s dst
-    IL_0010: ldind.i2
-    IL_0011: ldarg.0
-    IL_0012: ldarga.s srcOffset
-    IL_0014: ldarga.s len
-    IL_0016: call System.UInt64 Z0.Bits::extract(System.UInt64&,System.Byte&,System.Byte&)
-    IL_001B: conv.i2
-    IL_001C: or
-    IL_001D: conv.i2
-    IL_001E: stind.i2
-    IL_001F: ldarg.s dst
-    IL_0021: ret
-
-}
-ref ushort bitmap(in ulong src, byte srcOffset, byte len, byte dstOffset, ref ushort dst)
-{
-    IL_0000: ldarg.s dst
-    IL_0002: ldarg.s dst
-    IL_0004: ldind.u2
-    IL_0005: ldarg.3
-    IL_0006: ldc.i4.s 31
-    IL_0008: and
-    IL_0009: shl
-    IL_000A: conv.u2
-    IL_000B: stind.i2
-    IL_000C: ldarg.s dst
-    IL_000E: ldarg.s dst
-    IL_0010: ldind.u2
-    IL_0011: ldarg.0
-    IL_0012: ldarga.s srcOffset
-    IL_0014: ldarga.s len
-    IL_0016: call System.UInt64 Z0.Bits::extract(System.UInt64&,System.Byte&,System.Byte&)
-    IL_001B: conv.u2
-    IL_001C: or
-    IL_001D: conv.u2
-    IL_001E: stind.i2
-    IL_001F: ldarg.s dst
-    IL_0021: ret
-
-}
-ref int bitmap(in ulong src, byte srcOffset, byte len, byte dstOffset, ref int dst)
-{
-    IL_0000: ldarg.s dst
-    IL_0002: ldarg.s dst
-    IL_0004: ldind.i4
-    IL_0005: ldarg.3
-    IL_0006: ldc.i4.s 31
-    IL_0008: and
-    IL_0009: shl
-    IL_000A: stind.i4
-    IL_000B: ldarg.s dst
-    IL_000D: ldarg.s dst
-    IL_000F: ldind.i4
-    IL_0010: ldarg.0
-    IL_0011: ldarga.s srcOffset
-    IL_0013: ldarga.s len
-    IL_0015: call System.UInt64 Z0.Bits::extract(System.UInt64&,System.Byte&,System.Byte&)
-    IL_001A: conv.i4
-    IL_001B: or
-    IL_001C: stind.i4
-    IL_001D: ldarg.s dst
-    IL_001F: ret
-
-}
-ref uint bitmap(in ulong src, byte srcOffset, byte len, byte dstOffset, ref uint dst)
-{
-    IL_0000: ldarg.s dst
-    IL_0002: ldarg.s dst
-    IL_0004: ldind.u4
-    IL_0005: ldarg.3
-    IL_0006: ldc.i4.s 31
-    IL_0008: and
-    IL_0009: shl
-    IL_000A: stind.i4
-    IL_000B: ldarg.s dst
-    IL_000D: ldarg.s dst
-    IL_000F: ldind.u4
-    IL_0010: ldarg.0
-    IL_0011: ldarga.s srcOffset
-    IL_0013: ldarga.s len
-    IL_0015: call System.UInt64 Z0.Bits::extract(System.UInt64&,System.Byte&,System.Byte&)
-    IL_001A: conv.u4
-    IL_001B: or
-    IL_001C: stind.i4
-    IL_001D: ldarg.s dst
-    IL_001F: ret
-
-}
-ref long bitmap(in ulong src, byte srcOffset, byte len, byte dstOffset, ref long dst)
-{
-    IL_0000: ldarg.s dst
-    IL_0002: ldarg.s dst
-    IL_0004: ldind.i8
-    IL_0005: ldarg.3
-    IL_0006: ldc.i4.s 63
-    IL_0008: and
-    IL_0009: shl
-    IL_000A: stind.i8
-    IL_000B: ldarg.s dst
-    IL_000D: ldarg.s dst
-    IL_000F: ldind.i8
-    IL_0010: ldarg.0
-    IL_0011: ldarga.s srcOffset
-    IL_0013: ldarga.s len
-    IL_0015: call System.UInt64 Z0.Bits::extract(System.UInt64&,System.Byte&,System.Byte&)
-    IL_001A: or
-    IL_001B: stind.i8
-    IL_001C: ldarg.s dst
-    IL_001E: ret
-
-}
-ref ulong bitmap(in ulong src, byte srcOffset, byte len, byte dstOffset, ref ulong dst)
-{
-    IL_0000: ldarg.s dst
-    IL_0002: ldarg.s dst
-    IL_0004: ldind.i8
-    IL_0005: ldarg.3
-    IL_0006: ldc.i4.s 63
-    IL_0008: and
-    IL_0009: shl
-    IL_000A: stind.i8
-    IL_000B: ldarg.s dst
-    IL_000D: ldarg.s dst
-    IL_000F: ldind.i8
-    IL_0010: ldarg.0
-    IL_0011: ldarga.s srcOffset
-    IL_0013: ldarga.s len
-    IL_0015: call System.UInt64 Z0.Bits::extract(System.UInt64&,System.Byte&,System.Byte&)
-    IL_001A: or
-    IL_001B: stind.i8
-    IL_001C: ldarg.s dst
-    IL_001E: ret
-
-}
-ref float bitmap(in float src, byte srcOffset, byte len, byte dstOffset, ref float dst)
-{
-    IL_0000: ldarg.s dst
-    IL_0002: ldarg.0
-    IL_0003: ldind.r4
-    IL_0004: call System.Int32 Z0.MathX::ToBits(System.Single)
-    IL_0009: stloc.0
-    IL_000A: ldloca.s V_0
-    IL_000C: ldarga.s srcOffset
-    IL_000E: ldarga.s len
-    IL_0010: call System.Int32 Z0.Bits::extract(System.Int32&,System.Byte&,System.Byte&)
-    IL_0015: ldarg.3
-    IL_0016: ldc.i4.s 31
-    IL_0018: and
-    IL_0019: shl
-    IL_001A: conv.r4
-    IL_001B: call System.Single& Z0.math::or(System.Single&,System.Single)
-    IL_0020: pop
-    IL_0021: ldarg.s dst
-    IL_0023: ret
-
-}
-ref double bitmap(in double src, byte srcOffset, byte len, byte dstOffset, ref double dst)
-{
-    IL_0000: ldarg.s dst
-    IL_0002: ldarg.0
-    IL_0003: ldind.r8
-    IL_0004: call System.Int64 Z0.MathX::ToBits(System.Double)
-    IL_0009: stloc.0
-    IL_000A: ldloca.s V_0
-    IL_000C: ldarga.s srcOffset
-    IL_000E: ldarga.s len
-    IL_0010: call System.Int64 Z0.Bits::extract(System.Int64&,System.Byte&,System.Byte&)
-    IL_0015: ldarg.3
-    IL_0016: ldc.i4.s 63
-    IL_0018: and
-    IL_0019: shl
-    IL_001A: conv.r8
-    IL_001B: call System.Double& Z0.math::or(System.Double&,System.Double)
-    IL_0020: pop
-    IL_0021: ldarg.s dst
-    IL_0023: ret
-
-}
-byte blsi(byte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::ExtractLowestSetBit(System.UInt32)
-    IL_0006: conv.u1
-    IL_0007: ret
-
-}
-ushort blsi(ushort src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::ExtractLowestSetBit(System.UInt32)
-    IL_0006: conv.u2
-    IL_0007: ret
-
-}
-uint blsi(uint src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::ExtractLowestSetBit(System.UInt32)
-    IL_0006: ret
-
-}
-ulong blsi(ulong src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi1/X64::ExtractLowestSetBit(System.UInt64)
-    IL_0006: ret
-
-}
-byte blsic(byte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: not
-    IL_0002: ldarg.0
-    IL_0003: ldc.i4.1
-    IL_0004: sub
-    IL_0005: or
-    IL_0006: conv.u1
-    IL_0007: ret
-
-}
-ushort blsic(ushort src)
-{
-    IL_0000: ldarg.0
-    IL_0001: not
-    IL_0002: ldarg.0
-    IL_0003: ldc.i4.1
-    IL_0004: sub
-    IL_0005: or
-    IL_0006: conv.u2
-    IL_0007: ret
-
-}
-uint blsic(uint src)
-{
-    IL_0000: ldarg.0
-    IL_0001: not
-    IL_0002: ldarg.0
-    IL_0003: ldc.i4.1
-    IL_0004: sub
-    IL_0005: or
-    IL_0006: ret
-
-}
-ulong blsic(ulong src)
-{
-    IL_0000: ldarg.0
-    IL_0001: not
-    IL_0002: ldarg.0
-    IL_0003: ldc.i4.1
-    IL_0004: conv.i8
-    IL_0005: sub
-    IL_0006: or
-    IL_0007: ret
-
-}
-byte blsmask(byte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::GetMaskUpToLowestSetBit(System.UInt32)
-    IL_0006: conv.u1
-    IL_0007: ret
-
-}
-ushort blsmask(ushort src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::GetMaskUpToLowestSetBit(System.UInt32)
-    IL_0006: conv.u2
-    IL_0007: ret
-
-}
-uint blsmask(uint src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::GetMaskUpToLowestSetBit(System.UInt32)
-    IL_0006: ret
-
-}
-ulong blsmask(ulong src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi1/X64::GetMaskUpToLowestSetBit(System.UInt64)
-    IL_0006: ret
-
-}
-byte blsr(byte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::ResetLowestSetBit(System.UInt32)
-    IL_0006: conv.u1
-    IL_0007: ret
-
-}
-ushort blsr(ushort src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::ResetLowestSetBit(System.UInt32)
-    IL_0006: conv.u2
-    IL_0007: ret
-
-}
-uint blsr(uint src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::ResetLowestSetBit(System.UInt32)
-    IL_0006: ret
-
-}
-ulong blsr(ulong src)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi1/X64::ResetLowestSetBit(System.UInt64)
-    IL_0006: ret
-
-}
-byte bzhi(byte src, uint index)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ZeroHighBits(System.UInt32,System.UInt32)
-    IL_0007: conv.u1
-    IL_0008: ret
-
-}
-ushort bzhi(ushort src, uint index)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ZeroHighBits(System.UInt32,System.UInt32)
-    IL_0007: conv.u2
-    IL_0008: ret
-
-}
-uint bzhi(uint src, uint index)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ZeroHighBits(System.UInt32,System.UInt32)
-    IL_0007: ret
-
-}
-ulong bzhi(ulong src, uint index)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldarg.1
-    IL_0002: conv.u8
-    IL_0003: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi2/X64::ZeroHighBits(System.UInt64,System.UInt64)
-    IL_0008: ret
-
-}
-sbyte extract(in sbyte src, in byte start, in byte length)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i1
-    IL_0002: ldarg.1
-    IL_0003: ldind.u1
-    IL_0004: ldarg.2
-    IL_0005: ldind.u1
-    IL_0006: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::BitFieldExtract(System.UInt32,System.Byte,System.Byte)
-    IL_000B: conv.i1
-    IL_000C: ret
-
-}
-byte extract(in byte src, in byte start, in byte length)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.u1
-    IL_0002: ldarg.1
-    IL_0003: ldind.u1
-    IL_0004: ldarg.2
-    IL_0005: ldind.u1
-    IL_0006: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::BitFieldExtract(System.UInt32,System.Byte,System.Byte)
-    IL_000B: conv.u1
-    IL_000C: ret
-
-}
-short extract(in short src, in byte start, in byte length)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i2
-    IL_0002: ldarg.1
-    IL_0003: ldind.u1
-    IL_0004: ldarg.2
-    IL_0005: ldind.u1
-    IL_0006: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::BitFieldExtract(System.UInt32,System.Byte,System.Byte)
-    IL_000B: conv.i2
-    IL_000C: ret
-
-}
-ushort extract(in ushort src, in byte start, in byte length)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.u2
-    IL_0002: ldarg.1
-    IL_0003: ldind.u1
-    IL_0004: ldarg.2
-    IL_0005: ldind.u1
-    IL_0006: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::BitFieldExtract(System.UInt32,System.Byte,System.Byte)
-    IL_000B: conv.u2
-    IL_000C: ret
-
-}
-uint extract(in uint src, in byte start, in byte length)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.u4
-    IL_0002: ldarg.1
-    IL_0003: ldind.u1
-    IL_0004: ldarg.2
-    IL_0005: ldind.u1
-    IL_0006: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::BitFieldExtract(System.UInt32,System.Byte,System.Byte)
-    IL_000B: ret
-
-}
-int extract(in int src, in byte start, in byte length)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i4
-    IL_0002: ldarg.1
-    IL_0003: ldind.u1
-    IL_0004: ldarg.2
-    IL_0005: ldind.u1
-    IL_0006: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::BitFieldExtract(System.UInt32,System.Byte,System.Byte)
-    IL_000B: ret
-
-}
-long extract(in long src, in byte start, in byte length)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i8
-    IL_0002: ldarg.1
-    IL_0003: ldind.u1
-    IL_0004: ldarg.2
-    IL_0005: ldind.u1
-    IL_0006: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi1/X64::BitFieldExtract(System.UInt64,System.Byte,System.Byte)
-    IL_000B: ret
-
-}
-ulong extract(in ulong src, in byte start, in byte length)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i8
-    IL_0002: ldarg.1
-    IL_0003: ldind.u1
-    IL_0004: ldarg.2
-    IL_0005: ldind.u1
-    IL_0006: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi1/X64::BitFieldExtract(System.UInt64,System.Byte,System.Byte)
-    IL_000B: ret
-
-}
-uint extract(in float src, in byte start, in byte length)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.r4
-    IL_0002: call System.Int32 Z0.MathX::ToBits(System.Single)
-    IL_0007: ldarg.1
-    IL_0008: ldind.u1
-    IL_0009: ldarg.2
-    IL_000A: ldind.u1
-    IL_000B: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::BitFieldExtract(System.UInt32,System.Byte,System.Byte)
-    IL_0010: ret
-
-}
-ulong extract(in double src, in byte start, in byte length)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.r8
-    IL_0002: call System.Int64 Z0.MathX::ToBits(System.Double)
-    IL_0007: ldarg.1
-    IL_0008: ldind.u1
-    IL_0009: ldarg.2
-    IL_000A: ldind.u1
-    IL_000B: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi1/X64::BitFieldExtract(System.UInt64,System.Byte,System.Byte)
-    IL_0010: ret
-
-}
-ushort hi(in uint src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.u4
-    IL_0002: ldc.i4.s 16
-    IL_0004: shr.un
-    IL_0005: conv.u2
-    IL_0006: ret
-
-}
-ushort lo(in uint src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.u4
-    IL_0002: conv.u2
-    IL_0003: ret
-
-}
-uint hi(in ulong src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i8
-    IL_0002: ldc.i4.s 32
-    IL_0004: shr.un
-    IL_0005: conv.u4
-    IL_0006: ret
-
-}
-uint lo(in ulong src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i8
-    IL_0002: conv.u4
-    IL_0003: ret
-
-}
-sbyte hi(in sbyte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i1
-    IL_0002: ldc.i4.4
-    IL_0003: shr
-    IL_0004: conv.i1
-    IL_0005: ret
-
-}
-sbyte lo(in sbyte src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i1
-    IL_0002: ldc.i4.4
-    IL_0003: shl
-    IL_0004: conv.i1
-    IL_0005: ldc.i4.4
-    IL_0006: shr
-    IL_0007: conv.i1
-    IL_0008: ret
-
-}
 byte hi(in byte src)
 {
     IL_0000: ldarg.0
@@ -4908,235 +2998,207 @@ int lo(in long src)
     IL_0003: ret
 
 }
-byte gather(in byte src, in byte mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.u1
-    IL_0002: ldarg.1
-    IL_0003: ldind.u1
-    IL_0004: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ParallelBitExtract(System.UInt32,System.UInt32)
-    IL_0009: conv.u1
-    IL_000A: ret
-
-}
-sbyte gather(in sbyte src, in sbyte mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i1
-    IL_0002: ldarg.1
-    IL_0003: ldind.i1
-    IL_0004: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ParallelBitExtract(System.UInt32,System.UInt32)
-    IL_0009: conv.i1
-    IL_000A: ret
-
-}
-short gather(in short src, in short mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i2
-    IL_0002: ldarg.1
-    IL_0003: ldind.i2
-    IL_0004: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ParallelBitExtract(System.UInt32,System.UInt32)
-    IL_0009: conv.i2
-    IL_000A: ret
-
-}
-ushort gather(in ushort src, in ushort mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.u2
-    IL_0002: ldarg.1
-    IL_0003: ldind.u2
-    IL_0004: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ParallelBitExtract(System.UInt32,System.UInt32)
-    IL_0009: conv.u2
-    IL_000A: ret
-
-}
-int gather(in int src, in int mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i4
-    IL_0002: ldarg.1
-    IL_0003: ldind.i4
-    IL_0004: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ParallelBitExtract(System.UInt32,System.UInt32)
-    IL_0009: ret
-
-}
-uint gather(in uint src, in uint mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.u4
-    IL_0002: ldarg.1
-    IL_0003: ldind.u4
-    IL_0004: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ParallelBitExtract(System.UInt32,System.UInt32)
-    IL_0009: ret
-
-}
-long gather(in long src, in long mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i8
-    IL_0002: ldarg.1
-    IL_0003: ldind.i8
-    IL_0004: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi2/X64::ParallelBitExtract(System.UInt64,System.UInt64)
-    IL_0009: ret
-
-}
-ulong gather(in ulong src, in ulong mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.i8
-    IL_0002: ldarg.1
-    IL_0003: ldind.i8
-    IL_0004: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi2/X64::ParallelBitExtract(System.UInt64,System.UInt64)
-    IL_0009: ret
-
-}
-uint gather(in float src, in uint mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.r4
-    IL_0002: call System.Int32 Z0.MathX::ToBits(System.Single)
-    IL_0007: ldarg.1
-    IL_0008: ldind.u4
-    IL_0009: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ParallelBitExtract(System.UInt32,System.UInt32)
-    IL_000E: ret
-
-}
-ulong gather(in double src, in ulong mask)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldind.r8
-    IL_0002: call System.Int64 Z0.MathX::ToBits(System.Double)
-    IL_0007: ldarg.1
-    IL_0008: ldind.i8
-    IL_0009: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi2/X64::ParallelBitExtract(System.UInt64,System.UInt64)
-    IL_000E: ret
-
-}
-byte gather(in byte src, byte mask)
+byte gather(byte src, byte mask)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: stloc.0
-    IL_0003: ldloca.s V_0
-    IL_0005: call System.Byte Z0.Bits::gather(System.Byte&,System.Byte&)
-    IL_000A: ret
+    IL_0002: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ParallelBitExtract(System.UInt32,System.UInt32)
+    IL_0007: conv.u1
+    IL_0008: ret
 
 }
-ushort gather(in ushort src, ushort mask)
+sbyte gather(sbyte src, sbyte mask)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: stloc.0
-    IL_0003: ldloca.s V_0
-    IL_0005: call System.UInt16 Z0.Bits::gather(System.UInt16&,System.UInt16&)
-    IL_000A: ret
+    IL_0002: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ParallelBitExtract(System.UInt32,System.UInt32)
+    IL_0007: conv.i1
+    IL_0008: ret
 
 }
-uint gather(in uint src, uint mask)
+short gather(short src, short mask)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: stloc.0
-    IL_0003: ldloca.s V_0
-    IL_0005: call System.UInt32 Z0.Bits::gather(System.UInt32&,System.UInt32&)
-    IL_000A: ret
+    IL_0002: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ParallelBitExtract(System.UInt32,System.UInt32)
+    IL_0007: conv.i2
+    IL_0008: ret
 
 }
-ulong gather(in ulong src, ulong mask)
+ushort gather(ushort src, ushort mask)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
-    IL_0002: stloc.0
-    IL_0003: ldloca.s V_0
-    IL_0005: call System.UInt64 Z0.Bits::gather(System.UInt64&,System.UInt64&)
-    IL_000A: ret
+    IL_0002: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ParallelBitExtract(System.UInt32,System.UInt32)
+    IL_0007: conv.u2
+    IL_0008: ret
 
 }
-ref byte gather(in byte src, in byte mask, ref byte dst)
+int gather(int src, int mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ParallelBitExtract(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+uint gather(uint src, uint mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ParallelBitExtract(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+long gather(long src, long mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi2/X64::ParallelBitExtract(System.UInt64,System.UInt64)
+    IL_0007: ret
+
+}
+ulong gather(ulong src, ulong mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi2/X64::ParallelBitExtract(System.UInt64,System.UInt64)
+    IL_0007: ret
+
+}
+uint gather(float src, uint mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Int32 Z0.MathX::ToBits(System.Single)
+    IL_0006: ldarg.1
+    IL_0007: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ParallelBitExtract(System.UInt32,System.UInt32)
+    IL_000C: ret
+
+}
+ulong gather(double src, ulong mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: call System.Int64 Z0.MathX::ToBits(System.Double)
+    IL_0006: ldarg.1
+    IL_0007: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi2/X64::ParallelBitExtract(System.UInt64,System.UInt64)
+    IL_000C: ret
+
+}
+byte gather(byte src, BitMask8:byte mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.Byte Z0.Bits::gather(System.Byte,System.Byte)
+    IL_0007: ret
+
+}
+ushort gather(ushort src, BitMask16:ushort mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt16 Z0.Bits::gather(System.UInt16,System.UInt16)
+    IL_0007: ret
+
+}
+uint gather(uint src, BitMask32:uint mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+ulong gather(ulong src, BitMask64:ulong mask)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt64 Z0.Bits::gather(System.UInt64,System.UInt64)
+    IL_0007: ret
+
+}
+ref byte gather(byte src, byte mask, ref byte dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldarg.0
     IL_0002: ldarg.1
-    IL_0003: call System.Byte Z0.Bits::gather(System.Byte&,System.Byte&)
+    IL_0003: call System.Byte Z0.Bits::gather(System.Byte,System.Byte)
     IL_0008: stind.i1
     IL_0009: ldarg.2
     IL_000A: ret
 
 }
-ref sbyte gather(in sbyte src, in sbyte mask, ref sbyte dst)
+ref sbyte gather(sbyte src, sbyte mask, ref sbyte dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldarg.0
     IL_0002: ldarg.1
-    IL_0003: call System.SByte Z0.Bits::gather(System.SByte&,System.SByte&)
+    IL_0003: call System.SByte Z0.Bits::gather(System.SByte,System.SByte)
     IL_0008: stind.i1
     IL_0009: ldarg.2
     IL_000A: ret
 
 }
-ref short gather(in short src, in short mask, ref short dst)
+ref short gather(short src, short mask, ref short dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldarg.0
     IL_0002: ldarg.1
-    IL_0003: call System.Int16 Z0.Bits::gather(System.Int16&,System.Int16&)
+    IL_0003: call System.Int16 Z0.Bits::gather(System.Int16,System.Int16)
     IL_0008: stind.i2
     IL_0009: ldarg.2
     IL_000A: ret
 
 }
-ref ushort gather(in ushort src, in ushort mask, ref ushort dst)
+ref ushort gather(ushort src, ushort mask, ref ushort dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldarg.0
     IL_0002: ldarg.1
-    IL_0003: call System.UInt16 Z0.Bits::gather(System.UInt16&,System.UInt16&)
+    IL_0003: call System.UInt16 Z0.Bits::gather(System.UInt16,System.UInt16)
     IL_0008: stind.i2
     IL_0009: ldarg.2
     IL_000A: ret
 
 }
-ref int gather(in int src, in int mask, ref int dst)
+ref int gather(int src, int mask, ref int dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldarg.0
     IL_0002: ldarg.1
-    IL_0003: call System.Int32 Z0.Bits::gather(System.Int32&,System.Int32&)
+    IL_0003: call System.Int32 Z0.Bits::gather(System.Int32,System.Int32)
     IL_0008: stind.i4
     IL_0009: ldarg.2
     IL_000A: ret
 
 }
-ref uint gather(in uint src, in uint mask, ref uint dst)
+ref uint gather(uint src, uint mask, ref uint dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldarg.0
     IL_0002: ldarg.1
-    IL_0003: call System.UInt32 Z0.Bits::gather(System.UInt32&,System.UInt32&)
+    IL_0003: call System.UInt32 Z0.Bits::gather(System.UInt32,System.UInt32)
     IL_0008: stind.i4
     IL_0009: ldarg.2
     IL_000A: ret
 
 }
-ref long gather(in long src, in long mask, ref long dst)
+ref long gather(long src, long mask, ref long dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldarg.0
     IL_0002: ldarg.1
-    IL_0003: call System.Int64 Z0.Bits::gather(System.Int64&,System.Int64&)
+    IL_0003: call System.Int64 Z0.Bits::gather(System.Int64,System.Int64)
     IL_0008: stind.i8
     IL_0009: ldarg.2
     IL_000A: ret
 
 }
-ref ulong gather(in ulong src, in ulong mask, ref ulong dst)
+ref ulong gather(ulong src, ulong mask, ref ulong dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldarg.0
     IL_0002: ldarg.1
-    IL_0003: call System.UInt64 Z0.Bits::gather(System.UInt64&,System.UInt64&)
+    IL_0003: call System.UInt64 Z0.Bits::gather(System.UInt64,System.UInt64)
     IL_0008: stind.i8
     IL_0009: ldarg.2
     IL_000A: ret
@@ -5863,119 +3925,6 @@ uint pop(ulong src)
     IL_0007: ret
 
 }
-ulong pop(Span<byte> src)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: conv.i8
-    IL_0002: stloc.0
-    IL_0003: ldc.i4.0
-    IL_0004: stloc.1
-    IL_0005: br.s IL_001D
-    IL_0007: ldloc.0
-    IL_0008: ldarga.s src
-    IL_000A: ldloc.1
-    IL_000B: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0010: ldind.u1
-    IL_0011: call System.UInt32 Z0.Bits::pop(System.Byte)
-    IL_0016: conv.u8
-    IL_0017: add
-    IL_0018: stloc.0
-    IL_0019: ldloc.1
-    IL_001A: ldc.i4.1
-    IL_001B: add
-    IL_001C: stloc.1
-    IL_001D: ldloc.1
-    IL_001E: ldarga.s src
-    IL_0020: call System.Int32 System.Span`1<System.Byte>::get_Length()
-    IL_0025: blt.s IL_0007
-    IL_0027: ldloc.0
-    IL_0028: ret
-
-}
-ulong pop(Span<ulong> src)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: ldc.i4.0
-    IL_0003: stloc.1
-    IL_0004: br.s IL_001B
-    IL_0006: ldloc.0
-    IL_0007: ldarga.s src
-    IL_0009: ldloc.1
-    IL_000A: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_000F: ldind.i8
-    IL_0010: call System.UInt32 Z0.Bits::pop(System.UInt64)
-    IL_0015: add
-    IL_0016: stloc.0
-    IL_0017: ldloc.1
-    IL_0018: ldc.i4.1
-    IL_0019: add
-    IL_001A: stloc.1
-    IL_001B: ldloc.1
-    IL_001C: ldarga.s src
-    IL_001E: call System.Int32 System.Span`1<System.UInt64>::get_Length()
-    IL_0023: blt.s IL_0006
-    IL_0025: ldloc.0
-    IL_0026: conv.u8
-    IL_0027: ret
-
-}
-ulong pop(Span<uint> src)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: ldc.i4.0
-    IL_0003: stloc.1
-    IL_0004: br.s IL_001B
-    IL_0006: ldloc.0
-    IL_0007: ldarga.s src
-    IL_0009: ldloc.1
-    IL_000A: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_000F: ldind.u4
-    IL_0010: call System.UInt32 System.Runtime.Intrinsics.X86.Popcnt::PopCount(System.UInt32)
-    IL_0015: add
-    IL_0016: stloc.0
-    IL_0017: ldloc.1
-    IL_0018: ldc.i4.1
-    IL_0019: add
-    IL_001A: stloc.1
-    IL_001B: ldloc.1
-    IL_001C: ldarga.s src
-    IL_001E: call System.Int32 System.Span`1<System.UInt32>::get_Length()
-    IL_0023: blt.s IL_0006
-    IL_0025: ldloc.0
-    IL_0026: conv.u8
-    IL_0027: ret
-
-}
-ulong pop(Span<ushort> src)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: ldc.i4.0
-    IL_0003: stloc.1
-    IL_0004: br.s IL_001B
-    IL_0006: ldloc.0
-    IL_0007: ldarga.s src
-    IL_0009: ldloc.1
-    IL_000A: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_000F: ldind.u2
-    IL_0010: call System.UInt32 System.Runtime.Intrinsics.X86.Popcnt::PopCount(System.UInt32)
-    IL_0015: add
-    IL_0016: stloc.0
-    IL_0017: ldloc.1
-    IL_0018: ldc.i4.1
-    IL_0019: add
-    IL_001A: stloc.1
-    IL_001B: ldloc.1
-    IL_001C: ldarga.s src
-    IL_001E: call System.Int32 System.Span`1<System.UInt16>::get_Length()
-    IL_0023: blt.s IL_0006
-    IL_0025: ldloc.0
-    IL_0026: conv.u8
-    IL_0027: ret
-
-}
 byte posl(byte src)
 {
     IL_0000: ldarg.0
@@ -6071,1091 +4020,596 @@ uint range(uint src, BitPos i0, BitPos i1)
     IL_001A: ret
 
 }
-Span128<uint> srl(ReadOnlySpan128<uint> src, byte offset, Span128<uint> dst)
-{
-    IL_0000: ldarga.s dst
-    IL_0002: call System.Int32 Z0.Span128`1<System.UInt32>::get_BlockWidth()
-    IL_0007: stloc.0
-    IL_0008: ldc.i4.0
-    IL_0009: stloc.1
-    IL_000A: br.s IL_0030
-    IL_000C: ldarg.0
-    IL_000D: ldloc.1
-    IL_000E: call Z0.Vec128`1<System.UInt32> Z0.ginxs::LoadVec128<System.UInt32>(Z0.ReadOnlySpan128`1<System.UInt32>,System.Int32)
-    IL_0013: stloc.2
-    IL_0014: ldloca.s V_2
-    IL_0016: ldarg.1
-    IL_0017: call Z0.Vec128`1<System.UInt32> Z0.Bits::srl(Z0.Vec128`1<System.UInt32>&,System.Byte)
-    IL_001C: stloc.3
-    IL_001D: ldloca.s V_3
-    IL_001F: ldarga.s dst
-    IL_0021: ldloc.1
-    IL_0022: call System.UInt32& Z0.Span128`1<System.UInt32>::get_Item(System.Int32)
-    IL_0027: call System.Void zfunc::vstore<System.UInt32>(Z0.Vec128`1<System.UInt32>&,System.UInt32&)
-    IL_002C: ldloc.1
-    IL_002D: ldloc.0
-    IL_002E: add
-    IL_002F: stloc.1
-    IL_0030: ldloc.1
-    IL_0031: ldarga.s src
-    IL_0033: call System.Int32 Z0.ReadOnlySpan128`1<System.UInt32>::get_Length()
-    IL_0038: blt.s IL_000C
-    IL_003A: ldarg.2
-    IL_003B: ret
-
-}
-Span128<long> srl(ReadOnlySpan128<long> src, byte offset, Span128<long> dst)
-{
-    IL_0000: ldarga.s dst
-    IL_0002: call System.Int32 Z0.Span128`1<System.Int64>::get_BlockWidth()
-    IL_0007: stloc.0
-    IL_0008: ldc.i4.0
-    IL_0009: stloc.1
-    IL_000A: br.s IL_0030
-    IL_000C: ldarg.0
-    IL_000D: ldloc.1
-    IL_000E: call Z0.Vec128`1<System.Int64> Z0.ginxs::LoadVec128<System.Int64>(Z0.ReadOnlySpan128`1<System.Int64>,System.Int32)
-    IL_0013: stloc.2
-    IL_0014: ldloca.s V_2
-    IL_0016: ldarg.1
-    IL_0017: call Z0.Vec128`1<System.Int64> Z0.Bits::srl(Z0.Vec128`1<System.Int64>&,System.Byte)
-    IL_001C: stloc.3
-    IL_001D: ldloca.s V_3
-    IL_001F: ldarga.s dst
-    IL_0021: ldloc.1
-    IL_0022: call System.Int64& Z0.Span128`1<System.Int64>::get_Item(System.Int32)
-    IL_0027: call System.Void zfunc::vstore<System.Int64>(Z0.Vec128`1<System.Int64>&,System.Int64&)
-    IL_002C: ldloc.1
-    IL_002D: ldloc.0
-    IL_002E: add
-    IL_002F: stloc.1
-    IL_0030: ldloc.1
-    IL_0031: ldarga.s src
-    IL_0033: call System.Int32 Z0.ReadOnlySpan128`1<System.Int64>::get_Length()
-    IL_0038: blt.s IL_000C
-    IL_003A: ldarg.2
-    IL_003B: ret
-
-}
-Span128<ulong> srl(ReadOnlySpan128<ulong> src, byte offset, Span128<ulong> dst)
-{
-    IL_0000: ldarga.s dst
-    IL_0002: call System.Int32 Z0.Span128`1<System.UInt64>::get_BlockWidth()
-    IL_0007: stloc.0
-    IL_0008: ldc.i4.0
-    IL_0009: stloc.1
-    IL_000A: br.s IL_0030
-    IL_000C: ldarg.0
-    IL_000D: ldloc.1
-    IL_000E: call Z0.Vec128`1<System.UInt64> Z0.ginxs::LoadVec128<System.UInt64>(Z0.ReadOnlySpan128`1<System.UInt64>,System.Int32)
-    IL_0013: stloc.2
-    IL_0014: ldloca.s V_2
-    IL_0016: ldarg.1
-    IL_0017: call Z0.Vec128`1<System.UInt64> Z0.Bits::srl(Z0.Vec128`1<System.UInt64>&,System.Byte)
-    IL_001C: stloc.3
-    IL_001D: ldloca.s V_3
-    IL_001F: ldarga.s dst
-    IL_0021: ldloc.1
-    IL_0022: call System.UInt64& Z0.Span128`1<System.UInt64>::get_Item(System.Int32)
-    IL_0027: call System.Void zfunc::vstore<System.UInt64>(Z0.Vec128`1<System.UInt64>&,System.UInt64&)
-    IL_002C: ldloc.1
-    IL_002D: ldloc.0
-    IL_002E: add
-    IL_002F: stloc.1
-    IL_0030: ldloc.1
-    IL_0031: ldarga.s src
-    IL_0033: call System.Int32 Z0.ReadOnlySpan128`1<System.UInt64>::get_Length()
-    IL_0038: blt.s IL_000C
-    IL_003A: ldarg.2
-    IL_003B: ret
-
-}
-Span256<short> srl(ReadOnlySpan256<short> src, byte offset, Span256<short> dst)
-{
-    IL_0000: ldarga.s dst
-    IL_0002: call System.Int32 Z0.Span256`1<System.Int16>::get_BlockWidth()
-    IL_0007: stloc.0
-    IL_0008: ldc.i4.0
-    IL_0009: stloc.1
-    IL_000A: br.s IL_0030
-    IL_000C: ldarg.0
-    IL_000D: ldloc.1
-    IL_000E: call Z0.Vec256`1<System.Int16> Z0.ginxs::LoadVec256<System.Int16>(Z0.ReadOnlySpan256`1<System.Int16>,System.Int32)
-    IL_0013: stloc.2
-    IL_0014: ldloca.s V_2
-    IL_0016: ldarg.1
-    IL_0017: call Z0.Vec256`1<System.Int16> Z0.Bits::srl(Z0.Vec256`1<System.Int16>&,System.Byte)
-    IL_001C: stloc.3
-    IL_001D: ldloca.s V_3
-    IL_001F: ldarga.s dst
-    IL_0021: ldloc.1
-    IL_0022: call System.Int16& Z0.Span256`1<System.Int16>::get_Item(System.Int32)
-    IL_0027: call System.Void zfunc::vstore<System.Int16>(Z0.Vec256`1<System.Int16>&,System.Int16&)
-    IL_002C: ldloc.1
-    IL_002D: ldloc.0
-    IL_002E: add
-    IL_002F: stloc.1
-    IL_0030: ldloc.1
-    IL_0031: ldarga.s src
-    IL_0033: call System.Int32 Z0.ReadOnlySpan256`1<System.Int16>::get_Length()
-    IL_0038: blt.s IL_000C
-    IL_003A: ldarg.2
-    IL_003B: ret
-
-}
-Span256<ushort> srl(ReadOnlySpan256<ushort> src, byte offset, Span256<ushort> dst)
-{
-    IL_0000: ldarga.s dst
-    IL_0002: call System.Int32 Z0.Span256`1<System.UInt16>::get_BlockWidth()
-    IL_0007: stloc.0
-    IL_0008: ldc.i4.0
-    IL_0009: stloc.1
-    IL_000A: br.s IL_0030
-    IL_000C: ldarg.0
-    IL_000D: ldloc.1
-    IL_000E: call Z0.Vec256`1<System.UInt16> Z0.ginxs::LoadVec256<System.UInt16>(Z0.ReadOnlySpan256`1<System.UInt16>,System.Int32)
-    IL_0013: stloc.2
-    IL_0014: ldloca.s V_2
-    IL_0016: ldarg.1
-    IL_0017: call Z0.Vec256`1<System.UInt16> Z0.Bits::srl(Z0.Vec256`1<System.UInt16>&,System.Byte)
-    IL_001C: stloc.3
-    IL_001D: ldloca.s V_3
-    IL_001F: ldarga.s dst
-    IL_0021: ldloc.1
-    IL_0022: call System.UInt16& Z0.Span256`1<System.UInt16>::get_Item(System.Int32)
-    IL_0027: call System.Void zfunc::vstore<System.UInt16>(Z0.Vec256`1<System.UInt16>&,System.UInt16&)
-    IL_002C: ldloc.1
-    IL_002D: ldloc.0
-    IL_002E: add
-    IL_002F: stloc.1
-    IL_0030: ldloc.1
-    IL_0031: ldarga.s src
-    IL_0033: call System.Int32 Z0.ReadOnlySpan256`1<System.UInt16>::get_Length()
-    IL_0038: blt.s IL_000C
-    IL_003A: ldarg.2
-    IL_003B: ret
-
-}
-Span256<int> srl(ReadOnlySpan256<int> src, byte offset, Span256<int> dst)
-{
-    IL_0000: ldarga.s dst
-    IL_0002: call System.Int32 Z0.Span256`1<System.Int32>::get_BlockWidth()
-    IL_0007: stloc.0
-    IL_0008: ldc.i4.0
-    IL_0009: stloc.1
-    IL_000A: br.s IL_0030
-    IL_000C: ldarg.0
-    IL_000D: ldloc.1
-    IL_000E: call Z0.Vec256`1<System.Int32> Z0.ginxs::LoadVec256<System.Int32>(Z0.ReadOnlySpan256`1<System.Int32>,System.Int32)
-    IL_0013: stloc.2
-    IL_0014: ldloca.s V_2
-    IL_0016: ldarg.1
-    IL_0017: call Z0.Vec256`1<System.Int32> Z0.Bits::srl(Z0.Vec256`1<System.Int32>&,System.Byte)
-    IL_001C: stloc.3
-    IL_001D: ldloca.s V_3
-    IL_001F: ldarga.s dst
-    IL_0021: ldloc.1
-    IL_0022: call System.Int32& Z0.Span256`1<System.Int32>::get_Item(System.Int32)
-    IL_0027: call System.Void zfunc::vstore<System.Int32>(Z0.Vec256`1<System.Int32>&,System.Int32&)
-    IL_002C: ldloc.1
-    IL_002D: ldloc.0
-    IL_002E: add
-    IL_002F: stloc.1
-    IL_0030: ldloc.1
-    IL_0031: ldarga.s src
-    IL_0033: call System.Int32 Z0.ReadOnlySpan256`1<System.Int32>::get_Length()
-    IL_0038: blt.s IL_000C
-    IL_003A: ldarg.2
-    IL_003B: ret
-
-}
-Span256<uint> srl(ReadOnlySpan256<uint> src, byte offset, Span256<uint> dst)
-{
-    IL_0000: ldarga.s dst
-    IL_0002: call System.Int32 Z0.Span256`1<System.UInt32>::get_BlockWidth()
-    IL_0007: stloc.0
-    IL_0008: ldc.i4.0
-    IL_0009: stloc.1
-    IL_000A: br.s IL_0030
-    IL_000C: ldarg.0
-    IL_000D: ldloc.1
-    IL_000E: call Z0.Vec256`1<System.UInt32> Z0.ginxs::LoadVec256<System.UInt32>(Z0.ReadOnlySpan256`1<System.UInt32>,System.Int32)
-    IL_0013: stloc.2
-    IL_0014: ldloca.s V_2
-    IL_0016: ldarg.1
-    IL_0017: call Z0.Vec256`1<System.UInt32> Z0.Bits::srl(Z0.Vec256`1<System.UInt32>&,System.Byte)
-    IL_001C: stloc.3
-    IL_001D: ldloca.s V_3
-    IL_001F: ldarga.s dst
-    IL_0021: ldloc.1
-    IL_0022: call System.UInt32& Z0.Span256`1<System.UInt32>::get_Item(System.Int32)
-    IL_0027: call System.Void zfunc::vstore<System.UInt32>(Z0.Vec256`1<System.UInt32>&,System.UInt32&)
-    IL_002C: ldloc.1
-    IL_002D: ldloc.0
-    IL_002E: add
-    IL_002F: stloc.1
-    IL_0030: ldloc.1
-    IL_0031: ldarga.s src
-    IL_0033: call System.Int32 Z0.ReadOnlySpan256`1<System.UInt32>::get_Length()
-    IL_0038: blt.s IL_000C
-    IL_003A: ldarg.2
-    IL_003B: ret
-
-}
-Span256<long> srl(ReadOnlySpan256<long> src, byte offset, Span256<long> dst)
-{
-    IL_0000: ldarga.s dst
-    IL_0002: call System.Int32 Z0.Span256`1<System.Int64>::get_BlockWidth()
-    IL_0007: stloc.0
-    IL_0008: ldc.i4.0
-    IL_0009: stloc.1
-    IL_000A: br.s IL_0030
-    IL_000C: ldarg.0
-    IL_000D: ldloc.1
-    IL_000E: call Z0.Vec256`1<System.Int64> Z0.ginxs::LoadVec256<System.Int64>(Z0.ReadOnlySpan256`1<System.Int64>,System.Int32)
-    IL_0013: stloc.2
-    IL_0014: ldloca.s V_2
-    IL_0016: ldarg.1
-    IL_0017: call Z0.Vec256`1<System.Int64> Z0.Bits::srl(Z0.Vec256`1<System.Int64>&,System.Byte)
-    IL_001C: stloc.3
-    IL_001D: ldloca.s V_3
-    IL_001F: ldarga.s dst
-    IL_0021: ldloc.1
-    IL_0022: call System.Int64& Z0.Span256`1<System.Int64>::get_Item(System.Int32)
-    IL_0027: call System.Void zfunc::vstore<System.Int64>(Z0.Vec256`1<System.Int64>&,System.Int64&)
-    IL_002C: ldloc.1
-    IL_002D: ldloc.0
-    IL_002E: add
-    IL_002F: stloc.1
-    IL_0030: ldloc.1
-    IL_0031: ldarga.s src
-    IL_0033: call System.Int32 Z0.ReadOnlySpan256`1<System.Int64>::get_Length()
-    IL_0038: blt.s IL_000C
-    IL_003A: ldarg.2
-    IL_003B: ret
-
-}
-Span256<ulong> srl(ReadOnlySpan256<ulong> src, byte offset, Span256<ulong> dst)
-{
-    IL_0000: ldarga.s dst
-    IL_0002: call System.Int32 Z0.Span256`1<System.UInt64>::get_BlockWidth()
-    IL_0007: stloc.0
-    IL_0008: ldc.i4.0
-    IL_0009: stloc.1
-    IL_000A: br.s IL_0030
-    IL_000C: ldarg.0
-    IL_000D: ldloc.1
-    IL_000E: call Z0.Vec256`1<System.UInt64> Z0.ginxs::LoadVec256<System.UInt64>(Z0.ReadOnlySpan256`1<System.UInt64>,System.Int32)
-    IL_0013: stloc.2
-    IL_0014: ldloca.s V_2
-    IL_0016: ldarg.1
-    IL_0017: call Z0.Vec256`1<System.UInt64> Z0.Bits::srl(Z0.Vec256`1<System.UInt64>&,System.Byte)
-    IL_001C: stloc.3
-    IL_001D: ldloca.s V_3
-    IL_001F: ldarga.s dst
-    IL_0021: ldloc.1
-    IL_0022: call System.UInt64& Z0.Span256`1<System.UInt64>::get_Item(System.Int32)
-    IL_0027: call System.Void zfunc::vstore<System.UInt64>(Z0.Vec256`1<System.UInt64>&,System.UInt64&)
-    IL_002C: ldloc.1
-    IL_002D: ldloc.0
-    IL_002E: add
-    IL_002F: stloc.1
-    IL_0030: ldloc.1
-    IL_0031: ldarga.s src
-    IL_0033: call System.Int32 Z0.ReadOnlySpan256`1<System.UInt64>::get_Length()
-    IL_0038: blt.s IL_000C
-    IL_003A: ldarg.2
-    IL_003B: ret
-
-}
-Vec128<int> srlv(in Vec128<int> src, in Vec128<uint> control)
+int range(int src, BitPos i0, BitPos i1)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Int32>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.UInt32>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
-    IL_001B: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_0020: ret
+    IL_0001: ldarg.1
+    IL_0002: ldarg.2
+    IL_0003: call System.UInt32 Z0.Bits::range(System.UInt32,Z0.BitPos,Z0.BitPos)
+    IL_0008: ret
 
 }
-Vec128<uint> srlv(in Vec128<uint> src, in Vec128<uint> offset)
+ulong range(ulong src, BitPos i0, BitPos i1)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.UInt32>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.UInt32>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
-    IL_001B: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
-    IL_0020: ret
+    IL_0001: ldarg.1
+    IL_0002: call System.Byte Z0.BitPos::op_Implicit(Z0.BitPos)
+    IL_0007: ldarga.s i1
+    IL_0009: ldarga.s i0
+    IL_000B: call Z0.BitSize Z0.BitPos::op_Subtraction(Z0.BitPos&,Z0.BitPos&)
+    IL_0010: call System.Byte Z0.BitSize::op_Explicit(Z0.BitSize)
+    IL_0015: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi1/X64::BitFieldExtract(System.UInt64,System.Byte,System.Byte)
+    IL_001A: ret
 
 }
-Vec128<long> srlv(in Vec128<long> src, in Vec128<ulong> offset)
+long range(long src, BitPos i0, BitPos i1)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Int64>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.UInt64>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector128`1<System.Int64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
-    IL_001B: call Z0.Vec128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int64>)
-    IL_0020: ret
+    IL_0001: ldarg.1
+    IL_0002: ldarg.2
+    IL_0003: call System.UInt64 Z0.Bits::range(System.UInt64,Z0.BitPos,Z0.BitPos)
+    IL_0008: ret
 
 }
-Vec128<ulong> srlv(in Vec128<ulong> src, in Vec128<ulong> offset)
+float range(float src, BitPos i0, BitPos i1)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.UInt64>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.UInt64>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
-    IL_001B: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
-    IL_0020: ret
+    IL_0001: call System.Int32 Z0.MathX::ToBits(System.Single)
+    IL_0006: ldarg.1
+    IL_0007: ldarg.2
+    IL_0008: call System.Int32 Z0.Bits::range(System.Int32,Z0.BitPos,Z0.BitPos)
+    IL_000D: call System.Single System.BitConverter::Int32BitsToSingle(System.Int32)
+    IL_0012: ret
 
 }
-Vec256<int> srlv(in Vec256<int> src, in Vec256<uint> offset)
+double range(double src, BitPos i0, BitPos i1)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.Int32>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_001B: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0020: ret
+    IL_0001: call System.Int64 Z0.MathX::ToBits(System.Double)
+    IL_0006: ldarg.1
+    IL_0007: ldarg.2
+    IL_0008: call System.Int64 Z0.Bits::range(System.Int64,Z0.BitPos,Z0.BitPos)
+    IL_000D: call System.Double System.BitConverter::Int64BitsToDouble(System.Int64)
+    IL_0012: ret
 
 }
-Vec256<uint> srlv(in Vec256<uint> src, in Vec256<uint> offset)
+uint rank(byte src, BitPos pos)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_001B: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0020: ret
+    IL_0001: ldc.i4.0
+    IL_0002: call Z0.BitPos Z0.BitPos::op_Implicit(System.Int32)
+    IL_0007: ldarg.1
+    IL_0008: call System.Byte Z0.Bits::range(System.Byte,Z0.BitPos,Z0.BitPos)
+    IL_000D: call System.UInt32 Z0.Bits::pop(System.Byte)
+    IL_0012: ret
 
 }
-Vec256<long> srlv(in Vec256<long> src, in Vec256<ulong> offset)
+uint rank(sbyte src, BitPos pos)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.Int64>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec256`1<System.UInt64>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
-    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_001B: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0020: ret
+    IL_0001: ldc.i4.0
+    IL_0002: call Z0.BitPos Z0.BitPos::op_Implicit(System.Int32)
+    IL_0007: ldarg.1
+    IL_0008: call System.SByte Z0.Bits::range(System.SByte,Z0.BitPos,Z0.BitPos)
+    IL_000D: call System.UInt32 Z0.Bits::pop(System.SByte)
+    IL_0012: ret
 
 }
-Vec256<ulong> srlv(in Vec256<ulong> src, in Vec256<ulong> offset)
+uint rank(short src, BitPos pos)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec256`1<System.UInt64>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
-    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_001B: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_0020: ret
+    IL_0001: ldc.i4.0
+    IL_0002: call Z0.BitPos Z0.BitPos::op_Implicit(System.Int32)
+    IL_0007: ldarg.1
+    IL_0008: call System.Int16 Z0.Bits::range(System.Int16,Z0.BitPos,Z0.BitPos)
+    IL_000D: call System.UInt32 Z0.Bits::pop(System.Int16)
+    IL_0012: ret
 
 }
-Span128<int> srlv(ReadOnlySpan128<int> lhs, in ReadOnlySpan128<uint> rhs, in Span128<int> dst)
-{
-    IL_0000: ldarg.2
-    IL_0001: ldobj Z0.Span128`1<System.Int32>
-    IL_0006: stloc.2
-    IL_0007: ldloca.s V_2
-    IL_0009: call System.Int32 Z0.Span128`1<System.Int32>::get_BlockWidth()
-    IL_000E: stloc.0
-    IL_000F: ldarg.0
-    IL_0010: ldarg.1
-    IL_0011: ldobj Z0.ReadOnlySpan128`1<System.UInt32>
-    IL_0016: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops\\cpu\\srlv.cs"
-    IL_001B: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops\\cpu\\srlv.cs"
-    IL_0020: ldc.i4.s 110
-    IL_0022: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0027: call System.Int32 Z0.Span128::Length<System.Int32,System.UInt32>(Z0.ReadOnlySpan128`1<System.Int32>,Z0.ReadOnlySpan128`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_002C: stloc.1
-    IL_002D: ldc.i4.0
-    IL_002E: stloc.3
-    IL_002F: br.s IL_006D
-    IL_0031: ldarg.0
-    IL_0032: ldloc.3
-    IL_0033: call Z0.Vec128`1<System.Int32> Z0.ginxs::LoadVec128<System.Int32>(Z0.ReadOnlySpan128`1<System.Int32>,System.Int32)
-    IL_0038: stloc.s V_4
-    IL_003A: ldloca.s V_4
-    IL_003C: ldarg.1
-    IL_003D: ldobj Z0.ReadOnlySpan128`1<System.UInt32>
-    IL_0042: ldloc.3
-    IL_0043: call Z0.Vec128`1<System.UInt32> Z0.ginxs::LoadVec128<System.UInt32>(Z0.ReadOnlySpan128`1<System.UInt32>,System.Int32)
-    IL_0048: stloc.s V_5
-    IL_004A: ldloca.s V_5
-    IL_004C: call Z0.Vec128`1<System.Int32> Z0.Bits::srlv(Z0.Vec128`1<System.Int32>&,Z0.Vec128`1<System.UInt32>&)
-    IL_0051: stloc.s V_6
-    IL_0053: ldloca.s V_6
-    IL_0055: ldarg.2
-    IL_0056: ldobj Z0.Span128`1<System.Int32>
-    IL_005B: stloc.2
-    IL_005C: ldloca.s V_2
-    IL_005E: ldloc.3
-    IL_005F: call System.Int32& Z0.Span128`1<System.Int32>::get_Item(System.Int32)
-    IL_0064: call System.Void zfunc::vstore<System.Int32>(Z0.Vec128`1<System.Int32>&,System.Int32&)
-    IL_0069: ldloc.3
-    IL_006A: ldloc.0
-    IL_006B: add
-    IL_006C: stloc.3
-    IL_006D: ldloc.3
-    IL_006E: ldloc.1
-    IL_006F: blt.s IL_0031
-    IL_0071: ldarg.2
-    IL_0072: ldobj Z0.Span128`1<System.Int32>
-    IL_0077: ret
-
-}
-Span128<uint> srlv(ReadOnlySpan128<uint> lhs, in ReadOnlySpan128<uint> rhs, in Span128<uint> dst)
-{
-    IL_0000: ldarg.2
-    IL_0001: ldobj Z0.Span128`1<System.UInt32>
-    IL_0006: stloc.2
-    IL_0007: ldloca.s V_2
-    IL_0009: call System.Int32 Z0.Span128`1<System.UInt32>::get_BlockWidth()
-    IL_000E: stloc.0
-    IL_000F: ldarg.0
-    IL_0010: ldarg.1
-    IL_0011: ldobj Z0.ReadOnlySpan128`1<System.UInt32>
-    IL_0016: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops\\cpu\\srlv.cs"
-    IL_001B: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops\\cpu\\srlv.cs"
-    IL_0020: ldc.i4.s 119
-    IL_0022: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_0027: call System.Int32 Z0.Span128::Length<System.UInt32,System.UInt32>(Z0.ReadOnlySpan128`1<System.UInt32>,Z0.ReadOnlySpan128`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_002C: stloc.1
-    IL_002D: ldc.i4.0
-    IL_002E: stloc.3
-    IL_002F: br.s IL_006D
-    IL_0031: ldarg.0
-    IL_0032: ldloc.3
-    IL_0033: call Z0.Vec128`1<System.UInt32> Z0.ginxs::LoadVec128<System.UInt32>(Z0.ReadOnlySpan128`1<System.UInt32>,System.Int32)
-    IL_0038: stloc.s V_4
-    IL_003A: ldloca.s V_4
-    IL_003C: ldarg.1
-    IL_003D: ldobj Z0.ReadOnlySpan128`1<System.UInt32>
-    IL_0042: ldloc.3
-    IL_0043: call Z0.Vec128`1<System.UInt32> Z0.ginxs::LoadVec128<System.UInt32>(Z0.ReadOnlySpan128`1<System.UInt32>,System.Int32)
-    IL_0048: stloc.s V_5
-    IL_004A: ldloca.s V_5
-    IL_004C: call Z0.Vec128`1<System.UInt32> Z0.Bits::srlv(Z0.Vec128`1<System.UInt32>&,Z0.Vec128`1<System.UInt32>&)
-    IL_0051: stloc.s V_6
-    IL_0053: ldloca.s V_6
-    IL_0055: ldarg.2
-    IL_0056: ldobj Z0.Span128`1<System.UInt32>
-    IL_005B: stloc.2
-    IL_005C: ldloca.s V_2
-    IL_005E: ldloc.3
-    IL_005F: call System.UInt32& Z0.Span128`1<System.UInt32>::get_Item(System.Int32)
-    IL_0064: call System.Void zfunc::vstore<System.UInt32>(Z0.Vec128`1<System.UInt32>&,System.UInt32&)
-    IL_0069: ldloc.3
-    IL_006A: ldloc.0
-    IL_006B: add
-    IL_006C: stloc.3
-    IL_006D: ldloc.3
-    IL_006E: ldloc.1
-    IL_006F: blt.s IL_0031
-    IL_0071: ldarg.2
-    IL_0072: ldobj Z0.Span128`1<System.UInt32>
-    IL_0077: ret
-
-}
-Span128<long> srlv(ReadOnlySpan128<long> lhs, in ReadOnlySpan128<ulong> rhs, in Span128<long> dst)
-{
-    IL_0000: ldarg.2
-    IL_0001: ldobj Z0.Span128`1<System.Int64>
-    IL_0006: stloc.2
-    IL_0007: ldloca.s V_2
-    IL_0009: call System.Int32 Z0.Span128`1<System.Int64>::get_BlockWidth()
-    IL_000E: stloc.0
-    IL_000F: ldarg.0
-    IL_0010: ldarg.1
-    IL_0011: ldobj Z0.ReadOnlySpan128`1<System.UInt64>
-    IL_0016: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops\\cpu\\srlv.cs"
-    IL_001B: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops\\cpu\\srlv.cs"
-    IL_0020: ldc.i4 128
-    IL_0025: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_002A: call System.Int32 Z0.Span128::Length<System.Int64,System.UInt64>(Z0.ReadOnlySpan128`1<System.Int64>,Z0.ReadOnlySpan128`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_002F: stloc.1
-    IL_0030: ldc.i4.0
-    IL_0031: stloc.3
-    IL_0032: br.s IL_0070
-    IL_0034: ldarg.0
-    IL_0035: ldloc.3
-    IL_0036: call Z0.Vec128`1<System.Int64> Z0.ginxs::LoadVec128<System.Int64>(Z0.ReadOnlySpan128`1<System.Int64>,System.Int32)
-    IL_003B: stloc.s V_4
-    IL_003D: ldloca.s V_4
-    IL_003F: ldarg.1
-    IL_0040: ldobj Z0.ReadOnlySpan128`1<System.UInt64>
-    IL_0045: ldloc.3
-    IL_0046: call Z0.Vec128`1<System.UInt64> Z0.ginxs::LoadVec128<System.UInt64>(Z0.ReadOnlySpan128`1<System.UInt64>,System.Int32)
-    IL_004B: stloc.s V_5
-    IL_004D: ldloca.s V_5
-    IL_004F: call Z0.Vec128`1<System.Int64> Z0.Bits::srlv(Z0.Vec128`1<System.Int64>&,Z0.Vec128`1<System.UInt64>&)
-    IL_0054: stloc.s V_6
-    IL_0056: ldloca.s V_6
-    IL_0058: ldarg.2
-    IL_0059: ldobj Z0.Span128`1<System.Int64>
-    IL_005E: stloc.2
-    IL_005F: ldloca.s V_2
-    IL_0061: ldloc.3
-    IL_0062: call System.Int64& Z0.Span128`1<System.Int64>::get_Item(System.Int32)
-    IL_0067: call System.Void zfunc::vstore<System.Int64>(Z0.Vec128`1<System.Int64>&,System.Int64&)
-    IL_006C: ldloc.3
-    IL_006D: ldloc.0
-    IL_006E: add
-    IL_006F: stloc.3
-    IL_0070: ldloc.3
-    IL_0071: ldloc.1
-    IL_0072: blt.s IL_0034
-    IL_0074: ldarg.2
-    IL_0075: ldobj Z0.Span128`1<System.Int64>
-    IL_007A: ret
-
-}
-Span128<ulong> srlv(ReadOnlySpan128<ulong> lhs, in ReadOnlySpan128<ulong> rhs, in Span128<ulong> dst)
-{
-    IL_0000: ldarg.2
-    IL_0001: ldobj Z0.Span128`1<System.UInt64>
-    IL_0006: stloc.2
-    IL_0007: ldloca.s V_2
-    IL_0009: call System.Int32 Z0.Span128`1<System.UInt64>::get_BlockWidth()
-    IL_000E: stloc.0
-    IL_000F: ldarg.0
-    IL_0010: ldarg.1
-    IL_0011: ldobj Z0.ReadOnlySpan128`1<System.UInt64>
-    IL_0016: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops\\cpu\\srlv.cs"
-    IL_001B: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops\\cpu\\srlv.cs"
-    IL_0020: ldc.i4 137
-    IL_0025: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_002A: call System.Int32 Z0.Span128::Length<System.UInt64,System.UInt64>(Z0.ReadOnlySpan128`1<System.UInt64>,Z0.ReadOnlySpan128`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_002F: stloc.1
-    IL_0030: ldc.i4.0
-    IL_0031: stloc.3
-    IL_0032: br.s IL_0070
-    IL_0034: ldarg.0
-    IL_0035: ldloc.3
-    IL_0036: call Z0.Vec128`1<System.UInt64> Z0.ginxs::LoadVec128<System.UInt64>(Z0.ReadOnlySpan128`1<System.UInt64>,System.Int32)
-    IL_003B: stloc.s V_4
-    IL_003D: ldloca.s V_4
-    IL_003F: ldarg.1
-    IL_0040: ldobj Z0.ReadOnlySpan128`1<System.UInt64>
-    IL_0045: ldloc.3
-    IL_0046: call Z0.Vec128`1<System.UInt64> Z0.ginxs::LoadVec128<System.UInt64>(Z0.ReadOnlySpan128`1<System.UInt64>,System.Int32)
-    IL_004B: stloc.s V_5
-    IL_004D: ldloca.s V_5
-    IL_004F: call Z0.Vec128`1<System.UInt64> Z0.Bits::srlv(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
-    IL_0054: stloc.s V_6
-    IL_0056: ldloca.s V_6
-    IL_0058: ldarg.2
-    IL_0059: ldobj Z0.Span128`1<System.UInt64>
-    IL_005E: stloc.2
-    IL_005F: ldloca.s V_2
-    IL_0061: ldloc.3
-    IL_0062: call System.UInt64& Z0.Span128`1<System.UInt64>::get_Item(System.Int32)
-    IL_0067: call System.Void zfunc::vstore<System.UInt64>(Z0.Vec128`1<System.UInt64>&,System.UInt64&)
-    IL_006C: ldloc.3
-    IL_006D: ldloc.0
-    IL_006E: add
-    IL_006F: stloc.3
-    IL_0070: ldloc.3
-    IL_0071: ldloc.1
-    IL_0072: blt.s IL_0034
-    IL_0074: ldarg.2
-    IL_0075: ldobj Z0.Span128`1<System.UInt64>
-    IL_007A: ret
-
-}
-Span256<int> srlv(ReadOnlySpan256<int> lhs, in ReadOnlySpan256<uint> rhs, in Span256<int> dst)
-{
-    IL_0000: ldarg.2
-    IL_0001: ldobj Z0.Span256`1<System.Int32>
-    IL_0006: stloc.2
-    IL_0007: ldloca.s V_2
-    IL_0009: call System.Int32 Z0.Span256`1<System.Int32>::get_BlockWidth()
-    IL_000E: stloc.0
-    IL_000F: ldarg.0
-    IL_0010: ldarg.1
-    IL_0011: ldobj Z0.ReadOnlySpan256`1<System.UInt32>
-    IL_0016: ldstr "srlv"
-    IL_001B: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops\\cpu\\srlv.cs"
-    IL_0020: ldc.i4 146
-    IL_0025: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_002A: call System.Int32 zfunc::length<System.Int32,System.UInt32>(Z0.ReadOnlySpan256`1<System.Int32>,Z0.ReadOnlySpan256`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_002F: stloc.1
-    IL_0030: ldc.i4.0
-    IL_0031: stloc.3
-    IL_0032: br.s IL_0070
-    IL_0034: ldarg.0
-    IL_0035: ldloc.3
-    IL_0036: call Z0.Vec256`1<System.Int32> Z0.ginxs::LoadVec256<System.Int32>(Z0.ReadOnlySpan256`1<System.Int32>,System.Int32)
-    IL_003B: stloc.s V_4
-    IL_003D: ldloca.s V_4
-    IL_003F: ldarg.1
-    IL_0040: ldobj Z0.ReadOnlySpan256`1<System.UInt32>
-    IL_0045: ldloc.3
-    IL_0046: call Z0.Vec256`1<System.UInt32> Z0.ginxs::LoadVec256<System.UInt32>(Z0.ReadOnlySpan256`1<System.UInt32>,System.Int32)
-    IL_004B: stloc.s V_5
-    IL_004D: ldloca.s V_5
-    IL_004F: call Z0.Vec256`1<System.Int32> Z0.Bits::srlv(Z0.Vec256`1<System.Int32>&,Z0.Vec256`1<System.UInt32>&)
-    IL_0054: stloc.s V_6
-    IL_0056: ldloca.s V_6
-    IL_0058: ldarg.2
-    IL_0059: ldobj Z0.Span256`1<System.Int32>
-    IL_005E: stloc.2
-    IL_005F: ldloca.s V_2
-    IL_0061: ldloc.3
-    IL_0062: call System.Int32& Z0.Span256`1<System.Int32>::get_Item(System.Int32)
-    IL_0067: call System.Void zfunc::vstore<System.Int32>(Z0.Vec256`1<System.Int32>&,System.Int32&)
-    IL_006C: ldloc.3
-    IL_006D: ldloc.0
-    IL_006E: add
-    IL_006F: stloc.3
-    IL_0070: ldloc.3
-    IL_0071: ldloc.1
-    IL_0072: blt.s IL_0034
-    IL_0074: ldarg.2
-    IL_0075: ldobj Z0.Span256`1<System.Int32>
-    IL_007A: ret
-
-}
-Span256<uint> srlv(ReadOnlySpan256<uint> lhs, in ReadOnlySpan256<uint> rhs, in Span256<uint> dst)
-{
-    IL_0000: ldarg.2
-    IL_0001: ldobj Z0.Span256`1<System.UInt32>
-    IL_0006: stloc.2
-    IL_0007: ldloca.s V_2
-    IL_0009: call System.Int32 Z0.Span256`1<System.UInt32>::get_BlockWidth()
-    IL_000E: stloc.0
-    IL_000F: ldarg.0
-    IL_0010: ldarg.1
-    IL_0011: ldobj Z0.ReadOnlySpan256`1<System.UInt32>
-    IL_0016: ldstr "srlv"
-    IL_001B: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops\\cpu\\srlv.cs"
-    IL_0020: ldc.i4 155
-    IL_0025: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_002A: call System.Int32 zfunc::length<System.UInt32,System.UInt32>(Z0.ReadOnlySpan256`1<System.UInt32>,Z0.ReadOnlySpan256`1<System.UInt32>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_002F: stloc.1
-    IL_0030: ldc.i4.0
-    IL_0031: stloc.3
-    IL_0032: br.s IL_0070
-    IL_0034: ldarg.0
-    IL_0035: ldloc.3
-    IL_0036: call Z0.Vec256`1<System.UInt32> Z0.ginxs::LoadVec256<System.UInt32>(Z0.ReadOnlySpan256`1<System.UInt32>,System.Int32)
-    IL_003B: stloc.s V_4
-    IL_003D: ldloca.s V_4
-    IL_003F: ldarg.1
-    IL_0040: ldobj Z0.ReadOnlySpan256`1<System.UInt32>
-    IL_0045: ldloc.3
-    IL_0046: call Z0.Vec256`1<System.UInt32> Z0.ginxs::LoadVec256<System.UInt32>(Z0.ReadOnlySpan256`1<System.UInt32>,System.Int32)
-    IL_004B: stloc.s V_5
-    IL_004D: ldloca.s V_5
-    IL_004F: call Z0.Vec256`1<System.UInt32> Z0.Bits::srlv(Z0.Vec256`1<System.UInt32>&,Z0.Vec256`1<System.UInt32>&)
-    IL_0054: stloc.s V_6
-    IL_0056: ldloca.s V_6
-    IL_0058: ldarg.2
-    IL_0059: ldobj Z0.Span256`1<System.UInt32>
-    IL_005E: stloc.2
-    IL_005F: ldloca.s V_2
-    IL_0061: ldloc.3
-    IL_0062: call System.UInt32& Z0.Span256`1<System.UInt32>::get_Item(System.Int32)
-    IL_0067: call System.Void zfunc::vstore<System.UInt32>(Z0.Vec256`1<System.UInt32>&,System.UInt32&)
-    IL_006C: ldloc.3
-    IL_006D: ldloc.0
-    IL_006E: add
-    IL_006F: stloc.3
-    IL_0070: ldloc.3
-    IL_0071: ldloc.1
-    IL_0072: blt.s IL_0034
-    IL_0074: ldarg.2
-    IL_0075: ldobj Z0.Span256`1<System.UInt32>
-    IL_007A: ret
-
-}
-Span256<long> srlv(ReadOnlySpan256<long> lhs, in ReadOnlySpan256<ulong> rhs, in Span256<long> dst)
-{
-    IL_0000: ldarg.2
-    IL_0001: ldobj Z0.Span256`1<System.Int64>
-    IL_0006: stloc.2
-    IL_0007: ldloca.s V_2
-    IL_0009: call System.Int32 Z0.Span256`1<System.Int64>::get_BlockWidth()
-    IL_000E: stloc.0
-    IL_000F: ldarg.0
-    IL_0010: ldarg.1
-    IL_0011: ldobj Z0.ReadOnlySpan256`1<System.UInt64>
-    IL_0016: ldstr "srlv"
-    IL_001B: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops\\cpu\\srlv.cs"
-    IL_0020: ldc.i4 164
-    IL_0025: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_002A: call System.Int32 zfunc::length<System.Int64,System.UInt64>(Z0.ReadOnlySpan256`1<System.Int64>,Z0.ReadOnlySpan256`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_002F: stloc.1
-    IL_0030: ldc.i4.0
-    IL_0031: stloc.3
-    IL_0032: br.s IL_0070
-    IL_0034: ldarg.0
-    IL_0035: ldloc.3
-    IL_0036: call Z0.Vec256`1<System.Int64> Z0.ginxs::LoadVec256<System.Int64>(Z0.ReadOnlySpan256`1<System.Int64>,System.Int32)
-    IL_003B: stloc.s V_4
-    IL_003D: ldloca.s V_4
-    IL_003F: ldarg.1
-    IL_0040: ldobj Z0.ReadOnlySpan256`1<System.UInt64>
-    IL_0045: ldloc.3
-    IL_0046: call Z0.Vec256`1<System.UInt64> Z0.ginxs::LoadVec256<System.UInt64>(Z0.ReadOnlySpan256`1<System.UInt64>,System.Int32)
-    IL_004B: stloc.s V_5
-    IL_004D: ldloca.s V_5
-    IL_004F: call Z0.Vec256`1<System.Int64> Z0.Bits::srlv(Z0.Vec256`1<System.Int64>&,Z0.Vec256`1<System.UInt64>&)
-    IL_0054: stloc.s V_6
-    IL_0056: ldloca.s V_6
-    IL_0058: ldarg.2
-    IL_0059: ldobj Z0.Span256`1<System.Int64>
-    IL_005E: stloc.2
-    IL_005F: ldloca.s V_2
-    IL_0061: ldloc.3
-    IL_0062: call System.Int64& Z0.Span256`1<System.Int64>::get_Item(System.Int32)
-    IL_0067: call System.Void zfunc::vstore<System.Int64>(Z0.Vec256`1<System.Int64>&,System.Int64&)
-    IL_006C: ldloc.3
-    IL_006D: ldloc.0
-    IL_006E: add
-    IL_006F: stloc.3
-    IL_0070: ldloc.3
-    IL_0071: ldloc.1
-    IL_0072: blt.s IL_0034
-    IL_0074: ldarg.2
-    IL_0075: ldobj Z0.Span256`1<System.Int64>
-    IL_007A: ret
-
-}
-Span256<ulong> srlv(ReadOnlySpan256<ulong> lhs, in ReadOnlySpan256<ulong> rhs, in Span256<ulong> dst)
-{
-    IL_0000: ldarg.2
-    IL_0001: ldobj Z0.Span256`1<System.UInt64>
-    IL_0006: stloc.2
-    IL_0007: ldloca.s V_2
-    IL_0009: call System.Int32 Z0.Span256`1<System.UInt64>::get_BlockWidth()
-    IL_000E: stloc.0
-    IL_000F: ldarg.0
-    IL_0010: ldarg.1
-    IL_0011: ldobj Z0.ReadOnlySpan256`1<System.UInt64>
-    IL_0016: ldstr "srlv"
-    IL_001B: ldstr "J:\\dev\\projects\\z0\\bits\\src\\ops\\cpu\\srlv.cs"
-    IL_0020: ldc.i4 173
-    IL_0025: newobj System.Void System.Nullable`1<System.Int32>::.ctor(System.Int32)
-    IL_002A: call System.Int32 zfunc::length<System.UInt64,System.UInt64>(Z0.ReadOnlySpan256`1<System.UInt64>,Z0.ReadOnlySpan256`1<System.UInt64>,System.String,System.String,System.Nullable`1<System.Int32>)
-    IL_002F: stloc.1
-    IL_0030: ldc.i4.0
-    IL_0031: stloc.3
-    IL_0032: br.s IL_0070
-    IL_0034: ldarg.0
-    IL_0035: ldloc.3
-    IL_0036: call Z0.Vec256`1<System.UInt64> Z0.ginxs::LoadVec256<System.UInt64>(Z0.ReadOnlySpan256`1<System.UInt64>,System.Int32)
-    IL_003B: stloc.s V_4
-    IL_003D: ldloca.s V_4
-    IL_003F: ldarg.1
-    IL_0040: ldobj Z0.ReadOnlySpan256`1<System.UInt64>
-    IL_0045: ldloc.3
-    IL_0046: call Z0.Vec256`1<System.UInt64> Z0.ginxs::LoadVec256<System.UInt64>(Z0.ReadOnlySpan256`1<System.UInt64>,System.Int32)
-    IL_004B: stloc.s V_5
-    IL_004D: ldloca.s V_5
-    IL_004F: call Z0.Vec256`1<System.UInt64> Z0.Bits::srlv(Z0.Vec256`1<System.UInt64>&,Z0.Vec256`1<System.UInt64>&)
-    IL_0054: stloc.s V_6
-    IL_0056: ldloca.s V_6
-    IL_0058: ldarg.2
-    IL_0059: ldobj Z0.Span256`1<System.UInt64>
-    IL_005E: stloc.2
-    IL_005F: ldloca.s V_2
-    IL_0061: ldloc.3
-    IL_0062: call System.UInt64& Z0.Span256`1<System.UInt64>::get_Item(System.Int32)
-    IL_0067: call System.Void zfunc::vstore<System.UInt64>(Z0.Vec256`1<System.UInt64>&,System.UInt64&)
-    IL_006C: ldloc.3
-    IL_006D: ldloc.0
-    IL_006E: add
-    IL_006F: stloc.3
-    IL_0070: ldloc.3
-    IL_0071: ldloc.1
-    IL_0072: blt.s IL_0034
-    IL_0074: ldarg.2
-    IL_0075: ldobj Z0.Span256`1<System.UInt64>
-    IL_007A: ret
-
-}
-UInt128 xor(in UInt128 lhs, in UInt128 rhs)
+uint rank(ushort src, BitPos pos)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.UInt128
-    IL_0006: call Z0.Vec128`1<System.UInt64> Z0.UInt128X::ToVec128(Z0.UInt128)
-    IL_000B: stloc.0
-    IL_000C: ldloca.s V_0
-    IL_000E: ldarg.1
-    IL_000F: ldobj Z0.UInt128
-    IL_0014: call Z0.Vec128`1<System.UInt64> Z0.UInt128X::ToVec128(Z0.UInt128)
-    IL_0019: stloc.1
-    IL_001A: ldloca.s V_1
-    IL_001C: call Z0.Vec128`1<System.UInt64> Z0.Bits::xor(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
-    IL_0021: stloc.2
-    IL_0022: ldloca.s V_2
-    IL_0024: call Z0.UInt128 Z0.UInt128X::ToUInt128(Z0.Vec128`1<System.UInt64>&)
-    IL_0029: ret
+    IL_0001: ldc.i4.0
+    IL_0002: call Z0.BitPos Z0.BitPos::op_Implicit(System.Int32)
+    IL_0007: ldarg.1
+    IL_0008: call System.UInt16 Z0.Bits::range(System.UInt16,Z0.BitPos,Z0.BitPos)
+    IL_000D: call System.UInt32 Z0.Bits::pop(System.UInt16)
+    IL_0012: ret
 
 }
-ref UInt128 xor(in UInt128 lhs, in UInt128 rhs, out UInt128 dst)
+uint rank(int src, BitPos pos)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.0
+    IL_0002: call Z0.BitPos Z0.BitPos::op_Implicit(System.Int32)
+    IL_0007: ldarg.1
+    IL_0008: call System.Int32 Z0.Bits::range(System.Int32,Z0.BitPos,Z0.BitPos)
+    IL_000D: call System.UInt32 Z0.Bits::pop(System.Int32)
+    IL_0012: ret
+
+}
+uint rank(uint src, BitPos pos)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.0
+    IL_0002: call Z0.BitPos Z0.BitPos::op_Implicit(System.Int32)
+    IL_0007: ldarg.1
+    IL_0008: call System.UInt32 Z0.Bits::range(System.UInt32,Z0.BitPos,Z0.BitPos)
+    IL_000D: call System.UInt32 Z0.Bits::pop(System.UInt32)
+    IL_0012: ret
+
+}
+uint rank(long src, BitPos pos)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.0
+    IL_0002: call Z0.BitPos Z0.BitPos::op_Implicit(System.Int32)
+    IL_0007: ldarg.1
+    IL_0008: call System.Int64 Z0.Bits::range(System.Int64,Z0.BitPos,Z0.BitPos)
+    IL_000D: call System.UInt32 Z0.Bits::pop(System.Int64)
+    IL_0012: ret
+
+}
+uint rank(ulong src, BitPos pos)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldc.i4.0
+    IL_0002: call Z0.BitPos Z0.BitPos::op_Implicit(System.Int32)
+    IL_0007: ldarg.1
+    IL_0008: call System.UInt64 Z0.Bits::range(System.UInt64,Z0.BitPos,Z0.BitPos)
+    IL_000D: call System.UInt32 Z0.Bits::pop(System.UInt64)
+    IL_0012: ret
+
+}
+Bit readbit(sbyte src, int pos)
+{
+    IL_0000: ldarga.s src
+    IL_0002: ldarga.s pos
+    IL_0004: call System.Boolean Z0.BitMask::test(System.SByte&,System.Int32&)
+    IL_0009: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
+    IL_000E: ret
+
+}
+Bit readbit(byte src, int pos)
+{
+    IL_0000: ldarga.s src
+    IL_0002: ldarga.s pos
+    IL_0004: call System.Boolean Z0.BitMask::test(System.Byte&,System.Int32&)
+    IL_0009: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
+    IL_000E: ret
+
+}
+Bit readbit(short src, int pos)
+{
+    IL_0000: ldarga.s src
+    IL_0002: ldarga.s pos
+    IL_0004: call System.Boolean Z0.BitMask::test(System.Int16&,System.Int32&)
+    IL_0009: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
+    IL_000E: ret
+
+}
+Bit readbit(ushort src, int pos)
+{
+    IL_0000: ldarga.s src
+    IL_0002: ldarga.s pos
+    IL_0004: call System.Boolean Z0.BitMask::test(System.UInt16&,System.Int32&)
+    IL_0009: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
+    IL_000E: ret
+
+}
+Bit readbit(int src, int pos)
+{
+    IL_0000: ldarga.s src
+    IL_0002: ldarga.s pos
+    IL_0004: call System.Boolean Z0.BitMask::test(System.Int32&,System.Int32&)
+    IL_0009: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
+    IL_000E: ret
+
+}
+Bit readbit(uint src, int pos)
+{
+    IL_0000: ldarga.s src
+    IL_0002: ldarga.s pos
+    IL_0004: call System.Boolean Z0.BitMask::test(System.UInt32&,System.Int32&)
+    IL_0009: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
+    IL_000E: ret
+
+}
+Bit readbit(long src, int pos)
+{
+    IL_0000: ldarga.s src
+    IL_0002: ldarga.s pos
+    IL_0004: call System.Boolean Z0.BitMask::test(System.Int64&,System.Int32&)
+    IL_0009: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
+    IL_000E: ret
+
+}
+Bit readbit(ulong src, int pos)
+{
+    IL_0000: ldarga.s src
+    IL_0002: ldarga.s pos
+    IL_0004: call System.Boolean Z0.BitMask::test(System.UInt64&,System.Int32&)
+    IL_0009: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
+    IL_000E: ret
+
+}
+Bit readbit(float src, int pos)
+{
+    IL_0000: ldarga.s src
+    IL_0002: ldarga.s pos
+    IL_0004: call System.Boolean Z0.BitMask::test(System.Single&,System.Int32&)
+    IL_0009: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
+    IL_000E: ret
+
+}
+Bit readbit(double src, int pos)
+{
+    IL_0000: ldarga.s src
+    IL_0002: ldarga.s pos
+    IL_0004: call System.Boolean Z0.BitMask::test(System.Double&,System.Int32&)
+    IL_0009: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
+    IL_000E: ret
+
+}
+ref Bit read(in sbyte src, in int pos, out Bit dst)
 {
     IL_0000: ldarg.2
     IL_0001: ldarg.0
-    IL_0002: ldobj Z0.UInt128
-    IL_0007: call Z0.Vec128`1<System.UInt64> Z0.UInt128X::ToVec128(Z0.UInt128)
+    IL_0002: ldarg.1
+    IL_0003: call System.Boolean Z0.Bits::test(System.SByte&,System.Int32&)
+    IL_0008: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
+    IL_000D: stobj Z0.Bit
+    IL_0012: ldarg.2
+    IL_0013: ret
+
+}
+ref Bit read(in byte src, in int pos, out Bit dst)
+{
+    IL_0000: ldarg.2
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: call System.Boolean Z0.Bits::test(System.Byte&,System.Int32&)
+    IL_0008: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
+    IL_000D: stobj Z0.Bit
+    IL_0012: ldarg.2
+    IL_0013: ret
+
+}
+ref Bit read(in short src, in int pos, out Bit dst)
+{
+    IL_0000: ldarg.2
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: call System.Boolean Z0.Bits::test(System.Int16&,System.Int32&)
+    IL_0008: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
+    IL_000D: stobj Z0.Bit
+    IL_0012: ldarg.2
+    IL_0013: ret
+
+}
+ref Bit read(in ushort src, in int pos, out Bit dst)
+{
+    IL_0000: ldarg.2
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: call System.Boolean Z0.Bits::test(System.UInt16&,System.Int32&)
+    IL_0008: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
+    IL_000D: stobj Z0.Bit
+    IL_0012: ldarg.2
+    IL_0013: ret
+
+}
+ref Bit read(in int src, in int pos, out Bit dst)
+{
+    IL_0000: ldarg.2
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: call System.Boolean Z0.Bits::test(System.Int32&,System.Int32&)
+    IL_0008: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
+    IL_000D: stobj Z0.Bit
+    IL_0012: ldarg.2
+    IL_0013: ret
+
+}
+ref Bit read(in uint src, in int pos, out Bit dst)
+{
+    IL_0000: ldarg.2
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: call System.Boolean Z0.Bits::test(System.UInt32&,System.Int32&)
+    IL_0008: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
+    IL_000D: stobj Z0.Bit
+    IL_0012: ldarg.2
+    IL_0013: ret
+
+}
+ref Bit read(in long src, in int pos, out Bit dst)
+{
+    IL_0000: ldarg.2
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: call System.Boolean Z0.Bits::test(System.Int64&,System.Int32&)
+    IL_0008: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
+    IL_000D: stobj Z0.Bit
+    IL_0012: ldarg.2
+    IL_0013: ret
+
+}
+ref Bit read(in ulong src, in int pos, out Bit dst)
+{
+    IL_0000: ldarg.2
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: call System.Boolean Z0.Bits::test(System.UInt64&,System.Int32&)
+    IL_0008: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
+    IL_000D: stobj Z0.Bit
+    IL_0012: ldarg.2
+    IL_0013: ret
+
+}
+ref Bit read(in float src, in int pos, out Bit dst)
+{
+    IL_0000: ldarg.2
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: call System.Boolean Z0.Bits::test(System.Single&,System.Int32&)
+    IL_0008: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
+    IL_000D: stobj Z0.Bit
+    IL_0012: ldarg.2
+    IL_0013: ret
+
+}
+ref Bit read(in double src, in int pos, out Bit dst)
+{
+    IL_0000: ldarg.2
+    IL_0001: ldarg.0
+    IL_0002: ldarg.1
+    IL_0003: call System.Boolean Z0.Bits::test(System.Double&,System.Int32&)
+    IL_0008: call Z0.Bit Z0.Bit::op_Implicit(System.Boolean)
+    IL_000D: stobj Z0.Bit
+    IL_0012: ldarg.2
+    IL_0013: ret
+
+}
+byte rev(byte src)
+{
+    IL_0000: ldarg.0
+    IL_0001: conv.u8
+    IL_0002: ldc.i4 -2145384446
+    IL_0007: conv.u8
+    IL_0008: mul
+    IL_0009: ldc.i8 36578664720
+    IL_0012: and
+    IL_0013: ldc.i8 4311810305
+    IL_001C: mul
+    IL_001D: ldc.i4.s 32
+    IL_001F: shr.un
+    IL_0020: conv.u1
+    IL_0021: ret
+
+}
+ushort rev(ushort src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.Byte Z0.Bits::hi(System.UInt16&)
+    IL_0007: call System.Byte Z0.Bits::rev(System.Byte)
+    IL_000C: ldarga.s src
+    IL_000E: call System.Byte Z0.Bits::lo(System.UInt16&)
+    IL_0013: call System.Byte Z0.Bits::rev(System.Byte)
+    IL_0018: call System.UInt16 Z0.Bits::pack(System.Byte,System.Byte)
+    IL_001D: ret
+
+}
+uint rev(uint src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.UInt16 Z0.Bits::hi(System.UInt32&)
+    IL_0007: call System.UInt16 Z0.Bits::rev(System.UInt16)
+    IL_000C: ldarga.s src
+    IL_000E: call System.UInt16 Z0.Bits::lo(System.UInt32&)
+    IL_0013: call System.UInt16 Z0.Bits::rev(System.UInt16)
+    IL_0018: call System.UInt32 Z0.Bits::pack(System.UInt16,System.UInt16)
+    IL_001D: ret
+
+}
+ulong rev(ulong src)
+{
+    IL_0000: ldarga.s src
+    IL_0002: call System.UInt32 Z0.Bits::hi(System.UInt64&)
+    IL_0007: call System.UInt32 Z0.Bits::rev(System.UInt32)
     IL_000C: stloc.0
     IL_000D: ldloca.s V_0
-    IL_000F: ldarg.1
-    IL_0010: ldobj Z0.UInt128
-    IL_0015: call Z0.Vec128`1<System.UInt64> Z0.UInt128X::ToVec128(Z0.UInt128)
-    IL_001A: stloc.1
-    IL_001B: ldloca.s V_1
-    IL_001D: call Z0.Vec128`1<System.UInt64> Z0.Bits::xor(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
-    IL_0022: stloc.2
-    IL_0023: ldloca.s V_2
-    IL_0025: call Z0.UInt128 Z0.UInt128X::ToUInt128(Z0.Vec128`1<System.UInt64>&)
-    IL_002A: stobj Z0.UInt128
-    IL_002F: ldarg.2
-    IL_0030: ret
+    IL_000F: ldarga.s src
+    IL_0011: call System.UInt32 Z0.Bits::lo(System.UInt64&)
+    IL_0016: call System.UInt32 Z0.Bits::rev(System.UInt32)
+    IL_001B: stloc.1
+    IL_001C: ldloca.s V_1
+    IL_001E: call System.UInt64 Z0.Bits::pack(System.UInt32&,System.UInt32&)
+    IL_0023: ret
 
 }
-Vec128<byte> xor(in Vec128<byte> lhs, in Vec128<byte> rhs)
+byte rotl(byte src, byte offset)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Byte>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Byte>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Sse2::Xor(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_001B: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0020: ret
+    IL_0001: ldarg.1
+    IL_0002: ldc.i4.s 31
+    IL_0004: and
+    IL_0005: shl
+    IL_0006: ldarg.0
+    IL_0007: ldc.i4.8
+    IL_0008: ldarg.1
+    IL_0009: sub
+    IL_000A: ldc.i4.s 31
+    IL_000C: and
+    IL_000D: shr
+    IL_000E: or
+    IL_000F: conv.u1
+    IL_0010: ret
 
 }
-Vec128<short> xor(in Vec128<short> lhs, in Vec128<short> rhs)
+ushort rotl(ushort src, ushort offset)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Int16>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Int16>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::Xor(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_001B: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_0020: ret
+    IL_0001: ldarg.1
+    IL_0002: ldc.i4.s 31
+    IL_0004: and
+    IL_0005: shl
+    IL_0006: ldarg.0
+    IL_0007: ldc.i4.s 16
+    IL_0009: ldarg.1
+    IL_000A: sub
+    IL_000B: ldc.i4.s 31
+    IL_000D: and
+    IL_000E: shr
+    IL_000F: or
+    IL_0010: conv.u2
+    IL_0011: ret
 
 }
-Vec128<sbyte> xor(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+uint rotl(uint src, uint offset)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.SByte>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.SByte>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Sse2::Xor(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
-    IL_001B: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
-    IL_0020: ret
+    IL_0001: ldarg.1
+    IL_0002: ldc.i4.s 31
+    IL_0004: and
+    IL_0005: shl
+    IL_0006: ldarg.0
+    IL_0007: ldc.i4.s 32
+    IL_0009: ldarg.1
+    IL_000A: sub
+    IL_000B: ldc.i4.s 31
+    IL_000D: and
+    IL_000E: shr.un
+    IL_000F: or
+    IL_0010: ret
 
 }
-Vec128<ushort> xor(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
+ulong rotl(ulong src, ulong offset)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.UInt16>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.UInt16>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse2::Xor(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_001B: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_0020: ret
+    IL_0001: ldarg.1
+    IL_0002: conv.i4
+    IL_0003: ldc.i4.s 63
+    IL_0005: and
+    IL_0006: shl
+    IL_0007: ldarg.0
+    IL_0008: ldc.i4.s 64
+    IL_000A: ldarg.1
+    IL_000B: conv.i4
+    IL_000C: sub
+    IL_000D: ldc.i4.s 63
+    IL_000F: and
+    IL_0010: shr.un
+    IL_0011: or
+    IL_0012: ret
 
 }
-Vec128<int> xor(in Vec128<int> lhs, in Vec128<int> rhs)
+ref byte rotl(ref byte src, in byte offset)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Int32>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Int32>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse2::Xor(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_001B: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_0020: ret
+    IL_0001: ldarg.0
+    IL_0002: ldind.u1
+    IL_0003: ldarg.1
+    IL_0004: ldind.u1
+    IL_0005: call System.Byte Z0.Bits::rotl(System.Byte,System.Byte)
+    IL_000A: stind.i1
+    IL_000B: ldarg.0
+    IL_000C: ret
 
 }
-Vec128<uint> xor(in Vec128<uint> lhs, in Vec128<uint> rhs)
+ref ushort rotl(ref ushort src, in ushort offset)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.UInt32>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.UInt32>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Sse2::Xor(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
-    IL_001B: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
-    IL_0020: ret
+    IL_0001: ldarg.0
+    IL_0002: ldind.u2
+    IL_0003: ldarg.1
+    IL_0004: ldind.u2
+    IL_0005: call System.UInt16 Z0.Bits::rotl(System.UInt16,System.UInt16)
+    IL_000A: stind.i2
+    IL_000B: ldarg.0
+    IL_000C: ret
 
 }
-Vec128<long> xor(in Vec128<long> lhs, in Vec128<long> rhs)
+ref uint rotl(ref uint src, in uint offset)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Int64>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Int64>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int64> System.Runtime.Intrinsics.X86.Sse2::Xor(System.Runtime.Intrinsics.Vector128`1<System.Int64>,System.Runtime.Intrinsics.Vector128`1<System.Int64>)
-    IL_001B: call Z0.Vec128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int64>)
-    IL_0020: ret
+    IL_0001: ldarg.0
+    IL_0002: ldind.u4
+    IL_0003: ldarg.1
+    IL_0004: ldind.u4
+    IL_0005: call System.UInt32 Z0.Bits::rotl(System.UInt32,System.UInt32)
+    IL_000A: stind.i4
+    IL_000B: ldarg.0
+    IL_000C: ret
 
 }
-Vec128<ulong> xor(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
+ref ulong rotl(ref ulong src, in ulong offset)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.UInt64>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.UInt64>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Sse2::Xor(System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
-    IL_001B: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
-    IL_0020: ret
+    IL_0001: ldarg.0
+    IL_0002: ldind.i8
+    IL_0003: ldarg.1
+    IL_0004: ldind.i8
+    IL_0005: call System.UInt64 Z0.Bits::rotl(System.UInt64,System.UInt64)
+    IL_000A: stind.i8
+    IL_000B: ldarg.0
+    IL_000C: ret
 
 }
-Vec128<float> xor(in Vec128<float> lhs, in Vec128<float> rhs)
+byte rotr(byte src, byte offset)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Single>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Single>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::Xor(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_001B: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0020: ret
+    IL_0001: ldarg.1
+    IL_0002: ldc.i4.s 31
+    IL_0004: and
+    IL_0005: shr
+    IL_0006: ldarg.0
+    IL_0007: ldc.i4.8
+    IL_0008: ldarg.1
+    IL_0009: sub
+    IL_000A: ldc.i4.s 31
+    IL_000C: and
+    IL_000D: shl
+    IL_000E: or
+    IL_000F: conv.u1
+    IL_0010: ret
 
 }
-Vec128<double> xor(in Vec128<double> lhs, in Vec128<double> rhs)
+ushort rotr(ushort src, ushort offset)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Double>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Double>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::Xor(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_001B: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0020: ret
+    IL_0001: ldarg.1
+    IL_0002: ldc.i4.s 31
+    IL_0004: and
+    IL_0005: shr
+    IL_0006: ldarg.0
+    IL_0007: ldc.i4.s 16
+    IL_0009: ldarg.1
+    IL_000A: sub
+    IL_000B: ldc.i4.s 31
+    IL_000D: and
+    IL_000E: shl
+    IL_000F: or
+    IL_0010: conv.u2
+    IL_0011: ret
 
 }
-Vec256<byte> xor(in Vec256<byte> lhs, in Vec256<byte> rhs)
+uint rotr(uint src, uint offset)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.Byte>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec256`1<System.Byte>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_001B: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0020: ret
-
-}
-Vec256<short> xor(in Vec256<short> lhs, in Vec256<short> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.Int16>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec256`1<System.Int16>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
-    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0020: ret
-
-}
-Vec256<sbyte> xor(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.SByte>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec256`1<System.SByte>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_001B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0020: ret
-
-}
-Vec256<ushort> xor(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
-    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_001B: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0020: ret
-
-}
-Vec256<int> xor(in Vec256<int> lhs, in Vec256<int> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.Int32>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec256`1<System.Int32>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_001B: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_0020: ret
-
-}
-Vec256<uint> xor(in Vec256<uint> lhs, in Vec256<uint> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_001B: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_0020: ret
-
-}
-Vec256<long> xor(in Vec256<long> lhs, in Vec256<long> rhs)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.Int64>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec256`1<System.Int64>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
-    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_001B: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_0020: ret
+    IL_0001: ldarg.1
+    IL_0002: ldc.i4.s 31
+    IL_0004: and
+    IL_0005: shr.un
+    IL_0006: ldarg.0
+    IL_0007: ldc.i4.s 32
+    IL_0009: ldarg.1
+    IL_000A: sub
+    IL_000B: ldc.i4.s 31
+    IL_000D: and
+    IL_000E: shl
+    IL_000F: or
+    IL_0010: ret
 
 }
 Vec256<ulong> xor(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
@@ -8521,339 +5975,551 @@ ref byte bitmap(in ulong src, byte srcOffset, byte len, byte dstOffset, ref byte
     IL_0021: ret
 
 }
-bool nonz(in Vec256<short> src)
+ref short bitmap(in ulong src, byte srcOffset, byte len, byte dstOffset, ref short dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.Int16>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
-    IL_000B: ldarg.0
-    IL_000C: ldobj Z0.Vec256`1<System.Int16>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
-    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_001B: ldc.i4.0
-    IL_001C: ceq
+    IL_0000: ldarg.s dst
+    IL_0002: ldarg.s dst
+    IL_0004: ldind.i2
+    IL_0005: ldarg.3
+    IL_0006: ldc.i4.s 31
+    IL_0008: and
+    IL_0009: shl
+    IL_000A: conv.i2
+    IL_000B: stind.i2
+    IL_000C: ldarg.s dst
+    IL_000E: ldarg.s dst
+    IL_0010: ldind.i2
+    IL_0011: ldarg.0
+    IL_0012: ldarga.s srcOffset
+    IL_0014: ldarga.s len
+    IL_0016: call System.UInt64 Z0.Bits::extract(System.UInt64&,System.Byte&,System.Byte&)
+    IL_001B: conv.i2
+    IL_001C: or
+    IL_001D: conv.i2
+    IL_001E: stind.i2
+    IL_001F: ldarg.s dst
+    IL_0021: ret
+
+}
+ref ushort bitmap(in ulong src, byte srcOffset, byte len, byte dstOffset, ref ushort dst)
+{
+    IL_0000: ldarg.s dst
+    IL_0002: ldarg.s dst
+    IL_0004: ldind.u2
+    IL_0005: ldarg.3
+    IL_0006: ldc.i4.s 31
+    IL_0008: and
+    IL_0009: shl
+    IL_000A: conv.u2
+    IL_000B: stind.i2
+    IL_000C: ldarg.s dst
+    IL_000E: ldarg.s dst
+    IL_0010: ldind.u2
+    IL_0011: ldarg.0
+    IL_0012: ldarga.s srcOffset
+    IL_0014: ldarga.s len
+    IL_0016: call System.UInt64 Z0.Bits::extract(System.UInt64&,System.Byte&,System.Byte&)
+    IL_001B: conv.u2
+    IL_001C: or
+    IL_001D: conv.u2
+    IL_001E: stind.i2
+    IL_001F: ldarg.s dst
+    IL_0021: ret
+
+}
+ref int bitmap(in ulong src, byte srcOffset, byte len, byte dstOffset, ref int dst)
+{
+    IL_0000: ldarg.s dst
+    IL_0002: ldarg.s dst
+    IL_0004: ldind.i4
+    IL_0005: ldarg.3
+    IL_0006: ldc.i4.s 31
+    IL_0008: and
+    IL_0009: shl
+    IL_000A: stind.i4
+    IL_000B: ldarg.s dst
+    IL_000D: ldarg.s dst
+    IL_000F: ldind.i4
+    IL_0010: ldarg.0
+    IL_0011: ldarga.s srcOffset
+    IL_0013: ldarga.s len
+    IL_0015: call System.UInt64 Z0.Bits::extract(System.UInt64&,System.Byte&,System.Byte&)
+    IL_001A: conv.i4
+    IL_001B: or
+    IL_001C: stind.i4
+    IL_001D: ldarg.s dst
+    IL_001F: ret
+
+}
+ref uint bitmap(in ulong src, byte srcOffset, byte len, byte dstOffset, ref uint dst)
+{
+    IL_0000: ldarg.s dst
+    IL_0002: ldarg.s dst
+    IL_0004: ldind.u4
+    IL_0005: ldarg.3
+    IL_0006: ldc.i4.s 31
+    IL_0008: and
+    IL_0009: shl
+    IL_000A: stind.i4
+    IL_000B: ldarg.s dst
+    IL_000D: ldarg.s dst
+    IL_000F: ldind.u4
+    IL_0010: ldarg.0
+    IL_0011: ldarga.s srcOffset
+    IL_0013: ldarga.s len
+    IL_0015: call System.UInt64 Z0.Bits::extract(System.UInt64&,System.Byte&,System.Byte&)
+    IL_001A: conv.u4
+    IL_001B: or
+    IL_001C: stind.i4
+    IL_001D: ldarg.s dst
+    IL_001F: ret
+
+}
+ref long bitmap(in ulong src, byte srcOffset, byte len, byte dstOffset, ref long dst)
+{
+    IL_0000: ldarg.s dst
+    IL_0002: ldarg.s dst
+    IL_0004: ldind.i8
+    IL_0005: ldarg.3
+    IL_0006: ldc.i4.s 63
+    IL_0008: and
+    IL_0009: shl
+    IL_000A: stind.i8
+    IL_000B: ldarg.s dst
+    IL_000D: ldarg.s dst
+    IL_000F: ldind.i8
+    IL_0010: ldarg.0
+    IL_0011: ldarga.s srcOffset
+    IL_0013: ldarga.s len
+    IL_0015: call System.UInt64 Z0.Bits::extract(System.UInt64&,System.Byte&,System.Byte&)
+    IL_001A: or
+    IL_001B: stind.i8
+    IL_001C: ldarg.s dst
     IL_001E: ret
 
 }
-bool nonz(in Vec256<ushort> src)
+ref ulong bitmap(in ulong src, byte srcOffset, byte len, byte dstOffset, ref ulong dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
-    IL_000B: ldarg.0
-    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
-    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_001B: ldc.i4.0
-    IL_001C: ceq
+    IL_0000: ldarg.s dst
+    IL_0002: ldarg.s dst
+    IL_0004: ldind.i8
+    IL_0005: ldarg.3
+    IL_0006: ldc.i4.s 63
+    IL_0008: and
+    IL_0009: shl
+    IL_000A: stind.i8
+    IL_000B: ldarg.s dst
+    IL_000D: ldarg.s dst
+    IL_000F: ldind.i8
+    IL_0010: ldarg.0
+    IL_0011: ldarga.s srcOffset
+    IL_0013: ldarga.s len
+    IL_0015: call System.UInt64 Z0.Bits::extract(System.UInt64&,System.Byte&,System.Byte&)
+    IL_001A: or
+    IL_001B: stind.i8
+    IL_001C: ldarg.s dst
     IL_001E: ret
 
 }
-bool nonz(in Vec256<int> src)
+ref float bitmap(in float src, byte srcOffset, byte len, byte dstOffset, ref float dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.Int32>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
-    IL_000B: ldarg.0
-    IL_000C: ldobj Z0.Vec256`1<System.Int32>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
-    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
-    IL_001B: ldc.i4.0
-    IL_001C: ceq
-    IL_001E: ret
+    IL_0000: ldarg.s dst
+    IL_0002: ldarg.0
+    IL_0003: ldind.r4
+    IL_0004: call System.Int32 Z0.MathX::ToBits(System.Single)
+    IL_0009: stloc.0
+    IL_000A: ldloca.s V_0
+    IL_000C: ldarga.s srcOffset
+    IL_000E: ldarga.s len
+    IL_0010: call System.Int32 Z0.Bits::extract(System.Int32&,System.Byte&,System.Byte&)
+    IL_0015: ldarg.3
+    IL_0016: ldc.i4.s 31
+    IL_0018: and
+    IL_0019: shl
+    IL_001A: conv.r4
+    IL_001B: call System.Single& Z0.math::or(System.Single&,System.Single)
+    IL_0020: pop
+    IL_0021: ldarg.s dst
+    IL_0023: ret
 
 }
-bool nonz(in Vec256<uint> src)
+ref double bitmap(in double src, byte srcOffset, byte len, byte dstOffset, ref double dst)
 {
-    IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
-    IL_000B: ldarg.0
-    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
-    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
-    IL_001B: ldc.i4.0
-    IL_001C: ceq
-    IL_001E: ret
+    IL_0000: ldarg.s dst
+    IL_0002: ldarg.0
+    IL_0003: ldind.r8
+    IL_0004: call System.Int64 Z0.MathX::ToBits(System.Double)
+    IL_0009: stloc.0
+    IL_000A: ldloca.s V_0
+    IL_000C: ldarga.s srcOffset
+    IL_000E: ldarga.s len
+    IL_0010: call System.Int64 Z0.Bits::extract(System.Int64&,System.Byte&,System.Byte&)
+    IL_0015: ldarg.3
+    IL_0016: ldc.i4.s 63
+    IL_0018: and
+    IL_0019: shl
+    IL_001A: conv.r8
+    IL_001B: call System.Double& Z0.math::or(System.Double&,System.Double)
+    IL_0020: pop
+    IL_0021: ldarg.s dst
+    IL_0023: ret
 
 }
-bool nonz(in Vec256<long> src)
+byte blsi(byte src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.Int64>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
-    IL_000B: ldarg.0
-    IL_000C: ldobj Z0.Vec256`1<System.Int64>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
-    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
-    IL_001B: ldc.i4.0
-    IL_001C: ceq
-    IL_001E: ret
+    IL_0001: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::ExtractLowestSetBit(System.UInt32)
+    IL_0006: conv.u1
+    IL_0007: ret
 
 }
-bool nonz(in Vec256<ulong> src)
+ushort blsi(ushort src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
-    IL_000B: ldarg.0
-    IL_000C: ldobj Z0.Vec256`1<System.UInt64>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
-    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
-    IL_001B: ldc.i4.0
-    IL_001C: ceq
-    IL_001E: ret
+    IL_0001: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::ExtractLowestSetBit(System.UInt32)
+    IL_0006: conv.u2
+    IL_0007: ret
 
 }
-bool nonz(in Vec256<float> src)
+uint blsi(uint src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.Single>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>)
-    IL_000B: ldarg.0
-    IL_000C: ldobj Z0.Vec256`1<System.Single>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>)
-    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>)
-    IL_001B: ldc.i4.0
-    IL_001C: ceq
-    IL_001E: ret
+    IL_0001: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::ExtractLowestSetBit(System.UInt32)
+    IL_0006: ret
 
 }
-bool nonz(in Vec256<double> src)
+ulong blsi(ulong src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.Double>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>)
-    IL_000B: ldarg.0
-    IL_000C: ldobj Z0.Vec256`1<System.Double>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>)
-    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector256`1<System.Double>)
-    IL_001B: ldc.i4.0
-    IL_001C: ceq
-    IL_001E: ret
+    IL_0001: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi1/X64::ExtractLowestSetBit(System.UInt64)
+    IL_0006: ret
 
 }
-UInt128 or(in UInt128 lhs, in UInt128 rhs)
+byte blsic(byte src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.UInt128
-    IL_0006: call Z0.Vec128`1<System.UInt64> Z0.UInt128X::ToVec128(Z0.UInt128)
-    IL_000B: stloc.0
-    IL_000C: ldloca.s V_0
-    IL_000E: ldarg.1
-    IL_000F: ldobj Z0.UInt128
-    IL_0014: call Z0.Vec128`1<System.UInt64> Z0.UInt128X::ToVec128(Z0.UInt128)
-    IL_0019: stloc.1
-    IL_001A: ldloca.s V_1
-    IL_001C: call Z0.Vec128`1<System.UInt64> Z0.Bits::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
-    IL_0021: stloc.2
-    IL_0022: ldloca.s V_2
-    IL_0024: call Z0.UInt128 Z0.UInt128X::ToUInt128(Z0.Vec128`1<System.UInt64>&)
-    IL_0029: ret
+    IL_0001: not
+    IL_0002: ldarg.0
+    IL_0003: ldc.i4.1
+    IL_0004: sub
+    IL_0005: or
+    IL_0006: conv.u1
+    IL_0007: ret
 
 }
-ref UInt128 or(in UInt128 lhs, in UInt128 rhs, out UInt128 dst)
-{
-    IL_0000: ldarg.2
-    IL_0001: ldarg.0
-    IL_0002: ldobj Z0.UInt128
-    IL_0007: call Z0.Vec128`1<System.UInt64> Z0.UInt128X::ToVec128(Z0.UInt128)
-    IL_000C: stloc.0
-    IL_000D: ldloca.s V_0
-    IL_000F: ldarg.1
-    IL_0010: ldobj Z0.UInt128
-    IL_0015: call Z0.Vec128`1<System.UInt64> Z0.UInt128X::ToVec128(Z0.UInt128)
-    IL_001A: stloc.1
-    IL_001B: ldloca.s V_1
-    IL_001D: call Z0.Vec128`1<System.UInt64> Z0.Bits::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
-    IL_0022: stloc.2
-    IL_0023: ldloca.s V_2
-    IL_0025: call Z0.UInt128 Z0.UInt128X::ToUInt128(Z0.Vec128`1<System.UInt64>&)
-    IL_002A: stobj Z0.UInt128
-    IL_002F: ldarg.2
-    IL_0030: ret
-
-}
-Vec128<byte> or(in Vec128<byte> lhs, in Vec128<byte> rhs)
+ushort blsic(ushort src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Byte>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Byte>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Sse2::Or(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_001B: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
-    IL_0020: ret
+    IL_0001: not
+    IL_0002: ldarg.0
+    IL_0003: ldc.i4.1
+    IL_0004: sub
+    IL_0005: or
+    IL_0006: conv.u2
+    IL_0007: ret
 
 }
-Vec128<short> or(in Vec128<short> lhs, in Vec128<short> rhs)
+uint blsic(uint src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Int16>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Int16>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::Or(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_001B: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
-    IL_0020: ret
+    IL_0001: not
+    IL_0002: ldarg.0
+    IL_0003: ldc.i4.1
+    IL_0004: sub
+    IL_0005: or
+    IL_0006: ret
 
 }
-Vec128<sbyte> or(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+ulong blsic(ulong src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.SByte>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.SByte>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Sse2::Or(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
-    IL_001B: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
-    IL_0020: ret
+    IL_0001: not
+    IL_0002: ldarg.0
+    IL_0003: ldc.i4.1
+    IL_0004: conv.i8
+    IL_0005: sub
+    IL_0006: or
+    IL_0007: ret
 
 }
-Vec128<ushort> or(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
+byte blsmask(byte src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.UInt16>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.UInt16>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse2::Or(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_001B: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
-    IL_0020: ret
+    IL_0001: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::GetMaskUpToLowestSetBit(System.UInt32)
+    IL_0006: conv.u1
+    IL_0007: ret
 
 }
-Vec128<int> or(in Vec128<int> lhs, in Vec128<int> rhs)
+ushort blsmask(ushort src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Int32>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Int32>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse2::Or(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_001B: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
-    IL_0020: ret
+    IL_0001: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::GetMaskUpToLowestSetBit(System.UInt32)
+    IL_0006: conv.u2
+    IL_0007: ret
 
 }
-Vec128<uint> or(in Vec128<uint> lhs, in Vec128<uint> rhs)
+uint blsmask(uint src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.UInt32>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.UInt32>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Sse2::Or(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
-    IL_001B: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
-    IL_0020: ret
+    IL_0001: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::GetMaskUpToLowestSetBit(System.UInt32)
+    IL_0006: ret
 
 }
-Vec128<long> or(in Vec128<long> lhs, in Vec128<long> rhs)
+ulong blsmask(ulong src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Int64>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Int64>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int64> System.Runtime.Intrinsics.X86.Sse2::Or(System.Runtime.Intrinsics.Vector128`1<System.Int64>,System.Runtime.Intrinsics.Vector128`1<System.Int64>)
-    IL_001B: call Z0.Vec128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int64>)
-    IL_0020: ret
+    IL_0001: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi1/X64::GetMaskUpToLowestSetBit(System.UInt64)
+    IL_0006: ret
 
 }
-Vec128<ulong> or(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
+byte blsr(byte src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.UInt64>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.UInt64>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Sse2::Or(System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
-    IL_001B: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
-    IL_0020: ret
+    IL_0001: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::ResetLowestSetBit(System.UInt32)
+    IL_0006: conv.u1
+    IL_0007: ret
 
 }
-Vec128<float> or(in Vec128<float> lhs, in Vec128<float> rhs)
+ushort blsr(ushort src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Single>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Single>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::Or(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_001B: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
-    IL_0020: ret
+    IL_0001: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::ResetLowestSetBit(System.UInt32)
+    IL_0006: conv.u2
+    IL_0007: ret
 
 }
-Vec128<double> or(in Vec128<double> lhs, in Vec128<double> rhs)
+uint blsr(uint src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec128`1<System.Double>
-    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec128`1<System.Double>
-    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
-    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::Or(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_001B: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
-    IL_0020: ret
+    IL_0001: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::ResetLowestSetBit(System.UInt32)
+    IL_0006: ret
 
 }
-Vec256<byte> or(in Vec256<byte> lhs, in Vec256<byte> rhs)
+ulong blsr(ulong src)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.Byte>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec256`1<System.Byte>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_001B: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
-    IL_0020: ret
+    IL_0001: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi1/X64::ResetLowestSetBit(System.UInt64)
+    IL_0006: ret
 
 }
-Vec256<short> or(in Vec256<short> lhs, in Vec256<short> rhs)
+byte bzhi(byte src, uint index)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.Int16>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec256`1<System.Int16>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
-    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
-    IL_0020: ret
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ZeroHighBits(System.UInt32,System.UInt32)
+    IL_0007: conv.u1
+    IL_0008: ret
 
 }
-Vec256<sbyte> or(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+ushort bzhi(ushort src, uint index)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.SByte>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec256`1<System.SByte>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
-    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_001B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
-    IL_0020: ret
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ZeroHighBits(System.UInt32,System.UInt32)
+    IL_0007: conv.u2
+    IL_0008: ret
 
 }
-Vec256<ushort> or(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+uint bzhi(uint src, uint index)
 {
     IL_0000: ldarg.0
-    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
-    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
-    IL_000B: ldarg.1
-    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
-    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
-    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_001B: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
-    IL_0020: ret
+    IL_0001: ldarg.1
+    IL_0002: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi2::ZeroHighBits(System.UInt32,System.UInt32)
+    IL_0007: ret
+
+}
+ulong bzhi(ulong src, uint index)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldarg.1
+    IL_0002: conv.u8
+    IL_0003: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi2/X64::ZeroHighBits(System.UInt64,System.UInt64)
+    IL_0008: ret
+
+}
+sbyte extract(in sbyte src, in byte start, in byte length)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.i1
+    IL_0002: ldarg.1
+    IL_0003: ldind.u1
+    IL_0004: ldarg.2
+    IL_0005: ldind.u1
+    IL_0006: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::BitFieldExtract(System.UInt32,System.Byte,System.Byte)
+    IL_000B: conv.i1
+    IL_000C: ret
+
+}
+byte extract(in byte src, in byte start, in byte length)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.u1
+    IL_0002: ldarg.1
+    IL_0003: ldind.u1
+    IL_0004: ldarg.2
+    IL_0005: ldind.u1
+    IL_0006: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::BitFieldExtract(System.UInt32,System.Byte,System.Byte)
+    IL_000B: conv.u1
+    IL_000C: ret
+
+}
+short extract(in short src, in byte start, in byte length)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.i2
+    IL_0002: ldarg.1
+    IL_0003: ldind.u1
+    IL_0004: ldarg.2
+    IL_0005: ldind.u1
+    IL_0006: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::BitFieldExtract(System.UInt32,System.Byte,System.Byte)
+    IL_000B: conv.i2
+    IL_000C: ret
+
+}
+ushort extract(in ushort src, in byte start, in byte length)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.u2
+    IL_0002: ldarg.1
+    IL_0003: ldind.u1
+    IL_0004: ldarg.2
+    IL_0005: ldind.u1
+    IL_0006: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::BitFieldExtract(System.UInt32,System.Byte,System.Byte)
+    IL_000B: conv.u2
+    IL_000C: ret
+
+}
+uint extract(in uint src, in byte start, in byte length)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.u4
+    IL_0002: ldarg.1
+    IL_0003: ldind.u1
+    IL_0004: ldarg.2
+    IL_0005: ldind.u1
+    IL_0006: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::BitFieldExtract(System.UInt32,System.Byte,System.Byte)
+    IL_000B: ret
+
+}
+int extract(in int src, in byte start, in byte length)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.i4
+    IL_0002: ldarg.1
+    IL_0003: ldind.u1
+    IL_0004: ldarg.2
+    IL_0005: ldind.u1
+    IL_0006: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::BitFieldExtract(System.UInt32,System.Byte,System.Byte)
+    IL_000B: ret
+
+}
+long extract(in long src, in byte start, in byte length)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.i8
+    IL_0002: ldarg.1
+    IL_0003: ldind.u1
+    IL_0004: ldarg.2
+    IL_0005: ldind.u1
+    IL_0006: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi1/X64::BitFieldExtract(System.UInt64,System.Byte,System.Byte)
+    IL_000B: ret
+
+}
+ulong extract(in ulong src, in byte start, in byte length)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.i8
+    IL_0002: ldarg.1
+    IL_0003: ldind.u1
+    IL_0004: ldarg.2
+    IL_0005: ldind.u1
+    IL_0006: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi1/X64::BitFieldExtract(System.UInt64,System.Byte,System.Byte)
+    IL_000B: ret
+
+}
+uint extract(in float src, in byte start, in byte length)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.r4
+    IL_0002: call System.Int32 Z0.MathX::ToBits(System.Single)
+    IL_0007: ldarg.1
+    IL_0008: ldind.u1
+    IL_0009: ldarg.2
+    IL_000A: ldind.u1
+    IL_000B: call System.UInt32 System.Runtime.Intrinsics.X86.Bmi1::BitFieldExtract(System.UInt32,System.Byte,System.Byte)
+    IL_0010: ret
+
+}
+ulong extract(in double src, in byte start, in byte length)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.r8
+    IL_0002: call System.Int64 Z0.MathX::ToBits(System.Double)
+    IL_0007: ldarg.1
+    IL_0008: ldind.u1
+    IL_0009: ldarg.2
+    IL_000A: ldind.u1
+    IL_000B: call System.UInt64 System.Runtime.Intrinsics.X86.Bmi1/X64::BitFieldExtract(System.UInt64,System.Byte,System.Byte)
+    IL_0010: ret
+
+}
+ushort hi(in uint src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.u4
+    IL_0002: ldc.i4.s 16
+    IL_0004: shr.un
+    IL_0005: conv.u2
+    IL_0006: ret
+
+}
+ushort lo(in uint src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.u4
+    IL_0002: conv.u2
+    IL_0003: ret
+
+}
+uint hi(in ulong src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.i8
+    IL_0002: ldc.i4.s 32
+    IL_0004: shr.un
+    IL_0005: conv.u4
+    IL_0006: ret
+
+}
+uint lo(in ulong src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.i8
+    IL_0002: conv.u4
+    IL_0003: ret
+
+}
+sbyte hi(in sbyte src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.i1
+    IL_0002: ldc.i4.4
+    IL_0003: shr
+    IL_0004: conv.i1
+    IL_0005: ret
+
+}
+sbyte lo(in sbyte src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldind.i1
+    IL_0002: ldc.i4.4
+    IL_0003: shl
+    IL_0004: conv.i1
+    IL_0005: ldc.i4.4
+    IL_0006: shr
+    IL_0007: conv.i1
+    IL_0008: ret
 
 }
 Vec256<int> or(in Vec256<int> lhs, in Vec256<int> rhs)
@@ -11022,103 +8688,370 @@ Vec256<byte> srl(in Vec256<byte> src, byte offset)
     IL_00AC: ret
 
 }
-Span128<short> srl(ReadOnlySpan128<short> src, byte offset, Span128<short> dst)
+Vec128<int> srlv(in Vec128<int> src, in Vec128<uint> control)
 {
-    IL_0000: ldarga.s dst
-    IL_0002: call System.Int32 Z0.Span128`1<System.Int16>::get_BlockWidth()
-    IL_0007: stloc.0
-    IL_0008: ldc.i4.0
-    IL_0009: stloc.1
-    IL_000A: br.s IL_0030
-    IL_000C: ldarg.0
-    IL_000D: ldloc.1
-    IL_000E: call Z0.Vec128`1<System.Int16> Z0.ginxs::LoadVec128<System.Int16>(Z0.ReadOnlySpan128`1<System.Int16>,System.Int32)
-    IL_0013: stloc.2
-    IL_0014: ldloca.s V_2
-    IL_0016: ldarg.1
-    IL_0017: call Z0.Vec128`1<System.Int16> Z0.Bits::srl(Z0.Vec128`1<System.Int16>&,System.Byte)
-    IL_001C: stloc.3
-    IL_001D: ldloca.s V_3
-    IL_001F: ldarga.s dst
-    IL_0021: ldloc.1
-    IL_0022: call System.Int16& Z0.Span128`1<System.Int16>::get_Item(System.Int32)
-    IL_0027: call System.Void zfunc::vstore<System.Int16>(Z0.Vec128`1<System.Int16>&,System.Int16&)
-    IL_002C: ldloc.1
-    IL_002D: ldloc.0
-    IL_002E: add
-    IL_002F: stloc.1
-    IL_0030: ldloc.1
-    IL_0031: ldarga.s src
-    IL_0033: call System.Int32 Z0.ReadOnlySpan128`1<System.Int16>::get_Length()
-    IL_0038: blt.s IL_000C
-    IL_003A: ldarg.2
-    IL_003B: ret
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_001B: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_0020: ret
 
 }
-Span128<ushort> srl(ReadOnlySpan128<ushort> src, byte offset, Span128<ushort> dst)
+Vec128<uint> srlv(in Vec128<uint> src, in Vec128<uint> offset)
 {
-    IL_0000: ldarga.s dst
-    IL_0002: call System.Int32 Z0.Span128`1<System.UInt16>::get_BlockWidth()
-    IL_0007: stloc.0
-    IL_0008: ldc.i4.0
-    IL_0009: stloc.1
-    IL_000A: br.s IL_0030
-    IL_000C: ldarg.0
-    IL_000D: ldloc.1
-    IL_000E: call Z0.Vec128`1<System.UInt16> Z0.ginxs::LoadVec128<System.UInt16>(Z0.ReadOnlySpan128`1<System.UInt16>,System.Int32)
-    IL_0013: stloc.2
-    IL_0014: ldloca.s V_2
-    IL_0016: ldarg.1
-    IL_0017: call Z0.Vec128`1<System.UInt16> Z0.Bits::srl(Z0.Vec128`1<System.UInt16>&,System.Byte)
-    IL_001C: stloc.3
-    IL_001D: ldloca.s V_3
-    IL_001F: ldarga.s dst
-    IL_0021: ldloc.1
-    IL_0022: call System.UInt16& Z0.Span128`1<System.UInt16>::get_Item(System.Int32)
-    IL_0027: call System.Void zfunc::vstore<System.UInt16>(Z0.Vec128`1<System.UInt16>&,System.UInt16&)
-    IL_002C: ldloc.1
-    IL_002D: ldloc.0
-    IL_002E: add
-    IL_002F: stloc.1
-    IL_0030: ldloc.1
-    IL_0031: ldarga.s src
-    IL_0033: call System.Int32 Z0.ReadOnlySpan128`1<System.UInt16>::get_Length()
-    IL_0038: blt.s IL_000C
-    IL_003A: ldarg.2
-    IL_003B: ret
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_001B: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_0020: ret
 
 }
-Span128<int> srl(ReadOnlySpan128<int> src, byte offset, Span128<int> dst)
+Vec128<long> srlv(in Vec128<long> src, in Vec128<ulong> offset)
 {
-    IL_0000: ldarga.s dst
-    IL_0002: call System.Int32 Z0.Span128`1<System.Int32>::get_BlockWidth()
-    IL_0007: stloc.0
-    IL_0008: ldc.i4.0
-    IL_0009: stloc.1
-    IL_000A: br.s IL_0030
-    IL_000C: ldarg.0
-    IL_000D: ldloc.1
-    IL_000E: call Z0.Vec128`1<System.Int32> Z0.ginxs::LoadVec128<System.Int32>(Z0.ReadOnlySpan128`1<System.Int32>,System.Int32)
-    IL_0013: stloc.2
-    IL_0014: ldloca.s V_2
-    IL_0016: ldarg.1
-    IL_0017: call Z0.Vec128`1<System.Int32> Z0.Bits::srl(Z0.Vec128`1<System.Int32>&,System.Byte)
-    IL_001C: stloc.3
-    IL_001D: ldloca.s V_3
-    IL_001F: ldarga.s dst
-    IL_0021: ldloc.1
-    IL_0022: call System.Int32& Z0.Span128`1<System.Int32>::get_Item(System.Int32)
-    IL_0027: call System.Void zfunc::vstore<System.Int32>(Z0.Vec128`1<System.Int32>&,System.Int32&)
-    IL_002C: ldloc.1
-    IL_002D: ldloc.0
-    IL_002E: add
-    IL_002F: stloc.1
-    IL_0030: ldloc.1
-    IL_0031: ldarga.s src
-    IL_0033: call System.Int32 Z0.ReadOnlySpan128`1<System.Int32>::get_Length()
-    IL_0038: blt.s IL_000C
-    IL_003A: ldarg.2
-    IL_003B: ret
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector128`1<System.Int64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
+    IL_001B: call Z0.Vec128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int64>)
+    IL_0020: ret
+
+}
+Vec128<ulong> srlv(in Vec128<ulong> src, in Vec128<ulong> offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
+    IL_001B: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
+    IL_0020: ret
+
+}
+Vec256<int> srlv(in Vec256<int> src, in Vec256<uint> offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_001B: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0020: ret
+
+}
+Vec256<uint> srlv(in Vec256<uint> src, in Vec256<uint> offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_001B: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0020: ret
+
+}
+Vec256<long> srlv(in Vec256<long> src, in Vec256<ulong> offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_001B: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0020: ret
+
+}
+Vec256<ulong> srlv(in Vec256<ulong> src, in Vec256<ulong> offset)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> System.Runtime.Intrinsics.X86.Avx2::ShiftRightLogicalVariable(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_001B: call Z0.Vec256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_0020: ret
+
+}
+UInt128 xor(in UInt128 lhs, in UInt128 rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.UInt128
+    IL_0006: call Z0.Vec128`1<System.UInt64> Z0.UInt128X::ToVec128(Z0.UInt128)
+    IL_000B: stloc.0
+    IL_000C: ldloca.s V_0
+    IL_000E: ldarg.1
+    IL_000F: ldobj Z0.UInt128
+    IL_0014: call Z0.Vec128`1<System.UInt64> Z0.UInt128X::ToVec128(Z0.UInt128)
+    IL_0019: stloc.1
+    IL_001A: ldloca.s V_1
+    IL_001C: call Z0.Vec128`1<System.UInt64> Z0.Bits::xor(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
+    IL_0021: stloc.2
+    IL_0022: ldloca.s V_2
+    IL_0024: call Z0.UInt128 Z0.UInt128X::ToUInt128(Z0.Vec128`1<System.UInt64>&)
+    IL_0029: ret
+
+}
+ref UInt128 xor(in UInt128 lhs, in UInt128 rhs, out UInt128 dst)
+{
+    IL_0000: ldarg.2
+    IL_0001: ldarg.0
+    IL_0002: ldobj Z0.UInt128
+    IL_0007: call Z0.Vec128`1<System.UInt64> Z0.UInt128X::ToVec128(Z0.UInt128)
+    IL_000C: stloc.0
+    IL_000D: ldloca.s V_0
+    IL_000F: ldarg.1
+    IL_0010: ldobj Z0.UInt128
+    IL_0015: call Z0.Vec128`1<System.UInt64> Z0.UInt128X::ToVec128(Z0.UInt128)
+    IL_001A: stloc.1
+    IL_001B: ldloca.s V_1
+    IL_001D: call Z0.Vec128`1<System.UInt64> Z0.Bits::xor(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
+    IL_0022: stloc.2
+    IL_0023: ldloca.s V_2
+    IL_0025: call Z0.UInt128 Z0.UInt128X::ToUInt128(Z0.Vec128`1<System.UInt64>&)
+    IL_002A: stobj Z0.UInt128
+    IL_002F: ldarg.2
+    IL_0030: ret
+
+}
+Vec128<byte> xor(in Vec128<byte> lhs, in Vec128<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Sse2::Xor(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_001B: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_0020: ret
+
+}
+Vec128<short> xor(in Vec128<short> lhs, in Vec128<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::Xor(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_001B: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_0020: ret
+
+}
+Vec128<sbyte> xor(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Sse2::Xor(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_001B: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_0020: ret
+
+}
+Vec128<ushort> xor(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse2::Xor(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_001B: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_0020: ret
+
+}
+Vec128<int> xor(in Vec128<int> lhs, in Vec128<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse2::Xor(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_001B: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_0020: ret
+
+}
+Vec128<uint> xor(in Vec128<uint> lhs, in Vec128<uint> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Sse2::Xor(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_001B: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_0020: ret
+
+}
+Vec128<long> xor(in Vec128<long> lhs, in Vec128<long> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int64> System.Runtime.Intrinsics.X86.Sse2::Xor(System.Runtime.Intrinsics.Vector128`1<System.Int64>,System.Runtime.Intrinsics.Vector128`1<System.Int64>)
+    IL_001B: call Z0.Vec128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int64>)
+    IL_0020: ret
+
+}
+Vec128<ulong> xor(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Sse2::Xor(System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
+    IL_001B: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
+    IL_0020: ret
+
+}
+Vec128<float> xor(in Vec128<float> lhs, in Vec128<float> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Single>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Single>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::Xor(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
+    IL_001B: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
+    IL_0020: ret
+
+}
+Vec128<double> xor(in Vec128<double> lhs, in Vec128<double> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Double>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Double>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::Xor(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
+    IL_001B: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
+    IL_0020: ret
+
+}
+Vec256<byte> xor(in Vec256<byte> lhs, in Vec256<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_001B: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0020: ret
+
+}
+Vec256<short> xor(in Vec256<short> lhs, in Vec256<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0020: ret
+
+}
+Vec256<sbyte> xor(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0020: ret
+
+}
+Vec256<ushort> xor(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_001B: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0020: ret
+
+}
+Vec256<int> xor(in Vec256<int> lhs, in Vec256<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: call Z0.Vec256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_0020: ret
+
+}
+Vec256<uint> xor(in Vec256<uint> lhs, in Vec256<uint> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_001B: call Z0.Vec256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_0020: ret
+
+}
+Vec256<long> xor(in Vec256<long> lhs, in Vec256<long> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int64> System.Runtime.Intrinsics.X86.Avx2::Xor(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_001B: call Z0.Vec256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_0020: ret
 
 }
 UInt128 and(in UInt128 lhs, in UInt128 rhs)
@@ -12207,26 +10140,26 @@ BitVector16 clmulr(BitVector16 a, BitVector16 b, BitVector32 poly)
     IL_0013: ldloc.0
     IL_0014: ldc.i4.s 16
     IL_0016: shr.un
-    IL_0017: ldarga.s poly
-    IL_0019: call System.UInt32 Z0.BitVector32::op_Implicit(Z0.BitVector32&)
-    IL_001E: call System.UInt64 Z0.dinx::clmul(System.UInt32,System.UInt32)
-    IL_0023: conv.u4
-    IL_0024: xor
-    IL_0025: stloc.0
+    IL_0017: ldarg.2
+    IL_0018: call System.UInt32 Z0.BitVector32::op_Implicit(Z0.BitVector32)
+    IL_001D: call System.UInt64 Z0.dinx::clmul(System.UInt32,System.UInt32)
+    IL_0022: conv.u4
+    IL_0023: xor
+    IL_0024: stloc.0
+    IL_0025: ldloc.0
     IL_0026: ldloc.0
-    IL_0027: ldloc.0
-    IL_0028: ldc.i4.s 16
-    IL_002A: shr.un
-    IL_002B: ldarga.s poly
-    IL_002D: call System.UInt32 Z0.BitVector32::op_Implicit(Z0.BitVector32&)
-    IL_0032: call System.UInt64 Z0.dinx::clmul(System.UInt32,System.UInt32)
-    IL_0037: conv.u4
-    IL_0038: xor
-    IL_0039: stloc.0
-    IL_003A: ldloc.0
-    IL_003B: conv.u2
-    IL_003C: call Z0.BitVector16 Z0.BitVector16::op_Implicit(System.UInt16)
-    IL_0041: ret
+    IL_0027: ldc.i4.s 16
+    IL_0029: shr.un
+    IL_002A: ldarg.2
+    IL_002B: call System.UInt32 Z0.BitVector32::op_Implicit(Z0.BitVector32)
+    IL_0030: call System.UInt64 Z0.dinx::clmul(System.UInt32,System.UInt32)
+    IL_0035: conv.u4
+    IL_0036: xor
+    IL_0037: stloc.0
+    IL_0038: ldloc.0
+    IL_0039: conv.u2
+    IL_003A: call Z0.BitVector16 Z0.BitVector16::op_Implicit(System.UInt16)
+    IL_003F: ret
 
 }
 uint clmulr(uint a, uint b, ulong poly)
@@ -12640,454 +10573,6 @@ Vec256<ulong> flip(in Vec256<ulong> src)
     IL_0030: ret
 
 }
-Span<sbyte> flip(Span<sbyte> src)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s src
-    IL_0006: ldloc.0
-    IL_0007: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_000C: call System.SByte& Z0.math::flip(System.SByte&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s src
-    IL_0019: call System.Int32 System.Span`1<System.SByte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<byte> flip(Span<byte> src)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s src
-    IL_0006: ldloc.0
-    IL_0007: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_000C: call System.Byte& Z0.math::flip(System.Byte&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s src
-    IL_0019: call System.Int32 System.Span`1<System.Byte>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<short> flip(Span<short> src)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s src
-    IL_0006: ldloc.0
-    IL_0007: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_000C: call System.Int16& Z0.math::flip(System.Int16&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s src
-    IL_0019: call System.Int32 System.Span`1<System.Int16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<ushort> flip(Span<ushort> src)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s src
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_000C: call System.UInt16& Z0.math::flip(System.UInt16&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s src
-    IL_0019: call System.Int32 System.Span`1<System.UInt16>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<int> flip(Span<int> src)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s src
-    IL_0006: ldloc.0
-    IL_0007: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_000C: call System.Int32& Z0.math::flip(System.Int32&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s src
-    IL_0019: call System.Int32 System.Span`1<System.Int32>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<uint> flip(Span<uint> src)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s src
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_000C: call System.UInt32& Z0.math::flip(System.UInt32&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s src
-    IL_0019: call System.Int32 System.Span`1<System.UInt32>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<long> flip(Span<long> src)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s src
-    IL_0006: ldloc.0
-    IL_0007: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_000C: call System.Int64& Z0.math::flip(System.Int64&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s src
-    IL_0019: call System.Int32 System.Span`1<System.Int64>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<ulong> flip(Span<ulong> src)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_0016
-    IL_0004: ldarga.s src
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_000C: call System.UInt64& Z0.math::flip(System.UInt64&)
-    IL_0011: pop
-    IL_0012: ldloc.0
-    IL_0013: ldc.i4.1
-    IL_0014: add
-    IL_0015: stloc.0
-    IL_0016: ldloc.0
-    IL_0017: ldarga.s src
-    IL_0019: call System.Int32 System.Span`1<System.UInt64>::get_Length()
-    IL_001E: blt.s IL_0004
-    IL_0020: ldarg.0
-    IL_0021: ret
-
-}
-Span<sbyte> flip(ReadOnlySpan<sbyte> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.0
-    IL_0002: call System.Span`1<System.SByte> Z0.SpanExtensions::Replicate<System.SByte>(System.ReadOnlySpan`1<System.SByte>,System.Boolean)
-    IL_0007: call System.Span`1<System.SByte> Z0.Bits::flip(System.Span`1<System.SByte>)
-    IL_000C: ret
-
-}
-Span<byte> flip(ReadOnlySpan<byte> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.0
-    IL_0002: call System.Span`1<System.Byte> Z0.SpanExtensions::Replicate<System.Byte>(System.ReadOnlySpan`1<System.Byte>,System.Boolean)
-    IL_0007: call System.Span`1<System.Byte> Z0.Bits::flip(System.Span`1<System.Byte>)
-    IL_000C: ret
-
-}
-Span<short> flip(ReadOnlySpan<short> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.0
-    IL_0002: call System.Span`1<System.Int16> Z0.SpanExtensions::Replicate<System.Int16>(System.ReadOnlySpan`1<System.Int16>,System.Boolean)
-    IL_0007: call System.Span`1<System.Int16> Z0.Bits::flip(System.Span`1<System.Int16>)
-    IL_000C: ret
-
-}
-Span<ushort> flip(ReadOnlySpan<ushort> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.0
-    IL_0002: call System.Span`1<System.UInt16> Z0.SpanExtensions::Replicate<System.UInt16>(System.ReadOnlySpan`1<System.UInt16>,System.Boolean)
-    IL_0007: call System.Span`1<System.UInt16> Z0.Bits::flip(System.Span`1<System.UInt16>)
-    IL_000C: ret
-
-}
-Span<int> flip(ReadOnlySpan<int> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.0
-    IL_0002: call System.Span`1<System.Int32> Z0.SpanExtensions::Replicate<System.Int32>(System.ReadOnlySpan`1<System.Int32>,System.Boolean)
-    IL_0007: call System.Span`1<System.Int32> Z0.Bits::flip(System.Span`1<System.Int32>)
-    IL_000C: ret
-
-}
-Span<uint> flip(ReadOnlySpan<uint> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.0
-    IL_0002: call System.Span`1<System.UInt32> Z0.SpanExtensions::Replicate<System.UInt32>(System.ReadOnlySpan`1<System.UInt32>,System.Boolean)
-    IL_0007: call System.Span`1<System.UInt32> Z0.Bits::flip(System.Span`1<System.UInt32>)
-    IL_000C: ret
-
-}
-Span<long> flip(ReadOnlySpan<long> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.0
-    IL_0002: call System.Span`1<System.Int64> Z0.SpanExtensions::Replicate<System.Int64>(System.ReadOnlySpan`1<System.Int64>,System.Boolean)
-    IL_0007: call System.Span`1<System.Int64> Z0.Bits::flip(System.Span`1<System.Int64>)
-    IL_000C: ret
-
-}
-Span<ulong> flip(ReadOnlySpan<ulong> src)
-{
-    IL_0000: ldarg.0
-    IL_0001: ldc.i4.0
-    IL_0002: call System.Span`1<System.UInt64> Z0.SpanExtensions::Replicate<System.UInt64>(System.ReadOnlySpan`1<System.UInt64>,System.Boolean)
-    IL_0007: call System.Span`1<System.UInt64> Z0.Bits::flip(System.Span`1<System.UInt64>)
-    IL_000C: ret
-
-}
-Span<sbyte> flip(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_001E
-    IL_0004: ldarga.s src
-    IL_0006: ldloc.0
-    IL_0007: call System.SByte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.SByte>::get_Item(System.Int32)
-    IL_000C: ldarga.s dst
-    IL_000E: ldloc.0
-    IL_000F: call System.SByte& System.Span`1<System.SByte>::get_Item(System.Int32)
-    IL_0014: call System.SByte& Z0.math::flip(System.SByte&,System.SByte&)
-    IL_0019: pop
-    IL_001A: ldloc.0
-    IL_001B: ldc.i4.1
-    IL_001C: add
-    IL_001D: stloc.0
-    IL_001E: ldloc.0
-    IL_001F: ldarga.s src
-    IL_0021: call System.Int32 System.ReadOnlySpan`1<System.SByte>::get_Length()
-    IL_0026: blt.s IL_0004
-    IL_0028: ldarg.1
-    IL_0029: ret
-
-}
-Span<byte> flip(ReadOnlySpan<byte> src, Span<byte> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_001E
-    IL_0004: ldarga.s src
-    IL_0006: ldloc.0
-    IL_0007: call System.Byte& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Byte>::get_Item(System.Int32)
-    IL_000C: ldarga.s dst
-    IL_000E: ldloc.0
-    IL_000F: call System.Byte& System.Span`1<System.Byte>::get_Item(System.Int32)
-    IL_0014: call System.Byte& Z0.math::flip(System.Byte&,System.Byte&)
-    IL_0019: pop
-    IL_001A: ldloc.0
-    IL_001B: ldc.i4.1
-    IL_001C: add
-    IL_001D: stloc.0
-    IL_001E: ldloc.0
-    IL_001F: ldarga.s src
-    IL_0021: call System.Int32 System.ReadOnlySpan`1<System.Byte>::get_Length()
-    IL_0026: blt.s IL_0004
-    IL_0028: ldarg.1
-    IL_0029: ret
-
-}
-Span<short> flip(ReadOnlySpan<short> src, Span<short> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_001E
-    IL_0004: ldarga.s src
-    IL_0006: ldloc.0
-    IL_0007: call System.Int16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int16>::get_Item(System.Int32)
-    IL_000C: ldarga.s dst
-    IL_000E: ldloc.0
-    IL_000F: call System.Int16& System.Span`1<System.Int16>::get_Item(System.Int32)
-    IL_0014: call System.Int16& Z0.math::flip(System.Int16&,System.Int16&)
-    IL_0019: pop
-    IL_001A: ldloc.0
-    IL_001B: ldc.i4.1
-    IL_001C: add
-    IL_001D: stloc.0
-    IL_001E: ldloc.0
-    IL_001F: ldarga.s src
-    IL_0021: call System.Int32 System.ReadOnlySpan`1<System.Int16>::get_Length()
-    IL_0026: blt.s IL_0004
-    IL_0028: ldarg.1
-    IL_0029: ret
-
-}
-Span<ushort> flip(ReadOnlySpan<ushort> src, Span<ushort> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_001E
-    IL_0004: ldarga.s src
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt16& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt16>::get_Item(System.Int32)
-    IL_000C: ldarga.s dst
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt16& System.Span`1<System.UInt16>::get_Item(System.Int32)
-    IL_0014: call System.UInt16& Z0.math::flip(System.UInt16&,System.UInt16&)
-    IL_0019: pop
-    IL_001A: ldloc.0
-    IL_001B: ldc.i4.1
-    IL_001C: add
-    IL_001D: stloc.0
-    IL_001E: ldloc.0
-    IL_001F: ldarga.s src
-    IL_0021: call System.Int32 System.ReadOnlySpan`1<System.UInt16>::get_Length()
-    IL_0026: blt.s IL_0004
-    IL_0028: ldarg.1
-    IL_0029: ret
-
-}
-Span<int> flip(ReadOnlySpan<int> src, Span<int> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_001E
-    IL_0004: ldarga.s src
-    IL_0006: ldloc.0
-    IL_0007: call System.Int32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int32>::get_Item(System.Int32)
-    IL_000C: ldarga.s dst
-    IL_000E: ldloc.0
-    IL_000F: call System.Int32& System.Span`1<System.Int32>::get_Item(System.Int32)
-    IL_0014: call System.Int32& Z0.math::flip(System.Int32&,System.Int32&)
-    IL_0019: pop
-    IL_001A: ldloc.0
-    IL_001B: ldc.i4.1
-    IL_001C: add
-    IL_001D: stloc.0
-    IL_001E: ldloc.0
-    IL_001F: ldarga.s src
-    IL_0021: call System.Int32 System.ReadOnlySpan`1<System.Int32>::get_Length()
-    IL_0026: blt.s IL_0004
-    IL_0028: ldarg.1
-    IL_0029: ret
-
-}
-Span<uint> flip(ReadOnlySpan<uint> src, Span<uint> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_001E
-    IL_0004: ldarga.s src
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt32& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt32>::get_Item(System.Int32)
-    IL_000C: ldarga.s dst
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt32& System.Span`1<System.UInt32>::get_Item(System.Int32)
-    IL_0014: call System.UInt32& Z0.math::flip(System.UInt32&,System.UInt32&)
-    IL_0019: pop
-    IL_001A: ldloc.0
-    IL_001B: ldc.i4.1
-    IL_001C: add
-    IL_001D: stloc.0
-    IL_001E: ldloc.0
-    IL_001F: ldarga.s src
-    IL_0021: call System.Int32 System.ReadOnlySpan`1<System.UInt32>::get_Length()
-    IL_0026: blt.s IL_0004
-    IL_0028: ldarg.1
-    IL_0029: ret
-
-}
-Span<long> flip(ReadOnlySpan<long> src, Span<long> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_001E
-    IL_0004: ldarga.s src
-    IL_0006: ldloc.0
-    IL_0007: call System.Int64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.Int64>::get_Item(System.Int32)
-    IL_000C: ldarga.s dst
-    IL_000E: ldloc.0
-    IL_000F: call System.Int64& System.Span`1<System.Int64>::get_Item(System.Int32)
-    IL_0014: call System.Int64& Z0.math::flip(System.Int64&,System.Int64&)
-    IL_0019: pop
-    IL_001A: ldloc.0
-    IL_001B: ldc.i4.1
-    IL_001C: add
-    IL_001D: stloc.0
-    IL_001E: ldloc.0
-    IL_001F: ldarga.s src
-    IL_0021: call System.Int32 System.ReadOnlySpan`1<System.Int64>::get_Length()
-    IL_0026: blt.s IL_0004
-    IL_0028: ldarg.1
-    IL_0029: ret
-
-}
-Span<ulong> flip(ReadOnlySpan<ulong> src, Span<ulong> dst)
-{
-    IL_0000: ldc.i4.0
-    IL_0001: stloc.0
-    IL_0002: br.s IL_001E
-    IL_0004: ldarga.s src
-    IL_0006: ldloc.0
-    IL_0007: call System.UInt64& modreq(System.Runtime.InteropServices.InAttribute) System.ReadOnlySpan`1<System.UInt64>::get_Item(System.Int32)
-    IL_000C: ldarga.s dst
-    IL_000E: ldloc.0
-    IL_000F: call System.UInt64& System.Span`1<System.UInt64>::get_Item(System.Int32)
-    IL_0014: call System.UInt64& Z0.math::flip(System.UInt64&,System.UInt64&)
-    IL_0019: pop
-    IL_001A: ldloc.0
-    IL_001B: ldc.i4.1
-    IL_001C: add
-    IL_001D: stloc.0
-    IL_001E: ldloc.0
-    IL_001F: ldarga.s src
-    IL_0021: call System.Int32 System.ReadOnlySpan`1<System.UInt64>::get_Length()
-    IL_0026: blt.s IL_0004
-    IL_0028: ldarg.1
-    IL_0029: ret
-
-}
 bool nonz(in Vec128<byte> src)
 {
     IL_0000: ldarg.0
@@ -13254,5 +10739,340 @@ bool nonz(in Vec256<sbyte> src)
     IL_001B: ldc.i4.0
     IL_001C: ceq
     IL_001E: ret
+
+}
+bool nonz(in Vec256<short> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.0
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: ldc.i4.0
+    IL_001C: ceq
+    IL_001E: ret
+
+}
+bool nonz(in Vec256<ushort> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.0
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_001B: ldc.i4.0
+    IL_001C: ceq
+    IL_001E: ret
+
+}
+bool nonz(in Vec256<int> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_000B: ldarg.0
+    IL_000C: ldobj Z0.Vec256`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.Vec256`1<System.Int32>::op_Implicit(Z0.Vec256`1<System.Int32>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>)
+    IL_001B: ldc.i4.0
+    IL_001C: ceq
+    IL_001E: ret
+
+}
+bool nonz(in Vec256<uint> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_000B: ldarg.0
+    IL_000C: ldobj Z0.Vec256`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt32> Z0.Vec256`1<System.UInt32>::op_Implicit(Z0.Vec256`1<System.UInt32>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.UInt32>,System.Runtime.Intrinsics.Vector256`1<System.UInt32>)
+    IL_001B: ldc.i4.0
+    IL_001C: ceq
+    IL_001E: ret
+
+}
+bool nonz(in Vec256<long> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_000B: ldarg.0
+    IL_000C: ldobj Z0.Vec256`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int64> Z0.Vec256`1<System.Int64>::op_Implicit(Z0.Vec256`1<System.Int64>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.Int64>,System.Runtime.Intrinsics.Vector256`1<System.Int64>)
+    IL_001B: ldc.i4.0
+    IL_001C: ceq
+    IL_001E: ret
+
+}
+bool nonz(in Vec256<ulong> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_000B: ldarg.0
+    IL_000C: ldobj Z0.Vec256`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt64> Z0.Vec256`1<System.UInt64>::op_Implicit(Z0.Vec256`1<System.UInt64>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.UInt64>,System.Runtime.Intrinsics.Vector256`1<System.UInt64>)
+    IL_001B: ldc.i4.0
+    IL_001C: ceq
+    IL_001E: ret
+
+}
+bool nonz(in Vec256<float> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Single>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>)
+    IL_000B: ldarg.0
+    IL_000C: ldobj Z0.Vec256`1<System.Single>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Single> Z0.Vec256`1<System.Single>::op_Implicit(Z0.Vec256`1<System.Single>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.Single>,System.Runtime.Intrinsics.Vector256`1<System.Single>)
+    IL_001B: ldc.i4.0
+    IL_001C: ceq
+    IL_001E: ret
+
+}
+bool nonz(in Vec256<double> src)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Double>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>)
+    IL_000B: ldarg.0
+    IL_000C: ldobj Z0.Vec256`1<System.Double>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Double> Z0.Vec256`1<System.Double>::op_Implicit(Z0.Vec256`1<System.Double>)
+    IL_0016: call System.Boolean System.Runtime.Intrinsics.X86.Avx::TestZ(System.Runtime.Intrinsics.Vector256`1<System.Double>,System.Runtime.Intrinsics.Vector256`1<System.Double>)
+    IL_001B: ldc.i4.0
+    IL_001C: ceq
+    IL_001E: ret
+
+}
+UInt128 or(in UInt128 lhs, in UInt128 rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.UInt128
+    IL_0006: call Z0.Vec128`1<System.UInt64> Z0.UInt128X::ToVec128(Z0.UInt128)
+    IL_000B: stloc.0
+    IL_000C: ldloca.s V_0
+    IL_000E: ldarg.1
+    IL_000F: ldobj Z0.UInt128
+    IL_0014: call Z0.Vec128`1<System.UInt64> Z0.UInt128X::ToVec128(Z0.UInt128)
+    IL_0019: stloc.1
+    IL_001A: ldloca.s V_1
+    IL_001C: call Z0.Vec128`1<System.UInt64> Z0.Bits::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
+    IL_0021: stloc.2
+    IL_0022: ldloca.s V_2
+    IL_0024: call Z0.UInt128 Z0.UInt128X::ToUInt128(Z0.Vec128`1<System.UInt64>&)
+    IL_0029: ret
+
+}
+ref UInt128 or(in UInt128 lhs, in UInt128 rhs, out UInt128 dst)
+{
+    IL_0000: ldarg.2
+    IL_0001: ldarg.0
+    IL_0002: ldobj Z0.UInt128
+    IL_0007: call Z0.Vec128`1<System.UInt64> Z0.UInt128X::ToVec128(Z0.UInt128)
+    IL_000C: stloc.0
+    IL_000D: ldloca.s V_0
+    IL_000F: ldarg.1
+    IL_0010: ldobj Z0.UInt128
+    IL_0015: call Z0.Vec128`1<System.UInt64> Z0.UInt128X::ToVec128(Z0.UInt128)
+    IL_001A: stloc.1
+    IL_001B: ldloca.s V_1
+    IL_001D: call Z0.Vec128`1<System.UInt64> Z0.Bits::or(Z0.Vec128`1<System.UInt64>&,Z0.Vec128`1<System.UInt64>&)
+    IL_0022: stloc.2
+    IL_0023: ldloca.s V_2
+    IL_0025: call Z0.UInt128 Z0.UInt128X::ToUInt128(Z0.Vec128`1<System.UInt64>&)
+    IL_002A: stobj Z0.UInt128
+    IL_002F: ldarg.2
+    IL_0030: ret
+
+}
+Vec128<byte> or(in Vec128<byte> lhs, in Vec128<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(Z0.Vec128`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Byte> System.Runtime.Intrinsics.X86.Sse2::Or(System.Runtime.Intrinsics.Vector128`1<System.Byte>,System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_001B: call Z0.Vec128`1<System.Byte> Z0.Vec128`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Byte>)
+    IL_0020: ret
+
+}
+Vec128<short> or(in Vec128<short> lhs, in Vec128<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(Z0.Vec128`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int16> System.Runtime.Intrinsics.X86.Sse2::Or(System.Runtime.Intrinsics.Vector128`1<System.Int16>,System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_001B: call Z0.Vec128`1<System.Int16> Z0.Vec128`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int16>)
+    IL_0020: ret
+
+}
+Vec128<sbyte> or(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(Z0.Vec128`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.SByte> System.Runtime.Intrinsics.X86.Sse2::Or(System.Runtime.Intrinsics.Vector128`1<System.SByte>,System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_001B: call Z0.Vec128`1<System.SByte> Z0.Vec128`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.SByte>)
+    IL_0020: ret
+
+}
+Vec128<ushort> or(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(Z0.Vec128`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt16> System.Runtime.Intrinsics.X86.Sse2::Or(System.Runtime.Intrinsics.Vector128`1<System.UInt16>,System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_001B: call Z0.Vec128`1<System.UInt16> Z0.Vec128`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt16>)
+    IL_0020: ret
+
+}
+Vec128<int> or(in Vec128<int> lhs, in Vec128<int> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Int32>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Int32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(Z0.Vec128`1<System.Int32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int32> System.Runtime.Intrinsics.X86.Sse2::Or(System.Runtime.Intrinsics.Vector128`1<System.Int32>,System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_001B: call Z0.Vec128`1<System.Int32> Z0.Vec128`1<System.Int32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int32>)
+    IL_0020: ret
+
+}
+Vec128<uint> or(in Vec128<uint> lhs, in Vec128<uint> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt32>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(Z0.Vec128`1<System.UInt32>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt32> System.Runtime.Intrinsics.X86.Sse2::Or(System.Runtime.Intrinsics.Vector128`1<System.UInt32>,System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_001B: call Z0.Vec128`1<System.UInt32> Z0.Vec128`1<System.UInt32>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt32>)
+    IL_0020: ret
+
+}
+Vec128<long> or(in Vec128<long> lhs, in Vec128<long> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Int64>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Int64>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(Z0.Vec128`1<System.Int64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Int64> System.Runtime.Intrinsics.X86.Sse2::Or(System.Runtime.Intrinsics.Vector128`1<System.Int64>,System.Runtime.Intrinsics.Vector128`1<System.Int64>)
+    IL_001B: call Z0.Vec128`1<System.Int64> Z0.Vec128`1<System.Int64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Int64>)
+    IL_0020: ret
+
+}
+Vec128<ulong> or(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.UInt64>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.UInt64>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(Z0.Vec128`1<System.UInt64>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.UInt64> System.Runtime.Intrinsics.X86.Sse2::Or(System.Runtime.Intrinsics.Vector128`1<System.UInt64>,System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
+    IL_001B: call Z0.Vec128`1<System.UInt64> Z0.Vec128`1<System.UInt64>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.UInt64>)
+    IL_0020: ret
+
+}
+Vec128<float> or(in Vec128<float> lhs, in Vec128<float> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Single>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Single>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(Z0.Vec128`1<System.Single>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Single> System.Runtime.Intrinsics.X86.Sse::Or(System.Runtime.Intrinsics.Vector128`1<System.Single>,System.Runtime.Intrinsics.Vector128`1<System.Single>)
+    IL_001B: call Z0.Vec128`1<System.Single> Z0.Vec128`1<System.Single>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Single>)
+    IL_0020: ret
+
+}
+Vec128<double> or(in Vec128<double> lhs, in Vec128<double> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec128`1<System.Double>
+    IL_0006: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec128`1<System.Double>
+    IL_0011: call System.Runtime.Intrinsics.Vector128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(Z0.Vec128`1<System.Double>)
+    IL_0016: call System.Runtime.Intrinsics.Vector128`1<System.Double> System.Runtime.Intrinsics.X86.Sse2::Or(System.Runtime.Intrinsics.Vector128`1<System.Double>,System.Runtime.Intrinsics.Vector128`1<System.Double>)
+    IL_001B: call Z0.Vec128`1<System.Double> Z0.Vec128`1<System.Double>::op_Implicit(System.Runtime.Intrinsics.Vector128`1<System.Double>)
+    IL_0020: ret
+
+}
+Vec256<byte> or(in Vec256<byte> lhs, in Vec256<byte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Byte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Byte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(Z0.Vec256`1<System.Byte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Byte> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.Byte>,System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_001B: call Z0.Vec256`1<System.Byte> Z0.Vec256`1<System.Byte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Byte>)
+    IL_0020: ret
+
+}
+Vec256<short> or(in Vec256<short> lhs, in Vec256<short> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.Int16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.Int16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(Z0.Vec256`1<System.Int16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.Int16> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.Int16>,System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_001B: call Z0.Vec256`1<System.Int16> Z0.Vec256`1<System.Int16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.Int16>)
+    IL_0020: ret
+
+}
+Vec256<sbyte> or(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.SByte>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.SByte>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(Z0.Vec256`1<System.SByte>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.SByte> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.SByte>,System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_001B: call Z0.Vec256`1<System.SByte> Z0.Vec256`1<System.SByte>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.SByte>)
+    IL_0020: ret
+
+}
+Vec256<ushort> or(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+{
+    IL_0000: ldarg.0
+    IL_0001: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0006: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_000B: ldarg.1
+    IL_000C: ldobj Z0.Vec256`1<System.UInt16>
+    IL_0011: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(Z0.Vec256`1<System.UInt16>)
+    IL_0016: call System.Runtime.Intrinsics.Vector256`1<System.UInt16> System.Runtime.Intrinsics.X86.Avx2::Or(System.Runtime.Intrinsics.Vector256`1<System.UInt16>,System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_001B: call Z0.Vec256`1<System.UInt16> Z0.Vec256`1<System.UInt16>::op_Implicit(System.Runtime.Intrinsics.Vector256`1<System.UInt16>)
+    IL_0020: ret
 
 }

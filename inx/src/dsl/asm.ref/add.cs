@@ -15,6 +15,86 @@ namespace Z0
 
     using static zfunc;
 
+    /// <summary>
+    /// Defines asm endoding utilities
+    /// </summary>
+    /// <remarks>Much of this was derived or taken directly from Microsoft's Core CLR project</remarks>
+    public static class AsmCodes
+    {
+        // 0x0000ff00 - modrm byte position
+        // 0x000000ff - last byte of opcode (before modrm)
+        // 0x00ff0000 - first byte of opcode
+        // 0xff000000 - middle byte of opcode, if needed (after first, before last)
+        //
+        // So a 1-byte opcode is:      and with modrm:
+        //             0x00000011          0x0000RM11
+        //
+        // So a 2-byte opcode is:      and with modrm:
+        //             0x00002211          0x0011RM22
+        //
+        // So a 3-byte opcode is:      and with modrm:
+        //             0x00113322          0x2211RM33
+        //
+        // So a 4-byte opcode would be something like this:
+        //             0x22114433
+
+        
+        [MethodImpl(Inline)]
+        public static uint PACK2(uint b0, uint b1)
+            => (b0 << 16) |  b1;
+
+        [MethodImpl(Inline)]
+        public static uint PACK3(uint b0, uint b1, uint b2)
+            => (b0 << 16) | (b1 << 24) | b2;
+
+        [MethodImpl(Inline)]
+        public static uint PACK4(uint b0, uint b1,uint b2, uint b3) 
+            => ((b0 << 16) | (b1 << 24) | b2 | (b3 << 8));
+
+        [MethodImpl(Inline)]
+        public static uint SSE38(uint c)
+            => PACK4(0x66, 0x0f, 0x38, c);
+
+        [MethodImpl(Inline)]
+        public static uint SSE3A(uint c) 
+            => PACK4(0x66, 0x0f, 0x3A, c);
+        
+        [MethodImpl(Inline)]
+        public static uint SSEFLT(uint c)
+            => PACK3(0xf3, 0x0f, c);
+
+        [MethodImpl(Inline)]
+        public static uint SSEDBL(uint c)
+            => PACK3(0xf2, 0x0f, c);
+
+        [MethodImpl(Inline)]
+        public static uint PCKDBL(uint c)
+            => PACK3(0x66, 0x0f, c);
+
+        [MethodImpl(Inline)]
+        public static uint PACKFLT(uint c)
+            => PACK2(0x0f, c);
+
+        /*
+            VEX* encodes the implied leading opcode bytes in c1:
+            1: implied 0f, 2: implied 0f 38, 3: implied 0f 3a            
+         */
+
+        [MethodImpl(Inline)]
+        public static uint VEX2INT(uint c1,uint c2)   
+            => PACK3(c1, 0xc5, c2);
+
+        [MethodImpl(Inline)]
+        public static uint VEX3INT(uint c1,uint c2)   
+            => PACK4(c1, 0xc5, 0x02, c2);
+
+        [MethodImpl(Inline)]
+        public static uint VEX3FLT(uint c1,uint c2)   
+            => PACK4(c1, 0xc5, 0x02, c2);
+
+
+    }
+
     partial class AsmRef
     {
 

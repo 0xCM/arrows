@@ -70,7 +70,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : unmanaged    
         {
-            gbits.and(A.Unsized,B.Unsized, C.Unsized);
+            gbitspan.and(A.Unsized,B.Unsized, C.Unsized);
             return ref C;
         }
 

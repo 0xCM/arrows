@@ -148,7 +148,7 @@ namespace Z0
         /// <param name="y">The right vector</param>
         [MethodImpl(Inline)]
         public static BitVector<T> operator &(BitVector<T> x, in BitVector<T> y)
-            => new BitVector<T>(gbits.and(x.data, y.data));
+            => new BitVector<T>(gbitspan.and(x.data, y.data));
 
         /// <summary>
         /// Computes the bitwias AND between the operands
@@ -157,7 +157,7 @@ namespace Z0
         /// <param name="y">The right vector</param>
         [MethodImpl(Inline)]
         public static BitVector<T> operator |(BitVector<T> x, in BitVector<T> y)
-            => new BitVector<T>(gbits.or(x.data, y.data));
+            => new BitVector<T>(gbitspan.or(x.data, y.data));
 
         /// <summary>
         /// Computes the bitwise XOR between the operands
@@ -166,7 +166,7 @@ namespace Z0
         /// <param name="y">The right vector</param>
         [MethodImpl(Inline)]
         public static BitVector<T> operator ^(BitVector<T> x, in BitVector<T> y)
-            => new BitVector<T>(gbits.xor(x.data, y.data));
+            => new BitVector<T>(gbitspan.xor(x.data, y.data));
 
         /// <summary>
         /// Computes the scalar product of the operands
@@ -183,7 +183,7 @@ namespace Z0
         /// <param name="lhs">The source operand</param>
         [MethodImpl(Inline)]
         public static BitVector<T> operator ~(BitVector<T> src)
-            => new BitVector<T>(gbits.flip(src.data));
+            => new BitVector<T>(gbitspan.flip(src.data));
 
 
         /// <summary>

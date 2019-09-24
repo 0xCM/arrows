@@ -77,7 +77,7 @@ namespace Z0.Test
         void and_128_check<T>(int blocks = DefaultSampleSize)
             where T : unmanaged
         {
-            CpuOpVerify.VerifyBinOp(Random, blocks, new Vec128BinOp<T>(gbits.and), gmath.and<T>);
+            CpuOpVerify.VerifyBinOp(Random, blocks, new Vec128BinOp<T>(gbits.vand), gmath.and<T>);
         }
 
         void and_256_check<T>(int blocks = DefaultSampleSize)

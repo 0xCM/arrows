@@ -67,27 +67,47 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static Vec256<T> lddqu256<T>(in T src)
+        static unsafe Vector256<T> lddqu256u<T>(in T src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(byte))
+                return generic<T>(Avx2.LoadDquVector256(constptr(in uint8(in src))));
+            else if(typeof(T) == typeof(ushort))
+                return generic<T>(Avx2.LoadDquVector256(constptr(in uint16(in src))));
+            else if(typeof(T) == typeof(uint))
+                return generic<T>(Avx2.LoadDquVector256(constptr(in uint32(in src))));
+            else
+                return generic<T>(Avx2.LoadDquVector256(constptr(in uint64(in src))));
+        }
+        
+        [MethodImpl(Inline)]
+        static unsafe Vector256<T> lddqu256i<T>(in T src)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return generic<T>(dinx.lddqu256(in int8(in src)));
-            else if(typeof(T) == typeof(byte))
-                return generic<T>(dinx.lddqu256(in uint8(in src)));
+                return generic<T>(Avx2.LoadDquVector256(constptr(in int8(in src))));
             else if(typeof(T) == typeof(short))
-                return generic<T>(dinx.lddqu256(in int16(in src)));
-            else if(typeof(T) == typeof(ushort))
-                return generic<T>(dinx.lddqu256(in uint16(in src)));
+                return generic<T>(Avx2.LoadDquVector256(constptr(in int16(in src))));
             else if(typeof(T) == typeof(int))
-                return generic<T>(dinx.lddqu256(in int32(in src)));
-            else if(typeof(T) == typeof(uint))
-                return generic<T>(dinx.lddqu256(in uint32(in src)));
-            else if(typeof(T) == typeof(long))
-                return generic<T>(dinx.lddqu256(in int64(in src)));
-            else if(typeof(T) == typeof(ulong))
-                return generic<T>(dinx.lddqu256(in uint64(in src)));
+                return generic<T>(Avx2.LoadDquVector256(constptr(in int32(in src))));
+            else
+                return generic<T>(Avx2.LoadDquVector256(constptr(in uint64(in src))));
+        }
+
+
+        [MethodImpl(Inline)]
+        public static unsafe Vector256<T> lddqu256<T>(in T src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(byte) || typeof(T) == typeof(ushort) || 
+                typeof(T) == typeof(uint) || typeof(T) == typeof(ulong))
+                    return lddqu256u(in src);
+            else if(typeof(T) == typeof(sbyte) || typeof(T) == typeof(short) || 
+                typeof(T) == typeof(int) || typeof(T) == typeof(long))
+                    return lddqu256i(in src);
             else
                 throw unsupported<T>();
+
         }
 
 

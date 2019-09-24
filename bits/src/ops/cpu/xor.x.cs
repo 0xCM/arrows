@@ -20,7 +20,7 @@ namespace Z0
         /// <typeparam name="T">The primal component type</typeparam>
         public static Vec128<T> XOr<T>(this Vec128<T> lhs, in Vec128<T> rhs)
             where T : unmanaged
-                => gbits.xor(in lhs,in rhs);
+                => gbits.vxor(in lhs,in rhs);
 
         /// <summary>
         /// Computes the bitwise xor of the operands
@@ -28,15 +28,16 @@ namespace Z0
         /// <param name="lhs">The left source vector</param>
         /// <param name="rhs">The right source vector</param>
         /// <typeparam name="T">The primal component type</typeparam>
-        public static Vec256<T> XOr<T>(this Vec256<T> lhs, in Vec256<T> rhs)
+        [MethodImpl(Inline)]
+        public static Vec256<T> XOr<T>(this Vec256<T> lhs, Vec256<T> rhs)
             where T : unmanaged
-                => gbits.xor(in lhs,in rhs);
+                => gbits.vxor<T>(lhs,rhs);
         
         [MethodImpl(Inline)]
         public static ref BlockVector<T> XOr<T>(ref BlockVector<T> lhs, BlockVector<T> rhs)
             where T : unmanaged
         {
-            gbits.xor(lhs.Unblocked, rhs.Unblocked);
+            gbitspan.xor(lhs.Unblocked, rhs.Unblocked);
             return ref lhs;
         }
 
@@ -46,7 +47,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : unmanaged    
         {
-            gbits.xor(lhs.Unblocked, rhs.Unblocked);
+            gbitspan.xor(lhs.Unblocked, rhs.Unblocked);
             return ref lhs;
         }
          

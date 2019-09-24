@@ -332,14 +332,14 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)] 
         public readonly BitSize Pop()
-            => Bits.pop(data);
+            => bitspan.pop(data);
 
         /// <summary>
         /// Extracts the bits that comprise the matrix in row-major order
         /// </summary>
         [MethodImpl(Inline)]
-        public Span<Bit> Unpack()
-            => Bytes.Unpack(out Span<Bit> _);
+        public Span<byte> Unpack()
+            => Bytes.Unpack();
 
         [MethodImpl(Inline)]
         public bool IsZero()
@@ -400,7 +400,7 @@ namespace Z0
         {
             lhs.LoadCpuVec(out Vec256<ushort> vLhs);
             rhs.LoadCpuVec(out Vec256<ushort> vRhs);
-            vLhs.And(vRhs).StoreTo(ref lhs.data[0]);
+            gbits.vand<ushort>(vLhs,vRhs).StoreTo(ref lhs.data[0]);
             return ref lhs;
         }
 

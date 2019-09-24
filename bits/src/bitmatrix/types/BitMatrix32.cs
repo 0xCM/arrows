@@ -339,7 +339,7 @@ namespace Z0
         /// </summary>
         [MethodImpl(Inline)] 
         public readonly BitSize Pop()
-            => Z0.Bits.pop(data);
+            => bitspan.pop(data);
 
         /// <summary>
         /// Converts the matrix to a bitvector

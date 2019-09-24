@@ -21,7 +21,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static sbyte scatter(in sbyte src, in sbyte mask)  
+        public static sbyte scatter(sbyte src, sbyte mask)  
             => (sbyte)scatter((byte)src, (byte)mask);
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static byte scatter(in byte src, in byte mask)  
+        public static byte scatter(byte src, byte mask)  
             => (byte)ParallelBitDeposit(src, mask); 
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static short scatter(in short src, in short mask)  
+        public static short scatter(short src, short mask)  
             => (short)scatter((ushort)src, (ushort)mask);
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static ushort scatter(in ushort src, in ushort mask)          
+        public static ushort scatter(ushort src, ushort mask)          
             => (ushort)ParallelBitDeposit(src,mask); 
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static int scatter(in int src, in int mask)  
+        public static int scatter(int src, int mask)  
             => (int)scatter((uint)src, (uint)mask);
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static uint scatter(in uint src, in uint mask)  
+        public static uint scatter(uint src, uint mask)  
             => ParallelBitDeposit(src, mask); 
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static long scatter(in long src, in long mask)  
+        public static long scatter(long src, long mask)  
             => (long)scatter((ulong)src, (ulong)mask);
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static ulong scatter(in ulong src, in ulong mask)        
+        public static ulong scatter(ulong src, ulong mask)        
             => X64.ParallelBitDeposit(src,mask);
 
 

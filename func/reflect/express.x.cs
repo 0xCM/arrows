@@ -11,6 +11,7 @@ namespace Z0
     using System.Linq;
     using System.Linq.Expressions;
     using System.Runtime.CompilerServices;
+    using System.Runtime.Intrinsics;
     using System.Diagnostics;
 
     using static zfunc;

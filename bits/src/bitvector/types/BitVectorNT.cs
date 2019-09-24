@@ -109,11 +109,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitVector<N,T> operator ^(BitVector<N,T> lhs, in BitVector<N,T> rhs)
-            => new BitVector<N,T>(gbits.xor(lhs.data, rhs.data));
+            => new BitVector<N,T>(gbitspan.xor(lhs.data, rhs.data));
 
         [MethodImpl(Inline)]
         public static BitVector<N,T> operator &(BitVector<N,T> lhs, in BitVector<N,T> rhs)
-            => new BitVector<N,T>(gbits.and(lhs.data, rhs.data));
+            => new BitVector<N,T>(gbitspan.and(lhs.data, rhs.data));
 
         /// <summary>
         /// Computes the scalar product of the operands
@@ -130,7 +130,7 @@ namespace Z0
         /// <param name="lhs">The source operand</param>
         [MethodImpl(Inline)]
         public static BitVector<N,T> operator ~(BitVector<N,T> src)
-            => new BitVector<N,T>(gbits.flip(src.data));                        
+            => new BitVector<N,T>(gbitspan.flip(src.data));                        
 
         /// <summary>
         /// Returns true if the source vector is nonzero, false otherwise

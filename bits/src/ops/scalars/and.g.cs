@@ -34,7 +34,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T and<T>(in T lhs, in T rhs)
             where T : struct
-               => gmath.and(in lhs, in rhs);
+               => gmath.and(lhs, rhs);
 
         /// <summary>
         /// Computes the bitwise AND of two primal operands and populates a user-suppled 

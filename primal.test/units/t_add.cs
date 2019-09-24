@@ -99,7 +99,7 @@ namespace Z0.Test
             var lhsSrc = Random.ReadOnlySpan<int>(Pow2.T10);  
             var lhs = lhsSrc.Replicate();
             var rhs = Random.ReadOnlySpan<int>(lhsSrc.Length);
-            math.add(lhs, rhs);           
+            mathspan.add(lhs, rhs);           
 
             var expect = span<int>(lhs.Length);
             for(var i =0; i< lhsSrc.Length; i++)
@@ -114,7 +114,7 @@ namespace Z0.Test
             var lhsSrc = Random.ReadOnlySpan<long>(Pow2.T10);  
             var lhs = lhsSrc.Replicate();
             var rhs = Random.ReadOnlySpan<long>(lhsSrc.Length);
-            math.add(lhs,rhs);
+            mathspan.add(lhs,rhs);
 
             var expect = span<long>(lhs.Length);
             for(var i =0; i< lhsSrc.Length; i++)

@@ -375,8 +375,8 @@ namespace Z0
         /// Extracts the bits that comprise the matrix in row-major order
         /// </summary>
         [MethodImpl(Inline)]
-        public readonly Span<Bit> Unpack()
-            => data.Unpack(out Span<Bit> dst);
+        public Span<byte> Unpack()
+            => Bytes.Unpack();
 
         /// <summary>
         /// Converts the matrix to a bitvector

@@ -25,11 +25,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public Vec128<T> Send(in Vec128<T> a, in Vec128<T> b)
-            => gbits.xor(in a,in b);
+            => gbits.vxor(in a,in b);
 
         [MethodImpl(Inline)]
         public Vec256<T> Send(in Vec256<T> a, in Vec256<T> b)
-            => gbits.xor(in a,in b);
+            => gbits.vxor(a,b);
 
     }
 

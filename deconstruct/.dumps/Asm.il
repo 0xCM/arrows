@@ -1,4 +1,4 @@
-// 2019-09-22 20:42:17:572
+// 2019-09-24 02:30:06:038
 XMM pmovzxbw(XMM a)
 {
     IL_0000: ldarga.s a
@@ -286,7 +286,7 @@ Vector256<double> vperm2f128(YMM a, YMM b, byte control)
     IL_0014: ret
 
 }
-YMM vperm2i128(YMM a, YMM b, byte control)
+YMM vperm2i128(YMM a, YMM b, Perm2x128:byte control)
 {
     IL_0000: ldarg.0
     IL_0001: ldarg.1
@@ -296,7 +296,7 @@ YMM vperm2i128(YMM a, YMM b, byte control)
     IL_000D: ret
 
 }
-Vector256<byte> vperm2f128(YMM a, YMM b, byte control)
+Vector256<byte> vperm2f128(YMM a, YMM b, Perm2x128:byte control)
 {
     IL_0000: ldarga.s a
     IL_0002: call System.Runtime.Intrinsics.Vector256`1<System.Byte> Z0.Asm::vload<System.Byte>(Z0.YMM&)

@@ -26,48 +26,25 @@ namespace Z0
             where T : struct
         {        
             if(typeof(T) == typeof(sbyte))
-                 return pop(int8(in src));
+                 return Bits.pop(int8(in src));
             else if(typeof(T) == typeof(byte))
-                 return pop(uint8(in src));
+                 return Bits.pop(uint8(in src));
             else if(typeof(T) == typeof(short))
-                 return pop(int16(in src));
+                 return Bits.pop(int16(in src));
             else if(typeof(T) == typeof(ushort))
-                 return pop(uint16(in src));
+                 return Bits.pop(uint16(in src));
             else if(typeof(T) == typeof(int))
-                 return pop(int32(in src));
+                 return Bits.pop(int32(in src));
             else if(typeof(T) == typeof(uint))
-                 return pop(uint32(in src));
+                 return Bits.pop(uint32(in src));
             else if(typeof(T) == typeof(long))
-                 return pop(int64(in src));
+                 return Bits.pop(int64(in src));
             else if(typeof(T) == typeof(ulong))
-                 return pop(uint64(in src));
+                 return Bits.pop(uint64(in src));
             else 
                 throw unsupported<T>();
         }
 
-        [MethodImpl(Inline)]
-        static uint pop(sbyte src) => Popcnt.PopCount((uint)src);
-
-        [MethodImpl(Inline)]
-        static uint pop(byte src) => Popcnt.PopCount(src);
-
-        [MethodImpl(Inline)]
-        static uint pop(short src) => Popcnt.PopCount((uint)src);
-
-        [MethodImpl(Inline)]
-        static uint pop(ushort src) => Popcnt.PopCount(src);
-
-        [MethodImpl(Inline)]
-        static uint pop(int src) => Popcnt.PopCount((uint)src);
-
-        [MethodImpl(Inline)]
-        static uint pop(uint src) => Popcnt.PopCount(src);
-
-        [MethodImpl(Inline)]
-        static uint pop(long src) => (uint)Popcnt.X64.PopCount((ulong)src);
-
-        [MethodImpl(Inline)]
-        static uint pop(ulong src) => (uint)Popcnt.X64.PopCount(src);
  
     }
 }

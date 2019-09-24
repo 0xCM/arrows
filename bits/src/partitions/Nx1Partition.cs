@@ -172,20 +172,32 @@ namespace Z0
             return ref dst;
         }
 
-        public static ref ushort pack16x1(in BitBlock16 src, ref ushort dst)
-        {            
-            dst |= (ushort)Bits.gather(src.Block8x0.ToUInt64(), (ulong)BitMask64.Lsb8);
-            dst |= (ushort)(Bits.gather(src.Block8x0.ToUInt64(), (ulong)BitMask64.Lsb8) << 8);
-            return ref dst;
-        }
 
-        public static ref uint pack32x1(in BitBlock32 src, ref uint dst)
-        {            
-            dst |= (uint)Bits.gather(src.Block8x0.ToUInt64(), (ulong)BitMask64.Lsb8);
-            dst |= (uint)(Bits.gather(src.Block8x1.ToUInt64(), (ulong)BitMask64.Lsb8) << 8);
-            dst |= (uint)(Bits.gather(src.Block8x2.ToUInt64(), (ulong)BitMask64.Lsb8) << 16);
-            dst |= (uint)(Bits.gather(src.Block8x3.ToUInt64(), (ulong)BitMask64.Lsb8) << 24);            
+        /// <summary>
+        /// Partitions 32 bits from the source into 16 target segments of effective width 1 
+        /// </summary>
+        /// <param name="src">The source value</param>
+        /// <param name="dst">A target span of sufficient length</param>
+        public static ref BitBlock16 part16x1(ushort src, ref BitBlock16 dst)
+        {
+            dst.Bit0 = project<byte>(select(src, Part32x1.Part0), Part32x1.First);
+            dst.Bit1 = project<byte>(select(src, Part32x1.Part1), Part32x1.First);
+            dst.Bit2 = project<byte>(select(src, Part32x1.Part2), Part32x1.First);
+            dst.Bit3 = project<byte>(select(src, Part32x1.Part3), Part32x1.First);
+            dst.Bit4 = project<byte>(select(src, Part32x1.Part4), Part32x1.First);
+            dst.Bit5 = project<byte>(select(src, Part32x1.Part5), Part32x1.First);
+            dst.Bit6 = project<byte>(select(src, Part32x1.Part6), Part32x1.First);
+            dst.Bit7 = project<byte>(select(src, Part32x1.Part7), Part32x1.First);
+            dst.Bit8 = project<byte>(select(src, Part32x1.Part8), Part32x1.First);
+            dst.Bit9 = project<byte>(select(src, Part32x1.Part9), Part32x1.First);
+            dst.Bit10 = project<byte>(select(src, Part32x1.Part10), Part32x1.First);
+            dst.Bit11 = project<byte>(select(src, Part32x1.Part11), Part32x1.First);
+            dst.Bit12 = project<byte>(select(src, Part32x1.Part12), Part32x1.First);
+            dst.Bit13 = project<byte>(select(src, Part32x1.Part13), Part32x1.First);
+            dst.Bit14 = project<byte>(select(src, Part32x1.Part14), Part32x1.First);
+            dst.Bit15 = project<byte>(select(src, Part32x1.Part15), Part32x1.First);
             return ref dst;
+
         }
 
         /// <summary>

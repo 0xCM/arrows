@@ -15,7 +15,7 @@ namespace Z0.Test
         public void pop1()
         {
             var src = (ushort)0b11001111;
-            src.Unpack(out Span<Bit> bits);            
+            var bits = src.Unpack();            
             var bitsPC = bits.PopCount();
             Claim.eq(6,bitsPC);
 
@@ -30,7 +30,7 @@ namespace Z0.Test
         public void pop5()
         {
             var xBytes = BitConverter.GetBytes(0b111010010110011010111001110000100001101ul).ToSpan();
-            xBytes.Unpack(out Span<Bit> xBits);
+            var xBits = xBytes.Unpack();
             var xBitsPC = xBits.PopCount();
             var xBytesPC = xBytes.PopCount();
 
@@ -42,7 +42,7 @@ namespace Z0.Test
             var xBytes = Random.Span<byte>(5);
             var x = Bytes.read<ulong>(xBytes);
             var xPC = Bits.pop(x);
-            xBytes.Unpack(out Span<Bit> xBits);
+            var xBits = xBytes.Unpack();
             var xBitsPC = xBits.PopCount();
             var xBytesPC = xBytes.PopCount();
 
@@ -54,7 +54,7 @@ namespace Z0.Test
         {
             var xBytes = Random.Span<byte>(Pow2.T10 - 3);
             var xBytesPC = xBytes.PopCount();
-            var xBitsPC = xBytes.Unpack(out Span<Bit> bits).PopCount();
+            var xBitsPC = xBytes.Unpack().PopCount();
             Claim.eq(xBitsPC, xBytesPC);
         }
 

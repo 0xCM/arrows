@@ -694,7 +694,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public readonly BitVector64 Gather(BitVector64 spec)
-            => Bits.gather(in data, spec);
+            => Bits.gather(data, spec);
 
         /// <summary>
         /// Populates a target vector with specified source bits
@@ -703,7 +703,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public readonly BitVector32 Gather(BitVector32 mask)
-            => (uint)Bits.gather(in data, mask);
+            => (uint)Bits.gather((uint)data, (uint)mask);
 
         /// <summary>
         /// Populates a target vector with specified source bits
@@ -712,7 +712,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public readonly BitVector16 Gather(BitVector16 mask)        
-            => (ushort)Bits.gather(in data, mask);
+            => (ushort)Bits.gather(data, (ulong)mask);
         
         /// <summary>
         /// Populates a target vector with specified source bits
@@ -721,7 +721,7 @@ namespace Z0
         /// <param name="dst">Receives the identified bits</param>
         [MethodImpl(Inline)]
         public readonly BitVector8 Gather(BitVector8 mask)
-            => (byte)Bits.gather(in data, mask);
+            => (byte)Bits.gather(data, (ulong)mask);
 
         /// <summary>
         /// Tests whether all bits are on

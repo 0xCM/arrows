@@ -60,7 +60,6 @@ namespace Z0
             return ref lhs;
         }
 
-        [MethodImpl(Inline)]
         public static T avg<T>(ReadOnlySpan<T> src)
             where T : struct
         {

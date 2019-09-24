@@ -99,48 +99,6 @@ namespace Z0
             return ref src;
         }    
 
-        public static Span<byte> rotl(ReadOnlySpan<byte> src, byte offset, Span<byte> dst)
-        {
-            for(var i=0; i<src.Length; i++)
-                dst[i] = rotl(src[i], offset);                            
-            return dst;
-        }
 
-        public static Span<ushort> rotl(ReadOnlySpan<ushort> src, ushort offset, Span<ushort> dst)
-        {
-            for(var i=0; i<src.Length; i++)
-                dst[i] = rotl(src[i], offset);                            
-            return dst;
-        }
-
-        public static Span<uint> rotl(ReadOnlySpan<uint> src, uint offset, Span<uint> dst)
-        {
-            for(var i=0; i<src.Length; i++)
-                dst[i] = rotl(src[i], offset);                            
-            return dst;
-        }
-
-        public static Span<ulong> rotl(ReadOnlySpan<ulong> src, ulong offset, Span<ulong> dst)
-        {
-            for(var i=0; i<src.Length; i++)
-                dst[i] = rotl(src[i], offset);                            
-            return dst;
-        }
-
-        [MethodImpl(Inline)]
-        public static Span<byte> rotl(ReadOnlySpan<byte> src, byte offset)
-            => rotl(src,offset,src.Replicate(true));
-
-        [MethodImpl(Inline)]
-        public static Span<ushort>  rotl(ReadOnlySpan<ushort> src, ushort offset)
-            => rotl(src,offset,src.Replicate(true));
-
-        [MethodImpl(Inline)]
-        public static Span<uint>  rotl(ReadOnlySpan<uint> src, uint offset)
-            => rotl(src,offset,src.Replicate(true));
-
-        [MethodImpl(Inline)]
-        public static Span<ulong>  rotl(ReadOnlySpan<ulong> src, ulong offset)
-            => rotl(src,offset,src.Replicate(true));
     }
 }

@@ -43,8 +43,6 @@ namespace Z0
             var inxcount = asm.Instructions.Length;
             var code = asm.NativeBlocks.Single().Data;
             Span<byte> codespan = code;
-            // var startAddress = asm.Instructions.First().IP;
-            // var endAddress = asm.Instructions.Last().IP;
             var inxs = new AsmInstructionInfo[inxcount];
             var inxsfmt = asm.FormatInstructions();
 
