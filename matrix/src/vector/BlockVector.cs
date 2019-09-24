@@ -56,7 +56,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T operator *(BlockVector<T> lhs, in BlockVector<T> rhs)
-            => gmath.dot<T>(lhs.data, rhs.data);
+            => mathspan.dot<T>(lhs.data, rhs.data);
 
         public ref T this[int i]
         {

@@ -210,5 +210,116 @@ namespace Z0
             return ref src;
         } 
 
+
+        /// <summary>
+        /// Negates the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static ref sbyte negate(sbyte src, ref sbyte dst)
+        {
+            dst = (sbyte) - src;
+            return ref dst;
+        }
+
+        /// <summary>
+        /// Computes the two's complement negation of the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static ref byte negate(byte src, ref byte dst)
+        {
+            dst = negate(src);
+            return ref dst;
+        }
+
+        /// <summary>
+        /// Negates the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static ref short negate(short src, ref short dst)
+        {
+            dst = (short) - src;
+            return ref dst;
+        }
+
+        /// <summary>
+        /// Computes the two's complement negation of the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static ref ushort negate(ushort src, ref ushort dst)
+        {
+            dst = negate(src);
+            return ref dst;
+        }
+
+        /// <summary>
+        /// Negates the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static ref int negate(int src, ref int dst)
+        {
+            dst = - src;
+            return ref dst;
+        }
+
+        /// <summary>
+        /// Computes the two's complement negation of the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static ref uint negate(uint src, ref uint dst)
+        {
+            dst = negate(src);
+            return ref dst;
+        }
+
+        /// <summary>
+        /// Negates the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static ref long negate(long src, ref long dst)
+        {
+            dst = - src;
+            return ref dst;
+        }
+
+        /// <summary>
+        /// Computes the two's complement negation of the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static ref ulong negate(ulong src, ref ulong dst)
+        {
+            dst = negate(src);
+            return ref dst;
+        }
+
+        /// <summary>
+        /// Negates the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static ref float negate(float src, ref float dst)
+        {
+            dst = - src;
+            return ref dst;
+        }
+
+        /// <summary>
+        /// Negates the source value in-place
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static ref double negate(double src, ref double dst)
+        {
+            dst = - src;
+            return ref dst;
+        } 
+
    }
 }

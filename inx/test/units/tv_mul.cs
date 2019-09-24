@@ -181,7 +181,7 @@ namespace Z0
                 var u = Vec256.Load(src.TakeSpan(4));
                 var v = Vec256.Load(src.TakeSpan(4));
                 var x = dfp.fmul(u,v);
-                var y = Vec256.Load(gmath.mul(u.ToSpan(), v.ToSpan(), v.ToSpan().Replicate(true)));
+                var y = Vec256.Load(mathspan.mul(u.ToSpan(), v.ToSpan(), v.ToSpan().Replicate(true)));
                 Claim.eq(x,y);
 
                 var xi = x.ToSpan().Convert<long>();

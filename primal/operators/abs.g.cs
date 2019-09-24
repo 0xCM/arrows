@@ -33,9 +33,9 @@ namespace Z0
             else if(typeof(T) == typeof(long))
                 return generic<T>(math.abs(int64(src)));
             else if(typeof(T) == typeof(float))
-                return generic<T>(fmath.fabs(float32(src)));
+                return generic<T>(fmath.abs(float32(src)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(fmath.fabs(float64(src)));
+                return generic<T>(fmath.abs(float64(src)));
             else            
                 return src;
         }           

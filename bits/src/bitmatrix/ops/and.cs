@@ -10,7 +10,7 @@ namespace Z0
     using System.Threading;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
-    using System.Runtime.Intrinsics.X86;
+    using System.Runtime.Intrinsics;
 
     using static zfunc;
     using static As;
@@ -23,7 +23,7 @@ namespace Z0
         /// <param name="lhs">The left matrix</param>
         /// <param name="rhs">The right matrix</param>
         [MethodImpl(Inline)]
-        public static BitMatrix8 and(in BitMatrix8 lhs, in BitMatrix8 rhs)
+        public static BitMatrix8 and(BitMatrix8 lhs, BitMatrix8 rhs)
              => BitMatrix8.From((ulong)lhs & (ulong)rhs);             
 
         /// <summary>
@@ -34,10 +34,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitMatrix16 and(in BitMatrix16 lhs, in BitMatrix16 rhs)
         {
-            ref var A = ref lhs.LoadCpuVec(out Vec256<ushort> _);
-            ref var B = ref rhs.LoadCpuVec(out Vec256<ushort> _);
-            var C = dinx.and(in A,in B);
-            return BitMatrix16.From(in C);
+            ref var A = ref lhs.LoadCpuVec(out Vector256<ushort> _);
+            ref var B = ref rhs.LoadCpuVec(out Vector256<ushort> _);
+            var C = dinx.and(A,B);
+            return BitMatrix16.From(C);
         }
 
         /// <summary>

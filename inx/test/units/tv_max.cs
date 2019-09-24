@@ -31,11 +31,11 @@ namespace Z0.Test
                 Span<int> tmp = stackalloc int[blocklen];
                 for(var i =0; i<blocklen; i++)
                     tmp[i] = gmath.max(lhs[offset + i], rhs[offset + i]);
-                var vExpect = Vec128.Load(ref tmp[0]);
+                var vExpect = Vec128.LoadVector(ref tmp[0]);
              
                 var vX = lhs.LoadVec128(block);
                 var vY = rhs.LoadVec128(block);
-                var vActual = ginx.max(vX,vY);
+                var vActual = ginx.max<int>(vX,vY);
 
                 Claim.eq(vExpect, vActual);
 
@@ -61,11 +61,11 @@ namespace Z0.Test
                 Span<int> tmp = stackalloc int[blocklen];
                 for(var i =0; i<blocklen; i++)
                     tmp[i] = gmath.max(lhs[offset + i], rhs[offset + i]);
-                var vExpect = Vec256.Load(ref tmp[0]);
+                var vExpect = Vec256.LoadVector(ref tmp[0]);
              
                 var vX = lhs.LoadVec256(block);
                 var vY = rhs.LoadVec256(block);
-                var vActual = ginx.max(vX,vY);
+                var vActual = ginx.max<int>(vX,vY);
 
                 Claim.eq(vExpect, vActual);
 

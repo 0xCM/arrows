@@ -15,95 +15,92 @@ namespace Z0
 
     partial class bitvector
     {
-
         /// <summary>
-        /// Computes a new bitvector z = x ^ y from bitvectors x and y
+        /// Computes a new bitvector z = x & y from bitvectors x xor y
         /// </summary>
         /// <param name="x">The left bitvector</param>
         /// <param name="y">The right bitvector</param>
         [MethodImpl(Inline)]
         public static BitVector8 xor(BitVector8 x, BitVector8 y)
-            => math.xor(x.Scalar, y.Scalar);
-            
+            => math.xor(x.data,y.data);
+
         /// <summary>
-        /// Computes a new bitvector z = x ^ y from bitvectors x and y
+        /// Computes a new bitvector z = x & y from bitvectors x xor y
         /// </summary>
         /// <param name="x">The left bitvector</param>
         /// <param name="y">The right bitvector</param>
         [MethodImpl(Inline)]
         public static BitVector16 xor(BitVector16 x, BitVector16 y)
-            => math.xor(x.Scalar, y.Scalar);
+            => math.xor(x.data, y.data);
 
         /// <summary>
-        /// Computes a new bitvector z = x ^ y from bitvectors x and y
+        /// Computes a new bitvector z = x & y from bitvectors x xor y
         /// </summary>
         /// <param name="x">The left bitvector</param>
         /// <param name="y">The right bitvector</param>
         [MethodImpl(Inline)]
         public static BitVector32 xor(BitVector32 x, BitVector32 y)
-            => math.xor(x.Scalar, y.Scalar);
+            => math.xor(x.data, y.data);
 
         /// <summary>
-        /// Computes a new bitvector z = x ^ y from bitvectors x and y
+        /// Computes a new bitvector z = x & y from bitvectors x xor y
         /// </summary>
         /// <param name="x">The left bitvector</param>
         /// <param name="y">The right bitvector</param>
         [MethodImpl(Inline)]
         public static BitVector64 xor(BitVector64 x, BitVector64 y)
-            => math.xor(x.Scalar, y.Scalar);
+            => math.xor(x.data, y.data);
  
         /// <summary>
-        /// Computes a new bitvector z = x ^ y from bitvectors x and y
+        /// Computes a new bitvector z = x & y from bitvectors x xor y
         /// </summary>
         /// <param name="x">The left bitvector</param>
         /// <param name="y">The right bitvector</param>
         /// <param name="z">The target bitvector</param>
         [MethodImpl(Inline)]
-        public static ref BitVector8 xor(in BitVector8 x, in BitVector8 y, ref BitVector8 z)
+        public static ref BitVector8 xor(BitVector8 x, BitVector8 y, ref BitVector8 z)
         {
-            z = xor(x,y);
+            math.xor(x.data, y.data, ref z.data);
             return ref z;
         }
 
         /// <summary>
-        /// Computes a new bitvector z = x ^ y from bitvectors x and y
+        /// Computes a new bitvector z = x & y from bitvectors x xor y
         /// </summary>
         /// <param name="x">The left bitvector</param>
         /// <param name="y">The right bitvector</param>
         /// <param name="z">The target bitvector</param>
         [MethodImpl(Inline)]
-        public static ref BitVector16 xor(in BitVector16 x, in BitVector16 y, ref BitVector16 z)
+        public static ref BitVector16 xor(BitVector16 x, BitVector16 y, ref BitVector16 z)
         {
-            z = xor(x,y);
+            math.xor(x.data, y.data, ref z.data);
             return ref z;
         }
 
         /// <summary>
-        /// Computes a new bitvector z = x ^ y from bitvectors x and y
+        /// Computes a new bitvector z = x & y from bitvectors x xor y
         /// </summary>
         /// <param name="x">The left bitvector</param>
         /// <param name="y">The right bitvector</param>
         /// <param name="z">The target bitvector</param>
         [MethodImpl(Inline)]
-        public static ref BitVector32 xor(in BitVector32 x, in BitVector32 y, ref BitVector32 z)
+        public static ref BitVector32 xor(BitVector32 x, BitVector32 y, ref BitVector32 z)
         {
-            z = xor(x,y);
+            math.xor(x.data, y.data, ref z.data);
             return ref z;
         }
 
         /// <summary>
-        /// Computes a new bitvector z = x ^ y from bitvectors x and y
+        /// Computes a new bitvector z = x & y from bitvectors x xor y
         /// </summary>
         /// <param name="x">The left bitvector</param>
         /// <param name="y">The right bitvector</param>
         /// <param name="z">The target bitvector</param>
         [MethodImpl(Inline)]
-        public static ref BitVector64 xor(in BitVector64 x, in BitVector64 y, ref BitVector64 z)
+        public static ref BitVector64 xor(BitVector64 x, BitVector64 y, ref BitVector64 z)
         {
-            z = xor(x,y);
+            math.xor(x.data, y.data, ref z.data);
             return ref z;
         }
-
     }
-
 }

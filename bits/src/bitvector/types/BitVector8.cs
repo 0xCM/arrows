@@ -17,10 +17,10 @@ namespace Z0
     public struct BitVector8 : IFixedBits<BitVector8,byte>
     {
         [FieldOffset(0)]
-        BitVector4 bv4;
+        internal byte data;
 
         [FieldOffset(0)]
-        byte data;
+        BitVector4 bv4;
 
         public static readonly BitVector8 Zero = 0;
 

@@ -84,7 +84,7 @@ namespace Z0
         static T dot<N,T>(in BlockVector<N,T> lhs, in BlockVector<N,T> rhs)
             where N : ITypeNat, new()
             where T : unmanaged    
-                => gmath.dot<T>(lhs.Unsized,rhs.Unsized);
+                => mathspan.dot<T>(lhs.Unsized,rhs.Unsized);
 
         public static void Mul<M,N,T>(BlockMatrix<M,N,T> A, BlockVector<N,T> B, BlockVector<M,T> X)
             where M : ITypeNat, new()

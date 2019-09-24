@@ -97,7 +97,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static T operator *(BlockVector<N,T> lhs, in BlockVector<N,T> rhs)
-            => gmath.dot<T>(lhs.Unsized, rhs.Unsized);
+            => mathspan.dot<T>(lhs.Unsized, rhs.Unsized);
          
         [MethodImpl(Inline)]
         BlockVector(ref T src)

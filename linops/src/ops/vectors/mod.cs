@@ -32,7 +32,7 @@ namespace Z0
             where T : unmanaged    
 
         {
-            gfp.fmod<T>(div.Data, mod.Data, dst.Data);
+            mathspan.fmod<T>(div.Data, mod.Data, dst.Data);
             return ref dst;
         }
 

@@ -40,10 +40,6 @@ namespace Z0
                     return (byte)int64(ref src);
             else if(typeof(T) == typeof(ulong))
                     return (byte)uint64(ref src);
-            else if(typeof(T) == typeof(float))
-                    return (byte)float32(ref src).ToBits();
-            else if(typeof(T) == typeof(double))
-                    return (byte)float64(ref src).ToBits();
             else
                 throw unsupported<T>();
         }
@@ -73,10 +69,6 @@ namespace Z0
                     return (ushort)int64(ref src);
             else if(typeof(T) == typeof(ulong))
                     return (ushort)uint64(ref src);
-            else if(typeof(T) == typeof(float))
-                    return (ushort)float32(ref src).ToBits();
-            else if(typeof(T) == typeof(double))
-                    return (ushort)float64(ref src).ToBits();
             else
                 throw unsupported<T>();
         }
@@ -106,10 +98,6 @@ namespace Z0
                     return (uint)int64(ref src);
             else if(typeof(T) == typeof(ulong))
                     return (uint)uint64(ref src);
-            else if(typeof(T) == typeof(float))
-                    return (uint)float32(ref src).ToBits();
-            else if(typeof(T) == typeof(double))
-                    return (uint)float64(ref src).ToBits();
             else
                 throw unsupported<T>();
         }
@@ -124,25 +112,21 @@ namespace Z0
             where T : unmanaged
         {
             if(typeof(T) == typeof(sbyte))
-                    return (ulong)int8(ref src);
+                return (ulong)int8(ref src);
             else if(typeof(T) == typeof(byte))
-                    return (ulong)uint8(ref src);
+                return (ulong)uint8(ref src);
             else if(typeof(T) == typeof(short))
-                    return (ulong)int16(ref src);
+                return (ulong)int16(ref src);
             else if(typeof(T) == typeof(uint))
-                    return (ulong)uint16(ref src);
+                return (ulong)uint16(ref src);
             else if(typeof(T) == typeof(int))
-                    return (ulong)int32(ref src);
+                return (ulong)int32(ref src);
             else if(typeof(T) == typeof(uint))
-                    return (ulong)uint32(ref src);
+                return (ulong)uint32(ref src);
             else if(typeof(T) == typeof(long))
-                    return (ulong)int64(ref src);
+                return (ulong)int64(ref src);
             else if(typeof(T) == typeof(ulong))
-                    return (ulong)uint64(ref src);
-            else if(typeof(T) == typeof(float))
-                    return (ulong)float32(ref src).ToBits();
-            else if(typeof(T) == typeof(double))
-                    return (ulong)float64(ref src).ToBits();
+                return (ulong)uint64(ref src);
             else
                 throw unsupported<T>();
         }

@@ -10,7 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\asm\src\z0.asm.csproj" />
     <ProjectReference Include="..\cpu\src\z0.cpu.csproj" />
-    <ProjectReference Include="..\deconstruct\z0.deconstruct.csproj" />
+    <ProjectReference Include="..\reveal\z0.reveal.csproj" />
     <ProjectReference Include="..\func\z0.zfunc.csproj" />
     <ProjectReference Include="..\inx\src\core\z0.inx.core.csproj" />
     <ProjectReference Include="..\bits\src\z0.bits.csproj" />

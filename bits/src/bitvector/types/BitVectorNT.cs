@@ -108,11 +108,11 @@ namespace Z0
             => BitVector<T>.Load(src.data);
 
         [MethodImpl(Inline)]
-        public static BitVector<N,T> operator ^(BitVector<N,T> lhs, in BitVector<N,T> rhs)
+        public static BitVector<N,T> operator ^(BitVector<N,T> lhs, BitVector<N,T> rhs)
             => new BitVector<N,T>(gbitspan.xor(lhs.data, rhs.data));
 
         [MethodImpl(Inline)]
-        public static BitVector<N,T> operator &(BitVector<N,T> lhs, in BitVector<N,T> rhs)
+        public static BitVector<N,T> operator &(BitVector<N,T> lhs, BitVector<N,T> rhs)
             => new BitVector<N,T>(gbitspan.and(lhs.data, rhs.data));
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Bit operator %(in BitVector<N,T> lhs, in BitVector<N,T> rhs)
+        public static Bit operator %(BitVector<N,T> lhs, BitVector<N,T> rhs)
             => lhs.Dot(rhs);
 
         /// <summary>

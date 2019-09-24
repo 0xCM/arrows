@@ -72,69 +72,6 @@ namespace Z0
             return ref lhs;
         }
 
-        /// <summary>
-        /// Multiplies corresponding elements in left/right primal source spans and writes
-        /// the result to a caller-supplied target span
-        /// </summary>
-        /// <param name="lhs">The left primal span</param>
-        /// <param name="rhs">The right primal span</param>
-        /// <param name="dst">The target span</param>
-        /// <typeparam name="T">The span element type</typeparam>
-        public static Span<T> mul<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                int8(lhs).Mul(int8(rhs), int8(dst));
-            else if(typeof(T) == typeof(byte))
-                uint8(lhs).Mul(uint8(rhs), uint8(dst));
-            else if(typeof(T) == typeof(short))
-                int16(lhs).Mul(int16(rhs), int16(dst));
-            else if(typeof(T) == typeof(ushort))
-                uint16(lhs).Mul(uint16(rhs), uint16(dst));
-            else if(typeof(T) == typeof(int))
-                int32(lhs).Mul(int32(rhs), int32(dst));
-            else if(typeof(T) == typeof(uint))
-                uint32(lhs).Mul(uint32(rhs), uint32(dst));
-            else if(typeof(T) == typeof(long))
-                int64(lhs).Mul(int64(rhs), int64(dst));
-            else if(typeof(T) == typeof(ulong))
-                uint64(lhs).Mul(uint64(rhs), uint64(dst));
-            else if(typeof(T) == typeof(float))
-                float32(lhs).Mul(float32(rhs), float32(dst));
-            else if(typeof(T) == typeof(double))
-                float64(lhs).Mul(float64(rhs), float64(dst));
-            else
-                throw unsupported<T>();
-            return dst;
-        }
-
-        public static Span<T> mul<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                int8(lhs).Mul(int8(rhs));
-            else if(typeof(T) == typeof(byte))
-                uint8(lhs).Mul(uint8(rhs));
-            else if(typeof(T) == typeof(short))
-                int16(lhs).Mul(int16(rhs));
-            else if(typeof(T) == typeof(ushort))
-                uint16(lhs).Mul(uint16(rhs));
-            else if(typeof(T) == typeof(int))
-                int32(lhs).Mul(int32(rhs));
-            else if(typeof(T) == typeof(uint))
-                uint32(lhs).Mul(uint32(rhs));
-            else if(typeof(T) == typeof(long))
-                int64(lhs).Mul(int64(rhs));
-            else if(typeof(T) == typeof(ulong))
-                uint64(lhs).Mul(uint64(rhs));
-            else if(typeof(T) == typeof(float))
-                float32(lhs).Mul(float32(rhs));
-            else if(typeof(T) == typeof(double))
-                float64(lhs).Mul(float64(rhs));
-            else
-                throw unsupported<T>();
-            return lhs;
-        }
 
     }
 }

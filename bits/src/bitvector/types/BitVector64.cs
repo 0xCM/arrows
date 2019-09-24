@@ -32,7 +32,7 @@ namespace Z0
         internal BitVector32 bv32;
 
         [FieldOffset(0)]
-        ulong data;
+        internal ulong data;
 
         [FieldOffset(0)]
         uint x00;
@@ -151,7 +151,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source bitstring</param>
         [MethodImpl(Inline)]
-        public static BitVector64 FromBitString(in BitString src)
+        public static BitVector64 FromBitString(BitString src)
             => src.TakeUInt64();
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source integer</param>
         [MethodImpl(Inline)]
-        public static implicit operator BitVector64(in ulong src)
+        public static implicit operator BitVector64(ulong src)
             => new BitVector64(src);
 
         /// <summary>

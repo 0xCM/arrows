@@ -17,8 +17,8 @@ namespace Z0
             for(var i=0; i<SampleSize; i++)
             {
                 var src = Random.Next<double>();
-                Claim.eq(src < 0 ? -src : src, fmath.fabs(src));
-                Claim.eq(fmath.fabs(src), cephes.fabs(src));
+                Claim.eq(src < 0 ? -src : src, fmath.abs(src));
+                Claim.eq(fmath.abs(src), cephes.fabs(src));
             }
         }
 
@@ -27,8 +27,8 @@ namespace Z0
             for(var i=0; i<SampleSize; i++)
             {
                 var src = Random.Next<double>();
-                Claim.eq(src < 0 ? -src : src, fmath.fabs(src));
-                Claim.eq(fmath.fabs(src), libm.fabs(src));
+                Claim.eq(src < 0 ? -src : src, fmath.abs(src));
+                Claim.eq(fmath.abs(src), libm.fabs(src));
             }
         }
 
@@ -62,7 +62,7 @@ namespace Z0
             {
                 var last = 0.0;
                 for(var i=0; i<src.Length; i++)
-                    last = fmath.fabs(src[i]);
+                    last = fmath.abs(src[i]);
             }
 
             Benchmark<double>(worker, "fabs/fmath");

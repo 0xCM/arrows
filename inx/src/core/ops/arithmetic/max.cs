@@ -19,7 +19,6 @@ namespace Z0
 
     public partial class dinx
     {
-
         /// <summary>
         /// __m128i _mm_max_epu8 (__m128i a, __m128i b) PMAXUB xmm, xmm/m128
         /// </summary>
@@ -27,7 +26,7 @@ namespace Z0
         /// <param name="rhs"></param>
         /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Vec128<byte> max(in Vec128<byte> lhs, in Vec128<byte> rhs)
+        public static Vector128<byte> max(Vector128<byte> lhs, Vector128<byte> rhs)
             => Max(lhs, rhs);
 
         /// <summary>
@@ -37,7 +36,7 @@ namespace Z0
         /// <param name="rhs"></param>
         /// <returns></returns>
         [MethodImpl(Inline)]
-        public static Vec128<sbyte> max(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+        public static Vector128<sbyte> max(Vector128<sbyte> lhs, Vector128<sbyte> rhs)
             => Max(lhs, rhs);
 
         /// <summary>
@@ -46,7 +45,7 @@ namespace Z0
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         [MethodImpl(Inline)]
-        public static Vec128<short> max(in Vec128<short> lhs, in Vec128<short> rhs)
+        public static Vector128<short> max(Vector128<short> lhs, Vector128<short> rhs)
             => Max(lhs, rhs);
  
         /// <summary>
@@ -55,7 +54,7 @@ namespace Z0
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         [MethodImpl(Inline)]
-        public static Vec128<int> max(in Vec128<int> lhs, in Vec128<int> rhs)
+        public static Vector128<int> max(Vector128<int> lhs, Vector128<int> rhs)
             => Max(lhs, rhs);
 
         /// <summary>
@@ -64,7 +63,7 @@ namespace Z0
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         [MethodImpl(Inline)]
-        public static Vec128<uint> max(in Vec128<uint> lhs, in Vec128<uint> rhs)
+        public static Vector128<uint> max(Vector128<uint> lhs, Vector128<uint> rhs)
             => Max(lhs, rhs);
 
         /// <summary>
@@ -73,11 +72,11 @@ namespace Z0
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         [MethodImpl(Inline)]
-        public static Vec256<byte> max(in Vec256<byte> lhs, in Vec256<byte> rhs)
+        public static Vector256<byte> max(Vector256<byte> lhs, Vector256<byte> rhs)
             => Max(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<sbyte> max(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+        public static Vector256<sbyte> max(Vector256<sbyte> lhs, Vector256<sbyte> rhs)
             => Max(lhs, rhs);
 
         /// <summary>
@@ -86,7 +85,7 @@ namespace Z0
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         [MethodImpl(Inline)]
-        public static Vec256<short> max(in Vec256<short> lhs, in Vec256<short> rhs)
+        public static Vector256<short> max(Vector256<short> lhs, Vector256<short> rhs)
             => Max(lhs, rhs);
 
         /// <summary>
@@ -95,7 +94,7 @@ namespace Z0
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         [MethodImpl(Inline)]
-        public static Vec128<ushort> max(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
+        public static Vector128<ushort> max(Vector128<ushort> lhs, Vector128<ushort> rhs)
             => Max(lhs, rhs);
 
         /// <summary>
@@ -104,7 +103,7 @@ namespace Z0
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         [MethodImpl(Inline)]
-        public static Vec256<ushort> max(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+        public static Vector256<ushort> max(Vector256<ushort> lhs, Vector256<ushort> rhs)
             => Max(lhs, rhs);
 
         /// <summary>
@@ -113,7 +112,7 @@ namespace Z0
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         [MethodImpl(Inline)]
-        public static Vec256<int> max(in Vec256<int> lhs, in Vec256<int> rhs)
+        public static Vector256<int> max(Vector256<int> lhs, Vector256<int> rhs)
             => Max(lhs, rhs);
 
         /// <summary>
@@ -122,7 +121,7 @@ namespace Z0
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
         [MethodImpl(Inline)]
-        public static Vec256<uint> max(in Vec256<uint> lhs, in Vec256<uint> rhs)
+        public static Vector256<uint> max(Vector256<uint> lhs, Vector256<uint> rhs)
             => Max(lhs, rhs);
 
     }

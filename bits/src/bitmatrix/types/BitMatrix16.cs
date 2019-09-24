@@ -9,6 +9,8 @@ namespace Z0
     using System.Threading;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
+    using System.Runtime.Intrinsics;
+
     using System.Runtime.Intrinsics.X86;
 
     using static As;
@@ -92,7 +94,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The matrix bits</param>
         [MethodImpl(Inline)]
-        public static BitMatrix16 From<T>(in Vec256<T> src)
+        public static BitMatrix16 From<T>(Vector256<T> src)
             where T : struct
                 => BitMatrix16.From(ByteSpan.FromValue(src));
 
@@ -275,8 +277,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public readonly BitMatrix16 AndNot(in BitMatrix16 rhs)
         {
-            this.LoadCpuVec(out Vec256<ushort> vLhs);
-            rhs.LoadCpuVec(out Vec256<ushort> vRhs);
+            this.LoadCpuVec(out Vector256<ushort> vLhs);
+            rhs.LoadCpuVec(out Vector256<ushort> vRhs);
             Bits.andn(vLhs,vRhs).StoreTo(ref data[0]);
             return this;
         }
@@ -344,8 +346,8 @@ namespace Z0
         [MethodImpl(Inline)]
         public bool IsZero()
         {
-            this.LoadCpuVec(out Vec256<ushort> vSrc);
-            return vSrc.TestZ(vSrc);            
+            this.LoadCpuVec(out Vector256<ushort> vSrc);
+            return dinx.testz(vSrc,vSrc);
         }
 
         public readonly BitMatrix8 Block(N0 r0, N0 c0)
@@ -370,7 +372,7 @@ namespace Z0
             => BitVector.Load(data, zfunc.n256);
 
         [MethodImpl(Inline)]
-        static unsafe Vec256<ushort> load(ref ushort head)
+        static unsafe Vector256<ushort> load(ref ushort head)
             => Avx.LoadVector256(refptr(ref head));
 
         [MethodImpl(Inline)]
@@ -389,17 +391,18 @@ namespace Z0
         /// </summary>
         /// <param name="dst">The target vector</param>
         [MethodImpl(Inline)]
-        public readonly ref Vec256<ushort> LoadCpuVec(out Vec256<ushort> dst)
+        public readonly ref Vector256<ushort> LoadCpuVec(out Vector256<ushort> dst)
         {
             dst = load(ref data[0]);
             return ref dst;
         }
 
+
         [MethodImpl(Inline)]
         static ref BitMatrix16 And(ref BitMatrix16 lhs, in BitMatrix16 rhs)
         {
-            lhs.LoadCpuVec(out Vec256<ushort> vLhs);
-            rhs.LoadCpuVec(out Vec256<ushort> vRhs);
+            lhs.LoadCpuVec(out Vector256<ushort> vLhs);
+            rhs.LoadCpuVec(out Vector256<ushort> vRhs);
             gbits.vand<ushort>(vLhs,vRhs).StoreTo(ref lhs.data[0]);
             return ref lhs;
         }
@@ -407,26 +410,26 @@ namespace Z0
         [MethodImpl(Inline)]
         static ref BitMatrix16 Or(ref BitMatrix16 lhs, in BitMatrix16 rhs)
         {
-            lhs.LoadCpuVec(out Vec256<ushort> vLhs);
-            rhs.LoadCpuVec(out Vec256<ushort> vRhs);
-            vLhs.Or(vRhs).StoreTo(ref lhs.data[0]);
+            lhs.LoadCpuVec(out Vector256<ushort> vLhs);
+            rhs.LoadCpuVec(out Vector256<ushort> vRhs);
+            dinx.or(vLhs,vRhs).StoreTo(ref lhs.data[0]);
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
         static ref BitMatrix16 XOr(ref BitMatrix16 lhs, in BitMatrix16 rhs)
         {
-            lhs.LoadCpuVec(out Vec256<ushort> vLhs);
-            rhs.LoadCpuVec(out Vec256<ushort> vRhs);
-            vLhs.XOr(vRhs).StoreTo(ref lhs.data[0]);
+            lhs.LoadCpuVec(out Vector256<ushort> vLhs);
+            rhs.LoadCpuVec(out Vector256<ushort> vRhs);
+            dinx.xor(vLhs,vRhs).StoreTo(ref lhs.data[0]);
             return ref lhs;
         }
 
         [MethodImpl(Inline)]
         static ref BitMatrix16 Flip(ref BitMatrix16 src)
         {
-            src.LoadCpuVec(out Vec256<ushort> vSrc);
-            vSrc.Flip().StoreTo(ref src.data[0]);
+            src.LoadCpuVec(out Vector256<ushort> vSrc);
+            Bits.flip(vSrc).StoreTo(ref src.data[0]);
             return ref src;
         }
 

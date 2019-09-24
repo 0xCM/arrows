@@ -26,6 +26,29 @@ namespace Z0
         [MethodImpl(Inline)]
         public static double floor(double src)
             => Math.Floor(src); 
+
+        /// <summary>
+        /// Computes in-place the largest integral value less than or equal to the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static ref float floor(ref float src)
+        {
+            src = MathF.Floor(src);
+            return ref src;
+        }
+
+        /// <summary>
+        /// Computes in-place the largest integral value less than or equal to the source value
+        /// </summary>
+        /// <param name="src">The source value</param>
+        [MethodImpl(Inline)]
+        public static ref double floor(ref double src)
+        {
+            src = Math.Floor(src); 
+            return ref src;
+        }
+
     }
 
 }

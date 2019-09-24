@@ -45,13 +45,6 @@ namespace Z0
         public static ulong xor(ulong lhs, ulong rhs)
             => lhs ^ rhs;
 
-        [MethodImpl(Inline)]
-        public static float xor(float lhs, float rhs)
-            => BitConverter.Int32BitsToSingle(lhs.ToBits() ^ rhs.ToBits());
-
-        [MethodImpl(Inline)]
-        public static double xor(double lhs, double rhs)
-            => BitConverter.Int64BitsToDouble(lhs.ToBits() ^ rhs.ToBits());         
  
         [MethodImpl(Inline)]
         public static ref sbyte xor(ref sbyte lhs, sbyte rhs)
@@ -109,19 +102,6 @@ namespace Z0
             return ref lhs;
         }
 
-        [MethodImpl(Inline)]
-        public static ref float xor(ref float lhs, float rhs)
-        {
-            lhs = xor(lhs,rhs);
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref double xor(ref double lhs, double rhs)
-        {
-            lhs = xor(lhs,rhs);
-            return ref lhs;
-        }
 
         [MethodImpl(Inline)]
         public static ref sbyte xor(in sbyte lhs, in sbyte rhs, ref sbyte dst)
@@ -191,10 +171,6 @@ namespace Z0
         {
             dst = BitConverter.Int64BitsToDouble(lhs.ToBits() ^ rhs.ToBits());
             return ref dst;
-        }
-            
-
-
-
+        }        
     }
 }

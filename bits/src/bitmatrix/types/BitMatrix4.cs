@@ -219,7 +219,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)] 
-        public BitMatrix4 AndNot(in BitMatrix4 rhs)
+        public BitMatrix4 AndNot(BitMatrix4 rhs)
             => AndNot(ref this, rhs);
 
         public readonly BitVector4 Diagonal()

@@ -21,7 +21,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : unmanaged    
         {
-            gmath.idiv<T>(lhs.Data, rhs.Data, dst.Data);
+            mathspan.idiv<T>(lhs.Data, rhs.Data, dst.Data);
             return ref dst;
         }
 
@@ -30,7 +30,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : unmanaged    
         {
-            gfp.fdiv<T>(lhs.Data, rhs.Data, dst.Data);
+            mathspan.fdiv<T>(lhs.Data, rhs.Data, dst.Data);
             return ref dst;
         }
 
@@ -45,9 +45,9 @@ namespace Z0
             where T : unmanaged
         {
             if(typeof(T) == typeof(float) || typeof(T) == typeof(double))
-                gfp.fdiv(lhs.Unblocked, rhs.Unblocked);
+                mathspan.fdiv(lhs.Unblocked, rhs.Unblocked);
             else
-                gmath.idiv(lhs.Unblocked, rhs.Unblocked);
+                mathspan.idiv(lhs.Unblocked, rhs.Unblocked);
             return ref lhs;
         }
 
@@ -64,9 +64,9 @@ namespace Z0
             where T : unmanaged    
         {
             if(typeof(T) == typeof(float) || typeof(T) == typeof(double))
-                gfp.fdiv(lhs.Unsized, rhs.Unsized);
+                mathspan.fdiv(lhs.Unsized, rhs.Unsized);
             else
-                gmath.idiv(lhs.Unsized, rhs.Unsized);
+                mathspan.idiv(lhs.Unsized, rhs.Unsized);
             return ref lhs;
         }
 

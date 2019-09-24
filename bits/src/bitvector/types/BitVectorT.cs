@@ -17,11 +17,11 @@ namespace Z0
         readonly T[] data;
 
         [MethodImpl(Inline)]
-        public static BitVectorProxy<T> From(in BitVector<T> src)
+        public static BitVectorProxy<T> From(BitVector<T> src)
             => new BitVectorProxy<T>(src);
         
         [MethodImpl(Inline)]
-        public static implicit operator BitVectorProxy<T>(in BitVector<T> src)
+        public static implicit operator BitVectorProxy<T>(BitVector<T> src)
             => From(src);
 
         [MethodImpl(Inline)]
@@ -29,7 +29,7 @@ namespace Z0
             => src.BitVector;
         
         [MethodImpl(Inline)]
-        public BitVectorProxy(in BitVector<T> src)
+        public BitVectorProxy(BitVector<T> src)
         {
             data = src.Data.ToArray();
         }

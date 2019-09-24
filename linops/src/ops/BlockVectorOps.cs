@@ -116,7 +116,7 @@ namespace Z0
         public static ref BlockVector<T> mul<T>(ref BlockVector<T> lhs, in BlockVector<T> rhs)
             where T : struct
         {
-            gmath.mul(lhs.Unblocked, rhs.Unblocked);
+            mathspan.mul(lhs.Unblocked, rhs.Unblocked);
             return ref lhs;
         }
 
@@ -132,7 +132,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : struct    
         {
-            gmath.mul(lhs.Unsized, rhs.Unsized);
+            mathspan.mul(lhs.Unsized, rhs.Unsized);
             return ref lhs;
         }
 

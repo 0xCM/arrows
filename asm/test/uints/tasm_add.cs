@@ -61,7 +61,7 @@ namespace Z0
             => add_bench<ulong>();
 
         public void add64f_check()
-            => VerifyOp(AsmOps.Add<double>(), fmath.fadd);
+            => VerifyOp(AsmOps.Add<double>(), fmath.add);
 
         public void add_asm64f_bench()
             => add_bench<double>();

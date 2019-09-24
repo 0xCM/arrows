@@ -118,13 +118,12 @@ namespace Z0.Test
         void negate128_check<T>()
             where T : unmanaged
         {
-            CpuOpVerify.VerifyUnaryOp(Random, SampleSize, new Vec128UnaryOp<T>(ginx.negate), gmath.negate<T>);
         }
 
         void negate256_check<T>()
             where T : unmanaged
         {
-            CpuOpVerify.VerifyUnaryOp(Random, SampleSize, new Vec256UnaryOp<T>(ginx.negate), gmath.negate<T>);
+
         }
 
     }

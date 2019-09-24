@@ -44,7 +44,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public (Vec256<T> s, Vec256<T> c) Send(in Vec256<T> a, in Vec256<T> b)
-            => (xorg.Send(in a,in b), andg.Send(in a,in b));
+            => (xorg.Send(a,b), andg.Send(a,b));
         
     }
 

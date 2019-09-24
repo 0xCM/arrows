@@ -18,7 +18,7 @@ namespace Z0
     public struct BitVector32 : IFixedBits<BitVector32,uint>
     {
         [FieldOffset(0)]
-        uint data;
+        internal uint data;
 
         [FieldOffset(0)]
         BitVector16 bv16Lo;

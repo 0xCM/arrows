@@ -57,7 +57,7 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return generic<T>(mkl.dot(x.As<double>(), y.As<double>()));
             else
-                return gmath.dot<T>(x.Unsized, y.Unsized);                
+                return mathspan.dot<T>(x.Unsized, y.Unsized);                
         }
 
 

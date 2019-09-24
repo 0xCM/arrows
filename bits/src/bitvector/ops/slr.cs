@@ -23,7 +23,7 @@ namespace Z0
         /// <param name="y">The shift offset</param>
         [MethodImpl(Inline)]
         public static BitVector8 srl(BitVector8 x, int offset)
-            => math.srl(x.Scalar,offset);
+            => math.srl(x.data,offset);
             
         /// <summary>
         /// Applies a logical right shift to the source vector
@@ -32,7 +32,7 @@ namespace Z0
         /// <param name="y">The shift offset</param>
         [MethodImpl(Inline)]
         public static BitVector16 srl(BitVector16 x, int offset)
-            => math.srl(x.Scalar,offset);
+            => math.srl(x.data,offset);
 
         /// <summary>
         /// Applies a logical right shift to the source vector
@@ -41,7 +41,7 @@ namespace Z0
         /// <param name="y">The shift offset</param>
         [MethodImpl(Inline)]
         public static BitVector32 srl(BitVector32 x, int offset)
-            => math.srl(x.Scalar,offset);
+            => math.srl(x.data,offset);
 
         /// <summary>
         /// Applies a logical right shift to the source vector
@@ -50,7 +50,7 @@ namespace Z0
         /// <param name="y">The shift offset</param>
         [MethodImpl(Inline)]
         public static BitVector64 srl(BitVector64 x, int offset)
-            => math.srl(x.Scalar,offset);
+            => math.srl(x.data,offset);
  
         /// <summary>
         /// Computes z = x >> offset for a caller-supplied target bitvector z and source bitvector x
@@ -59,9 +59,9 @@ namespace Z0
         /// <param name="offset">The amount to shift rightwards</param>
         /// <param name="z">The target bitvector</param>
         [MethodImpl(Inline)]
-        public static ref BitVector8 srl(in BitVector8 x, int offset, ref BitVector8 z)
+        public static ref BitVector8 srl(BitVector8 x, int offset, ref BitVector8 z)
         {
-            z.assign(math.srl(x.Scalar, offset));
+            z.assign(math.srl(x.data, offset));
             return ref z;
         }
 
@@ -72,9 +72,9 @@ namespace Z0
         /// <param name="offset">The amount to shift rightwards</param>
         /// <param name="z">The target bitvector</param>
         [MethodImpl(Inline)]
-        public static ref BitVector16 srl(in BitVector16 x, int offset, ref BitVector16 z)
+        public static ref BitVector16 srl(BitVector16 x, int offset, ref BitVector16 z)
         {
-            z.assign(math.srl(x.Scalar, offset));
+            z.data = math.srl(x.data, offset);
             return ref z;
         }
 
@@ -85,9 +85,9 @@ namespace Z0
         /// <param name="offset">The amount to shift rightwards</param>
         /// <param name="z">The target bitvector</param>
         [MethodImpl(Inline)]
-        public static ref BitVector32 srl(in BitVector32 x, int offset, ref BitVector32 z)
+        public static ref BitVector32 srl(BitVector32 x, int offset, ref BitVector32 z)
         {
-            z.assign(math.srl(x.Scalar, offset));
+            z.assign(math.srl(x.data, offset));
             return ref z;
         }
 
@@ -98,9 +98,9 @@ namespace Z0
         /// <param name="offset">The amount to shift rightwards</param>
         /// <param name="z">The target bitvector</param>
         [MethodImpl(Inline)]
-        public static ref BitVector64 srl(in BitVector64 x, int offset, ref BitVector64 z)
+        public static ref BitVector64 srl(BitVector64 x, int offset, ref BitVector64 z)
         {
-            z.assign(math.srl(x.Scalar, offset));
+            z.assign(math.srl(x.data, offset));
             return ref z;
         }
 
@@ -112,7 +112,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref BitVector8 srl(ref BitVector8 x, int offset)
         {
-            x.assign(math.srl(x.Scalar,offset));
+            math.srl(ref x.data,offset);
             return ref x;
         }
 
@@ -124,7 +124,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref BitVector16 srl(ref BitVector16 x, int offset)
         {
-            x.assign(math.srl(x.Scalar,offset));
+            math.srl(ref x.data,offset);
             return ref x;
         }
 
@@ -136,7 +136,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref BitVector32 srl(ref BitVector32 x, int offset)
         {
-            x.assign(math.srl(x.Scalar,offset));
+            math.srl(ref x.data,offset);
             return ref x;
         }
 
@@ -148,7 +148,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref BitVector64 srl(ref BitVector64 x, int offset)
         {
-            x.assign(math.srl(x.Scalar,offset));
+            math.srl(ref x.data,offset);
             return ref x;
         }
 

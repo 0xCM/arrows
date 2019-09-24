@@ -22,7 +22,7 @@ namespace Z0
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
-        public static Vec128<ushort> sad(in Vec128<byte> lhs, in Vec128<byte> rhs)
+        public static Vector128<ushort> sad(Vector128<byte> lhs, Vector128<byte> rhs)
             => SumAbsoluteDifferences(lhs,rhs);
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Z0
         /// </summary>
         /// <param name="lhs"></param>
         /// <param name="rhs"></param>
-        public static Vec256<ushort> sad(in Vec256<byte> lhs, in Vec256<byte> rhs)
+        public static Vector256<ushort> sad(Vector256<byte> lhs, Vector256<byte> rhs)
             => SumAbsoluteDifferences(lhs,rhs);
     }
 

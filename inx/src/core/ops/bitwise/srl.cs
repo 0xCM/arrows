@@ -24,7 +24,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec128<short> srl(in Vec128<short> src, byte offset)
+        public static Vector128<short> srl(Vector128<short> src, byte offset)
             => ShiftRightLogical(src, offset);
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec128<ushort> srl(in Vec128<ushort> src, byte offset)
+        public static Vector128<ushort> srl(Vector128<ushort> src, byte offset)
             => ShiftRightLogical(src, offset);
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec128<int> srl(in Vec128<int> src, byte offset)
+        public static Vector128<int> srl(Vector128<int> src, byte offset)
             => ShiftRightLogical(src, offset);
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec128<uint> srl(in Vec128<uint> src, byte offset)
+        public static Vector128<uint> srl(Vector128<uint> src, byte offset)
             => ShiftRightLogical(src, offset);
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec128<long> srl(in Vec128<long> src, byte offset)
+        public static Vector128<long> srl(Vector128<long> src, byte offset)
             => ShiftRightLogical(src, offset);
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec128<ulong> srl(in Vec128<ulong> src, byte offset)
+        public static Vector128<ulong> srl(Vector128<ulong> src, byte offset)
             => ShiftRightLogical(src, offset);
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec256<short> srl(in Vec256<short> src, byte offset)
+        public static Vector256<short> srl(Vector256<short> src, byte offset)
             => ShiftRightLogical(src, offset);
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec256<ushort> srl(in Vec256<ushort> src, byte offset)
+        public static Vector256<ushort> srl(Vector256<ushort> src, byte offset)
             => ShiftRightLogical(src, offset);
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec256<int> srl(in Vec256<int> src, byte offset)
+        public static Vector256<int> srl(Vector256<int> src, byte offset)
             => ShiftRightLogical(src, offset);
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec256<uint> srl(in Vec256<uint> src, byte offset)
+        public static Vector256<uint> srl(Vector256<uint> src, byte offset)
             => ShiftRightLogical(src, offset);
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec256<long> srl(in Vec256<long> src, byte offset)
+        public static Vector256<long> srl(Vector256<long> src, byte offset)
             => ShiftRightLogical(src, offset);
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="offset">The number of bits to shift</param>
         [MethodImpl(Inline)]
-        public static Vec256<ulong> srl(in Vec256<ulong> src, byte offset)
+        public static Vector256<ulong> srl(Vector256<ulong> src, byte offset)
             => ShiftRightLogical(src, offset);
  
     }

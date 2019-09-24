@@ -7,10 +7,11 @@ namespace Z0
     using System;
     using System.Linq;
     using System.Runtime.CompilerServices;
+    using System.Runtime.Intrinsics;
     
     using static zfunc;
 
-    public readonly struct AndGate<T> : IBinaryGate<T>,  IBinaryGate<Vec128<T>>, IBinaryGate<Vec256<T>>
+    public readonly struct AndGate<T> : IBinaryGate<T>,  IBinaryGate<Vec128<T>>, IBinaryGate<Vector256<T>>
         where T : unmanaged
     {
         internal static readonly AndGate<T> Gate = default;
@@ -28,8 +29,8 @@ namespace Z0
             => gbits.vand(a,b);
 
         [MethodImpl(Inline)]
-        public Vec256<T> Send(in Vec256<T> a, in Vec256<T> b)
-            => gbits.vand(a,b);
+        public Vector256<T> Send(in Vector256<T> a, in Vector256<T> b)
+            => gbits.vand<T>(a,b);
 
     }
 }

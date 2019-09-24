@@ -26,7 +26,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static T dot<T>(BlockVector<T> x, BlockVector<T> y)
             where T : unmanaged
-                => gmath.dot<T>(x.Unblocked, y.Unblocked);
+                => mathspan.dot<T>(x.Unblocked, y.Unblocked);
 
         /// <summary>
         /// Commputes the canonical scalar product btween two blocked vectors of natural length
@@ -39,7 +39,7 @@ namespace Z0
         public static T dot<N,T>(BlockVector<N,T> x, BlockVector<N,T> y)
             where N : ITypeNat, new()
             where T : unmanaged    
-                => gmath.dot<T>(x.Unsized,y.Unsized);
+                => mathspan.dot<T>(x.Unsized,y.Unsized);
 
 
     }

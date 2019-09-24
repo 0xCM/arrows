@@ -27,28 +27,18 @@ namespace Z0
                 throw unsupported<T>();
         }        
 
-        public static Span<T> floor<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : struct
-        {
-            var len = length(src,dst);
-            for(var i =0; i<len; i++)
-                dst[i] = floor(src[i]);
-            return dst;
-        }
-
         [MethodImpl(Inline)]
-        public static Span<T> floor<T>(ReadOnlySpan<T> src)
-            where T : struct
-            => floor(src, span<T>(src.Length));
-
-        public static Span<T> floor<T>(Span<T> io)
+        public static ref T floor<T>(ref T src)
             where T : struct
         {
-            for(var i =0; i<io.Length; i++)
-                io[i] = floor(io[i]);
-            return  io;
-        } 
-        
+            if(typeof(T) == typeof(float))
+                fmath.floor(ref float32(ref src));
+            else if(typeof(T) == typeof(double))
+                fmath.floor(ref float64(ref src));
+            else
+                throw unsupported<T>();
+            return ref src;
+        }        
 
     }
 }

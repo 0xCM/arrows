@@ -24,7 +24,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<T> next<T>(in Vec128<T> src)
             where T : unmanaged
-                => add(in src, in Vec128Pattern.Units<T>());
+                => add<T>(src, Vec128Pattern.Units<T>());
 
         /// <summary>
         /// Increments each source vector component by a unit

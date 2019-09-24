@@ -30,7 +30,7 @@ namespace Z0
                 offset += veclen;
                 var v2 = Vec128.Load(src, offset);
                 offset += veclen;
-                var vSum = dfp.hadd(in v1, in v2);
+                var vSum = dfp.hadd(v1, v2);
                 dst = dfp.add(dst,vSum);                
             }
             
@@ -62,7 +62,7 @@ namespace Z0
                 offset += veclen;
                 var v2 = Vec128.Load(src, offset);
                 offset += veclen;
-                var vSum = dfp.hadd(in v1, in v2);
+                var vSum = dfp.hadd(v1, v2);
                 dst = dfp.add(dst,vSum);                
             }
             

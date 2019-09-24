@@ -45,7 +45,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static ref double Abs(this ref double src)
-            => ref fmath.fabs(ref src);
+            => ref fmath.abs(ref src);
 
         [MethodImpl(Inline)]
         public static float Round(this float src, int scale)

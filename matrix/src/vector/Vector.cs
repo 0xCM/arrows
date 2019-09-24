@@ -55,7 +55,7 @@ namespace Z0
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
         public static T operator &(Vector<T> lhs, Vector<T> rhs)
-            => gmath.dot<T>(lhs.data, rhs.data);
+            => mathspan.dot<T>(lhs.data, rhs.data);
 
         /// <summary>
         /// Deems vectors are equal if they have the same number of components

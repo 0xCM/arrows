@@ -74,7 +74,7 @@ namespace Z0
                 typeof(T) == typeof(int) || typeof(T) == typeof(long))
                     return iadd(lhs,rhs);
             else if(typeof(T) == typeof(float) || typeof(T) == typeof(double))
-                return gfp.fadd(lhs,rhs);
+                return gfp.add(lhs,rhs);
             else
                 throw unsupported<T>();
         }

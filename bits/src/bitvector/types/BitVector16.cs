@@ -18,13 +18,14 @@ namespace Z0
     public struct BitVector16 : IFixedBits<BitVector16, ushort>
     {
         [FieldOffset(0)]
+        internal ushort data;
+
+        [FieldOffset(0)]
         BitVector4 bv4;
 
         [FieldOffset(0)]
         BitVector8 bv8;
 
-        [FieldOffset(0)]
-        ushort data;
 
         [FieldOffset(0)]        
         byte x0000;

@@ -48,99 +48,30 @@ namespace Z0
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                squareI8(ref src);
+                math.square(ref int8(ref src));
             else if(typeof(T) == typeof(byte))
-                squareU8(ref src);
+                math.square(ref uint8(ref src));
             else if(typeof(T) == typeof(short))
-                squareI16(ref src);
+                math.square(ref int16(ref src));
             else if(typeof(T) == typeof(ushort))
-                squareU16(ref src);
+                math.square(ref uint16(ref src));
             else if(typeof(T) == typeof(int))
-                squareI32(ref src);
+                math.square(ref int32(ref src));
             else if(typeof(T) == typeof(uint))
-                squareU32(ref src);
+                math.square(ref uint32(ref src));
             else if(typeof(T) == typeof(long))
-                squareI64(ref src);
+                math.square(ref int64(ref src));
             else if(typeof(T) == typeof(ulong))
-                squareU64(ref src);
+                math.square(ref uint64(ref src));
             else if(typeof(T) == typeof(float))
-                squareF32(ref src);
+                math.square(ref float32(ref src));
             else if(typeof(T) == typeof(double))
-                squareF64(ref src);
+                math.square(ref float64(ref src));
             else            
                 throw unsupported<T>();
             return ref src;
         }           
 
 
-        [MethodImpl(Inline)]
-        static ref T squareI8<T>(ref T src)
-        {
-            math.square(ref int8(ref src));            
-            return ref src;
-        }            
-
-        [MethodImpl(Inline)]
-        static ref T squareU8<T>(ref T src)
-        {
-            math.square(ref uint8(ref src));            
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        static ref T squareI16<T>(ref T src)
-        {
-            math.square(ref int16(ref src));            
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        static ref T squareU16<T>(ref T src)
-        {
-            math.square(ref uint16(ref src));            
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        static ref T squareI32<T>(ref T src)
-        {
-            math.square(ref int32(ref src));            
-            return ref src;
-        }
-        
-        [MethodImpl(Inline)]
-        static ref T squareU32<T>(ref T src)
-        {
-            math.square(ref uint32(ref src));            
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        static ref T squareI64<T>(ref T src)
-        {
-            math.square(ref int64(ref src));            
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        static ref T squareU64<T>(ref T src)
-        {
-            math.square(ref uint64(ref src));            
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        static ref T squareF32<T>(ref T src)
-        {
-            math.square(ref float32(ref src));            
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        static ref T squareF64<T>(ref T src)
-        {
-            math.square(ref float64(ref src));            
-            return ref src;
-        }
     }
 }

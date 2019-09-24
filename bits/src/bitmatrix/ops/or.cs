@@ -10,6 +10,7 @@ namespace Z0
     using System.Threading;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
+    using System.Runtime.Intrinsics;
 
     using static zfunc;
 
@@ -32,10 +33,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public static BitMatrix16 or(in BitMatrix16 lhs, in BitMatrix16 rhs)
         {
-            ref var A = ref lhs.LoadCpuVec(out Vec256<ushort> _);
-            ref var B = ref rhs.LoadCpuVec(out Vec256<ushort> _);
-            var C = dinx.or(in A,in B);
-            return BitMatrix16.From(in C);
+            ref var A = ref lhs.LoadCpuVec(out Vector256<ushort> _);
+            ref var B = ref rhs.LoadCpuVec(out Vector256<ushort> _);
+            var C = dinx.or(A,B);
+            return BitMatrix16.From(C);
         }
 
         /// <summary>

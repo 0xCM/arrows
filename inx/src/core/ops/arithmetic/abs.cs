@@ -54,66 +54,8 @@ namespace Z0
             return sub(xor(mask, src), mask);
         }
  
-        public static Span128<byte> abs(ReadOnlySpan128<sbyte> src, Span128<byte> dst)
-        {
-            for(var block = 0; block <src.BlockCount; block ++)                
-            {
-                var x =  Vec128.Loadi(in src.Block(block));
-                vstore(dinx.abs(x), ref dst[block]);                
-            }
-            return dst;
-        }
-
-        public static Span128<ushort> abs(ReadOnlySpan128<short> src, Span128<ushort> dst)
-        {
-            for(var block = 0; block <src.BlockCount; block ++)                
-            {
-                var x =  Vec128.Loadi(in src.Block(block));
-                vstore(dinx.abs(x), ref dst[block]);                
-            }
-            return dst;
-        }
-
-        public static Span128<uint> abs(ReadOnlySpan128<int> src, Span128<uint> dst)
-        {
-            for(var block = 0; block <src.BlockCount; block ++)                
-            {
-                var x = Vec128.Loadi(in src.Block(block));
-                vstore(dinx.abs(x), ref dst[block]);                
-            }
-            return dst;
-        }
-
-        public static Span256<byte> abs(ReadOnlySpan256<sbyte> src, Span256<byte> dst)
-        {
-            for(var block = 0; block <src.BlockCount; block ++)                
-            {
-                var x =  Vec256.Loadi(in src.Block(block));
-                vstore(dinx.abs(x), ref dst[block]);                
-            }
-            return dst;
-        }
-
-        public static Span256<ushort> abs(this ReadOnlySpan256<short> src, Span256<ushort> dst)
-        {
-            for(var block = 0; block <src.BlockCount; block ++)                
-            {
-                var x =  Vec256.Loadi(in src.Block(block));
-                vstore(dinx.abs(x), ref dst[block]);                
-            }
-            return dst;
-        }
-
-        public static Span256<uint> abs(in ReadOnlySpan256<int> src, Span256<uint> dst)
-        {
-            for(var block = 0; block <src.BlockCount; block ++)                
-            {
-                var x =  Vec256.Loadi(in src.Block(block));
-                vstore(dinx.abs(x), ref dst[block]);                
-            }
-            return dst;
-        }
  
+
     }
 
 }

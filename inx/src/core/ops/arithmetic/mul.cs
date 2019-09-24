@@ -58,9 +58,7 @@ namespace Z0
         [MethodImpl(Inline)]
         static Vec256<ulong> mul(in Vec256<uint> lhs,in Vec256<uint> rhs)
             => Multiply(lhs, rhs);
-            
-        const ulong LoMask64 = 0x00000000fffffffful;
-        
+                        
         /// <summary>
         /// Multiplies two two 256-bit/u64 vectors to yield a 256-bit/u64 vector
         /// </summary>
@@ -69,22 +67,22 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<ulong> mul(in Vec256<ulong> x, in Vec256<ulong> y)    
         {
-            var loMask = Vec256.Fill(LoMask64);    
-            ref var xl = ref dinx.and(x, loMask).As(out Vec256<uint> _);
-            ref var xh = ref dinx.srl(x, 32).As(out Vec256<uint> _);
-            ref var yl = ref dinx.and(y, loMask).As(out Vec256<uint> _);
-            ref var yh = ref dinx.srl(y, 32).As(out Vec256<uint> _);
+            var loMask = Vec256.Fill(0x00000000fffffffful);    
+            var xl = dinx.and(x, loMask).As<ulong,uint>();
+            var xh = dinx.srl(x, 32).As<ulong,uint>();
+            var yl = dinx.and(y, loMask).As<ulong,uint>();
+            var yh = dinx.srl(y, 32).As<ulong,uint>();
 
-            var xh_yl = dinx.mul(in xh, in yl);
+            var xh_yl = dinx.mul(xh, yl);
             var hl = dinx.sll(in xh_yl, 32);
 
-            var xh_mh = dinx.mul(in xh, yh);
-            var lh = dinx.sll(in xh_mh, 32);
+            var xh_mh = dinx.mul(xh, yh);
+            var lh = dinx.sll(xh_mh, 32);
 
-            var xl_yl = dinx.mul(in xl, in yl);
+            var xl_yl = dinx.mul(xl, yl);
 
-            var hl_lh = dinx.add(in hl, in lh);
-            var z = dinx.add(in xl_yl, in hl_lh);
+            var hl_lh = dinx.add(hl, lh);
+            var z = dinx.add(xl_yl, hl_lh);
             return z;
         }
     }

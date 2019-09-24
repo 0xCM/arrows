@@ -27,6 +27,30 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
+        public static Vector128<T> hadd<T>(Vector128<T> lhs, Vector128<T> rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(float))
+                return generic<T>(dfp.hadd(float32(lhs), float32(rhs)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(dfp.hadd(float64(lhs), float64(rhs)));
+            else 
+                throw unsupported<T>();
+        }
+
+        [MethodImpl(Inline)]
+        public static Vector256<T> hadd<T>(Vector256<T> lhs, Vector256<T> rhs)
+            where T : struct
+        {
+            if(typeof(T) == typeof(float))
+                return generic<T>(dfp.hadd(float32(lhs), float32(rhs)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(dfp.hadd(float64(lhs), float64(rhs)));
+            else 
+                throw unsupported<T>();
+        }
+
+        [MethodImpl(Inline)]
         public static Scalar128<T> sub<T>(in Scalar128<T> lhs, in Scalar128<T> rhs)
             where T : struct
         {
@@ -268,6 +292,31 @@ namespace Z0
             else if(typeof(T) == typeof(double))
                 return dfp.fmadd(in float64(in x), in float64(in y), in float64(in z)).As<T>();
             else                
+                throw unsupported<T>();
+        }
+
+
+        [MethodImpl(Inline)]
+        public static Vector128<T> negate<T>(Vector128<T> src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(float))
+                return generic<T>(dfp.negate(float32(src)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(dfp.negate(float64(src)));
+            else 
+                throw unsupported<T>();
+        }
+
+        [MethodImpl(Inline)]
+        public static Vector256<T> negate<T>(Vector256<T> src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(float))
+                return generic<T>(dfp.negate(float32(src)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(dfp.negate(float64(src)));
+            else 
                 throw unsupported<T>();
         }
 

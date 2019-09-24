@@ -16,27 +16,27 @@ namespace Z0
     partial class dinx
     {
         [MethodImpl(Inline)]
-        public static Vec128<sbyte> sign(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+        public static Vector128<sbyte> sign(Vector128<sbyte> lhs, Vector128<sbyte> rhs)
             => Sign(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<short> sign(in Vec128<short> lhs, in Vec128<short> rhs)
+        public static Vector128<short> sign(Vector128<short> lhs, Vector128<short> rhs)
             => Sign(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec128<int> sign(in Vec128<int> lhs, in Vec128<int> rhs)
+        public static Vector128<int> sign(Vector128<int> lhs, Vector128<int> rhs)
             => Sign(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<sbyte> sign(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+        public static Vector256<sbyte> sign(Vector256<sbyte> lhs, Vector256<sbyte> rhs)
             => Sign(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<short> sign(in Vec256<short> lhs, in Vec256<short> rhs)
+        public static Vector256<short> sign(Vector256<short> lhs, Vector256<short> rhs)
             => Sign(lhs, rhs);
 
         [MethodImpl(Inline)]
-        public static Vec256<int> sign(in Vec256<int> lhs, in Vec256<int> rhs)
+        public static Vector256<int> sign(Vector256<int> lhs, Vector256<int> rhs)
             => Sign(lhs, rhs);
 
 

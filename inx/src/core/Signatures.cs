@@ -6,30 +6,17 @@ namespace Z0
 {
     using System;
     using System.Collections.Generic;
+    using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
 
-
-    public delegate bool[] Vec128CmpFloat<T>(in Vec128<T> lhs, in Vec128<T> rhs, FloatComparisonMode mode)
-        where T : struct;
-
-    public delegate Vec128<T> Vec128TernaryOp<T>(in Vec128<T> x, in Vec128<T> y, in Vec128<T> z)
-        where T : struct;
-
-    public delegate bool Vec128UnaryPred<T>(in Vec128<T> src)
-        where T : struct;
-
-    public delegate bool Vec128BinPred<T>(in Vec128<T> lhs, in Vec128<T> rhs)
-        where T : struct;
-
     /// <summary>
-    /// Characterizes the signature of a canonical 128-bit vector heterogenous binary operator
+    /// Characterizes the signature of a canonical 128-bit vector binary operator
     /// </summary>
     /// <param name="lhs">The left operand</param>
     /// <param name="rhs">The right operand</param>
     /// <typeparam name="T">The primitive type</typeparam>
-    public delegate Vec128<T> Vec128BinOp<S, T>(in Vec128<S> lhs, in Vec128<S> rhs)
-        where T : struct
-        where S : struct;
+    public delegate Vector128<T> Vector128BinOp<T>(Vector128<T> lhs, Vector128<T> rhs)
+        where T : struct;
 
     /// <summary>
     /// Characterizes the signature of a canonical 128-bit vector binary operator
@@ -39,6 +26,7 @@ namespace Z0
     /// <typeparam name="T">The primitive type</typeparam>
     public delegate Vec128<T> Vec128BinOp<T>(in Vec128<T> lhs, in Vec128<T> rhs)
         where T : struct;
+
 
     /// <summary>
     /// Characterizes the signature of a function that loads a 128-bit vector from a pointer
