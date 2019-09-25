@@ -145,7 +145,6 @@ partial class zfunc
     /// Creates an instance of a specified type
     /// </summary>
     /// <param name="t">The type of the instance to create</param>
-    /// <returns></returns>
     [MethodImpl(Inline)]   
     public static T instance<T>(Type t, params object[] args)
         => (T)Activator.CreateInstance(t,args);
@@ -183,7 +182,6 @@ partial class zfunc
     /// </summary>
     /// <typeparam name="O">The object type</typeparam>
     /// <param name="parms">The parameters passed to the oject's constructor</param>
-    /// <returns></returns>
     public static Option<O> construct<O>(params object[] parms)
         => Try(parms, args => (O)Activator.CreateInstance(typeof(O), args));
 
@@ -191,7 +189,6 @@ partial class zfunc
     /// Gets the public constructors defined on the supplied type
     /// </summary>
     /// <typeparam name="T">The type to examine</typeparam>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static IReadOnlyList<ConstructorInfo> constructors<T>()
         => _constructorCache.GetOrAdd(typeof(T), t => t.GetConstructors());
@@ -202,7 +199,6 @@ partial class zfunc
     /// If non-nullable non-enumeration type, returns the incoming type
     /// </summary>
     /// <param name="t"></param>
-    /// <returns></returns>
     [MethodImpl(Inline)]
     public static Type underlying(Type t)
         => _ulTypeCache.GetOrAdd(t, _t => _t.GetUnderlyingType());
@@ -221,7 +217,7 @@ partial class zfunc
     /// <summary>
     /// Gets the type's classification code
     /// </summary>
-    /// <param name="t"></param>
+    /// <param name="t">The type to examine</param>
     [MethodImpl(Inline)]
     public static TypeCode typecode(Type t)
         => Type.GetTypeCode(t);

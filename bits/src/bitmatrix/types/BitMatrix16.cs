@@ -356,7 +356,7 @@ namespace Z0
             var c1 = c0 + 8;
             var dst = new byte[8];
             for(int i=r0; i< r0; i++)                
-                dst[i] = Bits.lo(in data[i]);
+                dst[i] = Bits.lo(data[i]);
             return BitMatrix8.From(dst);
         }
 

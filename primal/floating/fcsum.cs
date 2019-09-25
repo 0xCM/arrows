@@ -21,7 +21,6 @@ namespace Z0
         /// <param name="delta">The last compensation amount</param>
         /// <param name="total">The running total</param>
         /// <remarks>See https://en.wikipedia.org/wiki/Kahan_summation_algorithm</remarks>
-        [MethodImpl(Inline)]
         public static ref double fcsum(in double src, ref double delta, ref double total)
         {
             var y = src - delta;
@@ -39,7 +38,6 @@ namespace Z0
                 fcsum(in src[i], ref delta, ref total);
             return total;
         }
-
 
     }
 

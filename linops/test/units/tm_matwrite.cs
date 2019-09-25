@@ -36,7 +36,7 @@ namespace Z0.Test
             where N : ITypeNat, new()
             where T : unmanaged    
         {
-            var isFp = gmath.isFloat<T>();
+            var isFp = isFloat<T>();
             TypeCaseStart<M,N,T>();
             for(var i=0; i< count; i++)
             {

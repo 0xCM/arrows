@@ -50,8 +50,5 @@ namespace Z0
             src = abs(src);
             return ref src;
         }
-
- 
     }
-
 }

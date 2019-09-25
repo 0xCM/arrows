@@ -17,7 +17,7 @@ namespace Z0
             where T : struct
         {
             for(var i=0; i<lhs.Length; i++)
-                gbits.and(in lhs[i],in rhs, ref lhs[i]);
+                gmath.and(in lhs[i],in rhs, ref lhs[i]);
             return lhs;
         }
 
@@ -26,7 +26,7 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i=0; i<len; i++)
-                gbits.and(in lhs[i], in rhs[i], ref dst[i]);
+                gmath.and(in lhs[i], in rhs[i], ref dst[i]);
             return dst;
         }
 
@@ -35,16 +35,8 @@ namespace Z0
         {
             var len = length(lhs,rhs);
             for(var i=0; i<len; i++)
-                gbits.and(in lhs[i], in rhs[i], ref lhs[i]);
+                gmath.and(in lhs[i], in rhs[i], ref lhs[i]);
             return lhs;
-        }
-
-        public static Span128<T> and<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
-            where T : unmanaged
-        {
-            for(var i=0; i< blocks(lhs,rhs); i++)
-                vstore(gbits.vand(lhs.LoadVec128(i), rhs.LoadVec128(i)), ref dst.Block(i));                             
-            return dst;        
         }
 
         public static Span256<T> and<T>(ReadOnlySpan256<T> lhs, ReadOnlySpan256<T> rhs, Span256<T> dst)
@@ -70,44 +62,6 @@ namespace Z0
             return dst;        
         } 
 
-        public static Span<T> or<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : unmanaged
-        {
-            for(var i=0; i<lhs.Length; i++)
-                gbits.or(in lhs[i], in rhs[i], ref dst[i]);
-            return dst;
-        }
-
-        [MethodImpl(Inline)]
-        public static Span<T> or<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
-            where T : unmanaged
-        {
-            for(var i=0; i<lhs.Length; i++)
-                gbits.or(in lhs[i], in rhs[i], ref lhs[i]);
-            return lhs;
-        }
-
-        public static Span<T> or<T>(Span<T> lhs, in T rhs)
-            where T : struct
-        {
-            for(var i=0; i<lhs.Length; i++)
-                gbits.or(in lhs[i], in rhs, ref lhs[i]);
-            return lhs;
-        }
-
-        public static Span<T> or<T>(ReadOnlySpan<T> lhs, in T rhs, Span<T> dst)
-            where T : struct
-        {
-            lhs.CopyTo(dst);
-            return or(dst,rhs);
-        }
-
-        public static Span<T> xor<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<T> dst)
-            where T : unmanaged
-        {
-            for(var i=0; i< length(lhs,rhs); i++)
-                dst[i] = gmath.xor(lhs[i], rhs[i]);
-           return dst;        }
 
         public static Span128<T> or<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
             where T : unmanaged
@@ -157,43 +111,6 @@ namespace Z0
             return dst;        
         } 
 
-        public static Span<T> xor<T>(Span<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-        {
-            for(var i=0; i< length(lhs,rhs); i++)
-                gmath.xor(ref lhs[i], rhs[i]);
-           return lhs;
-        }
-
-        public static Span<T> xor<T>(Span<T> lhs, T rhs)
-            where T : struct
-        {
-            for(var i=0; i< lhs.Length; i++)
-                gmath.xor(ref lhs[i],rhs);
-            return lhs;
-        }
-
-        public static Span<T> flip<T>(Span<T> src)
-            where T : unmanaged
-        {
-            for(var i=0; i< src.Length; i++)
-                gmath.flip(ref src[i]);
-            return src;
-        }
-
-        public static Span<T> flip<T>(ReadOnlySpan<T> src)
-            where T : unmanaged
-                => flip(src.Replicate());
-
-        public static Span<T> flip<T>(ReadOnlySpan<T> src, Span<T> dst)
-            where T : unmanaged
-        {
-            for(var i=0; i< src.Length; i++)
-                gmath.flip(in src[i], ref dst[i]);
-            return dst;
-            
-        }
-
         public static Span<T> rotr<T>(ReadOnlySpan<T> src, T offset)        
             where T : struct
         {
@@ -241,7 +158,6 @@ namespace Z0
             else            
                 throw unsupported<T>();
             return dst;
-
         }
 
         public static Span<T> rotl<T>(ReadOnlySpan<T> src, T offset)        
@@ -257,9 +173,6 @@ namespace Z0
                 return generic<T>(bitspan.rotl(uint64(src), uint64(in offset)));
             else            
                 throw unsupported<T>();
-
         }
-
-
     }
 }

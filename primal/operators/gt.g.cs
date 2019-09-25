@@ -45,39 +45,6 @@ namespace Z0
         }
 
 
-        [MethodImpl(Inline)]
-        public static Span<bool> gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                return math.gt(int8(lhs), int8(rhs), dst);
-            else if(typeof(T) == typeof(byte))
-                return math.gt(uint8(lhs), uint8(rhs), dst);
-            else if(typeof(T) == typeof(short))
-                return math.gt(int16(lhs), int16(rhs), dst);
-            else if(typeof(T) == typeof(ushort))
-                return math.gt(uint16(lhs), uint16(rhs), dst);
-            else if(typeof(T) == typeof(int))
-                return math.gt(int32(lhs), int32(rhs), dst);
-            else if(typeof(T) == typeof(uint))
-                return math.gt(uint32(lhs), uint32(rhs), dst);
-            else if(typeof(T) == typeof(long))
-                return math.gt(int64(lhs), int64(rhs), dst);
-            else if(typeof(T) == typeof(ulong))
-                return math.gt(uint64(lhs), uint64(rhs), dst);
-            else if(typeof(T) == typeof(float))
-                return fmath.gt(float32(lhs), float32(rhs), dst);
-            else if(typeof(T) == typeof(double))
-                return fmath.gt(float64(lhs), float64(rhs), dst);
-            else
-                throw unsupported<T>();
-        }
-
-        [MethodImpl(Inline)]
-        public static Span<bool> gt<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-                => gt(lhs,rhs,span<bool>(length(lhs,rhs)));
-
     }
 
 

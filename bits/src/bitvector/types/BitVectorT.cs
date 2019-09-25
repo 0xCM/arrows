@@ -157,7 +157,7 @@ namespace Z0
         /// <param name="y">The right vector</param>
         [MethodImpl(Inline)]
         public static BitVector<T> operator |(BitVector<T> x, in BitVector<T> y)
-            => new BitVector<T>(gbitspan.or(x.data, y.data));
+            => new BitVector<T>(mathspan.or(x.data, y.data));
 
         /// <summary>
         /// Computes the bitwise XOR between the operands
@@ -166,7 +166,7 @@ namespace Z0
         /// <param name="y">The right vector</param>
         [MethodImpl(Inline)]
         public static BitVector<T> operator ^(BitVector<T> x, in BitVector<T> y)
-            => new BitVector<T>(gbitspan.xor(x.data, y.data));
+            => new BitVector<T>(mathspan.xor(x.data, y.data));
 
         /// <summary>
         /// Computes the scalar product of the operands
@@ -183,7 +183,7 @@ namespace Z0
         /// <param name="lhs">The source operand</param>
         [MethodImpl(Inline)]
         public static BitVector<T> operator ~(BitVector<T> src)
-            => new BitVector<T>(gbitspan.flip(src.data));
+            => new BitVector<T>(mathspan.flip(src.data));
 
 
         /// <summary>
@@ -487,13 +487,13 @@ namespace Z0
                 throw new ArgumentException($"The total count {wantedCount} exceeds segment capacity of {SegmentCapacity}");
 
             ref var seg1 = ref Segment(in first);
-            var part1 = gbits.extract(in seg1, first.Offset, (byte)firstCount);
+            var part1 = gbits.extract(seg1, first.Offset, (byte)firstCount);
             
             if(sameSeg)
                 return part1;
 
             ref var seg2 = ref Segment(in last);
-            var part2 = gbits.extract(in seg2, 0, (byte)lastCount);            
+            var part2 = gbits.extract(seg2, 0, (byte)lastCount);            
 
             if(describe)
             {

@@ -51,37 +51,5 @@ namespace Z0
             return ref src;
         }
  
-        public static Span<float> dec(ReadOnlySpan<float> src, Span<float> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = dec(src[i]);
-            return dst;
-        }
-
-        public static Span<double> dec(ReadOnlySpan<double> src, Span<double> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = dec(src[i]);
-            return dst;                
-        }
-
-        public static Span<float> dec(Span<float> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                dec(ref io[i]);
-            return io;
-        }
-
-        public static Span<double> dec(Span<double> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                dec(ref io[i]);
-            return io;
-        }
-
-
- 
     }
 }

@@ -24,7 +24,7 @@ namespace Z0
         public static ref BlockVector<T> negate<T>(ref BlockVector<T> src)
             where T : unmanaged
         {
-            gmath.negate(src.Unblocked);
+            mathspan.negate(src.Unblocked);
             return ref src;
         }
 
@@ -40,7 +40,7 @@ namespace Z0
             where T : unmanaged    
         {
             var x = src.Unsized;
-            gmath.negate(src.Unsized);
+            mathspan.negate(src.Unsized);
             return ref src;
         }
 

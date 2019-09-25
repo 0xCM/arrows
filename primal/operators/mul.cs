@@ -11,8 +11,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Diagnostics;
     
-    using static zfunc;    
-    
+    using static zfunc;        
 
     partial class math
     {
@@ -46,14 +45,6 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ulong mul(ulong lhs, ulong rhs)
-            => lhs * rhs;
-
-        [MethodImpl(Inline)]
-        public static float mul(float lhs, float rhs)
-            => lhs * rhs;
-
-        [MethodImpl(Inline)]
-        public static double mul(double lhs, double rhs)
             => lhs * rhs;
 
         [MethodImpl(Inline)]
@@ -107,20 +98,6 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static ref ulong mul(ref ulong lhs, ulong rhs)
-        {
-            lhs = lhs * rhs;
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref float mul(ref float lhs, float rhs)
-        {
-            lhs = lhs * rhs;
-            return ref lhs;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref double mul(ref double lhs, double rhs)
         {
             lhs = lhs * rhs;
             return ref lhs;

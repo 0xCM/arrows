@@ -121,7 +121,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : unmanaged
         {
-            gbitspan.xor(A.Data, B.Data, C.Data);
+            mathspan.xor(A.Data, B.Data, C.Data);
             return ref C;
         }
 
@@ -140,7 +140,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : unmanaged
         {
-            gbitspan.xor(A.Data, B.Data, C.Data);
+            mathspan.xor(A.Data, B.Data, C.Data);
             return ref C;
         }
     }

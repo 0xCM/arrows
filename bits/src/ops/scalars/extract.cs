@@ -21,7 +21,7 @@ namespace Z0
         /// <param name="start">The bit posiion within the source where extraction should benin</param>
         /// <param name="length">The number of bits that should be extracted</param>
         [MethodImpl(Inline)]
-        public static sbyte extract(in sbyte src, in byte start, in byte length)        
+        public static sbyte extract(sbyte src, byte start, byte length)        
             => (sbyte)BitFieldExtract((uint)src, start, length);
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace Z0
         /// <param name="start">The bit posiion within the source where extraction should benin</param>
         /// <param name="length">The number of bits that should be extracted</param>
         [MethodImpl(Inline)]
-        public static byte extract(in byte src, in byte start, in byte length)        
+        public static byte extract(byte src, byte start, byte length)        
             => (byte)BitFieldExtract(src, start, length);
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Z0
         /// <param name="start">The bit posiion within the source where extraction should benin</param>
         /// <param name="length">The number of bits that should be extracted</param>
         [MethodImpl(Inline)]
-        public static short extract(in short src, in byte start, in byte length)        
+        public static short extract(short src, byte start, byte length)        
             => (short)BitFieldExtract((uint)src, start, length);
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace Z0
         /// <param name="start">The bit posiion within the source where extraction should benin</param>
         /// <param name="length">The number of bits that should be extracted</param>
         [MethodImpl(Inline)]
-        public static ushort extract(in ushort src, in byte start, in byte length)        
+        public static ushort extract(ushort src, byte start, byte length)        
             => (ushort)BitFieldExtract(src, start, length);
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Z0
         /// <param name="start">The bit posiion within the source where extraction should benin</param>
         /// <param name="length">The number of bits that should be extracted</param>
         [MethodImpl(Inline)]
-        public static uint extract(in uint src, in byte start, in byte length)        
+        public static uint extract(uint src, byte start, byte length)        
             => BitFieldExtract(src, start, length);
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Z0
         /// <param name="start">The bit posiion within the source where extraction should benin</param>
         /// <param name="length">The number of bits that should be extracted</param>
         [MethodImpl(Inline)]
-        public static int extract(in int src, in byte start, in byte length)        
+        public static int extract(int src, byte start, byte length)        
             => (int)BitFieldExtract((uint)src, start, length);
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Z0
         /// <param name="start">The bit posiion within the source where extraction should benin</param>
         /// <param name="length">The number of bits that should be extracted</param>
         [MethodImpl(Inline)]
-        public static long extract(in long src, in byte start, in byte length)
+        public static long extract(long src, byte start, byte length)
             => (long)BitFieldExtract((ulong)src, start, length);            
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace Z0
         /// <param name="start">The bit posiion within the source where extraction should benin</param>
         /// <param name="length">The number of bits that should be extracted</param>
         [MethodImpl(Inline)]
-        public static ulong extract(in ulong src, in byte start, in byte length)
+        public static ulong extract(ulong src, byte start, byte length)
             => BitFieldExtract(src, start, length);            
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Z0
         /// <param name="start">The bit posiion within the source where extraction should benin</param>
         /// <param name="length">The number of bits that should be extracted</param>
         [MethodImpl(Inline)]
-        public static uint extract(in float src, in byte start, in byte length)        
+        public static uint extract(float src, byte start, byte length)        
             => BitFieldExtract((uint)src.ToBits(), start, length);
 
         /// <summary>
@@ -111,16 +111,15 @@ namespace Z0
         /// <param name="start">The bit posiion within the source where extraction should benin</param>
         /// <param name="length">The number of bits that should be extracted</param>
         [MethodImpl(Inline)]
-        public static ulong extract(in double src, in byte start, in byte length)        
+        public static ulong extract(double src, byte start, byte length)        
             => BitFieldExtract((ulong)src.ToBits(), start, length);
-
 
         /// <summary>
         /// Extracts the upper 16 bits from the source
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
-        public static ushort hi(in uint src)
+        public static ushort hi(uint src)
             => (ushort)(src >> 16); 
 
         /// <summary>
@@ -128,31 +127,15 @@ namespace Z0
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
-        public static ushort lo(in uint src)
+        public static ushort lo(uint src)
             => (ushort)src;
-
-        /// <summary>
-        /// Extracts the upper 32 bits from the source
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        [MethodImpl(Inline)]
-        public static uint hi(in ulong src)
-            => (uint)(src >> 32);
-
-        /// <summary>
-        /// Extracts the lower 32 bits from the source
-        /// </summary>
-        /// <param name="src">The bit source</param>
-        [MethodImpl(Inline)]
-        public static uint lo(in ulong src)
-            => (uint)src;
 
         /// <summary>
         /// Extracts the upper 4 bits from the source
         /// </summary>
         /// <param name="src">The soruce value</param>
         [MethodImpl(Inline)]        
-        public static sbyte hi(in sbyte src)
+        public static sbyte hi(sbyte src)
             => (sbyte)(src >> 4);
 
         /// <summary>
@@ -160,7 +143,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The soruce value</param>
         [MethodImpl(Inline)]
-        public static sbyte lo(in sbyte src)
+        public static sbyte lo(sbyte src)
             => (sbyte)(((sbyte)(src << 4)) >> 4);
 
         /// <summary>
@@ -168,7 +151,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The soruce value</param>
         [MethodImpl(Inline)]
-        public static byte hi(in byte src)
+        public static byte hi(byte src)
             => (byte)(src >> 4);
 
         /// <summary>
@@ -176,7 +159,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The soruce value</param>
         [MethodImpl(Inline)]
-        public static byte lo(in byte src)
+        public static byte lo(byte src)
             => (byte)(((byte)(src << 4)) >> 4);
 
         /// <summary>
@@ -184,7 +167,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static byte hi(in ushort src)
+        public static byte hi(ushort src)
             => (byte)(src >> 8);
 
         /// <summary>
@@ -192,7 +175,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static byte lo(in ushort src)
+        public static byte lo(ushort src)
             => (byte)src;
 
         /// <summary>
@@ -200,7 +183,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
-        public static sbyte hi(in short src)
+        public static sbyte hi(short src)
             => (sbyte)(src >> 8);            
 
         /// <summary>
@@ -208,7 +191,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
-        public static sbyte lo(in short src)
+        public static sbyte lo(short src)
             => (sbyte)src;
 
         /// <summary>
@@ -216,7 +199,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
-        public static short hi(in int src)
+        public static short hi(int src)
             => (short)(src >> 16);
 
         /// <summary>
@@ -224,7 +207,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
-        public static short lo(in int src)
+        public static short lo(int src)
             => (short)src;        
 
         /// <summary>
@@ -232,7 +215,7 @@ namespace Z0
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
-        public static int hi(in long src)
+        public static int hi(long src)
             => (int)(src >> 32);
 
         /// <summary>
@@ -240,7 +223,24 @@ namespace Z0
         /// </summary>
         /// <param name="src">The bit source</param>
         [MethodImpl(Inline)]
-        public static int lo(in long src)
+        public static int lo(long src)
             => (int)src;
+
+        /// <summary>
+        /// Extracts the upper 16 bits from the source
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static uint hi(ulong src)
+            => (uint)(src >> 32);
+
+        /// <summary>
+        /// Extracts the lower half of the bits from the source
+        /// </summary>
+        /// <param name="src">The bit source</param>
+        [MethodImpl(Inline)]
+        public static uint lo(ulong src)
+            => (uint)src;
+
      }
 }

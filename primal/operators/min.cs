@@ -149,19 +149,11 @@ namespace Z0
             return result;
         }
 
-        [MethodImpl(Inline)]
-        public static float min(float lhs, float rhs)
-            => lhs < rhs ? lhs : rhs;
-
-        [MethodImpl(Inline)]
-        public static double min(double lhs, double rhs)
-            => lhs < rhs ? lhs : rhs;
-
         public static float min(ReadOnlySpan<float> src)
         {
             if(src.IsEmpty)
                 return 0;
-            
+
             var result = src[0];
             for(var i = 1; i< src.Length; i++)
                 if(src[i] < result)

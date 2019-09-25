@@ -30,7 +30,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : unmanaged
         {
-            gmath.sub(A.Span, B.Span, C.Span);
+            mathspan.sub(A.Span, B.Span, C.Span);
             return ref C;
         }
 

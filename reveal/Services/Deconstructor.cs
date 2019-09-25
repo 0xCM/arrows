@@ -188,7 +188,6 @@ namespace Z0
             );
 		}
 
-
 		/// <summary>
 		/// Reads a continuous block of memory
 		/// </summary>
@@ -228,6 +227,5 @@ namespace Z0
             if(cold.IsSome())
                 yield return cold.Value();                  
         }       
-
     }
 }

@@ -52,11 +52,11 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static float square(float src)
-            => mul(src,src);
+            => fmath.mul(src,src);
 
         [MethodImpl(Inline)]
         public static double square(double src)
-            => mul(src,src);
+            => fmath.mul(src,src);
                  
         [MethodImpl(Inline)] 
         public static ref sbyte square(ref sbyte src)

@@ -67,13 +67,18 @@ namespace Z0
         public static T add<T>(T lhs, T rhs)
             where T : struct
         {
-            if(typeof(T) == typeof(byte) || typeof(T) == typeof(ushort) || 
-                typeof(T) == typeof(uint) || typeof(T) == typeof(ulong))
+            if(typeof(T) == typeof(byte) 
+                || typeof(T) == typeof(ushort) 
+                || typeof(T) == typeof(uint) 
+                || typeof(T) == typeof(ulong))
                     return uadd(lhs,rhs);
-            else if(typeof(T) == typeof(sbyte) || typeof(T) == typeof(short) || 
-                typeof(T) == typeof(int) || typeof(T) == typeof(long))
-                    return iadd(lhs,rhs);
-            else if(typeof(T) == typeof(float) || typeof(T) == typeof(double))
+            else if(typeof(T) == typeof(sbyte) 
+                || typeof(T) == typeof(short)
+                || typeof(T) == typeof(int) 
+                || typeof(T) == typeof(long))
+                return iadd(lhs,rhs);
+            else if(typeof(T) == typeof(float) 
+                ||  typeof(T) == typeof(double))
                 return gfp.add(lhs,rhs);
             else
                 throw unsupported<T>();

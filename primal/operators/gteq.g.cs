@@ -72,38 +72,6 @@ namespace Z0
                 throw unsupported<T>();
         }
 
-        [MethodImpl(Inline)]
-        public static Span<bool> gteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs, Span<bool> dst)
-            where T : struct
-        {
-            if(typeof(T) == typeof(sbyte))
-                return math.gteq(int8(lhs), int8(rhs), dst);
-            else if(typeof(T) == typeof(byte))
-                return math.gteq(uint8(lhs), uint8(rhs), dst);
-            else if(typeof(T) == typeof(short))
-                return math.gteq(int16(lhs), int16(rhs), dst);
-            else if(typeof(T) == typeof(ushort))
-                return math.gteq(uint16(lhs), uint16(rhs), dst);
-            else if(typeof(T) == typeof(int))
-                return math.gteq(int32(lhs), int32(rhs), dst);
-            else if(typeof(T) == typeof(uint))
-                return math.gteq(uint32(lhs), uint32(rhs), dst);
-            else if(typeof(T) == typeof(long))
-                return math.gteq(int64(lhs), int64(rhs), dst);
-            else if(typeof(T) == typeof(ulong))
-                return math.gteq(uint64(lhs), uint64(rhs), dst);
-            else if(typeof(T) == typeof(float))
-                return fmath.gteq(float32(lhs), float32(rhs), dst);
-            else if(typeof(T) == typeof(double))
-                return fmath.gteq(float64(lhs), float64(rhs), dst);
-            else
-                throw unsupported<T>();
-        }
-
-        [MethodImpl(Inline)]
-        public static Span<bool> gteq<T>(ReadOnlySpan<T> lhs, ReadOnlySpan<T> rhs)
-            where T : struct
-                => gteq(lhs,rhs,span<bool>(length(lhs,rhs)));
     }
 
 }

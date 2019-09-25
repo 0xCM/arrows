@@ -31,7 +31,7 @@ namespace Z0
         /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]
         public static ushort rev(ushort src)
-            => pack(rev(hi(in src)),rev(lo(in src)));
+            => pack(rev(hi(src)),rev(lo(src)));
 
         /// <summary>
         /// Reverses the bits in the source
@@ -39,7 +39,7 @@ namespace Z0
         /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]
         public static uint rev(uint src)
-            => pack(rev(hi(in src)),rev(lo(in src)));
+            => pack(rev(hi(src)),rev(lo(src)));
 
         /// <summary>
         /// Reverses the bits in the source
@@ -47,7 +47,7 @@ namespace Z0
         /// <param name="src">The source bits</param>
         [MethodImpl(Inline)]
         public static ulong rev(ulong src)
-            => pack(rev(hi(in src)),rev(lo(in src)));
+            => pack(rev(hi(src)),rev(lo(src)));
 
     }
 

@@ -346,7 +346,7 @@ namespace Z0
         public readonly BitVector4 Hi
         {
             [MethodImpl(Inline)]
-            get => hi(in data);        
+            get => hi(data);        
 
         }        
 

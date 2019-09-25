@@ -331,7 +331,7 @@ namespace Z0
 
         public bool Equals(BitMatrix<M,N,T> rhs)        
         {
-            var eq = gmath.eq<T>(Data, rhs.Data);
+            var eq = mathspan.eq<T>(Data, rhs.Data);
             for(var i = 0; i< eq.Length; i++)
                 if(!eq[i])
                     return false;
@@ -346,7 +346,7 @@ namespace Z0
 
         static ref BitMatrix<M,N,T> XOr(ref BitMatrix<M,N,T> lhs, in BitMatrix<M,N,T> rhs)        
         {
-            gbitspan.xor(lhs.Data, rhs.Data, lhs.Data);
+            mathspan.xor(lhs.Data, rhs.Data, lhs.Data);
             return ref lhs;
         }
 
@@ -358,13 +358,13 @@ namespace Z0
 
         static ref BitMatrix<M,N,T> Flip(ref BitMatrix<M,N,T> src)        
         {
-            gbitspan.flip(src.Data);
+            mathspan.flip(src.Data);
             return ref src;
         }
 
         static ref BitMatrix<M,N,T> Or(ref BitMatrix<M,N,T> lhs, in BitMatrix<M,N,T> rhs)        
         {
-            gbitspan.or(lhs.Data, rhs.Data, lhs.Data);
+            mathspan.or(lhs.Data, rhs.Data, lhs.Data);
             return ref lhs;
         }
 

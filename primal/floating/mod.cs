@@ -62,65 +62,6 @@ namespace Z0
         [MethodImpl(Inline)]
         public static bool divides(double lhs, double rhs)
             => rhs % lhs == 0;
-
-        public static void mod(ReadOnlySpan<float> lhs, ReadOnlySpan<float> rhs, Span<float> dst)
-        {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = mod(lhs[i], rhs[i]);
-        }
-
-        public static void mod(ReadOnlySpan<double> lhs, ReadOnlySpan<double> rhs, Span<double> dst)
-        {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                dst[i] = mod(lhs[i], rhs[i]);
-        }
-
-        public static Span<float> mod(Span<float> lhs, ReadOnlySpan<float> rhs)
-        {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                lhs[i] %= rhs[i];
-            return lhs;
-        }
-
-        public static Span<double> mod(Span<double> lhs, ReadOnlySpan<double> rhs)
-        {
-            var len = length(lhs,rhs);
-            for(var i = 0; i< len; i++)
-                lhs[i] %= rhs[i];
-            return lhs;
-        }
-
-        public static Span<float> mod(Span<float> lhs, float rhs)
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                lhs[i] %= rhs;
-            return lhs;
-        }
-
-        public static Span<double> mod(Span<double> lhs, double rhs)
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                lhs[i] %= rhs;
-            return lhs;
-        }
-
-        public static Span<float> mod(ReadOnlySpan<float> lhs, float rhs, Span<float> dst)
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = lhs[i] % rhs;
-            return dst;
-        }
-
-        public static Span<double> mod(ReadOnlySpan<double> lhs, double rhs, Span<double> dst)
-        {
-            for(var i = 0; i< lhs.Length; i++)
-                dst[i] = lhs[i] % rhs;
-            return dst;
-        }
-
     }
 
 }

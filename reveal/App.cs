@@ -61,6 +61,27 @@ namespace Z0
 
         }
 
+        public unsafe static void ListMethods(Type t)
+        {
+            var methods = (from m in t.DeclaredMethods()
+                          let loc = (long)m.MethodHandle.GetFunctionPointer()
+                          select (m, loc)).OrderBy(x => x.loc).ToArray();
+            if(methods.Length == 0)
+                return;
+
+            methods.Iterate(x => x.m.JitMethod());
+            var first = methods[0].loc;
+            var last = 0L;
+            foreach(var m in methods)
+            {                
+                var length = last != 0 ? m.loc - last : 0;
+                last = m.loc;
+                print($"{m.loc.FormatHex(false)} {m.m.Name.PadRight(15)} {length}");
+            }
+
+
+        }
+
         void Run()
         {
 

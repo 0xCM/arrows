@@ -283,7 +283,7 @@ namespace Z0
             for(var i=0; i< RowCount; i += rowstep)
             {
                 this.LoadCpuVec(i, out Vec256<uint> vSrc);
-                if(!vSrc.TestZ(vSrc))
+                if(!ginx.testz<uint>(vSrc,vSrc))
                     return false;
             }
             return true;

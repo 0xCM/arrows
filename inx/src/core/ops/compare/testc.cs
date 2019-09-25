@@ -23,7 +23,7 @@ namespace Z0
         /// Returns true if all source bits identified by a mask are on
         /// </summary>
         /// <param name="src">The source bits</param>
-        /// <param name="mask">Specifies the bits in the source to test</param>
+        /// <param name="mask">Specifies the bits the source to test</param>
         /// <algorithm>
         /// IF (a[127:0] AND b[127:0] == 0)
         ///     ZF := 1
@@ -31,7 +31,7 @@ namespace Z0
         ///     ZF := 0        
         /// <algorithm>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec128<sbyte> src, in Vec128<sbyte> mask)
+        public static bool testc(Vector128<sbyte> src, Vector128<sbyte> mask)
             => TestC(src, mask);        
 
         /// <summary>
@@ -39,9 +39,9 @@ namespace Z0
         /// Returns true if all source bits identified by a mask are on
         /// </summary>
         /// <param name="src">The source bits</param>
-        /// <param name="mask">Specifies the bits in the source to test</param>
+        /// <param name="mask">Specifies the bits the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec128<byte> src, in Vec128<byte> mask)
+        public static bool testc(Vector128<byte> src, Vector128<byte> mask)
             => TestC(src, mask);        
 
         /// <summary>
@@ -49,9 +49,9 @@ namespace Z0
         /// Returns true if all source bits identified by a mask are on
         /// </summary>
         /// <param name="src">The source bits</param>
-        /// <param name="mask">Specifies the bits in the source to test</param>
+        /// <param name="mask">Specifies the bits the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec128<short> src, in Vec128<short> mask)
+        public static bool testc(Vector128<short> src, Vector128<short> mask)
             => TestC(src, mask);        
 
         /// <summary>
@@ -59,9 +59,9 @@ namespace Z0
         /// Returns true if all source bits identified by a mask are on
         /// </summary>
         /// <param name="src">The source bits</param>
-        /// <param name="mask">Specifies the bits in the source to test</param>
+        /// <param name="mask">Specifies the bits the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec128<ushort> src, in Vec128<ushort> mask)
+        public static bool testc(Vector128<ushort> src, Vector128<ushort> mask)
             => TestC(src, mask);        
 
         /// <summary>
@@ -69,9 +69,9 @@ namespace Z0
         /// Returns true if all source bits identified by a mask are on
         /// </summary>
         /// <param name="src">The source bits</param>
-        /// <param name="mask">Specifies the bits in the source to test</param>
+        /// <param name="mask">Specifies the bits the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec128<int> src, in Vec128<int> mask)
+        public static bool testc(Vector128<int> src, Vector128<int> mask)
             => TestC(src, mask);        
         
         /// <summary>
@@ -79,9 +79,9 @@ namespace Z0
         /// Returns true if all source bits identified by a mask are on
         /// </summary>
         /// <param name="src">The source bits</param>
-        /// <param name="mask">Specifies the bits in the source to test</param>
+        /// <param name="mask">Specifies the bits the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec128<uint> src, in Vec128<uint> mask)
+        public static bool testc(Vector128<uint> src, Vector128<uint> mask)
             => TestC(src, mask);        
 
         /// <summary>
@@ -89,9 +89,9 @@ namespace Z0
         /// Returns true if all source bits identified by a mask are on
         /// </summary>
         /// <param name="src">The source bits</param>
-        /// <param name="mask">Specifies the bits in the source to test</param>
+        /// <param name="mask">Specifies the bits the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec128<long> src, in Vec128<long> mask)
+        public static bool testc(Vector128<long> src, Vector128<long> mask)
             => TestC(src, mask);        
 
         /// <summary>
@@ -99,9 +99,9 @@ namespace Z0
         /// Returns true if all source bits identified by a mask are on
         /// </summary>
         /// <param name="src">The source bits</param>
-        /// <param name="mask">Specifies the bits in the source to test</param>
+        /// <param name="mask">Specifies the bits the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec128<ulong> src, in Vec128<ulong> mask)
+        public static bool testc(Vector128<ulong> src, Vector128<ulong> mask)
             => TestC(src, mask);                     
 
         /// <summary>
@@ -109,9 +109,9 @@ namespace Z0
         /// Returns true if all source bits identified by a mask are on
         /// </summary>
         /// <param name="src">The source bits</param>
-        /// <param name="mask">Specifies the bits in the source to test</param>
+        /// <param name="mask">Specifies the bits the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec256<sbyte> src, in Vec256<sbyte> mask)
+        public static bool testc(Vector256<sbyte> src, Vector256<sbyte> mask)
             => TestC(src, mask);        
 
         /// <summary>
@@ -119,9 +119,9 @@ namespace Z0
         /// Returns true if all source bits identified by a mask are on
         /// </summary>
         /// <param name="src">The source bits</param>
-        /// <param name="mask">Specifies the bits in the source to test</param>
+        /// <param name="mask">Specifies the bits the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec256<byte> src, in Vec256<byte> mask)
+        public static bool testc(Vector256<byte> src, Vector256<byte> mask)
             => TestC(src, mask);        
 
         /// <summary>
@@ -129,9 +129,9 @@ namespace Z0
         /// Returns true if all source bits identified by a mask are on
         /// </summary>
         /// <param name="src">The source bits</param>
-        /// <param name="mask">Specifies the bits in the source to test</param>
+        /// <param name="mask">Specifies the bits the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec256<short> src, in Vec256<short> mask)
+        public static bool testc(Vector256<short> src, Vector256<short> mask)
             => TestC(src, mask);        
 
         /// <summary>
@@ -139,9 +139,9 @@ namespace Z0
         /// Returns true if all source bits identified by a mask are on
         /// </summary>
         /// <param name="src">The source bits</param>
-        /// <param name="mask">Specifies the bits in the source to test</param>
+        /// <param name="mask">Specifies the bits the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec256<ushort> src, in Vec256<ushort> mask)
+        public static bool testc(Vector256<ushort> src, Vector256<ushort> mask)
             => TestC(src, mask);        
 
         /// <summary>
@@ -149,9 +149,9 @@ namespace Z0
         /// Returns true if all source bits identified by a mask are on
         /// </summary>
         /// <param name="src">The source bits</param>
-        /// <param name="mask">Specifies the bits in the source to test</param>
+        /// <param name="mask">Specifies the bits the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec256<int> src, in Vec256<int> mask)
+        public static bool testc(Vector256<int> src, Vector256<int> mask)
             => TestC(src, mask);        
         
         /// <summary>
@@ -159,9 +159,9 @@ namespace Z0
         /// Returns true if all source bits identified by a mask are on
         /// </summary>
         /// <param name="src">The source bits</param>
-        /// <param name="mask">Specifies the bits in the source to test</param>
+        /// <param name="mask">Specifies the bits the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec256<uint> src, in Vec256<uint> mask)
+        public static bool testc(Vector256<uint> src, Vector256<uint> mask)
             => TestC(src, mask);        
 
         /// <summary>
@@ -169,9 +169,9 @@ namespace Z0
         /// Returns true if all source bits identified by a mask are on
         /// </summary>
         /// <param name="src">The source bits</param>
-        /// <param name="mask">Specifies the bits in the source to test</param>
+        /// <param name="mask">Specifies the bits the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec256<long> src, in Vec256<long> mask)
+        public static bool testc(Vector256<long> src, Vector256<long> mask)
             => TestC(src, mask);        
 
         /// <summary>
@@ -179,11 +179,10 @@ namespace Z0
         /// Returns true if all source bits identified by a mask are on
         /// </summary>
         /// <param name="src">The source bits</param>
-        /// <param name="mask">Specifies the bits in the source to test</param>
+        /// <param name="mask">Specifies the bits the source to test</param>
         [MethodImpl(Inline)]
-        public static bool testc(in Vec256<ulong> src, in Vec256<ulong> mask)
+        public static bool testc(Vector256<ulong> src, Vector256<ulong> mask)
             => TestC(src, mask);                             
-
     }
 
 }

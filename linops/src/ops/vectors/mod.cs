@@ -22,7 +22,7 @@ namespace Z0
             where T : unmanaged    
 
         {
-            gmath.imod<T>(div.Data, mod.Data, dst.Data);
+            mathspan.mod<T>(div.Data, mod.Data, dst.Data);
             return ref dst;
         }
 
@@ -46,7 +46,7 @@ namespace Z0
         public static ref BlockVector<T> mod<T>(ref BlockVector<T> lhs, in BlockVector<T> rhs)
             where T : unmanaged
         {
-            gmath.mod(lhs.Unblocked, rhs.Unblocked);
+            mathspan.mod(lhs.Unblocked, rhs.Unblocked);
             return ref lhs;
         }
 
@@ -64,7 +64,7 @@ namespace Z0
         {
             var x = lhs.Unsized;
             var y = rhs.Unsized;
-            gmath.mod(lhs.Unsized, rhs.Unsized);
+            mathspan.mod(lhs.Unsized, rhs.Unsized);
             return ref lhs;
         }
 

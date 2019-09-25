@@ -56,7 +56,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : unmanaged    
         {
-            gbitspan.or(x.Unsized, k, z.Unsized);
+            mathspan.or(x.Unsized, k, z.Unsized);
             return ref z;
         }
 

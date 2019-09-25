@@ -13,14 +13,13 @@ namespace Z0
     
     partial class fmath
     {
-
-       /// <summary>
+        /// <summary>
         /// Increments the source value
         /// </summary>
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static float inc(float src)
-            => ++src;
+            => src + 1;
 
         /// <summary>
         /// Increments the source value
@@ -28,7 +27,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static double inc(double src)
-            => ++src;
+            => src + 1;
 
         /// <summary>
         /// Increments the source value in-place
@@ -51,37 +50,5 @@ namespace Z0
             src++;
             return ref src;
         }
-
-        public static Span<float> inc(ReadOnlySpan<float> src, Span<float> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = inc(src[i]);
-            return dst;
-        }
-
-        public static Span<double> inc(ReadOnlySpan<double> src, Span<double> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = inc(src[i]);
-            return dst;
-        }
-
-       public static Span<float> inc(Span<float> src)
-        {
-            for(var i = 0; i< src.Length; i++)
-                inc(ref src[i]);
-            return src;
-        }
-
-        public static Span<double> inc(Span<double> src)
-        {
-            for(var i = 0; i< src.Length; i++)
-                inc(ref src[i]);
-            return src;
-        }
-
-
     }
 }

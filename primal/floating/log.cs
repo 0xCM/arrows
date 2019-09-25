@@ -13,59 +13,6 @@ namespace Z0
     
     partial class fmath
     {
-        [MethodImpl(Inline)]
-        public static float pow(float src, float exp)
-            => MathF.Pow(src,exp);
-
-        [MethodImpl(Inline)]
-        public static double pow(double src, double exp)
-            => Math.Pow(src,exp);
-
-        [MethodImpl(Inline)]
-        public static ref float pow(ref float src, float exp)
-        {
-            src = pow(src,exp);
-            return ref src;
-        }
-
-        [MethodImpl(Inline)]
-        public static ref double pow(ref double src, double exp)
-        {
-            src = pow(src,exp);
-            return ref src;
-        }
-
-        public static Span<float> pow(Span<float> b, float exp)
-        {
-            for(var i = 0; i<b.Length; i++) 
-                b[i] = pow(b[i], exp);
-            return b;
-        }
-
-        public static Span<double> pow(Span<double> b, double exp)
-        {
-            for(var i = 0; i<b.Length; i++) 
-                b[i] = pow(b[i], exp);
-            return b;
-        }
-
-        public static Span<float> pow(Span<float> b, ReadOnlySpan<float> exp)
-        {
-            var len =  length(b,exp);
-            for(var i = 0; i<len; i++) 
-                b[i] = pow(b[i], exp[i]);
-            return b;
-        }
-
-        public static Span<double> pow(Span<double> b, ReadOnlySpan<double> exp)
-        {
-            var len =  length(b,exp);
-            for(var i = 0; i<len; i++) 
-                b[i] = pow(b[i], exp[i]);
-            return b;
-        }
-
-
         /// <summary>
         /// Computes the base-2 log of the operand
         /// </summary>
@@ -118,5 +65,4 @@ namespace Z0
         public static double log(double src, double? b = null)
             => Math.Log(src, b ?? 10);
     }
-
 }

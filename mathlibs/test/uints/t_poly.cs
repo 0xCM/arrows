@@ -42,25 +42,25 @@ namespace Z0
             var deg = (int)p1.Degree;
             Claim.eq(p1[deg].Exp, 3u);
             Claim.eq(p1[deg].Scalar, 4);
-            p1Ev[deg] = p1[deg].Scalar*math.ipow(x, p1[deg].Exp);
+            p1Ev[deg] = p1[deg].Scalar*math.pow(x, p1[deg].Exp);
             Claim.eq(p1[deg].Eval(x), p1Ev[deg]);
 
             deg--;
             Claim.eq(p1[deg].Exp, 2u);
             Claim.eq(p1[deg].Scalar, 3);
-            p1Ev[deg] = p1[deg].Scalar*math.ipow(x,p1[deg].Exp);
+            p1Ev[deg] = p1[deg].Scalar*math.pow(x,p1[deg].Exp);
             Claim.eq(p1[deg].Eval(x), p1Ev[deg]);
 
             deg--;
             Claim.eq(p1[deg].Exp, 1u);
             Claim.eq(p1[deg].Scalar, 8);
-            p1Ev[deg] = p1[deg].Scalar*math.ipow(x,p1[deg].Exp);
+            p1Ev[deg] = p1[deg].Scalar*math.pow(x,p1[deg].Exp);
             Claim.eq(p1[deg].Eval(x), p1Ev[deg]);
 
             deg--;
             Claim.eq(p1[deg].Exp, 0u);
             Claim.eq(p1[deg].Scalar, 1);
-            p1Ev[deg] = p1[deg].Scalar*math.ipow(x,p1[deg].Exp);
+            p1Ev[deg] = p1[deg].Scalar*math.pow(x,p1[deg].Exp);
             Claim.eq(p1[deg].Eval(x), p1Ev[deg]);
 
             

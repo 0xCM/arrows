@@ -539,7 +539,7 @@ namespace Z0
         public Bit this[BitPos pos]
         {
             [MethodImpl(Inline)]
-            get => Get(pos);
+            get => 0;
             
             [MethodImpl(Inline)]
             set => Set(pos,value);
@@ -702,7 +702,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public BitVector128 Dec()
         {
-            xmm = ginx.prior(xmm);
+            xmm = ginx.prior<ulong>(xmm);
             return this;
         }
 
@@ -722,10 +722,6 @@ namespace Z0
         public void Disable(BitPos pos)
             => xmm = Bits.andn(xmm, One << pos);                        
 
-        [MethodImpl(Inline)]
-        public readonly bool Test(BitPos pos)
-            => Bits.and(xmm, One << pos) != Vec128<ulong>.Zero;
-
         /// <summary>
         /// Sets a bit to a specified value
         /// </summary>
@@ -741,13 +737,6 @@ namespace Z0
         }
 
 
-        /// <summary>
-        /// Reads a bit value
-        /// </summary>
-        /// <param name="pos">The bit position</param>
-        [MethodImpl(Inline)]
-        public readonly Bit Get(BitPos pos)
-            => Test(pos);
 
         /// <summary>
         /// Returns a copy of the vector

@@ -19,6 +19,7 @@ namespace Z0
         public static T round<T>(T src, int scale)
             where T : struct
         {
+
             if(typeof(T) == typeof(float))
                 return generic<T>(fmath.round(float32(src), scale));
             else if(typeof(T) == typeof(double))
@@ -26,37 +27,5 @@ namespace Z0
             else
                 return src;
         }
-
-        [MethodImpl(Inline)]
-        public static Span<T> round<T>(ReadOnlySpan<T> src, int scale, Span<T> dst)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                fmath.round(float32(src), scale, float32(dst));
-            else if(typeof(T) == typeof(double))
-                fmath.round(float64(src), scale, float64(dst));
-            else
-                return src.Replicate();
-            return dst;
-        }
-
-        [MethodImpl(Inline)]
-        public static Span<T> round<T>(ReadOnlySpan<T> src, int scale)
-            where T : struct
-                => round(src, scale, span<T>(src.Length));
-
-        [MethodImpl(Inline)]
-        public static ref Span<T> round<T>(ref Span<T> io, int scale)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                fmath.round(float32(io), scale);
-            else if(typeof(T) == typeof(double))
-                fmath.round(float64(io), scale);
-            return ref io;        
-        }
-
-
     }
-
 }

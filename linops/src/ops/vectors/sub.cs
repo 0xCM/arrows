@@ -60,7 +60,7 @@ namespace Z0
         public static ref BlockVector<T> sub<T>(BlockVector<T> x, BlockVector<T> y, ref BlockVector<T> z)
             where T : unmanaged
         {
-            gmath.sub(x.Unblocked, y.Unblocked, z.Unblocked);
+            mathspan.sub(x.Unblocked, y.Unblocked, z.Unblocked);
             return ref z;
         }
 

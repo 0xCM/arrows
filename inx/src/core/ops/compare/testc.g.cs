@@ -21,29 +21,29 @@ namespace Z0
         /// <param name="mask">Specifies the bits in the source to test</param>
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
-        public static bool testc<T>(in Vec128<T> src,in Vec128<T> mask)
+        public static bool testc<T>(Vector128<T> src, Vector128<T> mask)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return dinx.testc(in int8(in src), in int8(in mask));
+                return dinx.testc(int8(src), int8(mask));
             else if(typeof(T) == typeof(byte))
-                return dinx.testc(in uint8(in src), in uint8(in mask));
+                return dinx.testc(uint8(src), uint8(mask));
             else if(typeof(T) == typeof(short))
-                return dinx.testc(in int16(in src), in int16(in mask));
+                return dinx.testc(int16(src), int16(mask));
             else if(typeof(T) == typeof(ushort))
-                return dinx.testc(in uint16(in src), in uint16(in mask));
+                return dinx.testc(uint16(src), uint16(mask));
             else if(typeof(T) == typeof(int))
-                return dinx.testc(in int32(in src), in int32(in mask));
+                return dinx.testc(int32(src), int32(mask));
             else if(typeof(T) == typeof(uint))
-                return dinx.testc(in uint32(in src), in uint32(in mask));
+                return dinx.testc(uint32(src), uint32(mask));
             else if(typeof(T) == typeof(long))
-                return dinx.testc(in int64(in src), in int64(in mask));
+                return dinx.testc(int64(src), int64(mask));
             else if(typeof(T) == typeof(ulong))
-                return dinx.testc(in uint64(in src), in uint64(in mask));
+                return dinx.testc(uint64(src), uint64(mask));
             else if(typeof(T) == typeof(float))
-                return dfp.testc(in float32(in src), in float32(in mask));
+                return dfp.testc(float32(src), float32(mask));
             else if(typeof(T) == typeof(double))
-                return dfp.testc(in float64(in src), in float64(in mask));
+                return dfp.testc(float64(src), float64(mask));
             else 
                 throw unsupported<T>();
         }
@@ -52,32 +52,32 @@ namespace Z0
         /// Determines whether mask-specified source bits are all on
         /// </summary>
         /// <param name="src">The source bits</param>
-        /// <param name="mask">Specifies the bits in the source to test</param>
+        /// <param name="mask">Specifies the bits the source to test</param>
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
-        public static bool testc<T>(in Vec256<T> src,in Vec256<T> mask)
+        public static bool testc<T>(Vector256<T> src, Vector256<T> mask)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return dinx.testc(in int8(in src), in int8(in mask));
+                return dinx.testc(int8(src), int8(mask));
             else if(typeof(T) == typeof(byte))
-                return dinx.testc(in uint8(in src), in uint8(in mask));
+                return dinx.testc(uint8(src), uint8(mask));
             else if(typeof(T) == typeof(short))
-                return dinx.testc(in int16(in src), in int16(in mask));
+                return dinx.testc(int16(src), int16(mask));
             else if(typeof(T) == typeof(ushort))
-                return dinx.testc(in uint16(in src), in uint16(in mask));
+                return dinx.testc(uint16(src), uint16(mask));
             else if(typeof(T) == typeof(int))
-                return dinx.testc(in int32(in src), in int32(in mask));
+                return dinx.testc(int32(src), int32(mask));
             else if(typeof(T) == typeof(uint))
-                return dinx.testc(in uint32(in src), in uint32(in mask));
+                return dinx.testc(uint32(src), uint32(mask));
             else if(typeof(T) == typeof(long))
-                return dinx.testc(in int64(in src), in int64(in mask));
+                return dinx.testc(int64(src), int64(mask));
             else if(typeof(T) == typeof(ulong))
-                return dinx.testc(in uint64(in src), in uint64(in mask));
+                return dinx.testc(uint64(src), uint64(mask));
             else if(typeof(T) == typeof(float))
-                return dfp.testc(in float32(in src), in float32(in mask));
+                return dfp.testc(float32(src), float32(mask));
             else if(typeof(T) == typeof(double))
-                return dfp.testc(in float64(in src), in float64(in mask));
+                return dfp.testc(float64(src), float64(mask));
             else 
                 throw unsupported<T>();
         }

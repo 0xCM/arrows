@@ -21,7 +21,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static sbyte dec(sbyte src)
-            => --src;
+            => (sbyte)(src - 1);
 
         /// <summary>
         /// Decrements the source value
@@ -29,7 +29,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static byte dec(byte src)
-            => --src;
+            => (byte)(src - 1);
 
         /// <summary>
         /// Decrements the source value
@@ -37,7 +37,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static short dec(short src)
-            => --src;
+            => (short)(src - 1);
 
         /// <summary>
         /// Decrements the source value
@@ -45,7 +45,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static ushort dec(ushort src)
-            => --src;
+            => (ushort)(src - 1);
 
         /// <summary>
         /// Decrements the source value
@@ -53,7 +53,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static int dec(int src)
-            => --src;
+            => src - 1;
 
         /// <summary>
         /// Decrements the source value
@@ -61,7 +61,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static uint dec(uint src)
-            => --src;
+            => src - 1;
 
         /// <summary>
         /// Decrements the source value
@@ -69,7 +69,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static long dec(long src)
-            => --src;
+            => src - 1;
 
         /// <summary>
         /// Decrements the source value
@@ -77,8 +77,7 @@ namespace Z0
         /// <param name="src">The source value</param>
         [MethodImpl(Inline)]
         public static ulong dec(ulong src)
-            => --src;
-
+            => src - 1;
 
         /// <summary>
         /// Decrements the source value in-place
@@ -168,129 +167,6 @@ namespace Z0
             return ref src;
         }
 
-        
-        public static Span<sbyte> dec(ReadOnlySpan<sbyte> src, Span<sbyte> dst)
-        {
-            var len = length(src,dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = dec(src[i]);
-            return dst;
-        }
-
-        public static Span<byte> dec(ReadOnlySpan<byte> src, Span<byte> dst)
-        {
-            var len = length(src,dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = dec(src[i]);
-            return dst;
-        }
-
-        public static Span<short> dec(ReadOnlySpan<short> src, Span<short> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = dec(src[i]);
-            return dst;
-        }
-
-        public static Span<ushort> dec(ReadOnlySpan<ushort> src, Span<ushort> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = dec(src[i]);
-            return dst;
-        }
-
-        public static Span<int> dec(ReadOnlySpan<int> src, Span<int> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = dec(src[i]);
-            return dst;
-        }
-
-        public static Span<uint> dec(ReadOnlySpan<uint> src, Span<uint> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = dec(src[i]);
-            return dst;
-        }
-
-        public static Span<long> dec(ReadOnlySpan<long> src, Span<long> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = dec(src[i]);
-            return dst;
-        }
-
-        public static Span<ulong> dec(ReadOnlySpan<ulong> src, Span<ulong> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = dec(src[i]);
-            return dst;
-        }
-
- 
-        public static Span<sbyte> dec(Span<sbyte> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                dec(ref io[i]);
-            return io;
-        }
-
-        public static Span<byte> dec(Span<byte> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                dec(ref io[i]);
-            return io;
-        }
-
-        public static Span<short> dec(Span<short> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                dec(ref io[i]);
-            return io;
-        }
-
-        public static Span<ushort> dec(Span<ushort> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                dec(ref io[i]);
-            return io;
-        }
-
-        public static Span<int> dec(Span<int> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                dec(ref io[i]);
-            return io;
-        }
-
-        public static Span<uint> dec(Span<uint> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                dec(ref io[i]);
-            return io;
-        }
-
-        public static Span<long> dec(Span<long> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                dec(ref io[i]);
-            return io;
-        }
-
-        public static Span<ulong> dec(Span<ulong> io)
-        {
-            for(var i = 0; i< io.Length; i++)
-                dec(ref io[i]);
-            return io;
-        }
-
- 
 
     }
 }

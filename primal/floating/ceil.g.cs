@@ -24,6 +24,18 @@ namespace Z0
                 throw unsupported<T>();
         }
 
+        [MethodImpl(Inline)]
+        public static ref T ceil<T>(ref T src)
+            where T : struct
+        {
+            if(typeof(T) == typeof(float))
+                fmath.ceil(ref float32(ref src));
+            else if(typeof(T) == typeof(double))
+                fmath.ceil(ref float64(ref src));
+            else
+                throw unsupported<T>();
+            return ref src;
+        }        
 
     }
 }

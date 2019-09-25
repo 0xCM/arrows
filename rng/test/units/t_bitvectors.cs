@@ -22,7 +22,7 @@ namespace Z0
         {
             var limit = 12;
             var set1 = BitVector16.All(limit).Select(x => x.Scalar).ToArray();
-            Claim.eq(math.max(set1), (ushort)0b111111111111);
+            Claim.eq(mathspan.max(set1.ToSpan()), (ushort)0b111111111111);
 
             var set2 = Random.BitVectors(n16, limit).TakeArray((int)Pow2.pow(limit*2));
             Span<int> dist = stackalloc int[limit + 1];
@@ -39,7 +39,7 @@ namespace Z0
             for(var i=1; i<dist.Length; i++)
                 ratios[i] = ((double)dist[i]/Pow2.pow(i));
             
-            var delta = gmath.sub(ratios.Slice(1), idealRatio);
+            var delta = mathspan.sub(ratios.Slice(1), idealRatio);
             Claim.yea(math.lt(math.abs(delta.Last()), 3.0));
             
         }

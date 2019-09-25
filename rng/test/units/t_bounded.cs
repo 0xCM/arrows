@@ -151,7 +151,7 @@ namespace Z0
         }
 
         void UniformRange<T>(Interval<T> domain, int count)
-            where T : struct
+            where T : unmanaged
         {            
             TypeCaseStart<T>();
             var sw = stopwatch();
@@ -159,8 +159,8 @@ namespace Z0
             var time = snapshot(sw);
             
             var avg = gmath.avg<T>(samples);
-            var min = gmath.min<T>(samples);
-            var max = gmath.max<T>(samples);
+            var min = mathspan.min<T>(samples);
+            var max = mathspan.max<T>(samples);
 
             Claim.yea(gmath.between(max, domain.Left, domain.Right));
             Claim.yea(gmath.between(min, domain.Left, domain.Right));
@@ -169,14 +169,14 @@ namespace Z0
         }
 
         void UniformBounded<T>(int count)
-            where T : struct
+            where T : unmanaged
         {
             TypeCaseStart<T>();
             var sw = stopwatch();
             var samples = Random.Stream<T>().TakeArray(count);
             var time = snapshot(sw);
-            var min = gmath.min<T>(samples);
-            var max = gmath.max<T>(samples);
+            var min = mathspan.min<T>(samples);
+            var max = mathspan.max<T>(samples);
             var avg = gmath.avg<T>(samples);
             TypeCaseEnd<T>();
         }

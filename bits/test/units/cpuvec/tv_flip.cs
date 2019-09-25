@@ -48,7 +48,7 @@ namespace Z0.Test
             {
                 var src = Random.CpuVec128<T>();
                 var srcData = src.ToSpan();
-                var expect  = Vec128.Load(ref gbitspan.flip(srcData)[0]);
+                var expect  = Vec128.Load(ref mathspan.flip(srcData)[0]);
                 var actual = gbits.flip(in src);
                 Claim.yea(expect.Equals(actual));
             }
@@ -63,7 +63,7 @@ namespace Z0.Test
             {
                 var src = Random.CpuVec256<T>();
                 var srcData = src.ToSpan();
-                var expect  = Vec256.Load(ref gbitspan.flip(srcData)[0]);
+                var expect  = Vec256.Load(ref mathspan.flip(srcData)[0]);
                 var actual = gbits.flip(in src);
                 Claim.yea(expect.Equals(actual));
             }

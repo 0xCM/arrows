@@ -13,12 +13,12 @@ namespace Z0
     {
         [MethodImpl(Inline)]
         public static BinaryOp<T> and<T>()
-            where T : struct
+            where T : unmanaged
                 => And<T>.Op;
 
         [MethodImpl(Inline)]
         public static BinaryOp<T> or<T>()
-            where T : struct
+            where T : unmanaged
                 => Or<T>.Op;
  
         [MethodImpl(Inline)]
@@ -28,41 +28,41 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static UnaryOp<T> flip<T>()
-            where T : struct
+            where T : unmanaged
                 => Flip<T>.Op;
 
         [MethodImpl(Inline)]
         public static ShiftOp<T> sal<T>(T lhs, int count)
-            where T : struct
+            where T : unmanaged
                 => Sal<T>.Op;
 
         [MethodImpl(Inline)]
         public static ShiftOp<T> sar<T>(T lhs, int count)
-            where T : struct
+            where T : unmanaged
                 => Sar<T>.Op;
 
        readonly struct Sal<T>
-            where T : struct
+            where T : unmanaged
         {
             public static readonly ShiftOp<T> Op = gbits.sal<T>;
         }
 
        readonly struct Sar<T>
-            where T : struct
+            where T : unmanaged
         {
             public static readonly ShiftOp<T> Op = gbits.sar<T>;
         }
 
 
         readonly struct And<T>
-            where T : struct
+            where T : unmanaged
         {
-            public static readonly BinaryOp<T> Op = gbits.and<T>;
+            public static readonly BinaryOp<T> Op = gmath.and<T>;
         }
 
 
         readonly struct Or<T>
-            where T : struct
+            where T : unmanaged
         {
             public static readonly BinaryOp<T> Op = gbits.or<T>;
         }
@@ -70,11 +70,11 @@ namespace Z0
         readonly struct XOr<T>
             where T : unmanaged
         {
-            public static readonly BinaryOp<T> Op = gbits.xor<T>;
+            public static readonly BinaryOp<T> Op = gmath.xor<T>;
         }
 
        readonly struct Flip<T>
-            where T : struct
+            where T : unmanaged
         {
             public static readonly UnaryOp<T> Op = gbits.flip<T>;
         }

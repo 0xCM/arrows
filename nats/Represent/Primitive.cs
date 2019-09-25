@@ -118,13 +118,14 @@ namespace Z0
     {
         public static readonly N2 Rep = default;        
 
+        public const ulong Value = 2;
 
         [MethodImpl(Inline)]
         public static implicit operator int(N2 src)
             => (int)src.value;
 
         public ulong value 
-            => 2;
+            => Value;
         
         public ITypeNat rep 
             => this;

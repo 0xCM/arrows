@@ -6,6 +6,7 @@ namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;    
+    using System.Runtime.Intrinsics;    
     
     using Avx = System.Runtime.Intrinsics.X86.Avx;   
     using static zfunc;
@@ -13,22 +14,21 @@ namespace Z0
         
     partial class dinxx
     {
-        public static bool TestZ<T>(this Vec128<T> lhs, in Vec128<T> rhs)
+        public static bool TestC<T>(this Vector128<T> lhs, Vector128<T> rhs)
             where T : struct
-                => ginx.testz(in lhs, in rhs);
+                => ginx.testc(lhs, rhs);
 
-        public static bool TestZ<T>(this Vec256<T> lhs, in Vec256<T> rhs)
+        public static bool TestC<T>(this Vector256<T> lhs, Vector256<T> rhs)
             where T : struct
-                => ginx.testz(in lhs, in rhs);
+                => ginx.testc(lhs, rhs);
 
-        public static bool TestC<T>(this Vec128<T> lhs, in Vec128<T> rhs)
+        public static bool TestZ<T>(this Vector128<T> lhs, Vector128<T> rhs)
             where T : struct
-                => ginx.testc(in lhs, in rhs);
+                => ginx.testz<T>(lhs, rhs);
 
-        public static bool TestC<T>(this Vec256<T> lhs, in Vec256<T> rhs)
+        public static bool TestZ<T>(this Vector256<T> lhs, Vector256<T> rhs)
             where T : struct
-                => ginx.testc(in lhs, in rhs);
-
+                => ginx.testz<T>(lhs, rhs);
 
     }
 

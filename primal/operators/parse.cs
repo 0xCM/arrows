@@ -57,14 +57,6 @@ namespace Z0
         public static double parse(string src, out double dst)
             => dst = double.Parse(src);
 
-        [MethodImpl(Inline)]
-        public static decimal parse(string src, out decimal dst)
-            => dst = decimal.Parse(src);
-
-        [MethodImpl(Inline)]
-        public static BigInteger parse(string src, out BigInteger dst)
-            => dst = BigInteger.Parse(src);
-
    
     }    
 }

@@ -22,7 +22,7 @@ namespace Z0
         /// <param name="src">The bit source</param>
         /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static bool testz(in Vec128<float> src, in Vec128<float> mask)
+        public static bool testz(Vector128<float> src, Vector128<float> mask)
             => TestZ(src,mask);        
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace Z0
         /// <param name="src">The bit source</param>
         /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static bool testz(in Vec128<double> src, in Vec128<double> mask)
+        public static bool testz(Vector128<double> src, Vector128<double> mask)
             => TestZ(src,mask);        
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Z0
         /// <param name="src">The bit source</param>
         /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static bool testz(in Vec256<float> src, in Vec256<float> mask)
+        public static bool testz(Vector256<float> src, Vector256<float> mask)
             => TestZ(src,mask);        
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Z0
         /// <param name="src">The bit source</param>
         /// <param name="mask">The mask</param>
         [MethodImpl(Inline)]
-        public static bool testz(in Vec256<double> src, in Vec256<double> mask)
+        public static bool testz(Vector256<double> src, Vector256<double> mask)
             => TestZ(src,mask);        
 
 

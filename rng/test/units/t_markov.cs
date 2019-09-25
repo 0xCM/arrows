@@ -183,7 +183,7 @@ namespace Z0
             for(var i=0; i< count; i++)
             {
                 Random.MarkovVec(ref v);
-                var sum =  convert<T,double>(gmath.sum(v.Unsized));
+                var sum =  convert<T,double>(mathspan.sum(v.Unsized));
                 Claim.yea(radius.Contains(sum));
             }
         }

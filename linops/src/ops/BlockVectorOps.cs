@@ -72,7 +72,7 @@ namespace Z0
             where T : unmanaged    
 
         {
-            gmath.ipow(lhs.Span, exp.Span);
+            mathspan.pow(lhs.Span, exp.Span);
             return ref lhs;
         }
 
@@ -82,7 +82,7 @@ namespace Z0
             where T : unmanaged    
 
         {
-            gmath.ipow(lhs.Span, rhs);
+            mathspan.pow(lhs.Span, rhs);
             return ref lhs;
         }
 
@@ -92,7 +92,7 @@ namespace Z0
             where T : unmanaged    
 
         {
-            gbitspan.flip(src.Span);
+            mathspan.flip(src.Span);
             return ref src;
         }
 
@@ -102,7 +102,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : unmanaged    
         {
-            gmath.negate(src.Span);
+            mathspan.negate(src.Span);
             return ref src;
         }
 
@@ -149,10 +149,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref BlockVector<N,T> xor<N,T>(ref BlockVector<N,T> lhs, in BlockVector<N,T> rhs)
             where N : ITypeNat, new()
-            where T : struct    
+            where T : unmanaged
 
         {
-            gbitspan.xor(lhs.Unsized, rhs.Unsized);
+            mathspan.xor(lhs.Unsized, rhs.Unsized);
             return ref lhs;
         }
 
@@ -166,10 +166,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref BlockVector<N,T> xor<N,T>(ref BlockVector<N,T> lhs, in T rhs)
             where N : ITypeNat, new()
-            where T : struct    
+            where T : unmanaged
 
         {
-            gbitspan.xor(lhs.Unsized, rhs);
+            mathspan.xor(lhs.Unsized, rhs);
             return ref lhs;
         }
 
@@ -183,10 +183,10 @@ namespace Z0
         [MethodImpl(Inline)]
         public static ref BlockVector<N,T> pow<N,T>(ref BlockVector<N,T> lhs, uint rhs)
             where N : ITypeNat, new()
-            where T : struct    
+            where T : unmanaged
 
         {
-            gmath.ipow(lhs.Unsized, rhs);
+            mathspan.pow(lhs.Unsized, rhs);
             return ref lhs;
         }
 
@@ -202,7 +202,7 @@ namespace Z0
             where T : unmanaged    
 
         {
-            gbitspan.flip(src.Unsized);
+            mathspan.flip(src.Unsized);
             return ref src;
         }
 
@@ -215,7 +215,7 @@ namespace Z0
         public static ref BlockVector<T> inc<T>(ref BlockVector<T> src)
             where T : struct
         {
-            gmath.inc(src.Unblocked);
+            mathspan.inc(src.Unblocked);
             return ref src;
         }
         /// <summary>
@@ -229,7 +229,7 @@ namespace Z0
             where N : ITypeNat, new()
             where T : unmanaged    
         {
-            gmath.inc(src.Unsized);
+            mathspan.inc(src.Unsized);
             return ref src;
         }
 
@@ -238,7 +238,7 @@ namespace Z0
         public static ref BlockVector<T> dec<T>(ref BlockVector<T> src)
             where T : struct
         {
-            gmath.dec(src.Unblocked);
+            mathspan.dec(src.Unblocked);
             return ref src;
         }
 
@@ -254,7 +254,7 @@ namespace Z0
             where T : struct    
 
         {
-            gmath.dec(src.Unsized);
+            mathspan.dec(src.Unsized);
             return ref src;
         }
 

@@ -42,9 +42,9 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec128<T> prior<T>(in Vec128<T> src)
+        public static Vec128<T> prior<T>(Vector128<T> src)
             where T : unmanaged
-                => sub(in src, in Vec128Pattern.Units<T>());
+                => sub(src, Vec128Pattern.Units<T>());
 
         /// <summary>
         /// Decrements each source vector component by a unit
@@ -52,9 +52,9 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec256<T> prior<T>(in Vec256<T> src)
+        public static Vec256<T> prior<T>(Vector256<T> src)
             where T : unmanaged
-                => sub(in src, in Vec256Pattern.Units<T>());
+                => sub(src, Vec256Pattern.Units<T>());
     }
 
 }

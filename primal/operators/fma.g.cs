@@ -17,7 +17,7 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
-        public static T ifma<T>(T x, T y, T z)
+        public static T fma<T>(T x, T y, T z)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
@@ -36,6 +36,10 @@ namespace Z0
                 return generic<T>(math.fma(int64(x), int64(y), int64(z)));
             else if(typeof(T) == typeof(ulong))
                 return generic<T>(math.fma(uint64(x), uint64(y), uint64(z)));
+            else if(typeof(T) == typeof(float))
+                return generic<T>(fmath.fma(float32(x), float32(y), float32(z)));
+            else if(typeof(T) == typeof(double))
+                return generic<T>(fmath.fma(float64(x), float64(y), float64(z)));
             else            
                 throw unsupported<T>();
         }

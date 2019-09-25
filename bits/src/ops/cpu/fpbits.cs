@@ -7,6 +7,7 @@ namespace Z0
     using System;
     using System.Runtime.CompilerServices;
     using System.Runtime.Intrinsics.X86;
+    using System.Runtime.Intrinsics;
     using Z0;
  
     using static zfunc;
@@ -22,38 +23,38 @@ namespace Z0
         /// <param name="rhs">The right operand</param>
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
-        public static Vec256<T> vand<T>(in Vec256<T> lhs, in Vec256<T> rhs)
+        public static Vector256<T> vand<T>(Vector256<T> lhs, Vector256<T> rhs)
             where T : unmanaged
         {
             if(typeof(T) == typeof(float))
-                return generic<T>(Bits.and(in float32(in lhs), in float32(in rhs)));
+                return generic<T>(Bits.and(float32(lhs), float32(rhs)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(Bits.and(in float64(in lhs), in float64(in rhs)));
+                return generic<T>(Bits.and(float64(lhs), float64(rhs)));
             else 
                 throw unsupported<T>();
         }
 
 
         [MethodImpl(Inline)]
-        public static Vec128<T> vxor<T>(in Vec128<T> lhs, in Vec128<T> rhs)
+        public static Vector128<T> vxor<T>(Vector128<T> lhs, Vector128<T> rhs)
             where T : unmanaged
         {
             if(typeof(T) == typeof(float))
-                return generic<T>(Bits.xor(in float32(in lhs), in float32(in rhs)));
+                return generic<T>(Bits.xor(float32(lhs), float32(rhs)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(Bits.xor(in float64(in lhs), in float64(in rhs)));
+                return generic<T>(Bits.xor(float64(lhs), float64(rhs)));
             else 
                 throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
-        public static Vec256<T> vxor<T>(Vec256<T> lhs, Vec256<T> rhs)
+        public static Vector256<T> vxor<T>(Vector256<T> lhs, Vector256<T> rhs)
             where T : unmanaged
         {
             if(typeof(T) == typeof(float))
-                return generic<T>(Bits.xor(in float32(in lhs), in float32(in rhs)));
+                return generic<T>(Bits.xor(float32(lhs), float32(rhs)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(Bits.xor(in float64(in lhs), in float64(in rhs)));
+                return generic<T>(Bits.xor(float64(lhs), float64(rhs)));
             else 
                 throw unsupported<T>();
         }

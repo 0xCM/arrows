@@ -18,7 +18,7 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
-        public static T fpow<T>(T b, uint exp)
+        public static T pow<T>(T b, uint exp)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -30,7 +30,7 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ref T fpow<T>(ref T b, uint exp)
+        public static ref T pow<T>(ref T b, uint exp)
             where T : struct
         {
             if(typeof(T) == typeof(float))
@@ -41,21 +41,8 @@ namespace Z0
                throw unsupported<T>();
             
             return ref b;
-
         }
 
-        [MethodImpl(Inline)]
-        public static Span<T> fpow<T>(Span<T> lhs, uint exp)
-            where T : struct
-        {
-            if(typeof(T) == typeof(float))
-                fmath.pow(float32(lhs), exp);
-            else if(typeof(T) == typeof(ulong))
-                fmath.pow(float64(lhs), exp);
-            else
-                throw unsupported<T>();
-            return lhs;
-        }
     }
 
 }

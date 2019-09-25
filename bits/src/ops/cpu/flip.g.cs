@@ -14,15 +14,6 @@ namespace Z0
 
     partial class gbits
     {
-        [MethodImpl(Inline)]
-        public static T[] flip<T>(T[] src)
-            where T : unmanaged
-        {
-            var dst = new T[src.Length];
-            for(var i=0; i<dst.Length; i++)
-                gmath.flip(in src[i], ref dst[i]);
-            return dst;
-        }
 
         [MethodImpl(Inline)]
         public static Vec128<T> flip<T>(in Vec128<T> src)

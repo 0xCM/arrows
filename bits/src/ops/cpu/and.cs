@@ -21,12 +21,12 @@ namespace Z0
     {
         [MethodImpl(Inline)]
         public static UInt128 and(in UInt128 lhs, in UInt128 rhs)
-            => and(lhs.ToVec128(), rhs.ToVec128()).ToUInt128();
+            => and(lhs.ToVector128(), rhs.ToVector128()).ToUInt128();
 
         [MethodImpl(Inline)]
         public static ref UInt128 and(in UInt128 lhs, in UInt128 rhs, out UInt128 dst)
         {
-            dst = and(lhs.ToVec128(), rhs.ToVec128()).ToUInt128();
+            dst = and(lhs.ToVector128(), rhs.ToVector128()).ToUInt128();
             return ref dst;            
         }
 
@@ -37,7 +37,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec128<byte> and(in Vec128<byte> lhs, in Vec128<byte> rhs)
+        public static Vector128<byte> and(Vector128<byte> lhs, Vector128<byte> rhs)
             => And(lhs, rhs);
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec128<short> and(in Vec128<short> lhs, in Vec128<short> rhs)
+        public static Vector128<short> and(Vector128<short> lhs, Vector128<short> rhs)
             => And(lhs, rhs);
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec128<sbyte> and(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+        public static Vector128<sbyte> and(Vector128<sbyte> lhs, Vector128<sbyte> rhs)
             => And(lhs, rhs);
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec128<ushort> and(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
+        public static Vector128<ushort> and(Vector128<ushort> lhs, Vector128<ushort> rhs)
             => And(lhs, rhs);
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec128<int> and(in Vec128<int> lhs, in Vec128<int> rhs)
+        public static Vector128<int> and(Vector128<int> lhs, Vector128<int> rhs)
             => And(lhs, rhs);
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec128<uint> and(in Vec128<uint> lhs, in Vec128<uint> rhs)
+        public static Vector128<uint> and(Vector128<uint> lhs, Vector128<uint> rhs)
             => And(lhs, rhs);
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec128<long> and(in Vec128<long> lhs, in Vec128<long> rhs)
+        public static Vector128<long> and(Vector128<long> lhs, Vector128<long> rhs)
             => And(lhs, rhs);
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec128<ulong> and(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
+        public static Vector128<ulong> and(Vector128<ulong> lhs, Vector128<ulong> rhs)
             => And(lhs, rhs);
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec128<float> and(in Vec128<float> lhs, in Vec128<float> rhs)
+        public static Vector128<float> and(Vector128<float> lhs, Vector128<float> rhs)
             => And(lhs, rhs);
         
         /// <summary>
@@ -127,7 +127,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec128<double> and(in Vec128<double> lhs, in Vec128<double> rhs)
+        public static Vector128<double> and(Vector128<double> lhs, Vector128<double> rhs)
             => And(lhs, rhs);
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec256<byte> and(in Vec256<byte> lhs, in Vec256<byte> rhs)
+        public static Vector256<byte> and(Vector256<byte> lhs, Vector256<byte> rhs)
             => And(lhs, rhs);
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec256<short> and(in Vec256<short> lhs, in Vec256<short> rhs)
+        public static Vector256<short> and(Vector256<short> lhs, Vector256<short> rhs)
             => And(lhs, rhs);
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec256<sbyte> and(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+        public static Vector256<sbyte> and(Vector256<sbyte> lhs, Vector256<sbyte> rhs)
             => And(lhs, rhs);
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec256<ushort> and(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+        public static Vector256<ushort> and(Vector256<ushort> lhs, Vector256<ushort> rhs)
             => And(lhs, rhs);
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec256<int> and(in Vec256<int> lhs, in Vec256<int> rhs)
+        public static Vector256<int> and(Vector256<int> lhs, Vector256<int> rhs)
             => And(lhs, rhs);
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec256<uint> and(in Vec256<uint> lhs, in Vec256<uint> rhs)
+        public static Vector256<uint> and(Vector256<uint> lhs, Vector256<uint> rhs)
             => And(lhs, rhs);
 
         /// <summary>
@@ -197,7 +197,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec256<long> and(in Vec256<long> lhs, in Vec256<long> rhs)
+        public static Vector256<long> and(Vector256<long> lhs, Vector256<long> rhs)
             => And(lhs, rhs);
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec256<ulong> and(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
+        public static Vector256<ulong> and(Vector256<ulong> lhs, Vector256<ulong> rhs)
             => And(lhs, rhs);
 
         /// <summary>
@@ -217,7 +217,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec256<float> and(in Vec256<float> lhs, in Vec256<float> rhs)
+        public static Vector256<float> and(Vector256<float> lhs, Vector256<float> rhs)
             => And(lhs, rhs);
         
         /// <summary>
@@ -227,7 +227,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec256<double> and(in Vec256<double> lhs, in Vec256<double> rhs)
+        public static Vector256<double> and(Vector256<double> lhs, Vector256<double> rhs)
             => And(lhs, rhs);
      }
 

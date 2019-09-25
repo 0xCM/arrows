@@ -21,12 +21,12 @@ namespace Z0
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static T or<T>(T lhs, T rhs)
-            where T : struct
+            where T : unmanaged
                 => gmath.or(lhs,rhs);
 
         [MethodImpl(Inline)]
         public static  T or<T>(in T lhs, in T rhs)
-            where T : struct
+            where T : unmanaged
                 => gmath.or(lhs, rhs);
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Z0
         /// <typeparam name="T">The primal type</typeparam>
         [MethodImpl(Inline)]
         public static ref T or<T>(in T lhs, in T rhs, ref T dst)
-            where T : struct
+            where T : unmanaged
         {
             dst = gmath.or(lhs,rhs);
             return ref dst;

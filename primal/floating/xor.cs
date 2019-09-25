@@ -14,7 +14,6 @@ namespace Z0
     partial class fmath
     {
 
-
         [MethodImpl(Inline)]
         public static float xor(float lhs, float rhs)
             => BitConverter.Int32BitsToSingle(lhs.ToBits() ^ rhs.ToBits());
@@ -36,8 +35,6 @@ namespace Z0
             lhs = xor(lhs,rhs);
             return ref lhs;
         }
-
-
     }
 
 }

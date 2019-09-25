@@ -24,7 +24,7 @@ namespace Z0
 
                 var xBytes = x.Data.Replicate();
                 var yBytes = y.Data.Replicate();
-                var zBytes = gbitspan.xor(xBytes, yBytes);
+                var zBytes = mathspan.xor(xBytes, yBytes);
                 var expect = BitMatrix4.Define(zBytes);
 
                 var actual = x + y;

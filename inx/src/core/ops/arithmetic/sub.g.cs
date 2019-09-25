@@ -21,61 +21,60 @@ namespace Z0
     partial class ginx
     {
         [MethodImpl(Inline)]
-        public static Vec128<T> sub<T>(in Vec128<T> lhs, in Vec128<T> rhs)
+        public static Vector128<T> sub<T>(Vector128<T> lhs, Vector128<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))
-                return generic<T>(dinx.sub(in int8(in lhs), in int8(in rhs)));
+                return generic<T>(dinx.sub(int8(lhs), int8(rhs)));
             else if(typeof(T) == typeof(byte))
-                return generic<T>(dinx.sub(in uint8(in lhs), in uint8(in rhs)));
+                return generic<T>(dinx.sub(uint8(lhs), uint8(rhs)));
             else if(typeof(T) == typeof(short))
-                return generic<T>(dinx.sub(in int16(in lhs), in int16(in rhs)));
+                return generic<T>(dinx.sub(int16(lhs), int16(rhs)));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(dinx.sub(in uint16(in lhs), in uint16(in rhs)));
+                return generic<T>(dinx.sub(uint16(lhs), uint16(rhs)));
             else if(typeof(T) == typeof(int))
-                return generic<T>(dinx.sub(in int32(in lhs), in int32(in rhs)));
+                return generic<T>(dinx.sub(int32(lhs), int32(rhs)));
             else if(typeof(T) == typeof(uint))
-                return generic<T>(dinx.sub(in uint32(in lhs), in uint32(in rhs)));
+                return generic<T>(dinx.sub(uint32(lhs), uint32(rhs)));
             else if(typeof(T) == typeof(long))
-                return generic<T>(dinx.sub(in int64(in lhs), in int64(in rhs)));
+                return generic<T>(dinx.sub(int64(lhs), int64(rhs)));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(dinx.sub(in uint64(in lhs), in uint64(in rhs)));
+                return generic<T>(dinx.sub(uint64(lhs), uint64(rhs)));
             else if(typeof(T) == typeof(float))
-                return generic<T>(dfp.fsub(in float32(in lhs), in float32(in rhs)));
+                return generic<T>(dfp.fsub(float32(lhs), float32(rhs)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(dfp.fsub(in float64(in lhs), in float64(in rhs)));
+                return generic<T>(dfp.fsub(float64(lhs), float64(rhs)));
             else 
                 throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
-        public static Vec256<T> sub<T>(in Vec256<T> lhs, in Vec256<T> rhs)
+        public static Vector256<T> sub<T>(Vector256<T> lhs, Vector256<T> rhs)
             where T : struct
         {
              if(typeof(T) == typeof(sbyte))
-                return generic<T>(dinx.sub(in int8(in lhs), in int8(in rhs)));
+                return generic<T>(dinx.sub(int8(lhs), int8(rhs)));
             else if(typeof(T) == typeof(byte))
-                return generic<T>(dinx.sub(in uint8(in lhs), in uint8(in rhs)));
+                return generic<T>(dinx.sub(uint8(lhs), uint8(rhs)));
             else if(typeof(T) == typeof(short))
-                return generic<T>(dinx.sub(in int16(in lhs), in int16(in rhs)));
+                return generic<T>(dinx.sub(int16(lhs), int16(rhs)));
             else if(typeof(T) == typeof(ushort))
-                return generic<T>(dinx.sub(in uint16(in lhs), in uint16(in rhs)));
+                return generic<T>(dinx.sub(uint16(lhs), uint16(rhs)));
             else if(typeof(T) == typeof(int))
-                return generic<T>(dinx.sub(in int32(in lhs), in int32(in rhs)));
+                return generic<T>(dinx.sub(int32(lhs), int32(rhs)));
             else if(typeof(T) == typeof(uint))
-                return generic<T>(dinx.sub(in uint32(in lhs), in uint32(in rhs)));
+                return generic<T>(dinx.sub(uint32(lhs), uint32(rhs)));
             else if(typeof(T) == typeof(long))
-                return generic<T>(dinx.sub(in int64(in lhs), in int64(in rhs)));
+                return generic<T>(dinx.sub(int64(lhs), int64(rhs)));
             else if(typeof(T) == typeof(ulong))
-                return generic<T>(dinx.sub(in uint64(in lhs), in uint64(in rhs)));
+                return generic<T>(dinx.sub(uint64(lhs), uint64(rhs)));
             else if(typeof(T) == typeof(float))
-                return generic<T>(dfp.fsub(in float32(in lhs), in float32(in rhs)));
+                return generic<T>(dfp.fsub(float32(lhs), float32(rhs)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(dfp.fsub(in float64(in lhs), in float64(in rhs)));
+                return generic<T>(dfp.fsub(float64(lhs), float64(rhs)));
             else 
                 throw unsupported<T>();
        }
-
             
         public static Span128<T> sub<T>(ReadOnlySpan128<T> lhs, ReadOnlySpan128<T> rhs, Span128<T> dst)
             where T : struct
@@ -138,7 +137,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
+                store(Subtract(lhs.LoadVector128(block), rhs.LoadVector128(block)), ref dst.Block(block));            
             return dst;            
         }
 
@@ -146,7 +145,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
+                store(Subtract(lhs.LoadVector128(block), rhs.LoadVector128(block)), ref dst.Block(block));            
             return dst;            
         }
 
@@ -154,7 +153,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
+                store(Subtract(lhs.LoadVector128(block), rhs.LoadVector128(block)), ref dst.Block(block));            
             return dst;            
         }
 
@@ -162,7 +161,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
+                store(Subtract(lhs.LoadVector128(block), rhs.LoadVector128(block)), ref dst.Block(block));            
             return dst;            
         }
 
@@ -170,7 +169,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
+                store(Subtract(lhs.LoadVector128(block), rhs.LoadVector128(block)), ref dst.Block(block));            
             return dst;            
         }
 
@@ -178,7 +177,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
+                store(Subtract(lhs.LoadVector128(block), rhs.LoadVector128(block)), ref dst.Block(block));            
             return dst;            
         }
 
@@ -186,7 +185,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
+                store(Subtract(lhs.LoadVector128(block), rhs.LoadVector128(block)), ref dst.Block(block));            
             return dst;            
         }
 
@@ -194,7 +193,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
+                store(Subtract(lhs.LoadVector128(block), rhs.LoadVector128(block)), ref dst.Block(block));            
             return dst;            
         }
 
@@ -202,7 +201,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
+                store(Subtract(lhs.LoadVector128(block), rhs.LoadVector128(block)), ref dst.Block(block));            
             return dst;            
         }
 
@@ -210,7 +209,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.LoadVec128(block), rhs.LoadVec128(block)), ref dst.Block(block));            
+                store(Subtract(lhs.LoadVector128(block), rhs.LoadVector128(block)), ref dst.Block(block));            
             return dst;            
         }
 
@@ -218,7 +217,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));            
+                store(Subtract(lhs.LoadVector256(block), rhs.LoadVector256(block)), ref dst.Block(block));            
             return dst;            
         }
 
@@ -226,7 +225,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));            
+                store(Subtract(lhs.LoadVector256(block), rhs.LoadVector256(block)), ref dst.Block(block));            
             return dst;            
         }
 
@@ -234,7 +233,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));            
+                store(Subtract(lhs.LoadVector256(block), rhs.LoadVector256(block)), ref dst.Block(block));            
             return dst;            
         }
 
@@ -242,7 +241,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst[block]);            
+                store(Subtract(lhs.LoadVector256(block), rhs.LoadVector256(block)), ref dst[block]);            
             return dst;            
         }
 
@@ -250,7 +249,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));            
+                store(Subtract(lhs.LoadVector256(block), rhs.LoadVector256(block)), ref dst.Block(block));            
             return dst;            
         }
 
@@ -258,7 +257,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));            
+                store(Subtract(lhs.LoadVector256(block), rhs.LoadVector256(block)), ref dst.Block(block));            
             return dst;            
         }
 
@@ -266,7 +265,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));            
+                store(Subtract(lhs.LoadVector256(block), rhs.LoadVector256(block)), ref dst.Block(block));            
             return dst;            
         }
 
@@ -274,7 +273,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));            
+                store(Subtract(lhs.LoadVector256(block), rhs.LoadVector256(block)), ref dst.Block(block));            
             return dst;            
         }
 
@@ -282,7 +281,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));            
+                store(Subtract(lhs.LoadVector256(block), rhs.LoadVector256(block)), ref dst.Block(block));            
             return dst;            
         }
 
@@ -290,7 +289,7 @@ namespace Z0
         {
             var blocks = dst.BlockCount;
             for(var block = 0; block < blocks; block++)
-                store(Subtract(lhs.LoadVec256(block), rhs.LoadVec256(block)), ref dst.Block(block));            
+                store(Subtract(lhs.LoadVector256(block), rhs.LoadVector256(block)), ref dst.Block(block));            
             return dst;            
         }
  

@@ -24,8 +24,30 @@ namespace Z0
         /// </summary>
         /// <param name="pow">The exponent</param>
         [MethodImpl(Inline)]
+        public static ref float exp(ref float pow)
+        {
+            pow = MathF.Exp(pow);
+            return ref pow;
+        }
+
+        /// <summary>
+        /// Raises e to a specified exponent
+        /// </summary>
+        /// <param name="pow">The exponent</param>
+        [MethodImpl(Inline)]
         public static double exp(double pow)
             => Math.Exp(pow);
+
+        /// <summary>
+        /// Raises e to a specified exponent
+        /// </summary>
+        /// <param name="pow">The exponent</param>
+        [MethodImpl(Inline)]
+        public static ref double exp(ref double pow)
+        {
+            pow = Math.Exp(pow);
+            return ref pow;
+        }
 
     }
 

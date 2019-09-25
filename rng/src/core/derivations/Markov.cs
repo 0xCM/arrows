@@ -109,13 +109,12 @@ namespace Z0
             for(var r = 0; r < (int)n.value; r ++)
             {
                 var row = src.Row(r);
-                var sum =  convert<T,double>(gmath.sum(row.Unsized));
+                var sum =  convert<T,double>(mathspan.sum(row.Unsized));
                 if(!radius.Contains(sum))
                     return false;
             }
             return true;
         }
-
 
         public static ref BlockMatrix<N,T> MarkovMat<N,T>(this IPolyrand random, ref BlockMatrix<N,T> dst)
             where T : struct
@@ -126,28 +125,14 @@ namespace Z0
             for(int row=0; row < n; row++)
                 random.MarkovVec<T>(data.Slice(row*n, n));                            
             return ref dst;
-        }
-
-        [MethodImpl(Inline)]
-        static Span256<float> Div(this Span256<float> src, float rhs)
-        {
-            src.Unblocked.Div(rhs);
-            return src;
-        }
-
-        [MethodImpl(Inline)]
-        static Span256<double> Div(this Span256<double> src, double rhs)
-        {
-            src.Unblocked.Div(rhs);
-            return src;
-        }
+        }        
 
         [MethodImpl(Inline)]
         static void MarkovVec(this IPolyrand random, Span<float> dst)
         {            
             var length = dst.Length;
             random.StreamTo(closed(1.0f,length << 4), length, ref dst[0]);
-            dst.Div(dst.Avg() * length);
+            mathspan.fdiv(dst, dst.Avg()*length);
         }
 
         [MethodImpl(Inline)]
@@ -155,16 +140,16 @@ namespace Z0
         {            
             var length = dst.Length;
             random.StreamTo(closed(1.0, length << 4), length, ref dst[0]);
-            dst.Div(dst.Avg() * length);
+            mathspan.fdiv(dst, dst.Avg()*length);
         }
-
 
         [MethodImpl(Inline)]
         static BlockVector<float> MarkovVec(this IPolyrand random, int length, float min, float max)
         {            
             var dst = Z0.Span256.AllocBlocks<float>(Z0.Span256.MinBlocks<float>(length));
             random.StreamTo(closed(min,max), length, ref dst[0]);
-            return dst.Div(dst.Avg() * length);
+            mathspan.fdiv(dst.Unblocked, dst.Avg() * length);
+            return dst; 
         }
 
         [MethodImpl(Inline)]
@@ -172,9 +157,8 @@ namespace Z0
         {                        
             var dst = Z0.Span256.AllocBlocks<double>(Z0.Span256.MinBlocks<double>(length));
             random.StreamTo(closed(min,max), length, ref dst[0]);
-            return dst.Div(dst.Avg() * length);
+            mathspan.fdiv(dst.Unblocked, dst.Avg() * length);
+            return dst; 
         }
-
- 
     }
 }

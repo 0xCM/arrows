@@ -109,7 +109,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public static BitVector<N,T> operator ^(BitVector<N,T> lhs, BitVector<N,T> rhs)
-            => new BitVector<N,T>(gbitspan.xor(lhs.data, rhs.data));
+            => new BitVector<N,T>(mathspan.xor(lhs.data, rhs.data));
 
         [MethodImpl(Inline)]
         public static BitVector<N,T> operator &(BitVector<N,T> lhs, BitVector<N,T> rhs)
@@ -130,7 +130,7 @@ namespace Z0
         /// <param name="lhs">The source operand</param>
         [MethodImpl(Inline)]
         public static BitVector<N,T> operator ~(BitVector<N,T> src)
-            => new BitVector<N,T>(gbitspan.flip(src.data));                        
+            => new BitVector<N,T>(mathspan.flip(src.data));                        
 
         /// <summary>
         /// Returns true if the source vector is nonzero, false otherwise

@@ -31,6 +31,7 @@ namespace Z0
 
         }
 
+
         public BitVector64 newBv64(ulong src)
             => bitvector.bv64(src);
 
@@ -77,13 +78,6 @@ namespace Z0
             return b0;
         }
 
-        public static Vector256<int> blend_256x32i(in int ymm0, int ymm1)        
-        {
-            var v0 = dinx.load256(in ymm0);
-            var v1 = dinx.load256(in ymm1);
-            var ymm2 = Blend(v0,v1,0b01010101);
-            return ymm2;
-        }
 
         public static Vector256<ulong> vpaddq(
             in ulong ymm0, in ulong ymm1, in ulong ymm2, in ulong ymm3, 

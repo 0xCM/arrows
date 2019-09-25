@@ -8,6 +8,7 @@ namespace Z0
     using System.Threading;
     using System.Runtime.CompilerServices;
     using System.Runtime.InteropServices;
+    using System.Runtime.Intrinsics;
     using System.Runtime.Intrinsics.X86;
 
     using static As;
@@ -274,7 +275,7 @@ namespace Z0
             const int rowstep = 4;
             for(var i=0; i< RowCount; i += rowstep)
             {
-                this.LoadCpuVec(i, out Vec256<ulong> vSrc);
+                this.LoadCpuVector(i, out Vector256<ulong> vSrc);
                 if(!vSrc.TestZ(vSrc))
                     return false;
             }
@@ -295,8 +296,8 @@ namespace Z0
             const int rowstep = 4;
             for(var i=0; i< RowCount; i += rowstep)
             {
-                this.LoadCpuVec(i, out Vec256<ulong> vLhs);
-                rhs.LoadCpuVec(i, out Vec256<ulong> vRhs);
+                this.LoadCpuVector(i, out Vector256<ulong> vLhs);
+                rhs.LoadCpuVector(i, out Vector256<ulong> vRhs);
                 Bits.andn(vLhs,vRhs).StoreTo(ref data[i]);                
             }
             return this;
@@ -331,6 +332,13 @@ namespace Z0
         /// <param name="row">The row index of where the load should begin</param>
         [MethodImpl(Inline)]
         public readonly ref Vec256<ulong> LoadCpuVec(int row, out Vec256<ulong> dst)
+        {
+            dst = load(ref data[row]);
+            return ref dst;
+        }
+
+        [MethodImpl(Inline)]
+        public readonly ref Vector256<ulong> LoadCpuVector(int row, out Vector256<ulong> dst)
         {
             dst = load(ref data[row]);
             return ref dst;
@@ -446,9 +454,9 @@ namespace Z0
             const int rowstep = 4;
             for(var i=0; i< lhs.RowCount; i += rowstep)
             {
-                lhs.LoadCpuVec(i, out Vec256<ulong> vLhs);
-                rhs.LoadCpuVec(i, out Vec256<ulong> vRhs);
-                vLhs.XOr(vRhs).StoreTo(ref lhs.data[i]);                
+                lhs.LoadCpuVector(i, out Vector256<ulong> vLhs);
+                rhs.LoadCpuVector(i, out Vector256<ulong> vRhs);
+                gbits.vxor(vLhs,vRhs).StoreTo(ref lhs.data[i]);
             }
             return ref lhs;
         }
@@ -458,8 +466,8 @@ namespace Z0
             const int rowstep = 4;
             for(var i=0; i< src.RowCount; i += rowstep)
             {
-                src.LoadCpuVec(i, out Vec256<ulong> vSrc);
-                vSrc.Flip().StoreTo(ref src.data[i]);
+                src.LoadCpuVector(i, out Vector256<ulong> vSrc);
+                gbits.flip(vSrc).StoreTo(ref src.data[i]);
             }
             return ref src;
         }
@@ -469,9 +477,9 @@ namespace Z0
             const int rowstep = 4;
             for(var i=0; i< lhs.RowCount; i += rowstep)
             {
-                lhs.LoadCpuVec(i, out Vec256<ulong> vLhs);
-                rhs.LoadCpuVec(i, out Vec256<ulong> vRhs);
-                vLhs.Or(vRhs).StoreTo(ref lhs.data[i]);                
+                lhs.LoadCpuVector(i, out Vector256<ulong> vLhs);
+                rhs.LoadCpuVector(i, out Vector256<ulong> vRhs);
+                gbits.or(vLhs,vRhs).StoreTo(ref lhs.data[i]);
             }
             return ref lhs;
         }

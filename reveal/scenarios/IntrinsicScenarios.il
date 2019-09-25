@@ -1,4 +1,4 @@
-// 2019-09-24 17:05:45:530
+// 2019-09-25 03:34:27:209
 BitVector64 newBv64(ulong src)
 {
     IL_0000: ldarg.1
@@ -105,23 +105,6 @@ Vector256<byte> vpxor(in byte ymm0, in byte ymm1, in byte ymm2, in byte ymm3)
     IL_0031: stloc.s V_6
     IL_0033: ldloc.s V_6
     IL_0035: ret
-
-}
-Vector256<int> blend_256x32i(in int ymm0, int ymm1)
-{
-    IL_0000: ldarg.0
-    IL_0001: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.dinx::load256(System.Int32&)
-    IL_0006: stloc.0
-    IL_0007: ldarga.s ymm1
-    IL_0009: call System.Runtime.Intrinsics.Vector256`1<System.Int32> Z0.dinx::load256(System.Int32&)
-    IL_000E: stloc.1
-    IL_000F: ldloc.0
-    IL_0010: ldloc.1
-    IL_0011: ldc.i4.s 85
-    IL_0013: call System.Runtime.Intrinsics.Vector256`1<System.Int32> System.Runtime.Intrinsics.X86.Avx2::Blend(System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Runtime.Intrinsics.Vector256`1<System.Int32>,System.Byte)
-    IL_0018: stloc.2
-    IL_0019: ldloc.2
-    IL_001A: ret
 
 }
 Vector256<ulong> vpaddq(in ulong ymm0, in ulong ymm1, in ulong ymm2, in ulong ymm3, in ulong ymm4, in ulong ymm5, in ulong ymm6, in ulong ymm7, in ulong ymm8, in ulong ymm9, in ulong ymm10, in ulong ymm11, in ulong ymm12, in ulong ymm13, in ulong ymm14, in ulong ymm15)

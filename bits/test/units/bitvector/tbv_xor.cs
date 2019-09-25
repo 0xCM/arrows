@@ -47,7 +47,7 @@ namespace Z0
             {
                 var x = Random.Next<S>();
                 var y = Random.Next<S>();
-                var z = gbits.xor(x, y);
+                var z = gmath.xor(x, y);
 
                 var v1 = gbits.fixedbits<V,S>(x);
                 var v2 = gbits.fixedbits<V,S>(y);

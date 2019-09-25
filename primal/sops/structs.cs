@@ -24,7 +24,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public readonly ref T apply(ref T x, in T y)
-            => ref gmath.add(ref x, in y);
+            => ref gmath.add(ref x, y);
 
     }
 
@@ -54,7 +54,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public readonly ref T apply(ref T x, in T y)
-            => ref gmath.mul(ref x,in y);
+            => ref gmath.mul(ref x, y);
     }
 
     public struct DivOp<T>
@@ -68,7 +68,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public readonly ref T apply(ref T x, in T y)
-            => ref gmath.div(ref x,in y);
+            => ref gmath.div(ref x,y);
     }
 
     public struct ModOp<T>
@@ -82,7 +82,7 @@ namespace Z0
 
         [MethodImpl(Inline)]
         public readonly ref T apply(ref T x,in T y)
-            => ref gmath.mod(ref x,in y);
+            => ref gmath.mod(ref x,y);
 
     }
 

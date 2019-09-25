@@ -15,8 +15,6 @@ namespace Z0
 
     partial class fmath
     {
-
-
         [MethodImpl(Inline)]
         public static float round(float src, int scale)
             => MathF.Round(src, scale);
@@ -38,37 +36,5 @@ namespace Z0
             src = Math.Round(src, scale);
             return ref src;
         }
-
-        public static Span<float> round(ReadOnlySpan<float> src, int scale, Span<float> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = round(src[i], scale);
-            return dst;
-        }
-
-        public static Span<double> round(ReadOnlySpan<double> src, int scale, Span<double> dst)
-        {
-            var len = length(src, dst);
-            for(var i = 0; i< len; i++)
-                dst[i] = round(src[i], scale);
-            return dst;
-        }
-
-        public static Span<float> round(Span<float> io, int scale)
-        {
-            for(var i = 0; i< io.Length; i++)
-                round(ref io[i], scale);
-            return io;
-        }
-
-        public static Span<double> round(Span<double> io, int scale)
-        {
-            for(var i = 0; i< io.Length; i++)
-                round(ref io[i], scale);
-            return io;
-        }
-
-
     }
 }

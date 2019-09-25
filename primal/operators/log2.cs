@@ -13,7 +13,7 @@ namespace Z0
     {
 
         [MethodImpl(Inline)]
-        public static ref ulong ilog2(ref ulong dst, ref ulong x, ulong power)
+        public static ref ulong log2(ref ulong dst, ref ulong x, ulong power)
         {
             if(x >= 1ul << (int)power)
             {
@@ -24,15 +24,15 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ulong ilog2(ulong src)
+        public static ulong log2(ulong src)
         {
             var x = 0ul;
             var y = src;
-            ilog2(ref x, ref y, Pow2.T05);
-            ilog2(ref x, ref y, Pow2.T04);
-            ilog2(ref x, ref y, Pow2.T03);
-            ilog2(ref x, ref y, Pow2.T02);
-            ilog2(ref x, ref y, Pow2.T01);
+            log2(ref x, ref y, Pow2.T05);
+            log2(ref x, ref y, Pow2.T04);
+            log2(ref x, ref y, Pow2.T03);
+            log2(ref x, ref y, Pow2.T02);
+            log2(ref x, ref y, Pow2.T01);
             
             if(y >= 1 << 1)
                 x |= 1;
@@ -40,12 +40,12 @@ namespace Z0
         }
 
         [MethodImpl(Inline)]
-        public static ulong ilog2(int src)
-            => ilog2((ulong)src);
+        public static ulong log2(int src)
+            => log2((ulong)src);
 
         [MethodImpl(Inline)]
-        public static ulong ilog2(uint src)
-            => ilog2((ulong)src);
+        public static ulong log2(uint src)
+            => log2((ulong)src);
     }
 
 }

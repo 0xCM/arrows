@@ -24,9 +24,8 @@ namespace Z0
     /// <param name="lhs">The left operand</param>
     /// <param name="rhs">The right operand</param>
     /// <typeparam name="T">The primitive type</typeparam>
-    public delegate Vec128<T> Vec128BinOp<T>(in Vec128<T> lhs, in Vec128<T> rhs)
+    public delegate Vector128<T> Vec128BinOp<T>(Vector128<T> lhs, Vector128<T> rhs)
         where T : struct;
-
 
     /// <summary>
     /// Characterizes the signature of a function that loads a 128-bit vector from a pointer
@@ -118,7 +117,7 @@ namespace Z0
     /// </summary>
     /// <param name="src">The operand</param>
     /// <typeparam name="T">The primitive type</typeparam>
-    public delegate Vec256<T> Vec256BinOp<T>(in Vec256<T> lhs, in Vec256<T> rhs)
+    public delegate Vector256<T> Vec256BinOp<T>(Vector256<T> lhs, Vector256<T> rhs)
         where T : struct;
 
     /// <summary>
