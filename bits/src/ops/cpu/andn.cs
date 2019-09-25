@@ -8,7 +8,7 @@ namespace Z0
     using System.Runtime.CompilerServices;
     using System.Runtime.Intrinsics.X86;
     using Z0;
-    
+    using System.Runtime.Intrinsics;    
     using static System.Runtime.Intrinsics.X86.Sse;
     using static System.Runtime.Intrinsics.X86.Sse2;
     using static System.Runtime.Intrinsics.X86.Avx;
@@ -25,7 +25,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec128<sbyte> andn(in Vec128<sbyte> lhs, in Vec128<sbyte> rhs)
+        public static Vector128<sbyte> andn(Vector128<sbyte> lhs, Vector128<sbyte> rhs)
             => AndNot(lhs, rhs);
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec128<byte> andn(in Vec128<byte> lhs, in Vec128<byte> rhs)
+        public static Vector128<byte> andn(Vector128<byte> lhs, Vector128<byte> rhs)
             => AndNot(lhs, rhs);
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec128<short> andn(in Vec128<short> lhs, in Vec128<short> rhs)
+        public static Vector128<short> andn(Vector128<short> lhs, Vector128<short> rhs)
             => AndNot(lhs, rhs);
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec128<ushort> andn(in Vec128<ushort> lhs, in Vec128<ushort> rhs)
+        public static Vector128<ushort> andn(Vector128<ushort> lhs, Vector128<ushort> rhs)
             => AndNot(lhs, rhs);
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec128<int> andn(in Vec128<int> lhs, in Vec128<int> rhs)
+        public static Vector128<int> andn(Vector128<int> lhs, Vector128<int> rhs)
             => AndNot(lhs, rhs);
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec128<uint> andn(in Vec128<uint> lhs, in Vec128<uint> rhs)
+        public static Vector128<uint> andn(Vector128<uint> lhs, Vector128<uint> rhs)
             => AndNot(lhs, rhs);
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec128<long> andn(in Vec128<long> lhs, in Vec128<long> rhs)
+        public static Vector128<long> andn(Vector128<long> lhs, Vector128<long> rhs)
             => AndNot(lhs, rhs);
  
         /// <summary>
@@ -95,7 +95,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec128<ulong> andn(in Vec128<ulong> lhs, in Vec128<ulong> rhs)
+        public static Vector128<ulong> andn(Vector128<ulong> lhs, Vector128<ulong> rhs)
             => AndNot(lhs, rhs);
  
         /// <summary>
@@ -105,7 +105,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec128<float> andn(in Vec128<float> lhs, in Vec128<float> rhs)
+        public static Vector128<float> andn(Vector128<float> lhs, Vector128<float> rhs)
             => AndNot(lhs, rhs);
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec128<double> andn(in Vec128<double> lhs, in Vec128<double> rhs)
+        public static Vector128<double> andn(Vector128<double> lhs, Vector128<double> rhs)
             => AndNot(lhs, rhs);        
     
         /// <summary>
@@ -125,7 +125,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec256<sbyte> andn(in Vec256<sbyte> lhs, in Vec256<sbyte> rhs)
+        public static Vector256<sbyte> andn(Vector256<sbyte> lhs, Vector256<sbyte> rhs)
             => AndNot(lhs, rhs);
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec256<byte> andn(in Vec256<byte> lhs, in Vec256<byte> rhs)
+        public static Vector256<byte> andn(Vector256<byte> lhs, Vector256<byte> rhs)
             => AndNot(lhs, rhs);
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec256<short> andn(in Vec256<short> lhs, in Vec256<short> rhs)
+        public static Vector256<short> andn(Vector256<short> lhs, Vector256<short> rhs)
             => AndNot(lhs, rhs);
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec256<ushort> andn(in Vec256<ushort> lhs, in Vec256<ushort> rhs)
+        public static Vector256<ushort> andn(Vector256<ushort> lhs, Vector256<ushort> rhs)
             => AndNot(lhs, rhs);
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec256<int> andn(in Vec256<int> lhs, in Vec256<int> rhs)
+        public static Vector256<int> andn(Vector256<int> lhs, Vector256<int> rhs)
             => AndNot(lhs, rhs);
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec256<uint> andn(in Vec256<uint> lhs, in Vec256<uint> rhs)
+        public static Vector256<uint> andn(Vector256<uint> lhs, Vector256<uint> rhs)
             => AndNot(lhs, rhs);
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec256<long> andn(in Vec256<long> lhs, in Vec256<long> rhs)
+        public static Vector256<long> andn(Vector256<long> lhs, Vector256<long> rhs)
             => AndNot(lhs, rhs);
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec256<ulong> andn(in Vec256<ulong> lhs, in Vec256<ulong> rhs)
+        public static Vector256<ulong> andn(Vector256<ulong> lhs, Vector256<ulong> rhs)
             => AndNot(lhs, rhs);
 
         /// <summary>
@@ -205,7 +205,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec256<float> andn(in Vec256<float> lhs, in Vec256<float> rhs)
+        public static Vector256<float> andn(Vector256<float> lhs, Vector256<float> rhs)
             => AndNot(lhs, rhs);
 
         /// <summary>
@@ -215,7 +215,7 @@ namespace Z0
         /// <param name="lhs">The left operand</param>
         /// <param name="rhs">The right operand</param>
         [MethodImpl(Inline)]
-        public static Vec256<double> andn(in Vec256<double> lhs, in Vec256<double> rhs)
+        public static Vector256<double> andn(Vector256<double> lhs, Vector256<double> rhs)
             => AndNot(lhs, rhs);
     }
 }

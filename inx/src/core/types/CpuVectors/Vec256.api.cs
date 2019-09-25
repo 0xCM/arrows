@@ -108,29 +108,29 @@ namespace Z0
         /// <param name="src">The source vector</param>
         /// <param name="dst">The target memory</param>
         [MethodImpl(Inline)]
-        public static void Store<T>(in Vec256<T> src, ref T dst)
+        public static void Store<T>(Vector256<T> src, ref T dst)
             where T : unmanaged
         {            
             if(typeof(T) == typeof(sbyte))
-                vstore(in int8(src), ref int8(ref dst));
+                vstore(int8(src), ref int8(ref dst));
             else if(typeof(T) == typeof(byte))
-                vstore(in uint8(src), ref uint8(ref dst));
+                vstore(uint8(src), ref uint8(ref dst));
             else if(typeof(T) == typeof(short))
-                vstore(in int16(src), ref int16(ref dst));
+                vstore(int16(src), ref int16(ref dst));
             else if(typeof(T) == typeof(ushort))
-                vstore(in uint16(src), ref uint16(ref dst));
+                vstore(uint16(src), ref uint16(ref dst));
             else if(typeof(T) == typeof(int))
-                vstore(in int32(src), ref int32(ref dst));
+                vstore(int32(src), ref int32(ref dst));
             else if(typeof(T) == typeof(uint))
-                vstore(in uint32(src), ref uint32(ref dst));
+                vstore(uint32(src), ref uint32(ref dst));
             else if(typeof(T) == typeof(long))
-                vstore(in int64(src), ref int64(ref dst));
+                vstore(int64(src), ref int64(ref dst));
             else if(typeof(T) == typeof(ulong))
-                vstore(in uint64(src), ref uint64(ref dst));
+                vstore(uint64(src), ref uint64(ref dst));
             else if(typeof(T) == typeof(float))
-                vstore(in float32(src), ref float32(ref dst));
+                vstore(float32(src), ref float32(ref dst));
             else if(typeof(T) == typeof(double))
-                vstore(in float64(src), ref float64(ref dst));
+                vstore(float64(src), ref float64(ref dst));
             else
                 throw unsupported<T>();
         }        
@@ -335,7 +335,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<T> Load<T>(T[] src, int block = 0)
             where T : unmanaged  
-                => Load(src, block, out Vec256<T> dst);
+                => Load(src, block, out Vec256<T> _);
 
         /// <summary>
         /// Loads a vector from a blocked span
@@ -346,7 +346,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<T> Load<T>(in ReadOnlySpan256<T> src, int block = 0)
             where T : unmanaged  
-                => Load(in src, block, out Vec256<T> dst);
+                => Load(in src, block, out Vec256<T> _);
 
         /// <summary>
         /// Loads a vector from a blocked span
@@ -357,7 +357,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<T> Load<T>(in Span256<T> src, int block = 0)
             where T : unmanaged  
-                => Load(src, block, out Vec256<T> dst);
+                => Load(src, block, out Vec256<T> _);
 
 
         [MethodImpl(Inline)]

@@ -16,33 +16,33 @@ namespace Z0
     partial class ginx
     {
         [MethodImpl(Inline)]
-        public static Vec128<T> subh<T>(in Vec128<T> lhs, in Vec128<T> rhs)
+        public static Vector128<T> subh<T>(Vector128<T> lhs, Vector128<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(short))
-                return generic<T>(dinx.hsub(in int16(in lhs), in int16(in rhs)));
+                return generic<T>(dinx.hsub(int16(lhs), int16(rhs)));
             else if(typeof(T) == typeof(int))
-                return generic<T>(dinx.hsub(in int32(in lhs), in int32(in rhs)));
+                return generic<T>(dinx.hsub(int32(lhs), int32(rhs)));
             else if(typeof(T) == typeof(float))
-                return generic<T>(dfp.hsub(in float32(in lhs), in float32(in rhs)));
+                return generic<T>(dfp.hsub(float32(lhs), float32(rhs)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(dfp.hsub(in float64(in lhs), in float64(in rhs)));
+                return generic<T>(dfp.hsub(float64(lhs), float64(rhs)));
             else 
                 throw unsupported<T>();
         }
 
         [MethodImpl(Inline)]
-        public static Vec256<T> subh<T>(in Vec256<T> lhs, in Vec256<T> rhs)
+        public static Vector256<T> subh<T>(Vector256<T> lhs, Vector256<T> rhs)
             where T : struct
         {
             if(typeof(T) == typeof(short))
-                return generic<T>(dinx.subh(in int16(in lhs), in int16(in rhs)));
+                return generic<T>(dinx.subh(int16(lhs), int16(rhs)));
             else if(typeof(T) == typeof(int))
-                return generic<T>(dinx.hsub(in int32(in lhs), in int32(in rhs)));
+                return generic<T>(dinx.hsub(int32(lhs), int32(rhs)));
             else if(typeof(T) == typeof(float))
-                return generic<T>(dfp.hsub(in float32(in lhs), in float32(in rhs)));
+                return generic<T>(dfp.hsub(float32(lhs), float32(rhs)));
             else if(typeof(T) == typeof(double))
-                return generic<T>(dfp.hsub(in float64(in lhs), in float64(in rhs)));
+                return generic<T>(dfp.hsub(float64(lhs), float64(rhs)));
             else 
                 throw unsupported<T>();
 

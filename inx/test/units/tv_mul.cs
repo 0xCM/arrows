@@ -90,7 +90,7 @@ namespace Z0
 
                     var a = x.ToSpan().Replicate();
                     var b = y.ToSpan();
-                    var c = a.Mul(b).LoadVec256(0);
+                    var c = mathspan.mul(a,b).LoadVec256(0);
                     Claim.eq(z,c);                                           
                 }
             }
@@ -141,6 +141,7 @@ namespace Z0
             var sw = stopwatch(false);
             var domain = closed(0ul, UInt32.MaxValue);            
             var counter = 0;
+
             for(var i=0; i< SampleSize; i++)
             {
                 var x = Random.CpuVec256(domain);
@@ -159,12 +160,13 @@ namespace Z0
             var sw = stopwatch(false);
             var domain = closed(0ul, UInt32.MaxValue);            
             var counter = 0;
+            Span<ulong> last = default;
             for(var i=0; i< SampleSize; i++)
             {
                 var x = Random.Span(4, domain);
                 var y = Random.Span(4, domain);
                 sw.Start();
-                var z = x.Mul(y);
+                last = mathspan.mul(x, y);
                 sw.Stop();
                 counter += 4;
             }

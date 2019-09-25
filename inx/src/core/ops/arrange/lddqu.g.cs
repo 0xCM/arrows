@@ -107,12 +107,11 @@ namespace Z0
                     return lddqu256i(in src);
             else
                 throw unsupported<T>();
-
         }
 
 
         [MethodImpl(Inline)]
-        public static Vec128<T> lddqu128<T>(in T src)
+        public static Vector128<T> lddqu128<T>(in T src)
             where T : struct
         {
             if(typeof(T) == typeof(sbyte))

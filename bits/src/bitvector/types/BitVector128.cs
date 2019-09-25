@@ -673,16 +673,12 @@ namespace Z0
                 return Bits.ntz(x0);
         }
 
-        /// <summary>
-        /// Computes the bitwise and of the vector the complement of the right operand
-        /// </summary>
-        /// <param name="rhs">The right vector</param>
-        [MethodImpl(Inline)]        
-        public BitVector128 AndNot(BitVector128 rhs)
-        {
-            xmm = Bits.andn(xmm,rhs);
-            return this;
-        }
+        // [MethodImpl(Inline)]        
+        // public BitVector128 AndNot(BitVector128 rhs)
+        // {
+        //     xmm = Bits.andn(xmm,rhs);
+        //     return this;
+        // }
 
         /// <summary>
         /// Increments the vector arithmetically
@@ -714,13 +710,9 @@ namespace Z0
         public void Enable(BitPos pos)
             => xmm = Bits.or(xmm, One << pos);            
 
-        /// <summary>
-        /// Disables a position-identified bit
-        /// </summary>
-        /// <param name="pos">The position of the bit to enable</param>
-        [MethodImpl(Inline)]
-        public void Disable(BitPos pos)
-            => xmm = Bits.andn(xmm, One << pos);                        
+        // [MethodImpl(Inline)]
+        // public void Disable(BitPos pos)
+        //     => xmm = Bits.andn(xmm, One << pos);                        
 
         /// <summary>
         /// Sets a bit to a specified value

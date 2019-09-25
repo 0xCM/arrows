@@ -117,7 +117,7 @@ namespace Z0
     /// </summary>
     /// <param name="src">The operand</param>
     /// <typeparam name="T">The primitive type</typeparam>
-    public delegate Vector256<T> Vec256BinOp<T>(Vector256<T> lhs, Vector256<T> rhs)
+    public delegate Vector256<T> Vector256BinOp<T>(Vector256<T> lhs, Vector256<T> rhs)
         where T : struct;
 
     /// <summary>

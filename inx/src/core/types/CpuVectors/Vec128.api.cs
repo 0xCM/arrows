@@ -110,30 +110,30 @@ namespace Z0
         /// <param name="dst">The target location</param>
         /// <typeparam name="T">The primal component type</typeparam>
         [MethodImpl(Inline)]
-        public unsafe static void Store<T>(in Vec128<T> src, ref T dst)
+        public unsafe static void Store<T>(Vector128<T> src, ref T dst)
             where T : struct
         {            
 
             if(typeof(T) == typeof(sbyte))
-                vstore(in int8(src), ref int8(ref dst));
+                vstore(int8(src), ref int8(ref dst));
             else if(typeof(T) == typeof(byte))
-                vstore(in uint8(src), ref uint8(ref dst));
+                vstore(uint8(src), ref uint8(ref dst));
             else if(typeof(T) == typeof(short))
-                vstore(in int16(src), ref int16(ref dst));
+                vstore(int16(src), ref int16(ref dst));
             else if(typeof(T) == typeof(ushort))
-                vstore(in uint16(src), ref uint16(ref dst));
+                vstore(uint16(src), ref uint16(ref dst));
             else if(typeof(T) == typeof(int))
-                vstore(in int32(src), ref int32(ref dst));
+                vstore(int32(src), ref int32(ref dst));
             else if(typeof(T) == typeof(uint))
-                vstore(in uint32(src), ref uint32(ref dst));
+                vstore(uint32(src), ref uint32(ref dst));
             else if(typeof(T) == typeof(long))
-                vstore(in int64(src), ref int64(ref dst));
+                vstore(int64(src), ref int64(ref dst));
             else if(typeof(T) == typeof(ulong))
-                vstore(in uint64(src), ref uint64(ref dst));
+                vstore(uint64(src), ref uint64(ref dst));
             else if(typeof(T) == typeof(float))
-                vstore(in float32(src), ref float32(ref dst));
+                vstore(float32(src), ref float32(ref dst));
             else if(typeof(T) == typeof(double))
-                vstore(in float64(src), ref float64(ref dst));
+                vstore(float64(src), ref float64(ref dst));
             else
                 throw unsupported<T>();
         }       
@@ -374,12 +374,12 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<T> Load<T>(Span128<T> src, int block = 0)
             where T : struct  
-                => Load(src, block, out Vec128<T> dst);
+                => Load(src, block, out Vec128<T> _);
 
         [MethodImpl(Inline)]
         public static Vec128<T> Load<T>(ReadOnlySpan128<T> src, int block = 0)
             where T : struct  
-                => Load(src, block, out Vec128<T> dst);
+                => Load(src, block, out Vec128<T> _);
 
         [MethodImpl(Inline)]
         public static ref Vec128<T> Load<T>(ReadOnlySpan<T> src, int offset, out Vec128<T> dst)
@@ -414,7 +414,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec128<T> Load<T>(in ReadOnlySpan<T> src, int offset = 0)
             where T : struct  
-                =>  Load<T>(src, offset, out Vec128<T> dst);    
+                =>  Load<T>(src, offset, out Vec128<T> _);    
 
         /// <summary>
         /// Creates a vector populated with component values that alternate

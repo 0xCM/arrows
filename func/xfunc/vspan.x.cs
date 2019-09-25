@@ -52,7 +52,7 @@ namespace Z0
             where T : struct     
         {
             var dst = Span128.AllocBlocks<T>(1);
-            vstore(in src, ref dst[0]);
+            vstore(src, ref dst[0]);
             return dst;
         }                       
 
@@ -76,7 +76,7 @@ namespace Z0
             where T : struct            
         {
             var dst = Span256.AllocBlocks<T>(1);
-            vstore(in src, ref dst[0]);
+            vstore(src, ref dst[0]);
             return dst;
         }                       
 
@@ -110,7 +110,7 @@ namespace Z0
             where T : struct            
         {
             var dst = new T[Vec128<T>.Length];
-            vstore(in src, ref head(dst));
+            vstore(src, ref head(dst));
             return dst;
         }
 
@@ -154,7 +154,7 @@ namespace Z0
             where T : struct            
         {
             var dst = new T[Vec256<T>.Length];
-            vstore(in src, ref head(dst));
+            vstore(src, ref head(dst));
             return dst;
         }
             
@@ -178,8 +178,8 @@ namespace Z0
             where T : struct            
          {
             var dst = Span256.AllocBlocks<T>(2);
-            vstore(in src.lo, ref dst[0]);
-            vstore(in src.hi, ref dst[32]);
+            vstore(src.lo, ref dst[0]);
+            vstore(src.hi, ref dst[32]);
             return dst;
         }                       
 
@@ -203,10 +203,10 @@ namespace Z0
             where T : struct            
          {
             var dst = Span256.AllocBlocks<T>(4);
-            vstore(in src.v00, ref dst[0]);
-            vstore(in src.v01, ref dst[32]);
-            vstore(in src.v10, ref dst[64]);
-            vstore(in src.v10, ref dst[96]);
+            vstore(src.v00, ref dst[0]);
+            vstore(src.v01, ref dst[32]);
+            vstore(src.v10, ref dst[64]);
+            vstore(src.v10, ref dst[96]);
             return dst;
         }                       
 

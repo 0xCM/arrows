@@ -62,7 +62,7 @@ namespace Z0.Test
             where T : unmanaged
         {
             TypeCaseStart<T>();
-            CpuOpVerify.VerifyBinOp(Random, SampleSize, new Vec256BinOp<T>(ginx.sub), gmath.sub<T>);
+            CpuOpVerify.VerifyBinOp(Random, SampleSize, new Vector256BinOp<T>(ginx.sub), gmath.sub<T>);
             TypeCaseEnd<T>();
         }
 

@@ -52,7 +52,7 @@ namespace Z0
         public static __m256 FromVec256(in Vec256<float> src)
         {
             __m256 dst = default;
-            vstore(in src, ref dst.x00s);            
+            vstore(src, ref dst.x00s);            
             return dst;
         }
 

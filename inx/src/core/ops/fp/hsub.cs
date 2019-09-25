@@ -6,6 +6,7 @@ namespace Z0
 {
     using System;
     using System.Runtime.CompilerServices;    
+    using System.Runtime.Intrinsics;
     
     using static System.Runtime.Intrinsics.X86.Sse3;
     using static System.Runtime.Intrinsics.X86.Avx;
@@ -20,7 +21,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec128<float> hsub(in Vec128<float> lhs, in Vec128<float> rhs)
+        public static Vector128<float> hsub(Vector128<float> lhs, Vector128<float> rhs)
             => HorizontalSubtract(lhs, rhs);
 
         /// <summary>
@@ -29,7 +30,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec128<double> hsub(in Vec128<double> lhs, in Vec128<double> rhs)
+        public static Vector128<double> hsub(Vector128<double> lhs, Vector128<double> rhs)
             => HorizontalSubtract(lhs, rhs);
 
         /// <summary>
@@ -38,7 +39,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec256<float> hsub(in Vec256<float> lhs, in Vec256<float> rhs)
+        public static Vector256<float> hsub(Vector256<float> lhs, Vector256<float> rhs)
             => HorizontalSubtract(lhs, rhs);
 
         /// <summary>
@@ -47,7 +48,7 @@ namespace Z0
         /// <param name="lhs">The left vector</param>
         /// <param name="rhs">The right vector</param>
         [MethodImpl(Inline)]
-        public static Vec256<double> hsub(in Vec256<double> lhs, in Vec256<double> rhs)
+        public static Vector256<double> hsub(Vector256<double> lhs, Vector256<double> rhs)
             => HorizontalSubtract(lhs, rhs);
     }
 

@@ -124,7 +124,7 @@ namespace Z0
             Claim.eq(expect, actual);
         }
 
-        public static void VerifyBinOp<T>(IPolyrand random, int blocks, Vec256BinOp<T> inXOp, Func<T,T,T> primalOp)
+        public static void VerifyBinOp<T>(IPolyrand random, int blocks, Vector256BinOp<T> inXOp, Func<T,T,T> primalOp)
             where T : unmanaged
         {
             var blocklen = Span256<T>.BlockLength;                     

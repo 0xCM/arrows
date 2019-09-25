@@ -34,7 +34,7 @@ namespace Z0
         [MethodImpl(Inline)]
         public static Vec256<T> next<T>(in Vec256<T> src)
             where T : unmanaged
-                => add(in src, in Vec256Pattern.Units<T>());
+                => add<T>(src, Vec256Pattern.Units<T>());
 
         /// <summary>
         /// Decrements each source vector component by a unit
