@@ -69,5 +69,15 @@ namespace Z0
             where T : struct
                 => domain.ValueOrElse(() => Rng.TypeDomain<T>());
 
+        [MethodImpl(Inline)]
+        static T TypeMin<T>()
+            where T : struct
+                => gmath.minval<T>();
+        
+        [MethodImpl(Inline)]
+        static T TypeMax<T>()
+            where T : struct
+                => gmath.maxval<T>();
+
     }
 }

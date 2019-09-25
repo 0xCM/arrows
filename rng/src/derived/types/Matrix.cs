@@ -13,17 +13,8 @@ namespace Z0
     using static As;
     using static nfunc;
 
-    public static partial class RngX
+    partial class RngD
     {
-        [MethodImpl(Inline)]
-        static T TypeMin<T>()
-            where T : struct
-                => gmath.minval<T>();
-        
-        [MethodImpl(Inline)]
-        static T TypeMax<T>()
-            where T : struct
-                => gmath.maxval<T>();
 
         /// <summary>
         /// Allocates and fills a matrix of natural dimensions with random values

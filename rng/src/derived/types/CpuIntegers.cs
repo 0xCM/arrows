@@ -10,7 +10,7 @@ namespace Z0
 
     using static zfunc;
 
-    partial class RngX
+    partial class RngD
     {        
 
        /// <summary>

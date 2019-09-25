@@ -12,7 +12,7 @@ namespace Z0
 
     using static zfunc;
 
-    class BitSource<T> : IRandomStream<Bit>, IPointStream<Bit>
+    public class BitSource<T> : IRandomStream<Bit>, IPointStream<Bit>
         where T : unmanaged
     {
         const int BufferSize = Pow2.T10;

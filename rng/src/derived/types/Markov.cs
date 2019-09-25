@@ -12,7 +12,7 @@ namespace Z0
     using static zfunc;
     using static nfunc;
 
-    partial class RngX
+    partial class RngD
     {
         /// <summary>
         /// Produces a stochastic vector of a specified length

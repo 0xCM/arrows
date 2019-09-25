@@ -14,8 +14,13 @@ namespace Z0
 
     using BV = Z0.BitVector;
 
-    partial class RngX
+    partial class RngD
     {
+        [MethodImpl(Inline)]
+        static IRandomStream<T> stream<T>(IEnumerable<T> src, RngKind rng)
+            where T : struct
+                =>  new RandomStream<T>(rng,src);
+
         /// <summary>
         /// Retrieves the next unsigned 4-bit value from the source
         /// </summary>

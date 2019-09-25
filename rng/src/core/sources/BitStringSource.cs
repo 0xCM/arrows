@@ -12,7 +12,7 @@ namespace Z0
 
     using static zfunc;
 
-    class BitStringSource : IPointSource<BitString>
+    public class BitStringSource : IPointSource<BitString>
     {        
         public BitStringSource(IPolyrand random, Interval<int> length)
         {

@@ -11,7 +11,7 @@ namespace Z0
     using static zfunc;
     using BM = Z0.BitMatrix;
 
-    partial class RngX
+    partial class RngD
     {
         /// <summary>
         /// Produces a 4x4 bitmatrix from a random source

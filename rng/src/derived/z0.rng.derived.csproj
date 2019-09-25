@@ -12,6 +12,13 @@
     <ProjectReference Include="$(RootDir)nats/z0.nats.csproj" />
     <ProjectReference Include="$(RootDir)primal/z0.primal.csproj" />
     <ProjectReference Include="$(RootDir)inx/src/core/z0.inx.core.csproj" />
+    <ProjectReference Include="$(RootDir)matrix/src/z0.matrix.csproj" />    
+    <ProjectReference Include="$(RootDir)statdist/src/z0.statdist.csproj" />    
+    <ProjectReference Include="$(RootDir)bits/src/z0.bits.csproj" />    
+    <ProjectReference Include="$(RootDir)cpu/src/z0.cpu.csproj" />    
+    <ProjectReference Include="$(RootDir)ms/z0.ms.csproj" />
+    <ProjectReference Include="$(RootDir)rng/src/core/z0.rng.core.csproj" />
+
   </ItemGroup>
 
 </Project>

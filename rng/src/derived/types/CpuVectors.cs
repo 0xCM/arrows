@@ -11,7 +11,7 @@ namespace Z0
 
     using static zfunc;
 
-    partial class RngX
+    partial class RngD
     {        
         /// <summary>
         /// Produces a random 128-bit cpu vector

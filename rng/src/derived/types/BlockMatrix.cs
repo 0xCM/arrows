@@ -13,7 +13,7 @@ namespace Z0
     using static As;
     using static nfunc;
 
-    public static partial class RngX
+    partial class RngD
     {
         /// <summary>
         /// Allocates a matrix of natural dimensions and populates it with random values

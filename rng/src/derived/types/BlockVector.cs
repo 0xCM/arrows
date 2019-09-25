@@ -12,7 +12,7 @@ namespace Z0
     using static zfunc;
     using static nfunc;
 
-    partial class RngX
+    partial class RngD
     {
         /// <summary>
         /// Produces a blocked vector
@@ -20,10 +20,10 @@ namespace Z0
         /// <param name="random">The random source</param>
         /// <param name="domain">The domain of the random variable</param>
         /// <typeparam name="T">The vector component type</typeparam>
-        public static Vector<T> Vector<T>(this IPolyrand random, int len, Interval<T>? domain = null)
-            where T : unmanaged
+        public static BlockVector<T> BlockVec<T>(this IPolyrand random, int len, Interval<T>? domain = null)
+            where T : struct
         {
-            var dst = Z0.Vector.Alloc<T>(len);
+            var dst = BlockVector.Alloc<T>(len);
             if(domain != null)
                 random.StreamTo(domain.Value, len, ref dst[0]);
             else
@@ -31,6 +31,20 @@ namespace Z0
             return dst;
         }
 
+        /// <summary>
+        /// Produces a generic random vector over one domain and converts it to a vector over another
+        /// </summary>
+        /// <param name="random">The random source</param>
+        /// <param name="len">The vector length</param>
+        /// <param name="domain">The domain over which random selection will occur</param>
+        /// <param name="rep">A target domain representative</param>
+        /// <typeparam name="S">The source domain type</typeparam>
+        /// <typeparam name="T">The target domain type</typeparam>
+        [MethodImpl(Inline)]
+        public static BlockVector<T> BlockVec<S,T>(this IPolyrand random, int len, Interval<S>? domain = null, T rep = default)        
+            where S: struct
+            where T : struct
+                => random.BlockVec<S>(len,domain).Convert<T>();
 
         /// <summary>
         /// Allocates and populates a vector of natural length
@@ -40,44 +54,12 @@ namespace Z0
         /// <typeparam name="N">The length type</typeparam>
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
-        public static Vector<N,T> Vector<N,T>(this IPolyrand random, Interval<T> domain, N n = default)
-            where T : unmanaged
+        public static BlockVector<N,T> BlockVec<N,T>(this IPolyrand random, Interval<T> domain, N n = default)
+            where T : struct
             where N : ITypeNat, new()
         {
-            var dst = Z0.Vector.Alloc<N,T>();
+            var dst = BlockVector.Alloc<N,T>();
             random.Fill(domain, ref dst);
-            return dst;
-        }
-
-        /// <summary>
-        /// Allocates and populates a vector of natural length
-        /// </summary>
-        /// <param name="random">The random source</param>
-        /// <typeparam name="N">The length type</typeparam>
-        /// <typeparam name="T">The vector component type</typeparam>
-        [MethodImpl(Inline)]
-        public static Vector<N,T> Vector<N,T>(this IPolyrand random, T min, T max,  N n = default)
-            where T : unmanaged
-            where N : ITypeNat, new()
-        {
-            var dst = Z0.Vector.Alloc<N,T>();
-            random.Fill(closed(min,max), ref dst);
-            return dst;
-        }
-
-        /// <summary>
-        /// Allocates and populates a vector of natural length
-        /// </summary>
-        /// <param name="random">The random source</param>
-        /// <typeparam name="N">The length type</typeparam>
-        /// <typeparam name="T">The vector component type</typeparam>
-        [MethodImpl(Inline)]
-        public static Vector<N,T> Vector<N,T>(this IPolyrand random, N n = default)
-            where T : unmanaged
-            where N : ITypeNat, new()
-        {
-            var dst = Z0.Vector.Alloc<N,T>();
-            random.Fill(ref dst);
             return dst;
         }
 
@@ -91,26 +73,27 @@ namespace Z0
         /// <typeparam name="S">The sample domain type</typeparam>
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
-        public static Vector<N,T> Vector<N,S,T>(this IPolyrand random, Interval<S> domain, N n = default)
-            where T : unmanaged
-            where S : unmanaged
+        public static BlockVector<N,T> BlockVec<N,S,T>(this IPolyrand random, Interval<S> domain, N n = default)
+            where T : struct
+            where S : struct
             where N : ITypeNat, new()
-                => random.Vector<N,S>(domain).Convert<T>();
+                => random.BlockVec<N,S>(domain).Convert<T>();
 
         /// <summary>
-        /// Produces a generic random vector over one domain and converts it to a vector over another
+        /// Allocates and populates a vector of natural length
         /// </summary>
         /// <param name="random">The random source</param>
-        /// <param name="len">The vector length</param>
-        /// <param name="domain">The domain over which random selection will occur</param>
-        /// <param name="rep">A target domain representative</param>
-        /// <typeparam name="S">The source domain type</typeparam>
-        /// <typeparam name="T">The target domain type</typeparam>
+        /// <typeparam name="N">The length type</typeparam>
+        /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
-        public static Vector<T> Vector<S,T>(this IPolyrand random, int len, Interval<S>? domain = null)        
-            where S: unmanaged
-            where T : unmanaged
-                => random.Vector<S>(len,domain).Convert<T>();
+        public static BlockVector<N,T> BlockVec<N,T>(this IPolyrand random,  N n = default)
+            where T : struct
+            where N : ITypeNat, new()
+        {
+            var dst = BlockVector.Alloc<N,T>();
+            random.Fill(ref dst);
+            return dst;
+        }
 
         /// <summary>
         /// Populates a vector of natural length with random values from the source
@@ -121,10 +104,10 @@ namespace Z0
         /// <typeparam name="N">The length type</typeparam>
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
-        public static void Fill<N,T>(this IPolyrand random, Interval<T> domain, ref Vector<N,T> vector, N n = default)
-            where T : unmanaged
+        public static void Fill<N,T>(this IPolyrand random, Interval<T> domain, ref BlockVector<N,T> vector, N n = default)
+            where T : struct
             where N : ITypeNat, new()
-                => random.StreamTo<T>(domain, nati<N>(), ref vector.Data[0]);
+                => random.StreamTo<T>(domain, nati<N>(), ref vector.Unsized[0]);
 
         /// <summary>
         /// Populates a vector of natural length with random values from the source
@@ -135,10 +118,10 @@ namespace Z0
         /// <typeparam name="N">The length type</typeparam>
         /// <typeparam name="T">The vector component type</typeparam>
         [MethodImpl(Inline)]
-        public static void Fill<N,T>(this IPolyrand random, ref Vector<N,T> vector, N n = default)
-            where T : unmanaged
+        public static void Fill<N,T>(this IPolyrand random, ref BlockVector<N,T> vector, N n = default)
+            where T : struct
             where N : ITypeNat, new()
-                => random.StreamTo<T>(nati<N>(), ref vector.Data[0]);
+                => random.StreamTo<T>(nati<N>(), ref vector.Unsized[0]);
 
     }
 }

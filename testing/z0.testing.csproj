@@ -11,6 +11,7 @@
     <ProjectReference Include="../primal/z0.primal.csproj" />
     <ProjectReference Include="../primal/z0.primal.csproj" />
     <ProjectReference Include="../rng/src/core/z0.rng.core.csproj" />
+    <ProjectReference Include="../rng/src/derived/z0.rng.derived.csproj" />
   </ItemGroup>
 
 </Project>

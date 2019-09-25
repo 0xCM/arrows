@@ -16,6 +16,7 @@
     <ProjectReference Include="$(RootDir)mkl/src/z0.mkl.csproj" />
     <ProjectReference Include="$(RootDir)matrix/src/z0.matrix.csproj" />
     <ProjectReference Include="../core/z0.rng.core.csproj" />    
+    <ProjectReference Include="../derived/z0.rng.derived.csproj" />    
 
   </ItemGroup>
 
